@@ -18,6 +18,21 @@ apply plugin: 'application'
 
 mainClassName = 'uk.co.markormesher.easymaps.engine.EntryPointKt'
 
+run {
+	standardInput = System.in
+}
+
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Implementation-Title': 'EasyMaps Engine',
+				'Implementation-Version': version,
+				'Main-Class': 'uk.co.markormesher.easymaps.engine.EntryPointKt'
+	}
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
+
 repositories {
 	mavenCentral()
 }
@@ -27,8 +42,4 @@ dependencies {
 
 	testCompile 'junit:junit:4.11'
 	testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-}
-
-run {
-	standardInput = System.in
 }

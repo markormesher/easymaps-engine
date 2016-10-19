@@ -4,6 +4,7 @@ import uk.co.markormesher.easymaps.engine.data.LUWifiLogEntry
 import uk.co.markormesher.easymaps.engine.data.LUWifiLogFile
 import uk.co.markormesher.easymaps.engine.data.LUWifiTrait
 import uk.co.markormesher.easymaps.engine.data.LogFile
+import uk.co.markormesher.easymaps.engine.helpers.printWarning
 import java.io.File
 import java.util.*
 import java.util.regex.Pattern
@@ -12,7 +13,7 @@ class LUWifiLogReader : LogReader {
 
 	val filePaths = ArrayList<String>()
 	var currentFile = -1
-	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,[a-z0-9_]+)+)\\]")!!
+	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,[a-f0-9:]+)+)\\]")!!
 
 	override fun init(location: String) {
 		val folder = File(location)
@@ -45,15 +46,12 @@ class LUWifiLogReader : LogReader {
 			val cleanLine = line.trim()
 			if (cleanLine.isBlank()) return@forEachLine
 			if (!validLinePattern.matcher(cleanLine).matches()) {
-				println("Skipping invalid log entry")
-				println("- Line $lineCounter in $path")
+				printWarning("skipping invalid log entry on line $lineCounter of $path")
 				return@forEachLine
 			}
 
 			// explode line to get components
-			// chunks[0] = userId
-			// chunks[1] = timestamp
-			// chunks[2..n-1] = traits
+			// chunks = [userId, timestamp, traits...]
 			val lineChunks = cleanLine.drop(1).dropLast(1).split(",")
 			val timestamp = lineChunks[1].toLong()
 			val traits = ArrayList<LUWifiTrait>()
