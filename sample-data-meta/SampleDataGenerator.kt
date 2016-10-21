@@ -1,5 +1,3 @@
-package uk.co.markormesher.easymaps.engine
-
 import java.io.File
 import java.util.concurrent.ThreadLocalRandom
 
@@ -42,7 +40,7 @@ fun main(args: Array<String>) {
 				time += randBetween(minDelayBetweenNodes, maxDelayBetweenNodes)
 			}
 		}
-		val file = File("test-data/test-${fileCounter++}-dummy-device.txt")
+		val file = File("sample-${fileCounter++}-dummy-device.txt")
 		file.createNewFile()
 		file.writeText(sb.toString())
 	}
