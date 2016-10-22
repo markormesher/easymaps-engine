@@ -53,9 +53,7 @@ class SampleLogReader : LogReader {
 			}
 
 			// explode line to get components
-			// chunks[0] = userId
-			// chunks[1] = timestamp
-			// chunks[2..n-1] = traits
+			// chunks = [userId, timestamp, traits...]
 			val lineChunks = cleanLine.drop(1).dropLast(1).split(",")
 			val timestamp = lineChunks[1].toLong()
 			val traits = ArrayList<LUWifiTrait>()
