@@ -21,6 +21,10 @@ class TraitTranslator {
 		idToTraitMap.remove(id)
 	}
 
+	fun containsTrait(trait: Trait): Boolean = traitToIdMap.containsKey(trait)
+
+	fun containsId(id: Int): Boolean = idToTraitMap.containsKey(id)
+
 	fun toId(trait: Trait): Int {
 		if (traitToIdMap.containsKey(trait)) return traitToIdMap[trait]!!
 

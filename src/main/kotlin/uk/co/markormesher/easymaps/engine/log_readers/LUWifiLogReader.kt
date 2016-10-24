@@ -46,7 +46,7 @@ class LUWifiLogReader : LogReader {
 			val cleanLine = line.trim()
 			if (cleanLine.isBlank()) return@forEachLine
 			if (!validLinePattern.matcher(cleanLine).matches()) {
-				printWarning("skipping invalid log entry on line $lineCounter of $path")
+				printWarning("Skipping invalid log entry on line $lineCounter of $path")
 				return@forEachLine
 			}
 

@@ -14,9 +14,10 @@ private val ANSI_WHITE_TEXT = "\u001B[37m"
 
 private fun bold(msg: String): String = ANSI_BOLD + msg + ANSI_RESET
 private fun whiteBg(msg: String): String = ANSI_WHITE_BG + msg + ANSI_RESET
+private fun blackText(msg: String): String = ANSI_BLACK_TEXT + msg + ANSI_RESET
 private fun redText(msg: String): String = ANSI_RED_TEXT + msg + ANSI_RESET
 private fun yellowText(msg: String): String = ANSI_YELLOW_TEXT + msg + ANSI_RESET
-private fun purpleText(msg: String): String = ANSI_BLUE_TEXT + msg + ANSI_RESET
+private fun purpleText(msg: String): String = ANSI_PURPLE_TEXT + msg + ANSI_RESET
 
 val INPUT_PROMPT = ANSI_CYAN_TEXT + ANSI_BOLD + " --> " + ANSI_RESET
 
@@ -31,11 +32,11 @@ fun printHeader(header: String) {
 fun printSubHeader(header: String) {
 	println()
 	println(whiteBg(purpleText(" " + "-".repeat(header.length + 2) + " ")))
-	println(whiteBg("  ") + bold(whiteBg(purpleText(header))) + whiteBg("  "))
+	println(whiteBg("  ") + bold(whiteBg(blackText(header))) + whiteBg("  "))
 	println(whiteBg(purpleText(" " + "-".repeat(header.length + 2) + " ")))
 	println()
 }
 
 fun printInfo(msg: String) = println("\r ${bold(yellowText("INFO:"))} $msg")
-fun printWarning(msg: String) = println("\r ${bold(yellowText("WARN:"))} $msg")
+fun printWarning(msg: String) = println("\r ${bold(purpleText("WARN:"))} $msg")
 fun printError(msg: String) = println("\r ${bold(redText("ERROR:"))} $msg")
