@@ -4,6 +4,7 @@ import uk.co.markormesher.easymaps.engine.data.LUWifiLogEntry
 import uk.co.markormesher.easymaps.engine.data.LUWifiLogFile
 import uk.co.markormesher.easymaps.engine.data.LUWifiTrait
 import uk.co.markormesher.easymaps.engine.data.LogFile
+import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
 import uk.co.markormesher.easymaps.engine.helpers.printWarning
 import java.io.File
 import java.util.*
@@ -46,7 +47,9 @@ class LUWifiLogReader : LogReader {
 			val cleanLine = line.trim()
 			if (cleanLine.isBlank()) return@forEachLine
 			if (!validLinePattern.matcher(cleanLine).matches()) {
-				printWarning("Skipping invalid log entry on line $lineCounter of $path")
+				printWarning("Skipping invalid log entry")
+				printSubMessage("File: $path")
+				printSubMessage("Line: $lineCounter")
 				return@forEachLine
 			}
 

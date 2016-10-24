@@ -4,6 +4,8 @@ import uk.co.markormesher.easymaps.engine.data.LogFile
 import uk.co.markormesher.easymaps.engine.data.SampleLogEntry
 import uk.co.markormesher.easymaps.engine.data.SampleLogFile
 import uk.co.markormesher.easymaps.engine.data.SampleTrait
+import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
+import uk.co.markormesher.easymaps.engine.helpers.printWarning
 import java.io.File
 import java.util.*
 import java.util.regex.Pattern
@@ -36,8 +38,6 @@ class SampleLogReader : LogReader {
 		val path = filePaths[++currentFile]
 		val file = File(path)
 
-		//println(path)
-
 		val logEntries = ArrayList<SampleLogEntry>()
 		var lineCounter = 0
 		file.forEachLine { line ->
@@ -47,8 +47,9 @@ class SampleLogReader : LogReader {
 			val cleanLine = line.trim()
 			if (cleanLine.isBlank()) return@forEachLine
 			if (!validLinePattern.matcher(cleanLine).matches()) {
-				println("Skipping invalid log entry")
-				println("- Line $lineCounter in $path")
+				printWarning("Skipping invalid log entry")
+				printSubMessage("File: $path")
+				printSubMessage("Line: $lineCounter")
 				return@forEachLine
 			}
 

@@ -5,6 +5,7 @@ import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.data.Trait
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
+import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
 import uk.co.markormesher.easymaps.engine.log_readers.LogReader
 import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import uk.co.markormesher.easymaps.engine.trait_translation.TraitTranslator
@@ -14,17 +15,25 @@ fun parseAndCleanData(logReader: LogReader,
 					  logPath: String,
 					  optionProvider: OptionProvider,
 					  traitTranslator: TraitTranslator): List<ParsedLogFile> {
-
 	printSubHeader("Parsing and Cleaning Data")
-
-	// set up log reader (will be used twice)
 	logReader.init(logPath)
+	buildTraitMap(logReader, traitTranslator)
+	applyObserverCountFilter(logReader, optionProvider, traitTranslator)
+	printInfo("Continuing with ${traitTranslator.size} trait(s)")
+	return convertLogsIntoParsedLogs(logReader, traitTranslator)
+}
 
-	// build trait maps and count unique users per trait
+private fun buildTraitMap(
+		logReader: LogReader,
+		traitTranslator: TraitTranslator) {
+
+	logReader.resetIterator()
+	printInfo("Building trait map...")
+
 	var fileCount = 0
 	var entryCount = 0
 	var dataPointsCount = 0
-	val usersPerTrait = HashMap<Trait, HashSet<String>>()
+
 	while (logReader.hasNextLogFile()) {
 		++fileCount
 		val file = logReader.nextLogFile()
@@ -33,52 +42,73 @@ fun parseAndCleanData(logReader: LogReader,
 			logEntry.traits.forEach { trait ->
 				++dataPointsCount
 				traitTranslator.offer(trait)
-				if (!usersPerTrait.containsKey(trait)) {
-					usersPerTrait.put(trait, HashSet<String>())
-				}
-				usersPerTrait[trait]?.add(logEntry.userId)
 			}
 		}
 	}
 
-	printInfo("Read $fileCount log file(s)")
-	printInfo("Read $entryCount log entry(ies)")
-	printInfo("Read $dataPointsCount data point(s)")
-	printInfo("Found ${traitTranslator.size} trait(s)")
+	printSubMessage("Read $fileCount log file(s)")
+	printSubMessage("Read $entryCount log entry(ies)")
+	printSubMessage("Read $dataPointsCount data point(s)")
+	printSubMessage("Found ${traitTranslator.size} trait(s)")
+}
+
+private fun applyObserverCountFilter(
+		logReader: LogReader,
+		optionProvider: OptionProvider,
+		traitTranslator: TraitTranslator) {
+
+	logReader.resetIterator()
+	printInfo("Starting unique observer threshold filter...")
+
+	// count unique observers per trait
+	val observersPerTrait = HashMap<Trait, HashSet<String>>()
+	while (logReader.hasNextLogFile()) {
+		val file = logReader.nextLogFile()
+		file.logEntries.forEach { logEntry ->
+			logEntry.traits.forEach { trait ->
+				if (!observersPerTrait.containsKey(trait)) {
+					observersPerTrait.put(trait, HashSet<String>())
+				}
+				observersPerTrait[trait]?.add(logEntry.userId)
+			}
+		}
+	}
 
 	// drop traits that did not meet the required unique observer threshold
-	printInfo("Starting unique observer threshold filter...")
 	val traitsToDrop = ArrayList<Trait>()
-	usersPerTrait.forEach { trait, users ->
+	observersPerTrait.forEach { trait, users ->
 		if (users.size < optionProvider.uniqueObserversRequiredPerTrait) {
 			traitsToDrop.add(trait)
 		}
 	}
 	traitsToDrop.forEach { t -> traitTranslator.remove(t) }
-	printInfo("Dropped ${traitsToDrop.size} trait(s)")
 
-	// more filters can be added here, if necessary
+	printSubMessage("Dropped ${traitsToDrop.size} trait(s)")
+}
 
-	// finished filtering
-	printInfo("Continuing with ${traitTranslator.size} trait(s)")
+private fun convertLogsIntoParsedLogs(
+		logReader: LogReader,
+		traitTranslator: TraitTranslator)
+		: List<ParsedLogFile> {
 
-	// re-write logs into parsed log files
+	printInfo("Converting raw logs into parsed logs...")
+	logReader.resetIterator()
+
 	val parsedLogFiles = ArrayList<ParsedLogFile>()
 	var parsedEntryCount = 0
-	logReader.resetIterator()
 	while (logReader.hasNextLogFile()) {
 		val file = logReader.nextLogFile()
 
-		// re-write entries as parsed entries
+		// parse entries for this file
 		val entries = ArrayList<ParsedLogEntry>()
 		file.logEntries.forEach { logEntry ->
-			val traits = ArrayList<Int>()
-			logEntry.traits
+			val parsedTraits = logEntry.traits
 					.filter { t -> traitTranslator.containsTrait(t) }
-					.forEach { t -> traits.add(traitTranslator.toId(t)) }
+					.map { t -> traitTranslator.toId(t) }
+					.toIntArray()
 
-			if (traits.isNotEmpty()) {
-				entries.add(ParsedLogEntry(logEntry.timestamp, traits.toIntArray()))
+			if (parsedTraits.isNotEmpty()) {
+				entries.add(ParsedLogEntry(logEntry.timestamp, parsedTraits))
 				++parsedEntryCount
 			}
 		}
@@ -88,8 +118,7 @@ fun parseAndCleanData(logReader: LogReader,
 		}
 	}
 
-	// done!
-	printInfo("Parsed data into ${parsedLogFiles.size} log file(s) with $parsedEntryCount log entry(ies)")
+	printSubMessage("Parsed data into ${parsedLogFiles.size} log file(s) with $parsedEntryCount log entry(ies)")
 
 	return parsedLogFiles
 }
