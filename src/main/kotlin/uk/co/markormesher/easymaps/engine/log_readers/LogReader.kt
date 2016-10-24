@@ -6,7 +6,7 @@ interface LogReader {
 
 	fun init(location: String)
 
-	fun logFileCount(): Int
+	fun getFileCount(): Int
 
 	fun hasNextLogFile(): Boolean
 

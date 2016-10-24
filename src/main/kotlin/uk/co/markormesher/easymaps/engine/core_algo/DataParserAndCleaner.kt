@@ -1,4 +1,4 @@
-package uk.co.markormesher.easymaps.engine
+package uk.co.markormesher.easymaps.engine.core_algo
 
 import uk.co.markormesher.easymaps.engine.data.ParsedLogEntry
 import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
@@ -11,10 +11,13 @@ import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import uk.co.markormesher.easymaps.engine.trait_translation.TraitTranslator
 import java.util.*
 
-fun parseAndCleanData(logReader: LogReader,
-					  logPath: String,
-					  optionProvider: OptionProvider,
-					  traitTranslator: TraitTranslator): List<ParsedLogFile> {
+fun parseAndCleanData(
+		logReader: LogReader,
+		logPath: String,
+		optionProvider: OptionProvider,
+		traitTranslator: TraitTranslator)
+		: List<ParsedLogFile> {
+
 	printSubHeader("Parsing and Cleaning Data")
 	logReader.init(logPath)
 	buildTraitMap(logReader, traitTranslator)
@@ -27,26 +30,22 @@ private fun buildTraitMap(
 		logReader: LogReader,
 		traitTranslator: TraitTranslator) {
 
-	logReader.resetIterator()
 	printInfo("Building trait map...")
 
-	var fileCount = 0
 	var entryCount = 0
 	var dataPointsCount = 0
 
+	logReader.resetIterator()
 	while (logReader.hasNextLogFile()) {
-		++fileCount
 		val file = logReader.nextLogFile()
+		entryCount += file.logEntries.size
 		file.logEntries.forEach { logEntry ->
-			++entryCount
-			logEntry.traits.forEach { trait ->
-				++dataPointsCount
-				traitTranslator.offer(trait)
-			}
+			dataPointsCount += logEntry.traits.size
+			logEntry.traits.forEach { trait -> traitTranslator.offer(trait) }
 		}
 	}
 
-	printSubMessage("Read $fileCount log file(s)")
+	printSubMessage("Read ${logReader.getFileCount()} log file(s)")
 	printSubMessage("Read $entryCount log entry(ies)")
 	printSubMessage("Read $dataPointsCount data point(s)")
 	printSubMessage("Found ${traitTranslator.size} trait(s)")
@@ -57,11 +56,11 @@ private fun applyObserverCountFilter(
 		optionProvider: OptionProvider,
 		traitTranslator: TraitTranslator) {
 
-	logReader.resetIterator()
-	printInfo("Starting unique observer threshold filter...")
+	printInfo("Running unique observer threshold filter...")
 
-	// count unique observers per trait
 	val observersPerTrait = HashMap<Trait, HashSet<String>>()
+
+	logReader.resetIterator()
 	while (logReader.hasNextLogFile()) {
 		val file = logReader.nextLogFile()
 		file.logEntries.forEach { logEntry ->
@@ -74,7 +73,6 @@ private fun applyObserverCountFilter(
 		}
 	}
 
-	// drop traits that did not meet the required unique observer threshold
 	val traitsToDrop = ArrayList<Trait>()
 	observersPerTrait.forEach { trait, users ->
 		if (users.size < optionProvider.uniqueObserversRequiredPerTrait) {
@@ -92,10 +90,11 @@ private fun convertLogsIntoParsedLogs(
 		: List<ParsedLogFile> {
 
 	printInfo("Converting raw logs into parsed logs...")
-	logReader.resetIterator()
 
 	val parsedLogFiles = ArrayList<ParsedLogFile>()
 	var parsedEntryCount = 0
+
+	logReader.resetIterator()
 	while (logReader.hasNextLogFile()) {
 		val file = logReader.nextLogFile()
 

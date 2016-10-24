@@ -26,7 +26,7 @@ class LUWifiLogReader : LogReader {
 				.forEach { f -> filePaths.add(f.absolutePath) }
 	}
 
-	override fun logFileCount(): Int {
+	override fun getFileCount(): Int {
 		return filePaths.size
 	}
 

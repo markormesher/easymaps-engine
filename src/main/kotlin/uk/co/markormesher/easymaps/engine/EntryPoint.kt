@@ -1,6 +1,11 @@
 package uk.co.markormesher.easymaps.engine
 
+import uk.co.markormesher.easymaps.engine.core_algo.generateObservedNetwork
+import uk.co.markormesher.easymaps.engine.core_algo.matchToKnownNetwork
+import uk.co.markormesher.easymaps.engine.core_algo.parseAndCleanData
+import uk.co.markormesher.easymaps.engine.core_algo.writeOutput
 import uk.co.markormesher.easymaps.engine.helpers.INPUT_PROMPT
+import uk.co.markormesher.easymaps.engine.helpers.VERSION
 import uk.co.markormesher.easymaps.engine.helpers.printError
 import uk.co.markormesher.easymaps.engine.helpers.printHeader
 import uk.co.markormesher.easymaps.engine.log_readers.LUWifiLogReader
@@ -24,6 +29,8 @@ fun main(args: Array<String>) {
 
 	val parsedLogFiles = parseAndCleanData(logReader, logPath, optionProvider, traitTranslator)
 	generateObservedNetwork(parsedLogFiles, optionProvider, traitTranslator)
+	matchToKnownNetwork()
+	writeOutput()
 
 	println()
 }
