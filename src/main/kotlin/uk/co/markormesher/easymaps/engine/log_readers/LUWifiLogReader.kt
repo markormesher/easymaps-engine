@@ -53,11 +53,12 @@ class LUWifiLogReader : LogReader {
 			// explode line to get components
 			// chunks = [userId, timestamp, traits...]
 			val lineChunks = cleanLine.drop(1).dropLast(1).split(",")
+			val userId = lineChunks[0]
 			val timestamp = lineChunks[1].toLong()
 			val traits = ArrayList<LUWifiTrait>()
 			lineChunks.drop(2).forEach { c -> traits.add(LUWifiTrait(c)) }
 
-			logEntries.add(LUWifiLogEntry(timestamp, traits))
+			logEntries.add(LUWifiLogEntry(timestamp, userId, traits))
 		}
 		return LUWifiLogFile(logEntries)
 	}

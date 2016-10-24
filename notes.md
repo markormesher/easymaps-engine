@@ -22,9 +22,9 @@ High-level overview of how the engine will transform raw logs into labels for a 
   - Validate format of each log entry (throw an exception or warning for invalid lines, depending on preference in `OptionProvider`).
   - Count unique users that observed each trait.
   - Map traits to integers for less memory-intensive handling later.
-- Remove traits from the `<Trait, integer>` map if they did not meet the threshold.
+- Remove traits from the `<Trait, integer>` map if they were observed by too few users (as per the threshold from the `OptionsProvider`).
 - For each log file:
-  - Re-write entries into a single `LogFile` object, each containing a user ID and timestamp-ordered list of `LogEntry<int timestamp, int[] traits>` objects, skipping traits observed by too few users (as per the threshold from the `OptionsProvider`).
+  - Re-write entries into a single `ParsedLogFile` object, each containing a user ID and timestamp-ordered list of `ParsedLogEntry<int timestamp, int[] traits>` objects.
 
 ### End results:
 

@@ -7,15 +7,24 @@ class TraitTranslator {
 
 	val traitToIdMap = HashMap<Trait, Int>()
 	val idToTraitMap = HashMap<Int, Trait>()
+	var latestId = -1
 
 	fun offer(trait: Trait) {
 		toId(trait) // run toId but ignore result
 	}
 
+	fun remove(trait: Trait) {
+		if (!traitToIdMap.containsKey(trait)) return
+
+		val id = traitToIdMap[trait]
+		traitToIdMap.remove(trait)
+		idToTraitMap.remove(id)
+	}
+
 	fun toId(trait: Trait): Int {
 		if (traitToIdMap.containsKey(trait)) return traitToIdMap[trait]!!
 
-		val id = traitToIdMap.size
+		val id = ++latestId
 		traitToIdMap.put(trait, id)
 		idToTraitMap.put(id, trait)
 		return id
@@ -23,8 +32,7 @@ class TraitTranslator {
 
 	fun fromId(id: Int): Trait {
 		if (idToTraitMap.containsKey(id)) return idToTraitMap[id]!!
-		throw InvalidTraitIdException("Invalid ID given: ID was $id and " +
-				" map sizes are ${traitToIdMap.size} and ${idToTraitMap.size}")
+		throw InvalidTraitIdException("The ID $id does not exist in this TraitTranslator")
 	}
 
 	var size: Int = 0

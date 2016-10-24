@@ -6,6 +6,7 @@ interface LogFile {
 
 interface LogEntry {
 	val timestamp: Long
+	val userId: String
 	val traits: List<Trait>
 }
 

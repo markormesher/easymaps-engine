@@ -1,7 +1,7 @@
 package uk.co.markormesher.easymaps.engine.option_providers
 
-interface OptionProvider {
+abstract class OptionProvider {
 
-
+	val uniqueUsersRequiredPerTrait = 2
 
 }

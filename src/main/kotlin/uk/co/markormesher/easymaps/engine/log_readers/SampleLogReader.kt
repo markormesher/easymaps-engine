@@ -1,9 +1,9 @@
 package uk.co.markormesher.easymaps.engine.log_readers
 
-import uk.co.markormesher.easymaps.engine.data.LUWifiLogEntry
-import uk.co.markormesher.easymaps.engine.data.LUWifiLogFile
-import uk.co.markormesher.easymaps.engine.data.LUWifiTrait
 import uk.co.markormesher.easymaps.engine.data.LogFile
+import uk.co.markormesher.easymaps.engine.data.SampleLogEntry
+import uk.co.markormesher.easymaps.engine.data.SampleLogFile
+import uk.co.markormesher.easymaps.engine.data.SampleTrait
 import java.io.File
 import java.util.*
 import java.util.regex.Pattern
@@ -38,7 +38,7 @@ class SampleLogReader : LogReader {
 
 		//println(path)
 
-		val logEntries = ArrayList<LUWifiLogEntry>()
+		val logEntries = ArrayList<SampleLogEntry>()
 		var lineCounter = 0
 		file.forEachLine { line ->
 			++lineCounter
@@ -55,14 +55,15 @@ class SampleLogReader : LogReader {
 			// explode line to get components
 			// chunks = [userId, timestamp, traits...]
 			val lineChunks = cleanLine.drop(1).dropLast(1).split(",")
+			val userId = lineChunks[0]
 			val timestamp = lineChunks[1].toLong()
-			val traits = ArrayList<LUWifiTrait>()
-			lineChunks.drop(2).forEach { c -> traits.add(LUWifiTrait(c)) }
+			val traits = ArrayList<SampleTrait>()
+			lineChunks.drop(2).forEach { c -> traits.add(SampleTrait(c)) }
 
-			logEntries.add(LUWifiLogEntry(timestamp, traits))
+			logEntries.add(SampleLogEntry(timestamp, userId, traits))
 		}
 
-		return LUWifiLogFile(logEntries)
+		return SampleLogFile(logEntries)
 	}
 
 	override fun resetIterator() {

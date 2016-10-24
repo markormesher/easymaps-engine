@@ -22,6 +22,7 @@ fun main(args: Array<String>) {
 	val optionProvider = selectOptionProvider()
 	val traitTranslator = TraitTranslator()
 
+	parseAndCleanData(logReader, logPath, optionProvider, traitTranslator)
 	generateObservedNetwork(logReader, logPath, optionProvider, traitTranslator)
 
 	println()
