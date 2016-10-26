@@ -9,11 +9,13 @@ import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
 import uk.co.markormesher.easymaps.engine.log_readers.LogReader
 import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import uk.co.markormesher.easymaps.engine.trait_translation.TraitTranslator
+import java.io.PrintWriter
 import java.util.*
 
 fun parseAndCleanData(
 		logReader: LogReader,
 		logPath: String,
+		outputPath: String,
 		optionProvider: OptionProvider,
 		traitTranslator: TraitTranslator)
 		: List<ParsedLogFile> {
@@ -21,6 +23,7 @@ fun parseAndCleanData(
 	printSubHeader("Parsing and Cleaning Data")
 	logReader.init(logPath)
 	buildTraitMap(logReader, traitTranslator)
+	createLeaderBoardData(logReader, outputPath)
 	applyObserverCountFilter(logReader, optionProvider, traitTranslator)
 	printInfo("Continuing with ${traitTranslator.size} trait(s)")
 	return convertLogsIntoParsedLogs(logReader, traitTranslator)
@@ -49,6 +52,46 @@ private fun buildTraitMap(
 	printSubMessage("Read $entryCount log entry(ies)")
 	printSubMessage("Read $dataPointsCount data point(s)")
 	printSubMessage("Found ${traitTranslator.size} trait(s)")
+}
+
+private fun createLeaderBoardData(
+		logReader: LogReader, outputPath: String) {
+
+	printInfo("Creating leader-board data...")
+
+	val totalDataPerUser = HashMap<String, Int>()
+	val uniquePointsPerUser = HashMap<String, HashSet<Trait>>()
+
+	logReader.resetIterator()
+	while (logReader.hasNextLogFile()) {
+		val file = logReader.nextLogFile()
+
+		file.logEntries.forEach { logEntry ->
+			val userId = logEntry.userId
+			if (!totalDataPerUser.containsKey(userId)) totalDataPerUser.put(userId, 0)
+			if (!uniquePointsPerUser.containsKey(userId)) uniquePointsPerUser.put(userId, HashSet<Trait>())
+
+			logEntry.traits.forEach { trait ->
+				totalDataPerUser[userId] = totalDataPerUser[userId]!!.plus(1)
+				uniquePointsPerUser[userId]!!.add(trait)
+			}
+		}
+	}
+
+	val sb = StringBuilder()
+	sb.append("{\n\"updated\": ").append(System.currentTimeMillis() / 1000).append(",\n\"users\": {")
+	for ((userId, volumeCount)in totalDataPerUser) {
+		sb.append("\n\"$userId\": {\"volume\": $volumeCount, \"unique\": ${uniquePointsPerUser[userId]!!.size}},")
+	}
+	sb.setLength(sb.length - 1)
+	sb.append("\n}\n}")
+
+	val file = "$outputPath/leader-board-data.json"
+	val writer = PrintWriter(file, "UTF-8")
+	writer.print(sb.toString())
+	writer.close()
+
+	printSubMessage("Data written to $file")
 }
 
 private fun applyObserverCountFilter(

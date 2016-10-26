@@ -23,11 +23,12 @@ fun main(args: Array<String>) {
 
 	// options
 	val logReader = selectLogReader()
-	val logPath = enterLogPath()
+	val logPath = enterPath("Enter path to log files")
+	val outputPath = enterPath("Enter output path")
 	val optionProvider = selectOptionProvider()
 	val traitTranslator = TraitTranslator()
 
-	val parsedLogFiles = parseAndCleanData(logReader, logPath, optionProvider, traitTranslator)
+	val parsedLogFiles = parseAndCleanData(logReader, logPath, outputPath, optionProvider, traitTranslator)
 	generateObservedNetwork(parsedLogFiles, optionProvider, traitTranslator)
 	matchToKnownNetwork()
 	writeOutput()
@@ -47,9 +48,9 @@ fun selectLogReader(): LogReader {
 	}
 }
 
-fun enterLogPath(): String {
+fun enterPath(prompt: String): String {
 	while (true) {
-		println("\nEnter path to log files")
+		println("\n$prompt")
 		print(INPUT_PROMPT)
 		val choice = readLine()!!.trim()
 		if (!File(choice).exists()) {
@@ -57,7 +58,7 @@ fun enterLogPath(): String {
 		} else if (!File(choice).isDirectory) {
 			printError("that location isn't a directory")
 		} else {
-			return choice
+			return if (choice.last() == '/') choice.drop(1) else choice
 		}
 	}
 }
