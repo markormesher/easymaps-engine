@@ -79,7 +79,7 @@ private fun createLeaderBoardData(
 	}
 
 	val sb = StringBuilder()
-	sb.append("{\n\"updated\": ").append(System.currentTimeMillis() / 1000).append(",\n\"users\": {")
+	sb.append("{\n\"updated\": ").append(System.currentTimeMillis()).append(",\n\"users\": {")
 	for ((userId, volumeCount)in totalDataPerUser) {
 		sb.append("\n\"$userId\": {\"volume\": $volumeCount, \"unique\": ${uniquePointsPerUser[userId]!!.size}},")
 	}
