@@ -80,7 +80,7 @@ private fun createLeaderBoardData(
 
 	val sb = StringBuilder()
 	sb.append("{\n\"updated\": ").append(System.currentTimeMillis()).append(",\n\"users\": {")
-	for ((userId, volumeCount)in totalDataPerUser) {
+	for ((userId, volumeCount) in totalDataPerUser) {
 		sb.append("\n\"$userId\": {\"volume\": $volumeCount, \"unique\": ${uniquePointsPerUser[userId]!!.size}},")
 	}
 	sb.setLength(sb.length - 1)
@@ -144,10 +144,11 @@ private fun convertLogsIntoParsedLogs(
 		// parse entries for this file
 		val entries = ArrayList<ParsedLogEntry>()
 		file.logEntries.forEach { logEntry ->
-			val parsedTraits = logEntry.traits
+			val parsedTraits = ArrayList<Int>()
+			logEntry.traits
 					.filter { t -> traitTranslator.containsTrait(t) }
 					.map { t -> traitTranslator.toId(t) }
-					.toIntArray()
+					.forEach { t -> parsedTraits.add(t) }
 
 			if (parsedTraits.isNotEmpty()) {
 				entries.add(ParsedLogEntry(logEntry.timestamp, parsedTraits))
