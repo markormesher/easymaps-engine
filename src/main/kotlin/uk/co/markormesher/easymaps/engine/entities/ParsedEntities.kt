@@ -1,4 +1,4 @@
-package uk.co.markormesher.easymaps.engine.data
+package uk.co.markormesher.easymaps.engine.entities
 
 class ParsedLogFile(val logEntries: List<ParsedLogEntry>)
 

@@ -1,4 +1,4 @@
-package uk.co.markormesher.easymaps.engine.core_algo
+package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printWarning

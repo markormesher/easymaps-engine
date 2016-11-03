@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.log_readers
 
-import uk.co.markormesher.easymaps.engine.data.LogFile
+import uk.co.markormesher.easymaps.engine.entities.LogFile
 
 interface LogReader {
 

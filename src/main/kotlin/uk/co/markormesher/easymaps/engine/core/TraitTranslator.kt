@@ -1,6 +1,6 @@
-package uk.co.markormesher.easymaps.engine.trait_translation
+package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.data.Trait
+import uk.co.markormesher.easymaps.engine.entities.Trait
 import java.util.*
 
 class TraitTranslator {

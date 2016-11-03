@@ -1,31 +1,27 @@
-package uk.co.markormesher.easymaps.engine.helpers
+package uk.co.markormesher.easymaps.engine.algorithms.structures
 
 import java.util.*
 
-class SparseVector<T>(private val n: Int, private val default: T) {
+class SparseVector(private val n: Int) : Vector {
 
-	private val map = TreeMap<Int, T>()
+	private val map = TreeMap<Int, Double>()
 
 	init {
 		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")
 	}
 
-	operator fun set(i: Int, value: T) {
+	override operator fun set(i: Int, value: Double) {
 		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; n = $n")
-		if (value == default) remove(i)
+		if (value == 0.0) map.remove(i)
 		map.put(i, value)
 	}
 
-	operator fun get(i: Int): T {
+	override operator fun get(i: Int): Double {
 		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; n = $n")
-		return map[i] ?: default
+		return map[i] ?: 0.0
 	}
 
-	fun remove(i: Int) {
-		map.remove(i)
-	}
-
-	val size: Int
+	override val size: Int
 		get() = n
 
 	val nonDefaultValues: Int

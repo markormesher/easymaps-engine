@@ -1,9 +1,9 @@
 package uk.co.markormesher.easymaps.engine.log_readers
 
-import uk.co.markormesher.easymaps.engine.data.LUWifiLogEntry
-import uk.co.markormesher.easymaps.engine.data.LUWifiLogFile
-import uk.co.markormesher.easymaps.engine.data.LUWifiTrait
-import uk.co.markormesher.easymaps.engine.data.LogFile
+import uk.co.markormesher.easymaps.engine.entities.LUWifiLogEntry
+import uk.co.markormesher.easymaps.engine.entities.LUWifiLogFile
+import uk.co.markormesher.easymaps.engine.entities.LUWifiTrait
+import uk.co.markormesher.easymaps.engine.entities.LogFile
 import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
 import uk.co.markormesher.easymaps.engine.helpers.printWarning
 import java.io.File

@@ -1,9 +1,9 @@
 package uk.co.markormesher.easymaps.engine.log_readers
 
-import uk.co.markormesher.easymaps.engine.data.LogFile
-import uk.co.markormesher.easymaps.engine.data.SampleLogEntry
-import uk.co.markormesher.easymaps.engine.data.SampleLogFile
-import uk.co.markormesher.easymaps.engine.data.SampleTrait
+import uk.co.markormesher.easymaps.engine.entities.LogFile
+import uk.co.markormesher.easymaps.engine.entities.SampleLogEntry
+import uk.co.markormesher.easymaps.engine.entities.SampleLogFile
+import uk.co.markormesher.easymaps.engine.entities.SampleTrait
 import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
 import uk.co.markormesher.easymaps.engine.helpers.printWarning
 import java.io.File

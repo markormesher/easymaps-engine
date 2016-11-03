@@ -1,14 +1,14 @@
-package uk.co.markormesher.easymaps.engine.core_algo
+package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.data.ParsedLogEntry
-import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
-import uk.co.markormesher.easymaps.engine.data.Trait
+import uk.co.markormesher.easymaps.engine.entities.ParsedLogEntry
+import uk.co.markormesher.easymaps.engine.entities.ParsedLogFile
+import uk.co.markormesher.easymaps.engine.entities.Trait
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
 import uk.co.markormesher.easymaps.engine.log_readers.LogReader
 import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
-import uk.co.markormesher.easymaps.engine.trait_translation.TraitTranslator
+import uk.co.markormesher.easymaps.engine.core.TraitTranslator
 import java.io.PrintWriter
 import java.util.*
 

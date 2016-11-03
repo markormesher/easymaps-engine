@@ -1,20 +1,23 @@
-package uk.co.markormesher.easymaps.engine.helpers
+package uk.co.markormesher.easymaps.engine.algorithms.structures
 
-class SparseSquareMatrix<T>(private val n: Int, private val default: T) {
+class SparseSquareMatrix(private val n: Int) : Matrix {
 
 	init {
 		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")
 	}
 
-	private val rows = Array(n, { SparseVector(n, default) })
+	private val rows = Array(n, { SparseVector(n) })
 
-	operator fun get(row: Int, col: Int) = rows[row][col]
+	override operator fun get(row: Int, col: Int) = rows[row][col]
 
-	operator fun set(row: Int, col: Int, value: T) {
+	override operator fun set(row: Int, col: Int, value: Double) {
 		rows[row][col] = value
 	}
 
-	val size: Int
+	override val width: Int
+		get() = n
+
+	override val height: Int
 		get() = n
 
 	val possibleValues: Int

@@ -1,9 +1,9 @@
 package uk.co.markormesher.easymaps.engine
 
-import uk.co.markormesher.easymaps.engine.core_algo.generateObservedNetwork
-import uk.co.markormesher.easymaps.engine.core_algo.matchToKnownNetwork
-import uk.co.markormesher.easymaps.engine.core_algo.parseAndCleanData
-import uk.co.markormesher.easymaps.engine.core_algo.writeOutput
+import uk.co.markormesher.easymaps.engine.core.generateObservedNetwork
+import uk.co.markormesher.easymaps.engine.core.matchToKnownNetwork
+import uk.co.markormesher.easymaps.engine.core.parseAndCleanData
+import uk.co.markormesher.easymaps.engine.core.writeOutput
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.log_readers.LUWifiLogReader
 import uk.co.markormesher.easymaps.engine.log_readers.LogReader
@@ -11,7 +11,7 @@ import uk.co.markormesher.easymaps.engine.log_readers.SampleLogReader
 import uk.co.markormesher.easymaps.engine.option_providers.LUWifiOptionProvider
 import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import uk.co.markormesher.easymaps.engine.option_providers.SampleOptionProvider
-import uk.co.markormesher.easymaps.engine.trait_translation.TraitTranslator
+import uk.co.markormesher.easymaps.engine.core.TraitTranslator
 import java.io.File
 import java.util.*
 

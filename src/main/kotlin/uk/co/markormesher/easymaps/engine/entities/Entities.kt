@@ -1,4 +1,4 @@
-package uk.co.markormesher.easymaps.engine.data
+package uk.co.markormesher.easymaps.engine.entities
 
 interface LogFile {
 	val logEntries: List<LogEntry>
