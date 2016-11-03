@@ -1,0 +1,4 @@
+logReader = london
+logPath = /home/markormesher/Downloads/london
+optionProvider = london
+outputPath = ./output

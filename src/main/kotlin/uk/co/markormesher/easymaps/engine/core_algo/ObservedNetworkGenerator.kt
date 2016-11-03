@@ -8,6 +8,7 @@ import uk.co.markormesher.easymaps.engine.trait_translation.TraitTranslator
 
 fun generateObservedNetwork(
 		parsedLogFiles: List<ParsedLogFile>,
+		outputPath: String,
 		optionProvider: OptionProvider,
 		traitTranslator: TraitTranslator) {
 
