@@ -1,13 +1,23 @@
 package uk.co.markormesher.easymaps.engine.algorithms.structures
 
-interface Matrix {
+abstract class Matrix {
 
-	operator fun get(row: Int, col: Int): Double
+	operator abstract fun get(row: Int, col: Int): Double
 
-	operator fun set(row: Int, col: Int, value: Double)
+	operator abstract fun set(row: Int, col: Int, value: Double)
 
-	val width: Int
+	abstract val width: Int
 
-	val height: Int
+	abstract val height: Int
+
+	abstract fun copy(): Matrix
+
+	fun forAllRowsAndCols(operator: (Int, Int) -> Unit) {
+		for (row in 0..height - 1) {
+			for (col in 0..width - 1) {
+				operator(row, col)
+			}
+		}
+	}
 
 }

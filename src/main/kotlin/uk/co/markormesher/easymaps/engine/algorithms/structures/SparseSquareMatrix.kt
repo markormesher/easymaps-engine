@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.algorithms.structures
 
-class SparseSquareMatrix(private val n: Int) : Matrix {
+class SparseSquareMatrix(private val n: Int) : Matrix() {
 
 	init {
 		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")
@@ -28,6 +28,12 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 
 	val density: Double
 		get() = nonDefaultValues / possibleValues.toDouble()
+
+	override fun copy(): Matrix {
+		val output = SparseSquareMatrix(n)
+		forAllRowsAndCols { row, col -> output[row, col] = this[row, col] }
+		return output
+	}
 
 	override fun toString(): String {
 		val sb = StringBuilder()
