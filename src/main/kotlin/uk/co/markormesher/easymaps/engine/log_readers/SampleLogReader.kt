@@ -4,7 +4,7 @@ import uk.co.markormesher.easymaps.engine.entities.LogFile
 import uk.co.markormesher.easymaps.engine.entities.SampleLogEntry
 import uk.co.markormesher.easymaps.engine.entities.SampleLogFile
 import uk.co.markormesher.easymaps.engine.entities.SampleTrait
-import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
+import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.helpers.printWarning
 import java.io.File
 import java.util.*
@@ -48,8 +48,8 @@ class SampleLogReader : LogReader {
 			if (cleanLine.isBlank()) return@forEachLine
 			if (!validLinePattern.matcher(cleanLine).matches()) {
 				printWarning("Skipping invalid log entry")
-				printSubMessage("File: $path")
-				printSubMessage("Line: $lineCounter")
+				printSubInfo("File: $path")
+				printSubInfo("Line: $lineCounter")
 				return@forEachLine
 			}
 

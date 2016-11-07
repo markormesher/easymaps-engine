@@ -2,3 +2,4 @@ logReader = sample
 logPath = ./sample-data
 optionProvider = sample
 outputPath = ./output
+dotExec = /usr/bin/neato

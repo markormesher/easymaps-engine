@@ -2,3 +2,4 @@ logReader = london
 logPath = /home/markormesher/Downloads/london_clean-scan-logs
 optionProvider = london
 outputPath = ./output
+dotExec = /usr/bin/neato

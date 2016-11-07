@@ -1,17 +1,17 @@
 package uk.co.markormesher.easymaps.engine.core
 
+import uk.co.markormesher.easymaps.engine.Configuration
 import uk.co.markormesher.easymaps.engine.algorithms.structures.DisjointSet
 import uk.co.markormesher.easymaps.engine.algorithms.structures.SparseSquareMatrix
 import uk.co.markormesher.easymaps.engine.entities.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.*
-import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import java.io.PrintWriter
 
-fun generateObservedNetwork(
-		parsedLogFiles: List<ParsedLogFile>,
-		outputPath: String,
-		optionProvider: OptionProvider,
-		traitTranslator: TraitTranslator) {
+fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configuration) {
+
+	val optionProvider = config.optionProvider
+	val traitTranslator = config.traitTranslator
+	val outputPath = config.outputPath
 
 	printSubHeader("Generating Observed Network")
 
@@ -30,8 +30,7 @@ fun generateObservedNetwork(
 			}
 		}
 	}
-	printSubMessage("Size: ${coMatrix.width}")
-	printSubMessage("Density: ${coMatrix.density}")
+	printSubInfo("Density: ${coMatrix.density}")
 
 	// create disjoint set for actual clustering
 	printInfo("Building disjoint set of trait clusters...")
@@ -41,7 +40,7 @@ fun generateObservedNetwork(
 			clusterSets.join(row, col)
 		}
 	}
-	printSubMessage("Created ${clusterSets.setCount} clusters")
+	printSubInfo("Created ${clusterSets.setCount} clusters")
 
 	// create adjacency matrix to count cluster connections
 	printInfo("Generating cluster adjacency matrix...")
@@ -65,11 +64,11 @@ fun generateObservedNetwork(
 			if (lastNode != thisNode) {
 				val timeGap = thisNodeSeenAt - lastNodeSeenAt
 				if (optionProvider.minTimeGapBetweenClusters >= 0 && timeGap < optionProvider.minTimeGapBetweenClusters) {
-					printWarning("Minimum time gap not met in file $fileId (gap: $timeGap); skipping rest of file")
+					printSubWarning("Minimum time gap not met in file $fileId (gap: $timeGap); skipping rest of file")
 					return@logFiles
 				}
 				if (optionProvider.maxTimeGapBetweenClusters >= 0 && timeGap > optionProvider.maxTimeGapBetweenClusters) {
-					printWarning("Maximum time gap exceeded in file $fileId (gap: $timeGap); skipping rest of file")
+					printSubWarning("Maximum time gap exceeded in file $fileId (gap: $timeGap); skipping rest of file")
 					return@logFiles
 				}
 
@@ -82,9 +81,10 @@ fun generateObservedNetwork(
 			lastNodeSeenAt = thisNodeSeenAt
 		}
 	}
-	printInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroValues} edges")
+	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroValues} edges")
 
 	// post-cluster graph
+	printInfo("Writing observed network to file...")
 	val sb = StringBuilder()
 	sb.append("graph Map {\n")
 	sb.append("node[shape = point, label = \"\"];\n")

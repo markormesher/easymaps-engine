@@ -1,26 +1,28 @@
 package uk.co.markormesher.easymaps.engine.core
 
+import uk.co.markormesher.easymaps.engine.Configuration
 import uk.co.markormesher.easymaps.engine.entities.ParsedLogEntry
 import uk.co.markormesher.easymaps.engine.entities.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.entities.Trait
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
-import uk.co.markormesher.easymaps.engine.helpers.printSubMessage
+import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.log_readers.LogReader
 import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
-import uk.co.markormesher.easymaps.engine.core.TraitTranslator
 import java.io.PrintWriter
 import java.util.*
 
-fun parseAndCleanData(
-		logReader: LogReader,
-		logPath: String,
-		outputPath: String,
-		optionProvider: OptionProvider,
-		traitTranslator: TraitTranslator)
+fun parseAndCleanData(config: Configuration)
 		: List<ParsedLogFile> {
 
+	val logReader = config.logReader
+	val optionProvider = config.optionProvider
+	val traitTranslator = config.traitTranslator
+	val outputPath = config.outputPath
+	val logPath = config.logPath
+
 	printSubHeader("Parsing and Cleaning Data")
+
 	logReader.init(logPath)
 	buildTraitMap(logReader, traitTranslator)
 	createLeaderBoardData(logReader, outputPath)
@@ -48,10 +50,10 @@ private fun buildTraitMap(
 		}
 	}
 
-	printSubMessage("Read ${logReader.getFileCount()} log file(s)")
-	printSubMessage("Read $entryCount log entry(ies)")
-	printSubMessage("Read $dataPointsCount data point(s)")
-	printSubMessage("Found ${traitTranslator.size} trait(s)")
+	printSubInfo("Read ${logReader.getFileCount()} log file(s)")
+	printSubInfo("Read $entryCount log entry(ies)")
+	printSubInfo("Read $dataPointsCount data point(s)")
+	printSubInfo("Found ${traitTranslator.size} trait(s)")
 }
 
 private fun createLeaderBoardData(
@@ -91,7 +93,7 @@ private fun createLeaderBoardData(
 	writer.print(sb.toString())
 	writer.close()
 
-	printSubMessage("Data written to $file")
+	printSubInfo("Data written to $file")
 }
 
 private fun applyObserverCountFilter(
@@ -124,7 +126,7 @@ private fun applyObserverCountFilter(
 	}
 	traitsToDrop.forEach { t -> traitTranslator.remove(t) }
 
-	printSubMessage("Dropped ${traitsToDrop.size} trait(s)")
+	printSubInfo("Dropped ${traitsToDrop.size} trait(s)")
 }
 
 private fun convertLogsIntoParsedLogs(
@@ -161,7 +163,7 @@ private fun convertLogsIntoParsedLogs(
 		}
 	}
 
-	printSubMessage("Parsed data into ${parsedLogFiles.size} log file(s) with $parsedEntryCount log entry(ies)")
+	printSubInfo("Parsed data into ${parsedLogFiles.size} log file(s) with $parsedEntryCount log entry(ies)")
 
 	return parsedLogFiles
 }

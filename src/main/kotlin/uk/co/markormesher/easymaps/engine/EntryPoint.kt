@@ -1,9 +1,6 @@
 package uk.co.markormesher.easymaps.engine
 
-import uk.co.markormesher.easymaps.engine.core.generateObservedNetwork
-import uk.co.markormesher.easymaps.engine.core.matchToKnownNetwork
-import uk.co.markormesher.easymaps.engine.core.parseAndCleanData
-import uk.co.markormesher.easymaps.engine.core.writeOutput
+import uk.co.markormesher.easymaps.engine.core.*
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.log_readers.LUWifiLogReader
 import uk.co.markormesher.easymaps.engine.log_readers.LogReader
@@ -11,11 +8,13 @@ import uk.co.markormesher.easymaps.engine.log_readers.SampleLogReader
 import uk.co.markormesher.easymaps.engine.option_providers.LUWifiOptionProvider
 import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import uk.co.markormesher.easymaps.engine.option_providers.SampleOptionProvider
-import uk.co.markormesher.easymaps.engine.core.TraitTranslator
 import java.io.File
 import java.util.*
 
 private val options = HashMap<String, String?>()
+
+private val SEARCH_TYPE_FILE = 1
+private val SEARCH_TYPE_FOLDER = 2
 
 fun main(args: Array<String>) {
 	// preamble
@@ -25,14 +24,17 @@ fun main(args: Array<String>) {
 	if (args.size == 1) readOptionsFile(args[0])
 
 	// options
-	val logReader = selectLogReader()
-	val logPath = enterPath("Enter path to log files", "logPath")
-	val outputPath = enterPath("Enter output path", "outputPath")
-	val optionProvider = selectOptionProvider()
-	val traitTranslator = TraitTranslator()
+	val config = Configuration(
+			logReader = selectLogReader(),
+			optionProvider = selectOptionProvider(),
+			traitTranslator = TraitTranslator(),
+			logPath = enterPath("Enter path to log files", "logPath", SEARCH_TYPE_FOLDER),
+			outputPath = enterPath("Enter output path", "outputPath", SEARCH_TYPE_FOLDER),
+			dotExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "dotExec", SEARCH_TYPE_FILE)
+	)
 
-	val parsedLogFiles = parseAndCleanData(logReader, logPath, outputPath, optionProvider, traitTranslator)
-	generateObservedNetwork(parsedLogFiles, outputPath, optionProvider, traitTranslator)
+	val parsedLogFiles = parseAndCleanData(config)
+	generateObservedNetwork(parsedLogFiles, config)
 	matchToKnownNetwork()
 	writeOutput()
 
@@ -51,7 +53,7 @@ fun readOptionsFile(filePath: String) {
 
 	if (options.size > 0) {
 		printInfo("Parsed options from file:")
-		options.forEach { key, value -> printSubMessage("$key => $value") }
+		options.forEach { key, value -> printSubInfo("$key => $value") }
 	}
 }
 
@@ -75,7 +77,7 @@ fun selectLogReader(): LogReader {
 	}
 }
 
-fun enterPath(prompt: String, optionKey: String): String {
+fun enterPath(prompt: String, optionKey: String, searchType: Int = -1): String {
 	while (true) {
 		var input = options[optionKey]
 		options.put(optionKey, null)
@@ -89,7 +91,9 @@ fun enterPath(prompt: String, optionKey: String): String {
 
 		if (!File(input).exists()) {
 			if (!quiet) printError("that location doesn't exist")
-		} else if (!File(input).isDirectory) {
+		} else if (searchType == SEARCH_TYPE_FOLDER && !File(input).isDirectory) {
+			if (!quiet) printError("that location isn't a directory")
+		} else if (searchType == SEARCH_TYPE_FILE && !File(input).isFile) {
 			if (!quiet) printError("that location isn't a directory")
 		} else if (input != null) {
 			return if (input.last() == '/') input.drop(1) else input

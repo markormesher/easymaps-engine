@@ -40,4 +40,7 @@ fun printSubHeader(header: String) {
 fun printInfo(msg: String) = println("\r ${bold(yellowText(" INFO:"))} $msg")
 fun printWarning(msg: String) = println("\r ${bold(purpleText(" WARN:"))} $msg")
 fun printError(msg: String) = println("\r ${bold(redText("ERROR:"))} $msg")
-fun printSubMessage(msg: String) = println("\r        - $msg")
+
+fun printSubInfo(msg: String) = println("\r        -  $msg")
+fun printSubWarning(msg: String) = println("\r        - ${bold(purpleText(" WARN:"))} $msg")
+fun printSubError(msg: String) = println("\r        - ${bold(redText("ERROR:"))} $msg")
