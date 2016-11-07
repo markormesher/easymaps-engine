@@ -1,10 +1,10 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.Config
-import uk.co.markormesher.easymaps.engine.structures.DisjointSet
-import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
 import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.*
+import uk.co.markormesher.easymaps.engine.structures.DisjointSet
+import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
 import java.io.PrintWriter
 
 fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config) {
@@ -64,8 +64,12 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 		var lastNodeSeenAt = -1L
 
 		logFile.logEntries.forEach logEntries@ { logEntry ->
-			val thisNode = clusterSets.find(logEntry.traits[0]) // todo: use majority
+			val thisNode = logEntry.traits.map({ i -> clusterSets.find(i) }).getMajorityElement(-1)
 			val thisNodeSeenAt = logEntry.timestamp
+			if (thisNode < 0) {
+				printSubWarning("Could not determine majority trait in file $fileId; skipping rest of file")
+				return@logFiles
+			}
 
 			if (lastNode < 0) {
 				lastNode = thisNode
@@ -89,6 +93,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 				val to = Math.min(lastNode, thisNode)
 				adjMatrix[from, to] = adjMatrix[from, to] + 1
 			}
+
 			lastNode = thisNode
 			lastNodeSeenAt = thisNodeSeenAt
 		}
