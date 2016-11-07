@@ -83,15 +83,22 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configu
 	}
 	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroValues} edges")
 
-	// post-cluster graph
-	printInfo("Writing observed network to file...")
+	// create observed network as dot file
 	val sb = StringBuilder()
 	sb.append("graph Map {\n")
 	sb.append("node[shape = point, label = \"\"];\n")
 	adjMatrix.forAllNonZeroRowsAndCols { row, col, value -> sb.append("$row -- $col;\n") }
 	sb.append("}")
-	with(PrintWriter("$outputPath/observed-map.dot", "UTF-8")) {
+
+	// write observed network to files
+	printInfo("Writing observed network to file...")
+	val dotFile = "$outputPath/observed-map.dot"
+	val pngFile = "$outputPath/observed-map.png"
+	with(PrintWriter(dotFile, "UTF-8")) {
 		print(sb.toString())
 		close()
 	}
+	Runtime.getRuntime().exec("${config.dotExec} -Tpng -o $pngFile $dotFile").waitFor()
+	printSubInfo("Written to $dotFile")
+	printSubInfo("Diagram in $pngFile")
 }
