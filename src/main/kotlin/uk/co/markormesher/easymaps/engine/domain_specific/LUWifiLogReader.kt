@@ -1,20 +1,21 @@
-package uk.co.markormesher.easymaps.engine.log_readers
+package uk.co.markormesher.easymaps.engine.domain_specific
 
-import uk.co.markormesher.easymaps.engine.entities.LogFile
-import uk.co.markormesher.easymaps.engine.entities.SampleLogEntry
-import uk.co.markormesher.easymaps.engine.entities.SampleLogFile
-import uk.co.markormesher.easymaps.engine.entities.SampleTrait
+import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiLogEntry
+import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiLogFile
+import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiTrait
+import uk.co.markormesher.easymaps.engine.interfaces.LogFile
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.helpers.printWarning
+import uk.co.markormesher.easymaps.engine.interfaces.LogReader
 import java.io.File
 import java.util.*
 import java.util.regex.Pattern
 
-class SampleLogReader : LogReader {
+class LUWifiLogReader : LogReader {
 
 	val filePaths = ArrayList<String>()
 	var currentFile = -1
-	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,trait_[0-9]+)+)\\]")!!
+	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,[a-f0-9:]+)+)\\]")!!
 
 	override fun init(location: String) {
 		val folder = File(location)
@@ -38,7 +39,7 @@ class SampleLogReader : LogReader {
 		val path = filePaths[++currentFile]
 		val file = File(path)
 
-		val logEntries = ArrayList<SampleLogEntry>()
+		val logEntries = ArrayList<LUWifiLogEntry>()
 		var lineCounter = 0
 		file.forEachLine { line ->
 			++lineCounter
@@ -58,13 +59,12 @@ class SampleLogReader : LogReader {
 			val lineChunks = cleanLine.drop(1).dropLast(1).split(",")
 			val userId = lineChunks[0]
 			val timestamp = lineChunks[1].toLong()
-			val traits = ArrayList<SampleTrait>()
-			lineChunks.drop(2).forEach { c -> traits.add(SampleTrait(c)) }
+			val traits = ArrayList<LUWifiTrait>()
+			lineChunks.drop(2).forEach { c -> traits.add(LUWifiTrait(c)) }
 
-			logEntries.add(SampleLogEntry(timestamp, userId, traits))
+			logEntries.add(LUWifiLogEntry(timestamp, userId, traits))
 		}
-
-		return SampleLogFile(logEntries)
+		return LUWifiLogFile(logEntries)
 	}
 
 	override fun resetIterator() {

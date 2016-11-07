@@ -1,72 +1,60 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.Configuration
-import uk.co.markormesher.easymaps.engine.entities.ParsedLogEntry
-import uk.co.markormesher.easymaps.engine.entities.ParsedLogFile
-import uk.co.markormesher.easymaps.engine.entities.Trait
+import uk.co.markormesher.easymaps.engine.Config
+import uk.co.markormesher.easymaps.engine.data.ParsedLogEntry
+import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
+import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
-import uk.co.markormesher.easymaps.engine.log_readers.LogReader
-import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
 import java.io.PrintWriter
 import java.util.*
 
-fun parseAndCleanData(config: Configuration)
-		: List<ParsedLogFile> {
-
-	val logReader = config.logReader
-	val optionProvider = config.optionProvider
-	val traitTranslator = config.traitTranslator
-	val outputPath = config.outputPath
-	val logPath = config.logPath
+fun parseAndCleanData(cfg: Config): List<ParsedLogFile> {
 
 	printSubHeader("Parsing and Cleaning Data")
 
-	logReader.init(logPath)
-	buildTraitMap(logReader, traitTranslator)
-	createLeaderBoardData(logReader, outputPath)
-	applyObserverCountFilter(logReader, optionProvider, traitTranslator)
-	printInfo("Continuing with ${traitTranslator.size} trait(s)")
-	return convertLogsIntoParsedLogs(logReader, traitTranslator)
+	cfg.logReader.init(cfg.logPath)
+	buildTraitMap(cfg)
+	generateLeaderBoardData(cfg)
+	applyObserverCountFilter(cfg)
+	printInfo("Continuing with ${cfg.traitTranslator.size} trait(s)")
+	return convertLogsIntoParsedLogs(cfg)
 }
 
-private fun buildTraitMap(
-		logReader: LogReader,
-		traitTranslator: TraitTranslator) {
+private fun buildTraitMap(cfg: Config) {
 
 	printInfo("Building trait map...")
 
 	var entryCount = 0
 	var dataPointsCount = 0
 
-	logReader.resetIterator()
-	while (logReader.hasNextLogFile()) {
-		val file = logReader.nextLogFile()
+	cfg.logReader.resetIterator()
+	while (cfg.logReader.hasNextLogFile()) {
+		val file = cfg.logReader.nextLogFile()
 		entryCount += file.logEntries.size
 		file.logEntries.forEach { logEntry ->
 			dataPointsCount += logEntry.traits.size
-			logEntry.traits.forEach { trait -> traitTranslator.offer(trait) }
+			logEntry.traits.forEach { trait -> cfg.traitTranslator.offer(trait) }
 		}
 	}
 
-	printSubInfo("Read ${logReader.getFileCount()} log file(s)")
+	printSubInfo("Read ${cfg.logReader.getFileCount()} log file(s)")
 	printSubInfo("Read $entryCount log entry(ies)")
 	printSubInfo("Read $dataPointsCount data point(s)")
-	printSubInfo("Found ${traitTranslator.size} trait(s)")
+	printSubInfo("Found ${cfg.traitTranslator.size} trait(s)")
 }
 
-private fun createLeaderBoardData(
-		logReader: LogReader, outputPath: String) {
+private fun generateLeaderBoardData(cfg: Config) {
 
 	printInfo("Creating leader-board data...")
 
 	val totalDataPerUser = HashMap<String, Int>()
 	val uniquePointsPerUser = HashMap<String, HashSet<Trait>>()
 
-	logReader.resetIterator()
-	while (logReader.hasNextLogFile()) {
-		val file = logReader.nextLogFile()
+	cfg.logReader.resetIterator()
+	while (cfg.logReader.hasNextLogFile()) {
+		val file = cfg.logReader.nextLogFile()
 
 		file.logEntries.forEach { logEntry ->
 			val userId = logEntry.userId
@@ -88,7 +76,7 @@ private fun createLeaderBoardData(
 	sb.setLength(sb.length - 1)
 	sb.append("\n}\n}")
 
-	val file = "$outputPath/leader-board-data.json"
+	val file = "${cfg.outputPath}/leader-board-data.json"
 	val writer = PrintWriter(file, "UTF-8")
 	writer.print(sb.toString())
 	writer.close()
@@ -96,18 +84,14 @@ private fun createLeaderBoardData(
 	printSubInfo("Data written to $file")
 }
 
-private fun applyObserverCountFilter(
-		logReader: LogReader,
-		optionProvider: OptionProvider,
-		traitTranslator: TraitTranslator) {
+private fun applyObserverCountFilter(cfg: Config) {
 
 	printInfo("Running unique observer threshold filter...")
 
 	val observersPerTrait = HashMap<Trait, HashSet<String>>()
-
-	logReader.resetIterator()
-	while (logReader.hasNextLogFile()) {
-		val file = logReader.nextLogFile()
+	cfg.logReader.resetIterator()
+	while (cfg.logReader.hasNextLogFile()) {
+		val file = cfg.logReader.nextLogFile()
 		file.logEntries.forEach { logEntry ->
 			logEntry.traits.forEach { trait ->
 				if (!observersPerTrait.containsKey(trait)) {
@@ -120,36 +104,33 @@ private fun applyObserverCountFilter(
 
 	val traitsToDrop = ArrayList<Trait>()
 	observersPerTrait.forEach { trait, users ->
-		if (users.size < optionProvider.uniqueObserversRequiredPerTrait) {
+		if (users.size < cfg.optionProvider.uniqueObserversRequiredPerTrait) {
 			traitsToDrop.add(trait)
 		}
 	}
-	traitsToDrop.forEach { t -> traitTranslator.remove(t) }
+	traitsToDrop.forEach { t -> cfg.traitTranslator.remove(t) }
 
 	printSubInfo("Dropped ${traitsToDrop.size} trait(s)")
 }
 
-private fun convertLogsIntoParsedLogs(
-		logReader: LogReader,
-		traitTranslator: TraitTranslator)
-		: List<ParsedLogFile> {
+private fun convertLogsIntoParsedLogs(cfg: Config): List<ParsedLogFile> {
 
 	printInfo("Converting raw logs into parsed logs...")
 
 	val parsedLogFiles = ArrayList<ParsedLogFile>()
 	var parsedEntryCount = 0
 
-	logReader.resetIterator()
-	while (logReader.hasNextLogFile()) {
-		val file = logReader.nextLogFile()
+	cfg.logReader.resetIterator()
+	while (cfg.logReader.hasNextLogFile()) {
+		val file = cfg.logReader.nextLogFile()
 
 		// parse entries for this file
 		val entries = ArrayList<ParsedLogEntry>()
 		file.logEntries.forEach { logEntry ->
 			val parsedTraits = ArrayList<Int>()
 			logEntry.traits
-					.filter { t -> traitTranslator.containsTrait(t) }
-					.map { t -> traitTranslator.toId(t) }
+					.filter { t -> cfg.traitTranslator.containsTrait(t) }
+					.map { t -> cfg.traitTranslator.toId(t) }
 					.forEach { t -> parsedTraits.add(t) }
 
 			if (parsedTraits.isNotEmpty()) {

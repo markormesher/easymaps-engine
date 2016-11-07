@@ -1,20 +1,29 @@
 package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.core.*
+import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiLogReader
+import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiOptionProvider
+import uk.co.markormesher.easymaps.engine.domain_specific.SampleLogReader
+import uk.co.markormesher.easymaps.engine.domain_specific.SampleOptionProvider
 import uk.co.markormesher.easymaps.engine.helpers.*
-import uk.co.markormesher.easymaps.engine.log_readers.LUWifiLogReader
-import uk.co.markormesher.easymaps.engine.log_readers.LogReader
-import uk.co.markormesher.easymaps.engine.log_readers.SampleLogReader
-import uk.co.markormesher.easymaps.engine.option_providers.LUWifiOptionProvider
-import uk.co.markormesher.easymaps.engine.option_providers.OptionProvider
-import uk.co.markormesher.easymaps.engine.option_providers.SampleOptionProvider
+import uk.co.markormesher.easymaps.engine.interfaces.LogReader
+import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
 import java.io.File
 import java.util.*
 
 private val options = HashMap<String, String?>()
 
-private val SEARCH_TYPE_FILE = 1
-private val SEARCH_TYPE_FOLDER = 2
+private val PATH_TYPE_FILE = 1
+private val PATH_TYPE_FOLDER = 2
+
+data class Config(
+		val logReader: LogReader,
+		val optionProvider: OptionProvider,
+		val traitTranslator: TraitTranslator,
+		val logPath: String,
+		val outputPath: String,
+		val dotExec: String
+)
 
 fun main(args: Array<String>) {
 	// preamble
@@ -24,13 +33,13 @@ fun main(args: Array<String>) {
 	if (args.size == 1) readOptionsFile(args[0])
 
 	// options
-	val config = Configuration(
+	val config = Config(
 			logReader = selectLogReader(),
 			optionProvider = selectOptionProvider(),
 			traitTranslator = TraitTranslator(),
-			logPath = enterPath("Enter path to log files", "logPath", SEARCH_TYPE_FOLDER),
-			outputPath = enterPath("Enter output path", "outputPath", SEARCH_TYPE_FOLDER),
-			dotExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "dotExec", SEARCH_TYPE_FILE)
+			logPath = enterPath("Enter path to log files", "logPath", PATH_TYPE_FOLDER),
+			outputPath = enterPath("Enter output path", "outputPath", PATH_TYPE_FOLDER),
+			dotExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "dotExec", PATH_TYPE_FILE)
 	)
 
 	val parsedLogFiles = parseAndCleanData(config)
@@ -91,9 +100,9 @@ fun enterPath(prompt: String, optionKey: String, searchType: Int = -1): String {
 
 		if (!File(input).exists()) {
 			if (!quiet) printError("that location doesn't exist")
-		} else if (searchType == SEARCH_TYPE_FOLDER && !File(input).isDirectory) {
+		} else if (searchType == PATH_TYPE_FOLDER && !File(input).isDirectory) {
 			if (!quiet) printError("that location isn't a directory")
-		} else if (searchType == SEARCH_TYPE_FILE && !File(input).isFile) {
+		} else if (searchType == PATH_TYPE_FILE && !File(input).isFile) {
 			if (!quiet) printError("that location isn't a directory")
 		} else if (input != null) {
 			return if (input.last() == '/') input.drop(1) else input

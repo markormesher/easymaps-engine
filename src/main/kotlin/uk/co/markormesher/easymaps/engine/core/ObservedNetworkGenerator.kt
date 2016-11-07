@@ -1,25 +1,27 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.Configuration
-import uk.co.markormesher.easymaps.engine.algorithms.structures.DisjointSet
-import uk.co.markormesher.easymaps.engine.algorithms.structures.SparseSquareMatrix
-import uk.co.markormesher.easymaps.engine.entities.ParsedLogFile
+import uk.co.markormesher.easymaps.engine.Config
+import uk.co.markormesher.easymaps.engine.structures.DisjointSet
+import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
+import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.*
 import java.io.PrintWriter
 
-fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configuration) {
-
-	val optionProvider = config.optionProvider
-	val traitTranslator = config.traitTranslator
-	val outputPath = config.outputPath
+fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config) {
 
 	printSubHeader("Generating Observed Network")
 
-	printWarning("Work in progress!")
+	val coOccurrenceMatrix = generateCoOccurrenceMatrix(parsedLogFiles, cfg)
+	val clusterSets = generateClusterSets(coOccurrenceMatrix, cfg)
+	val adjMatrix = generateClusterAdjacencyMatrix(clusterSets, parsedLogFiles, cfg)
+	writeObservedNetworkToFile(adjMatrix, cfg)
+}
 
-	// create adjacency matrix to count co-occurrences of traits
+private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: Config): SparseSquareMatrix {
+
 	printInfo("Generating trait co-occurrence matrix...")
-	val coMatrix = SparseSquareMatrix(traitTranslator.size)
+
+	val coMatrix = SparseSquareMatrix(cfg.traitTranslator.size)
 	parsedLogFiles.forEach { logFile ->
 		logFile.logEntries.forEach { logEntry ->
 			logEntry.traits.forAllPairs { a, b ->
@@ -32,19 +34,29 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configu
 	}
 	printSubInfo("Density: ${coMatrix.density}")
 
-	// create disjoint set for actual clustering
+	return coMatrix
+}
+
+private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: Config): DisjointSet {
+
 	printInfo("Building disjoint set of trait clusters...")
-	val clusterSets = DisjointSet(traitTranslator.size)
+
+	val clusterSets = DisjointSet(cfg.traitTranslator.size)
 	coMatrix.forAllNonZeroRowsAndCols { row, col, value ->
-		if (value >= optionProvider.coOccurrencesRequiredPerTraitLink) {
+		if (value >= cfg.optionProvider.coOccurrencesRequiredPerTraitLink) {
 			clusterSets.join(row, col)
 		}
 	}
 	printSubInfo("Created ${clusterSets.setCount} clusters")
 
-	// create adjacency matrix to count cluster connections
+	return clusterSets
+}
+
+private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: Config): SparseSquareMatrix {
+
 	printInfo("Generating cluster adjacency matrix...")
-	val adjMatrix = SparseSquareMatrix(traitTranslator.size)
+
+	val adjMatrix = SparseSquareMatrix(cfg.traitTranslator.size)
 	var fileId = 0
 	parsedLogFiles.forEach logFiles@ { logFile ->
 		++fileId
@@ -63,11 +75,11 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configu
 
 			if (lastNode != thisNode) {
 				val timeGap = thisNodeSeenAt - lastNodeSeenAt
-				if (optionProvider.minTimeGapBetweenClusters >= 0 && timeGap < optionProvider.minTimeGapBetweenClusters) {
+				if (cfg.optionProvider.minTimeGapBetweenClusters >= 0 && timeGap < cfg.optionProvider.minTimeGapBetweenClusters) {
 					printSubWarning("Minimum time gap not met in file $fileId (gap: $timeGap); skipping rest of file")
 					return@logFiles
 				}
-				if (optionProvider.maxTimeGapBetweenClusters >= 0 && timeGap > optionProvider.maxTimeGapBetweenClusters) {
+				if (cfg.optionProvider.maxTimeGapBetweenClusters >= 0 && timeGap > cfg.optionProvider.maxTimeGapBetweenClusters) {
 					printSubWarning("Maximum time gap exceeded in file $fileId (gap: $timeGap); skipping rest of file")
 					return@logFiles
 				}
@@ -83,6 +95,12 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configu
 	}
 	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroValues} edges")
 
+	return adjMatrix
+}
+
+// TODO: change this call into "generateObservedNetwork" and move graph output to helper
+private fun writeObservedNetworkToFile(adjMatrix: SparseSquareMatrix, config: Config) {
+
 	// create observed network as dot file
 	val sb = StringBuilder()
 	sb.append("graph Map {\n")
@@ -92,8 +110,8 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, config: Configu
 
 	// write observed network to files
 	printInfo("Writing observed network to file...")
-	val dotFile = "$outputPath/observed-map.dot"
-	val pngFile = "$outputPath/observed-map.png"
+	val dotFile = "${config.outputPath}/observed-map.dot"
+	val pngFile = "${config.outputPath}/observed-map.png"
 	with(PrintWriter(dotFile, "UTF-8")) {
 		print(sb.toString())
 		close()

@@ -1,6 +1,6 @@
-package uk.co.markormesher.easymaps.engine.algorithms.structures
+package uk.co.markormesher.easymaps.engine.structures
 
-class SparseSquareMatrix(private val n: Int) : Matrix() {
+class SparseSquareMatrix(private val n: Int) : Matrix {
 
 	init {
 		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")

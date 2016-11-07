@@ -1,4 +1,4 @@
-package uk.co.markormesher.easymaps.engine.algorithms.structures
+package uk.co.markormesher.easymaps.engine.structures
 
 import java.util.*
 
