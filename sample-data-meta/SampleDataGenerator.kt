@@ -1,11 +1,12 @@
 import java.io.File
 import java.util.concurrent.ThreadLocalRandom
+import java.lang.IllegalArgumentException
 
 val traitsPerNode = 30
-val minEntriesPerNode = 1
-val maxEntriesPerNode = 8
+val minEntriesPerNode = 2
+val maxEntriesPerNode = 10
 val minTraitsPerEntry = 2
-val maxTraitsPerEntry = 30
+val maxTraitsPerEntry = 20
 val minDelayBetweenScans = 20000
 val maxDelayBetweenScans = 40000
 val minDelayBetweenNodes = 20000
@@ -18,12 +19,16 @@ fun randBetween(minIncl: Int, maxExcl: Int): Int {
 }
 
 fun main(args: Array<String>) {
+
+	if (args.size != 1) throw IllegalArgumentException("File path expected")
+	if (!args[0].endsWith("/")) throw IllegalArgumentException("File path doesn't end with '/'")
+
 	val journeys = arrayOf("JG", "JGC", "JGCI", "JGCH", "CH", "HCB", "ABD", "DBCI", "I", "ABCH", "F",
-			"HCBCBD", "EBA", "EBFL", "PLFBD", "QLFM", "NMFLP", "PQL", "KEBF", "PLFBEK", "BCGJ", "KEBFLP",
+			"HCBCBD", "EBA", "EBFL", "PLFBD", "QLFM", "NMFLP", "PLQ", "KEBF", "PLFBEK", "BCGJ", "KEBFLP",
 			"KEBCGI", "M", "N", "QLFBABD")
 
 	var fileCounter = 0
-	var iterationCount = 3
+	var iterationCount = 5
 	while (iterationCount-- > 0) journeys.forEach { j ->
 		val sb = StringBuilder()
 		var time = System.currentTimeMillis()
@@ -40,7 +45,7 @@ fun main(args: Array<String>) {
 				time += randBetween(minDelayBetweenNodes, maxDelayBetweenNodes)
 			}
 		}
-		val file = File("sample-${fileCounter++}-dummy-device.txt")
+		val file = File("${args[0]}sample-${fileCounter++}-dummy-device.txt")
 		file.createNewFile()
 		file.writeText(sb.toString())
 	}

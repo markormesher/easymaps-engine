@@ -1,5 +1,0 @@
-[dummy-device,1476736779669,trait_63,trait_67,trait_89,trait_76,trait_76,trait_76,trait_89,trait_67,trait_84,trait_82,trait_68,trait_73,trait_60,trait_60,trait_73,trait_87,trait_72,trait_72,trait_70,trait_78,trait_62,trait_60,trait_61,trait_72,trait_66]
-[dummy-device,1476737551116,trait_233,trait_236,trait_235,trait_218,trait_233,trait_226,trait_218,trait_233,trait_222,trait_238,trait_220,trait_234,trait_233,trait_211]
-[dummy-device,1476737967037,trait_226,trait_225,trait_230,trait_219,trait_223,trait_210,trait_226,trait_237,trait_236,trait_239,trait_216,trait_227]
-[dummy-device,1476738327824,trait_236,trait_211]
-[dummy-device,1476738426624,trait_236,trait_237,trait_237,trait_233,trait_229,trait_229,trait_225,trait_227,trait_228]

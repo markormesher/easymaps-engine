@@ -1,0 +1,7 @@
+[dummy-device,1478536783900,trait_419,trait_395,trait_394,trait_391,trait_411,trait_400,trait_418,trait_409,trait_410,trait_411,trait_412,trait_390,trait_405,trait_403,trait_392,trait_411]
+[dummy-device,1478537276128,trait_406,trait_412,trait_390,trait_396,trait_411,trait_414,trait_394,trait_412,trait_410,trait_415,trait_395]
+[dummy-device,1478537622645,trait_395,trait_400,trait_399,trait_416,trait_418,trait_418,trait_395,trait_411,trait_408,trait_393,trait_407,trait_408,trait_398]
+[dummy-device,1478538040479,trait_404,trait_407,trait_419,trait_403,trait_413,trait_418]
+[dummy-device,1478538242418,trait_394,trait_413,trait_392,trait_390,trait_405,trait_413,trait_403,trait_403,trait_408]
+[dummy-device,1478538553180,trait_418,trait_398,trait_398,trait_417,trait_406,trait_413,trait_392,trait_419,trait_412,trait_416]
+[dummy-device,1478538862296,trait_411,trait_411,trait_415,trait_413,trait_391]

@@ -1,16 +1,10 @@
 graph SampleNetwork {
-	A -- B;
-	B -- C;
-	B -- D;
-	B -- E;
-	B -- F;
-	C -- G;
-	C -- H;
-	C -- I;
-	E -- K;
-	F -- L;
-	F -- M;
-	G -- J;
-	L -- P;
-	L -- Q;
+	A -- {B};
+	B -- {C, D, E, F};
+	C -- {G, H, I};
+	E -- {K};
+	F -- {L, M};
+	G -- {J};
+	L -- {P, Q};
+	M -- {N};
 }

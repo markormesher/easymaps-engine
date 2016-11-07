@@ -4,4 +4,6 @@ abstract class OptionProvider {
 
 	val uniqueObserversRequiredPerTrait = 1
 
+	val coOccurrecesRequiredPerTraitLink = 2
+
 }

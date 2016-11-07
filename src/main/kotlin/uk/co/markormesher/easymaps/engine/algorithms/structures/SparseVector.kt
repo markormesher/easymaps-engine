@@ -27,6 +27,10 @@ class SparseVector(private val n: Int) : Vector {
 	val nonDefaultValues: Int
 		get() = map.size
 
+	fun forEach(exec: (position: Int, value: Double) -> Unit) {
+		map.forEach(exec)
+	}
+
 	override fun toString(): String {
 		val sb = StringBuilder()
 		sb.append("[")

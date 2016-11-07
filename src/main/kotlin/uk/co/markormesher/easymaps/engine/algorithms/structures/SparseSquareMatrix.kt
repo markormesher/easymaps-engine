@@ -23,16 +23,24 @@ class SparseSquareMatrix(private val n: Int) : Matrix() {
 	val possibleValues: Int
 		get() = n * n
 
-	val nonDefaultValues: Int
+	val nonZeroValues: Int
 		get() = rows.fold(0, { sum, row -> sum + row.nonDefaultValues })
 
 	val density: Double
-		get() = nonDefaultValues / possibleValues.toDouble()
+		get() = nonZeroValues / possibleValues.toDouble()
 
 	override fun copy(): Matrix {
 		val output = SparseSquareMatrix(n)
-		forAllRowsAndCols { row, col -> output[row, col] = this[row, col] }
+		forAllNonZeroRowsAndCols { row, col, value -> output[row, col] = value }
 		return output
+	}
+
+	fun forAllNonZeroRowsAndCols(operator: (Int, Int, Double) -> Unit) {
+		for (row in 0..height - 1) {
+			rows[row].forEach { col, value ->
+				operator(row, col, value)
+			}
+		}
 	}
 
 	override fun toString(): String {

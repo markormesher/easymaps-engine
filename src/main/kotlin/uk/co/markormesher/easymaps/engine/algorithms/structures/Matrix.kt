@@ -12,10 +12,10 @@ abstract class Matrix {
 
 	abstract fun copy(): Matrix
 
-	fun forAllRowsAndCols(operator: (Int, Int) -> Unit) {
+	open fun forAllRowsAndCols(operator: (Int, Int, Double) -> Unit) {
 		for (row in 0..height - 1) {
 			for (col in 0..width - 1) {
-				operator(row, col)
+				operator(row, col, this[row, col])
 			}
 		}
 	}

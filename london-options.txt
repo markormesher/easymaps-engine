@@ -1,4 +1,4 @@
 logReader = london
-logPath = /home/markormesher/Downloads/london_clean
+logPath = /home/markormesher/Downloads/london_clean-scan-logs
 optionProvider = london
 outputPath = ./output
