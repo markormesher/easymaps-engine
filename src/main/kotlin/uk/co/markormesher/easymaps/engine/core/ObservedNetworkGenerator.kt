@@ -37,7 +37,7 @@ fun generateObservedNetwork(
 	printInfo("Building disjoint set of trait clusters...")
 	val clusterSets = DisjointSet(traitTranslator.size)
 	coMatrix.forAllNonZeroRowsAndCols { row, col, value ->
-		if (value >= optionProvider.coOccurrecesRequiredPerTraitLink) {
+		if (value >= optionProvider.coOccurrencesRequiredPerTraitLink) {
 			clusterSets.join(row, col)
 		}
 	}
@@ -46,35 +46,49 @@ fun generateObservedNetwork(
 	// create adjacency matrix to count cluster connections
 	printInfo("Generating cluster adjacency matrix...")
 	val adjMatrix = SparseSquareMatrix(traitTranslator.size)
-	parsedLogFiles.forEach { logFile ->
+	var fileId = 0
+	parsedLogFiles.forEach logFiles@ { logFile ->
+		++fileId
 		var lastNode = -1
 		var lastNodeSeenAt = -1L
 
-		logFile.logEntries.forEach entryLoop@ { logEntry ->
+		logFile.logEntries.forEach logEntries@ { logEntry ->
 			val thisNode = clusterSets.find(logEntry.traits[0]) // todo: use majority
 			val thisNodeSeenAt = logEntry.timestamp
 
 			if (lastNode < 0) {
 				lastNode = thisNode
 				lastNodeSeenAt = thisNodeSeenAt
-				return@entryLoop
+				return@logEntries
 			}
 
-			if (lastNode != thisNode) { // todo: check time difference
-				adjMatrix[lastNode, thisNode] = adjMatrix[lastNode, thisNode] + 1
-				lastNode = thisNode
+			if (lastNode != thisNode) {
+				val timeGap = thisNodeSeenAt - lastNodeSeenAt
+				if (optionProvider.minTimeGapBetweenClusters >= 0 && timeGap < optionProvider.minTimeGapBetweenClusters) {
+					printWarning("Minimum time gap not met in file $fileId (gap: $timeGap); skipping rest of file")
+					return@logFiles
+				}
+				if (optionProvider.maxTimeGapBetweenClusters >= 0 && timeGap > optionProvider.maxTimeGapBetweenClusters) {
+					printWarning("Maximum time gap exceeded in file $fileId (gap: $timeGap); skipping rest of file")
+					return@logFiles
+				}
+
+				// assumes that the graph is non-directional
+				val from = Math.max(lastNode, thisNode)
+				val to = Math.min(lastNode, thisNode)
+				adjMatrix[from, to] = adjMatrix[from, to] + 1
 			}
+			lastNode = thisNode
+			lastNodeSeenAt = thisNodeSeenAt
 		}
 	}
-	printSubMessage("Matrix contains ${adjMatrix.nonZeroValues} NZVs")
+	printInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroValues} edges")
 
 	// post-cluster graph
 	val sb = StringBuilder()
 	sb.append("graph Map {\n")
 	sb.append("node[shape = point, label = \"\"];\n")
-	adjMatrix.forAllRowsAndCols { row, col, value ->
-		if (row > col && value > 0) sb.append("$row -- $col;\n")
-	}
+	adjMatrix.forAllNonZeroRowsAndCols { row, col, value -> sb.append("$row -- $col;\n") }
 	sb.append("}")
 	with(PrintWriter("$outputPath/observed-map.dot", "UTF-8")) {
 		print(sb.toString())
