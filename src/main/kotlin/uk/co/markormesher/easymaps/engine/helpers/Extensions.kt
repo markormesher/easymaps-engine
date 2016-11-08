@@ -2,7 +2,7 @@ package uk.co.markormesher.easymaps.engine.helpers
 
 import java.util.*
 
-fun <T> List<T>.forAllPairs(exec: (T, T) -> Unit) = forEach { a -> forEach { b -> exec(a, b) } }
+fun <T> Collection<T>.forAllPairs(exec: (T, T) -> Unit) = forEach { a -> forEach { b -> exec(a, b) } }
 
 /**
  * Returns the list element that appears as strictly more than half of the elements,
