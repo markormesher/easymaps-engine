@@ -1,13 +1,13 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.Config
+import uk.co.markormesher.easymaps.engine.data.Network
 import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.DisjointSet
 import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
-import java.io.PrintWriter
 
-fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config) {
+fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config): Network {
 
 	printSubHeader("Generating Observed Network")
 
@@ -15,7 +15,9 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config) {
 	val clusterSets = generateClusterSets(coOccurrenceMatrix, cfg)
 	val adjMatrix = generateClusterAdjacencyMatrix(clusterSets, parsedLogFiles, cfg)
 	populateTraitToClusterMap(clusterSets, cfg)
-	writeObservedNetworkToFile(adjMatrix, cfg)
+	val network = generateNetwork(adjMatrix)
+	generateNetworkImage(network, "observed-network", cfg)
+	return network
 }
 
 private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: Config): SparseSquareMatrix {
@@ -117,26 +119,15 @@ private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: Config) {
 	}
 }
 
-// TODO: change this call into "generateObservedNetwork" and move graph output to helper
-private fun writeObservedNetworkToFile(adjMatrix: SparseSquareMatrix, config: Config) {
+private fun generateNetwork(adjMatrix: SparseSquareMatrix): Network {
 
-	// create observed network as dot file
-	val sb = StringBuilder()
-	sb.append("graph Map {\n")
-	//sb.append("node[shape = point, label = \"\"];\n")
-	//sb.append("node[shape = point];\n")
-	adjMatrix.forEachNonZero { row, col, value -> sb.append("$row -- $col;\n") }
-	sb.append("}")
+	printInfo("Generating final network...")
 
-	// write observed network to files
-	printInfo("Writing observed network to file...")
-	val dotFile = "${config.outputPath}/observed-map.dot"
-	val pngFile = "${config.outputPath}/observed-map.png"
-	with(PrintWriter(dotFile, "UTF-8")) {
-		print(sb.toString())
-		close()
+	val network = Network(adjMatrix.width)
+	adjMatrix.forEachNonZero { row, col, value ->
+		// assume bi-directional for now
+		network.addEdge(row, col)
+		network.addEdge(col, row)
 	}
-	Runtime.getRuntime().exec("${config.dotExec} -Tpng -o $pngFile $dotFile").waitFor()
-	printSubInfo("Written to $dotFile")
-	printSubInfo("Diagram in $pngFile")
+	return network
 }
