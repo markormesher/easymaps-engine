@@ -1,7 +1,7 @@
 package uk.co.markormesher.easymaps.engine.structures
 
 import org.junit.Test
-import uk.co.markormesher.easymaps.engine.helpers.forAllPairs
+import uk.co.markormesher.easymaps.engine.helpers.forEachPair
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -42,7 +42,7 @@ class DisjointSetTests {
 	@Test
 	fun nonJoinedElementsShouldHaveDifferentRoots() {
 		val ds = DisjointSet(10)
-		(0..9).toSet().forAllPairs { i, j ->
+		(0..9).toSet().forEachPair { i, j ->
 			assertEquals(i == j, ds.findRoot(i) == ds.findRoot(j))
 		}
 	}
@@ -51,7 +51,7 @@ class DisjointSetTests {
 	fun nonJoinedElementsShouldHaveDifferentRootPositions() {
 		val ds = DisjointSet(10)
 		ds.generateRootPositions()
-		(0..9).toSet().forAllPairs { i, j ->
+		(0..9).toSet().forEachPair { i, j ->
 			assertEquals(i == j, ds.findRootPosition(i) == ds.findRootPosition(j))
 		}
 	}

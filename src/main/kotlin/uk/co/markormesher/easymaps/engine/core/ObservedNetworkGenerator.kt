@@ -25,7 +25,7 @@ private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg:
 	val coMatrix = SparseSquareMatrix(cfg.traitTranslator.size)
 	parsedLogFiles.forEach { logFile ->
 		logFile.logEntries.forEach { logEntry ->
-			logEntry.traits.forAllPairs { a, b ->
+			logEntry.traits.forEachPair { a, b ->
 				if (a < b) {
 					coMatrix[a, b] = coMatrix[a, b] + 1
 					coMatrix[b, a] = coMatrix[b, a] + 1
