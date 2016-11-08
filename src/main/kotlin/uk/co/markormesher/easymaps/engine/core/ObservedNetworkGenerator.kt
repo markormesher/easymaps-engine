@@ -14,6 +14,7 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config) {
 	val coOccurrenceMatrix = generateCoOccurrenceMatrix(parsedLogFiles, cfg)
 	val clusterSets = generateClusterSets(coOccurrenceMatrix, cfg)
 	val adjMatrix = generateClusterAdjacencyMatrix(clusterSets, parsedLogFiles, cfg)
+	populateTraitToClusterMap(clusterSets, cfg)
 	writeObservedNetworkToFile(adjMatrix, cfg)
 }
 
@@ -32,7 +33,7 @@ private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg:
 			}
 		}
 	}
-	printSubInfo("Density: ${coMatrix.density}")
+	printSubInfo("Density: ${String.format("%.2f", coMatrix.density * 100)}%")
 
 	return coMatrix
 }
@@ -49,6 +50,8 @@ private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: Config): Disj
 	}
 	printSubInfo("Created ${clusterSets.setCount} clusters")
 
+	clusterSets.generateRootPositions()
+
 	return clusterSets
 }
 
@@ -64,10 +67,12 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 		var lastNodeSeenAt = -1L
 
 		logFile.logEntries.forEach logEntries@ { logEntry ->
-			val thisNode = logEntry.traits.map({ i -> clusterSets.find(i) }).getMajorityElement(-1)
+			val thisNode = logEntry.traits.map({ i -> clusterSets.findRootPosition(i) }).getMajorityElement(-1)
 			val thisNodeSeenAt = logEntry.timestamp
 			if (thisNode < 0) {
-				printSubWarning("Could not determine majority trait in file $fileId; skipping rest of file")
+				printSubWarning("Could not determine majority trait in file $fileId; skipping entry")
+				lastNode = -1
+				lastNodeSeenAt = -1L
 				return@logFiles
 			}
 
@@ -103,13 +108,23 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 	return adjMatrix
 }
 
+private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: Config) {
+
+	printInfo("Mapping individual traits to cluster IDs...")
+
+	cfg.traitTranslator.forAllTraits { trait, i ->
+		cfg.traitTranslator.setClusterIdForTrait(trait, clusterSets.findRootPosition(i))
+	}
+}
+
 // TODO: change this call into "generateObservedNetwork" and move graph output to helper
 private fun writeObservedNetworkToFile(adjMatrix: SparseSquareMatrix, config: Config) {
 
 	// create observed network as dot file
 	val sb = StringBuilder()
 	sb.append("graph Map {\n")
-	sb.append("node[shape = point, label = \"\"];\n")
+	//sb.append("node[shape = point, label = \"\"];\n")
+	//sb.append("node[shape = point];\n")
 	adjMatrix.forAllNonZeroRowsAndCols { row, col, value -> sb.append("$row -- $col;\n") }
 	sb.append("}")
 

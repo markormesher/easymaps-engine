@@ -3,10 +3,10 @@ package uk.co.markormesher.easymaps.engine.core
 import uk.co.markormesher.easymaps.engine.Config
 import uk.co.markormesher.easymaps.engine.data.ParsedLogEntry
 import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
-import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
+import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import java.io.PrintWriter
 import java.util.*
 
@@ -35,7 +35,7 @@ private fun buildTraitMap(cfg: Config) {
 		entryCount += file.logEntries.size
 		file.logEntries.forEach { logEntry ->
 			dataPointsCount += logEntry.traits.size
-			logEntry.traits.forEach { trait -> cfg.traitTranslator.offer(trait) }
+			logEntry.traits.forEach { trait -> cfg.traitTranslator.offerTrait(trait) }
 		}
 	}
 
@@ -108,7 +108,7 @@ private fun applyObserverCountFilter(cfg: Config) {
 			traitsToDrop.add(trait)
 		}
 	}
-	traitsToDrop.forEach { t -> cfg.traitTranslator.remove(t) }
+	traitsToDrop.forEach { t -> cfg.traitTranslator.removeTrait(t) }
 
 	printSubInfo("Dropped ${traitsToDrop.size} trait(s)")
 }
@@ -129,8 +129,8 @@ private fun convertLogsIntoParsedLogs(cfg: Config): List<ParsedLogFile> {
 		file.logEntries.forEach { logEntry ->
 			val parsedTraits = ArrayList<Int>()
 			logEntry.traits
-					.filter { t -> cfg.traitTranslator.containsTrait(t) }
-					.map { t -> cfg.traitTranslator.toId(t) }
+					.map { t -> cfg.traitTranslator.getIdForTrait(t) }
+					.filter { t -> t != cfg.traitTranslator.INVALID_ID }
 					.forEach { t -> parsedTraits.add(t) }
 
 			if (parsedTraits.isNotEmpty()) {
