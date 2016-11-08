@@ -44,6 +44,19 @@ class TraitTranslatorTests {
 	}
 
 	@Test
+	fun removeTraitShouldRemoveTrait() {
+		val tt = TraitTranslator()
+		tt.offerTrait(TRAIT_1)
+		tt.offerTrait(TRAIT_2)
+		tt.offerTrait(TRAIT_3)
+		assertEquals(3, tt.size)
+		tt.removeTrait(TRAIT_1)
+		tt.removeTrait(TRAIT_2)
+		tt.removeTrait(TRAIT_3)
+		assertEquals(0, tt.size)
+	}
+
+	@Test
 	fun getIdForTraitShouldReturnInvalidIdForUnknownTrait() {
 		val tt = TraitTranslator()
 		assertEquals(tt.INVALID_ID, tt.getIdForTrait(TRAIT_1))
