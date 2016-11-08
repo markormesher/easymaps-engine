@@ -112,7 +112,7 @@ private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: Config) {
 
 	printInfo("Mapping individual traits to cluster IDs...")
 
-	cfg.traitTranslator.forAllTraits { trait, i ->
+	cfg.traitTranslator.forEachTrait { trait, i ->
 		cfg.traitTranslator.setClusterIdForTrait(trait, clusterSets.findRootPosition(i))
 	}
 }

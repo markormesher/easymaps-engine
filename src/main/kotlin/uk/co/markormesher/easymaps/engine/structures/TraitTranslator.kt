@@ -35,7 +35,7 @@ class TraitTranslator {
 		idToClusterIdMap[traitId] = clusterId
 	}
 
-	fun forAllTraits(exec: (trait: Trait, id: Int) -> Unit) {
+	fun forEachTrait(exec: (trait: Trait, id: Int) -> Unit) {
 		val allTraits = traitToIdMap.entries
 		allTraits.forEach { e -> exec(e.key, e.value) }
 	}
