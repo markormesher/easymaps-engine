@@ -10,7 +10,7 @@ class DisjointSet(private val size: Int) {
 	var setCount = size
 
 	fun findRoot(i: Int): Int {
-		if (i < 0 || i >= size) throw IndexOutOfBoundsException("i ($i) must be between 0 and ${size - 1}")
+		if (i < 0 || i >= size) throw IndexOutOfBoundsException("index = $i, size = $size")
 
 		if (parent[i] == i) {
 			return i
@@ -21,7 +21,7 @@ class DisjointSet(private val size: Int) {
 	}
 
 	fun findRootPosition(i: Int): Int {
-		if (i < 0 || i >= size) throw IndexOutOfBoundsException("i ($i) must be between 0 and ${size - 1}")
+		if (i < 0 || i >= size) throw IndexOutOfBoundsException("index = $i, size = $size")
 
 		val root = findRoot(i)
 		if (!rootPositions.containsKey(root)) throw Exception("No known position for root $root")
@@ -29,8 +29,8 @@ class DisjointSet(private val size: Int) {
 	}
 
 	fun join(a: Int, b: Int) {
-		if (a < 0 || a >= size) throw IndexOutOfBoundsException("a ($a) must be between 0 and ${size - 1}")
-		if (b < 0 || b >= size) throw IndexOutOfBoundsException("b ($b) must be between 0 and ${size - 1}")
+		if (a < 0 || a >= size) throw IndexOutOfBoundsException("index = $a, size = $size")
+		if (b < 0 || b >= size) throw IndexOutOfBoundsException("index = $b, size = $size")
 
 		val aRoot = findRoot(a)
 		val bRoot = findRoot(b)

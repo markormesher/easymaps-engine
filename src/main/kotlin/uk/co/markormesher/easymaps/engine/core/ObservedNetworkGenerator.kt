@@ -43,7 +43,7 @@ private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: Config): Disj
 	printInfo("Building disjoint set of trait clusters...")
 
 	val clusterSets = DisjointSet(cfg.traitTranslator.size)
-	coMatrix.forAllNonZeroRowsAndCols { row, col, value ->
+	coMatrix.forEachNonZero { row, col, value ->
 		if (value >= cfg.optionProvider.coOccurrencesRequiredPerTraitLink) {
 			clusterSets.join(row, col)
 		}
@@ -125,7 +125,7 @@ private fun writeObservedNetworkToFile(adjMatrix: SparseSquareMatrix, config: Co
 	sb.append("graph Map {\n")
 	//sb.append("node[shape = point, label = \"\"];\n")
 	//sb.append("node[shape = point];\n")
-	adjMatrix.forAllNonZeroRowsAndCols { row, col, value -> sb.append("$row -- $col;\n") }
+	adjMatrix.forEachNonZero { row, col, value -> sb.append("$row -- $col;\n") }
 	sb.append("}")
 
 	// write observed network to files

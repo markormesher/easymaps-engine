@@ -10,6 +10,6 @@ interface Matrix {
 
 	val height: Int
 
-	fun copy(): Matrix
+	fun clone(): Matrix
 
 }

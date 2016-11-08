@@ -5,7 +5,6 @@ import uk.co.markormesher.easymaps.engine.helpers.forAllPairs
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 class DisjointSetTests {
@@ -33,18 +32,18 @@ class DisjointSetTests {
 		ds.join(4, 5)
 
 		// [0, 1, 2]
-		assertEquals(ds.findRoot(0), ds.findRoot(1))
-		assertEquals(ds.findRoot(1), ds.findRoot(2))
+		assertTrue(ds.findRoot(0) == ds.findRoot(1))
+		assertTrue(ds.findRoot(1) == ds.findRoot(2))
 
 		// [4, 5]
-		assertEquals(ds.findRoot(4), ds.findRoot(5))
+		assertTrue(ds.findRoot(4) == ds.findRoot(5))
 	}
 
 	@Test
 	fun nonJoinedElementsShouldHaveDifferentRoots() {
 		val ds = DisjointSet(10)
 		(0..9).toSet().forAllPairs { i, j ->
-			if (i != j) assertNotEquals(ds.findRoot(i), ds.findRoot(j))
+			assertEquals(i == j, ds.findRoot(i) == ds.findRoot(j))
 		}
 	}
 
@@ -53,7 +52,7 @@ class DisjointSetTests {
 		val ds = DisjointSet(10)
 		ds.generateRootPositions()
 		(0..9).toSet().forAllPairs { i, j ->
-			if (i != j) assertNotEquals(ds.findRootPosition(i), ds.findRootPosition(j))
+			assertEquals(i == j, ds.findRootPosition(i) == ds.findRootPosition(j))
 		}
 	}
 
@@ -78,21 +77,21 @@ class DisjointSetTests {
 		val actualRoots = (0..9).map { i -> ds.findRootPosition(i) }.toIntArray()
 		val expectedRoots = intArrayOf(0, 0, 0, 1, 2, 2, 3, 4, 4, 4)
 
-		(0..9).forEach { i -> assertEquals(expectedRoots[i], actualRoots[i]) }
+		for (i in 0..9) assertEquals(expectedRoots[i], actualRoots[i])
 	}
 
 	@Test
-	fun invalidIndexesShouldBeRejected() {
+	fun shouldRejectInvalidIndexes() {
 		val ds = DisjointSet(10)
 		ds.generateRootPositions()
-		assertFailsWith(IndexOutOfBoundsException::class, "i (-1) must be between 0 and 9", { ds.findRoot(-1) })
-		assertFailsWith(IndexOutOfBoundsException::class, "i (10) must be between 0 and 9", { ds.findRoot(10) })
-		assertFailsWith(IndexOutOfBoundsException::class, "i (-1) must be between 0 and 9", { ds.findRootPosition(-1) })
-		assertFailsWith(IndexOutOfBoundsException::class, "i (10) must be between 0 and 9", { ds.findRootPosition(10) })
-		assertFailsWith(IndexOutOfBoundsException::class, "a (-1) must be between 0 and 9", { ds.join(-1, 5) })
-		assertFailsWith(IndexOutOfBoundsException::class, "a (10) must be between 0 and 9", { ds.join(10, 5) })
-		assertFailsWith(IndexOutOfBoundsException::class, "b (-1) must be between 0 and 9", { ds.join(5, -1) })
-		assertFailsWith(IndexOutOfBoundsException::class, "b (10) must be between 0 and 9", { ds.join(5, 10) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { ds.findRoot(-1) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { ds.findRoot(10) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { ds.findRootPosition(-1) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { ds.findRootPosition(10) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { ds.join(-1, 5) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { ds.join(10, 5) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { ds.join(5, -1) })
+		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { ds.join(5, 10) })
 	}
 
 	@Test

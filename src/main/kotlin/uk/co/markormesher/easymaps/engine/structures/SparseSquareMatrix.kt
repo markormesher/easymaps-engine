@@ -8,9 +8,15 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 
 	private val rows = Array(n, { SparseVector(n) })
 
-	override operator fun get(row: Int, col: Int) = rows[row][col]
+	override operator fun get(row: Int, col: Int): Double {
+		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
+		if (col < 0 || col >= n) throw IndexOutOfBoundsException("col = $col; size = $n")
+		return rows[row][col]
+	}
 
 	override operator fun set(row: Int, col: Int, value: Double) {
+		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
+		if (col < 0 || col >= n) throw IndexOutOfBoundsException("col = $col; size = $n")
 		rows[row][col] = value
 	}
 
@@ -24,18 +30,18 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 		get() = n * n
 
 	val nonZeroValues: Int
-		get() = rows.fold(0, { sum, row -> sum + row.nonDefaultValues })
+		get() = rows.fold(0, { sum, row -> sum + row.nonZeroValues })
 
 	val density: Double
 		get() = nonZeroValues / possibleValues.toDouble()
 
-	override fun copy(): Matrix {
+	override fun clone(): Matrix {
 		val output = SparseSquareMatrix(n)
-		forAllNonZeroRowsAndCols { row, col, value -> output[row, col] = value }
+		forEachNonZero { row, col, value -> output[row, col] = value }
 		return output
 	}
 
-	fun forAllNonZeroRowsAndCols(operator: (Int, Int, Double) -> Unit) {
+	fun forEachNonZero(operator: (Int, Int, Double) -> Unit) {
 		for (row in 0..height - 1) {
 			rows[row].forEach { col, value ->
 				operator(row, col, value)

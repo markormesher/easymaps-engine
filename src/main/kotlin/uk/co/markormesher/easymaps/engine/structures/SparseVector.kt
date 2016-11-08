@@ -11,20 +11,23 @@ class SparseVector(private val n: Int) : Vector {
 	}
 
 	override operator fun set(i: Int, value: Double) {
-		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; n = $n")
-		if (value == 0.0) map.remove(i)
+		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; size = $n")
+		if (value == 0.0) {
+			map.remove(i)
+			return
+		}
 		map.put(i, value)
 	}
 
 	override operator fun get(i: Int): Double {
-		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; n = $n")
+		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; size = $n")
 		return map[i] ?: 0.0
 	}
 
 	override val size: Int
 		get() = n
 
-	val nonDefaultValues: Int
+	val nonZeroValues: Int
 		get() = map.size
 
 	fun forEach(exec: (position: Int, value: Double) -> Unit) {
