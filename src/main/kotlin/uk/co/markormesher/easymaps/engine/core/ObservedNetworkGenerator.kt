@@ -62,7 +62,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 
 	printInfo("Generating cluster adjacency matrix...")
 
-	val adjMatrix = SparseSquareMatrix(cfg.traitTranslator.size)
+	val adjMatrix = SparseSquareMatrix(clusterSets.setCount)
 	var fileId = 0
 	parsedLogFiles.forEach logFiles@ { logFile ->
 		++fileId
@@ -126,7 +126,7 @@ private fun generateNetwork(adjMatrix: SparseSquareMatrix): Network {
 
 	val network = Network(adjMatrix.width)
 	adjMatrix.forEachNonZero { row, col, value ->
-		// assume bi-directional for now
+		// TODO: assume bi-directional for now
 		network.addEdge(row, col)
 		network.addEdge(col, row)
 	}
