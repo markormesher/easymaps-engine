@@ -1,5 +1,6 @@
 logReader = sample
-logPath = ./sample-data
 optionProvider = sample
-outputPath = ./output
+logFolderPath = ./sample/input/logs
+knownNetworkFilePath = ./sample/input/known-network.dot
+outputFolderPath = ./sample/output
 dotExec = /usr/bin/neato

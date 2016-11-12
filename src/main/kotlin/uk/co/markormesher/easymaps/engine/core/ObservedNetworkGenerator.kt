@@ -16,6 +16,7 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config): N
 	val adjMatrix = generateClusterAdjacencyMatrix(clusterSets, parsedLogFiles, cfg)
 	populateTraitToClusterMap(clusterSets, cfg)
 	val network = generateNetwork(adjMatrix)
+	printInfo("Writing observed network to file...")
 	generateNetworkImage(network, "observed-network", cfg)
 	return network
 }

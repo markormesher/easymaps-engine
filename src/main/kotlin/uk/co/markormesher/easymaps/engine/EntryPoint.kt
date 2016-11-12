@@ -24,8 +24,9 @@ data class Config(
 		val logReader: LogReader,
 		val optionProvider: OptionProvider,
 		val traitTranslator: TraitTranslator,
-		val logPath: String,
-		val outputPath: String,
+		val logFolderPath: String,
+		val knownNetworkFilePath: String,
+		val outputFolderPath: String,
 		val dotExec: String
 )
 
@@ -37,18 +38,19 @@ fun main(args: Array<String>) {
 	if (args.size == 1) readOptionsFile(args[0])
 
 	// options
-	val config = Config(
+	val cfg = Config(
 			logReader = selectLogReader(),
 			optionProvider = selectOptionProvider(),
 			traitTranslator = TraitTranslator(),
-			logPath = enterPath("Enter path to log files", "logPath", PATH_TYPE_FOLDER),
-			outputPath = enterPath("Enter output path", "outputPath", PATH_TYPE_FOLDER),
+			logFolderPath = enterPath("Enter path to log input folder", "logFolderPath", PATH_TYPE_FOLDER),
+			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
+			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
 			dotExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "dotExec", PATH_TYPE_FILE)
 	)
 
-	val parsedLogFiles = parseAndCleanData(config)
-	generateObservedNetwork(parsedLogFiles, config)
-	matchToKnownNetwork()
+	val parsedLogFiles = parseAndCleanData(cfg)
+	val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
+	matchToKnownNetwork(observedNetwork, cfg)
 	writeOutput()
 
 	println()

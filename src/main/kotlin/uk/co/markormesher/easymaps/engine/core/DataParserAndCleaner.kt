@@ -14,7 +14,7 @@ fun parseAndCleanData(cfg: Config): List<ParsedLogFile> {
 
 	printSubHeader("Parsing and Cleaning Data")
 
-	cfg.logReader.init(cfg.logPath)
+	cfg.logReader.init(cfg.logFolderPath)
 	buildTraitMap(cfg)
 	generateLeaderBoardData(cfg)
 	applyObserverCountFilter(cfg)
@@ -76,7 +76,7 @@ private fun generateLeaderBoardData(cfg: Config) {
 	sb.setLength(sb.length - 1)
 	sb.append("\n}\n}")
 
-	val file = "${cfg.outputPath}/leader-board-data.json"
+	val file = "${cfg.outputFolderPath}/leader-board-data.json"
 	val writer = PrintWriter(file, "UTF-8")
 	writer.print(sb.toString())
 	writer.close()
