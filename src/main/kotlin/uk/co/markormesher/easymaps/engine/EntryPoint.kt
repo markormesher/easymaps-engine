@@ -50,7 +50,7 @@ fun main(args: Array<String>) {
 	val parsedLogFiles = parseAndCleanData(cfg)
 	val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
 	val knownNetwork = parseKnownNetwork(cfg)
-	val isomorphisms = matchNetworks(observedNetwork, knownNetwork, cfg)
+	val isomorphisms = matchNetworks(observedNetwork, knownNetwork)
 	writeOutput(knownNetwork, isomorphisms, cfg)
 
 	printSubHeader("Done!")

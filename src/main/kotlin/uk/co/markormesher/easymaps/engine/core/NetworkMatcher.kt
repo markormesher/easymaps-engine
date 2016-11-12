@@ -1,13 +1,12 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.Config
 import uk.co.markormesher.easymaps.engine.data.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import java.util.*
 
 // maps are "observed node id" -> "known node id"
-fun matchNetworks(observedNetwork: Network, knownNetwork: Network, cfg: Config): List<Map<Int, Int>> {
+fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int, Int>> {
 
 	printSubHeader("Matching to Known Network")
 
