@@ -22,7 +22,7 @@ fun parseKnownNetwork(cfg: Config): Network {
 
 	printInfo("Parsing known network...")
 
-	val validLineFormat = Pattern.compile("\"([A-Za-z0-9'. ])\" (\\-\\-|\\->) \"([A-Za-z0-9'. ])\";")!!
+	val validLineFormat = Pattern.compile("\"([A-Za-z0-9'. ])\" (\\-\\-|\\->) \"([A-Za-z0-9'. ])\"")!!
 
 	// read file to collect valid lines
 	val lines = ArrayList<String>()

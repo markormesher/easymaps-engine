@@ -5,10 +5,20 @@ import uk.co.markormesher.easymaps.engine.data.Network
 import java.io.PrintWriter
 import java.util.*
 
-// TODO: break up into file generator and add tests
+// TODO: add tests
 fun generateNetworkImage(network: Network, label: String, cfg: Config) {
+	val dotFile = "${cfg.outputFolderPath}/$label.dot"
+	val pngFile = "${cfg.outputFolderPath}/$label.png"
+	with(PrintWriter(dotFile, "UTF-8")) {
+		print(generateDotFormatString(network))
+		close()
+	}
+	Runtime.getRuntime().exec("${cfg.dotExec} -Tpng -o $pngFile $dotFile").waitFor()
+	printSubInfo("Written to $dotFile")
+	printSubInfo("Diagram in $pngFile")
+}
 
-	// preamble
+private fun generateDotFormatString(network: Network): String {
 	val sb = StringBuilder()
 	sb.append("digraph Map {\n")
 	sb.append("edge[arrowsize = 0.4];\n")
@@ -30,14 +40,5 @@ fun generateNetworkImage(network: Network, label: String, cfg: Config) {
 	// close
 	sb.append("}")
 
-	// write observed network to files
-	val dotFile = "${cfg.outputFolderPath}/$label.dot"
-	val pngFile = "${cfg.outputFolderPath}/$label.png"
-	with(PrintWriter(dotFile, "UTF-8")) {
-		print(sb.toString())
-		close()
-	}
-	Runtime.getRuntime().exec("${cfg.dotExec} -Tpng -o $pngFile $dotFile").waitFor()
-	printSubInfo("Written to $dotFile")
-	printSubInfo("Diagram in $pngFile")
+	return sb.toString()
 }
