@@ -5,27 +5,13 @@ import uk.co.markormesher.easymaps.engine.data.Network
 import uk.co.markormesher.easymaps.engine.helpers.generateNetworkImage
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
-import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import java.io.File
-import java.io.PrintWriter
 import java.util.*
 import java.util.regex.Pattern
 
-fun matchToKnownNetwork(observedNetwork: Network, cfg: Config) {
-
-	printSubHeader("Matching to Known Network")
-
-	val knownNetwork = parseKnownNetwork(cfg)
-	printInfo("Writing known network to file...")
-	generateNetworkImage(knownNetwork, "known-network", cfg)
-	val isomorphisms = generateIsomorphisms(observedNetwork, knownNetwork)
-	printInfo("Found ${isomorphisms.size} possible isomorphism(s)")
-	if (isomorphisms.size > 0) writeLabellingsToFiles(knownNetwork, isomorphisms, cfg)
-}
-
 fun parseKnownNetwork(cfg: Config): Network {
 
-	printInfo("Parsing known network...")
+	printSubHeader("Parsing Known Network")
 
 	val validLineFormat = Pattern.compile("\"([A-Za-z0-9'. ])\" (\\-\\-|\\->) \"([A-Za-z0-9'. ])\"")!!
 
@@ -71,49 +57,9 @@ fun parseKnownNetwork(cfg: Config): Network {
 		}
 	}
 
+	printInfo("Parsed with ${network.size} nodes")
+	printInfo("Writing known network to file...")
+	generateNetworkImage(network, "known-network", cfg)
+
 	return network
-}
-
-// maps are "observed node id" -> "known node id"
-fun generateIsomorphisms(observedNetwork: Network, knownNetwork: Network): List<Map<Int, Int>> {
-	val isomorphisms = ArrayList<Map<Int, Int>>()
-
-	val iso = TreeMap<Int, Int>()
-	iso.put(14, 0)
-	iso.put(1, 1)
-	isomorphisms.add(iso)
-
-	return isomorphisms
-}
-
-fun writeLabellingsToFiles(knownNetwork: Network, isomorphisms: List<Map<Int, Int>>, cfg: Config) {
-
-	printInfo("Writing final labelling(s) to file(s)...")
-
-	isomorphisms.forEachIndexed { i, iso ->
-		printSubInfo("Writing labelling #${i + 1}")
-
-		val sb = StringBuilder()
-		iso.forEach { mapping ->
-			val observedNodeId = mapping.key
-			val knownNodeId = mapping.value
-
-			val traits = cfg.traitTranslator.getTraitsForCluster(observedNodeId)
-			traits.forEach { trait ->
-				with(sb) {
-					append("\"")
-					append(trait)
-					append("\" = \"")
-					append(knownNetwork.nodeLabels[knownNodeId])
-					append("\"\n")
-				}
-			}
-		}
-
-		val file = "${cfg.outputFolderPath}/labelling-$i.txt"
-		with(PrintWriter(file, "UTF-8")) {
-			print(sb.toString())
-			close()
-		}
-	}
 }

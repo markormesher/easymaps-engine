@@ -25,4 +25,7 @@ class Network(private val n: Int) {
 		adj.forEachNonZero { from, to, weight -> exec(from, to) }
 	}
 
+	val size: Int
+		get() = n
+
 }

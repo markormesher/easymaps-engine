@@ -1,9 +1,6 @@
 package uk.co.markormesher.easymaps.engine
 
-import uk.co.markormesher.easymaps.engine.core.generateObservedNetwork
-import uk.co.markormesher.easymaps.engine.core.matchToKnownNetwork
-import uk.co.markormesher.easymaps.engine.core.parseAndCleanData
-import uk.co.markormesher.easymaps.engine.core.writeOutput
+import uk.co.markormesher.easymaps.engine.core.*
 import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiLogReader
 import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.SampleLogReader
@@ -31,6 +28,8 @@ data class Config(
 )
 
 fun main(args: Array<String>) {
+	var timer = -System.currentTimeMillis()
+
 	// preamble
 	printHeader("EasyMaps Engine $VERSION")
 
@@ -50,8 +49,15 @@ fun main(args: Array<String>) {
 
 	val parsedLogFiles = parseAndCleanData(cfg)
 	val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
-	matchToKnownNetwork(observedNetwork, cfg)
-	writeOutput()
+	val knownNetwork = parseKnownNetwork(cfg)
+	val isomorphisms = matchNetworks(observedNetwork, knownNetwork, cfg)
+	writeOutput(knownNetwork, isomorphisms, cfg)
+
+	printSubHeader("Done!")
+
+	// run stats
+	timer += System.currentTimeMillis()
+	printInfo("Execution took $timer ms")
 
 	println()
 }
