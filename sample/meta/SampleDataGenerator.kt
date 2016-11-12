@@ -12,7 +12,7 @@ val maxDelayBetweenScans = 40000L // 40s
 val minDelayBetweenNodes = 20000L // 20s
 val maxDelayBetweenNodes = 80000L // 80s
 
-fun makeTrait(node: Char, offset: Int): String = "trait_${((node - 'A') * traitsPerNode) + offset}"
+fun makeTrait(node: Char, offset: Int): String = "trait_${node}_${((node - 'A') * traitsPerNode) + offset}"
 
 fun randBetween(minIncl: Int, maxExcl: Int): Int = ThreadLocalRandom.current().nextInt(minIncl, maxExcl)
 fun randBetween(minIncl: Long, maxExcl: Long): Long = ThreadLocalRandom.current().nextLong(minIncl, maxExcl)

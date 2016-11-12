@@ -4,8 +4,7 @@ import uk.co.markormesher.easymaps.engine.interfaces.LogEntry
 import uk.co.markormesher.easymaps.engine.interfaces.LogFile
 import uk.co.markormesher.easymaps.engine.interfaces.Trait
 
-class LUWifiLogFile(
-		override val logEntries: List<LUWifiLogEntry>) : LogFile
+class LUWifiLogFile(override val logEntries: List<LUWifiLogEntry>) : LogFile
 
 class LUWifiLogEntry(
 		override val timestamp: Long,

@@ -5,6 +5,7 @@ import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
 class Network(private val n: Int) {
 
 	private val adj = SparseSquareMatrix(n)
+	val nodeLabels = Array(n, { i -> "$i" })
 
 	fun addEdge(from: Int, to: Int) {
 		if (from < 0 || from >= n) throw IndexOutOfBoundsException("from = $from, size = $n")

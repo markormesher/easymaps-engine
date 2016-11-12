@@ -77,9 +77,10 @@ private fun generateLeaderBoardData(cfg: Config) {
 	sb.append("\n}\n}")
 
 	val file = "${cfg.outputFolderPath}/leader-board-data.json"
-	val writer = PrintWriter(file, "UTF-8")
-	writer.print(sb.toString())
-	writer.close()
+	with(PrintWriter(file, "UTF-8")) {
+		print(sb.toString())
+		close()
+	}
 
 	printSubInfo("Data written to $file")
 }
@@ -129,7 +130,7 @@ private fun convertLogsIntoParsedLogs(cfg: Config): List<ParsedLogFile> {
 		file.logEntries.forEach { logEntry ->
 			val parsedTraits = ArrayList<Int>()
 			logEntry.traits
-					.map { t -> cfg.traitTranslator.getIdForTrait(t) }
+					.map { t -> cfg.traitTranslator.getTraitId(t) }
 					.filter { t -> t != cfg.traitTranslator.INVALID_ID }
 					.forEach { t -> parsedTraits.add(t) }
 

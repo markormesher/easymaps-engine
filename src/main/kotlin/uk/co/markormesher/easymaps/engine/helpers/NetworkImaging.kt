@@ -27,7 +27,9 @@ private fun generateDotFormatString(network: Network): String {
 	// edges
 	val edgesPrinted = HashSet<String>()
 	network.forEachEdge { from, to ->
-		var edge = "\"${Math.min(from, to)}\" -> \"${Math.max(from, to)}\""
+		val fromLabel = network.nodeLabels[Math.min(from, to)]
+		val toLabel = network.nodeLabels[Math.max(from, to)]
+		var edge = "\"$fromLabel\" -> \"$toLabel\""
 		if (network.hasEdge(to, from)) edge += " [dir = \"both\"]"
 		edge += ";"
 

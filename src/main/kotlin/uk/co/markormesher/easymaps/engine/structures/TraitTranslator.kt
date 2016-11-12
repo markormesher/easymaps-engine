@@ -1,5 +1,6 @@
 package uk.co.markormesher.easymaps.engine.structures
 
+import com.google.common.collect.HashBiMap
 import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import java.util.*
 
@@ -7,42 +8,53 @@ class TraitTranslator {
 
 	val INVALID_ID = -1
 
-	private val traitToIdMap = HashMap<Trait, Int>()
-	private val idToClusterIdMap = HashMap<Int, Int>()
+	private val traitToTraitIdIdMap = HashBiMap.create<Trait, Int>()
+	private val traitClusters = HashMap<Int, ArrayList<Trait>>() // cluster id -> list<trait>
+	private val clusteredTraits = TreeSet<Int>()
+
 	private var latestId = -1
 
 	fun offerTrait(trait: Trait): Int {
-		if (!traitToIdMap.containsKey(trait)) traitToIdMap.put(trait, ++latestId)
-		return getIdForTrait(trait)
+		if (!traitToTraitIdIdMap.containsKey(trait)) {
+			traitToTraitIdIdMap.put(trait, ++latestId)
+		}
+		return getTraitId(trait)
 	}
 
 	fun removeTrait(trait: Trait) {
-		traitToIdMap.remove(trait)
+		traitToTraitIdIdMap.remove(trait)
 	}
 
-	fun getIdForTrait(trait: Trait): Int {
-		return traitToIdMap[trait] ?: INVALID_ID
+	fun getTraitId(trait: Trait): Int {
+		return traitToTraitIdIdMap[trait] ?: INVALID_ID
 	}
 
-	fun getClusterIdForTrait(trait: Trait): Int {
-		val traitId = getIdForTrait(trait)
-		return idToClusterIdMap[traitId] ?: INVALID_ID
-	}
-
-	fun setClusterIdForTrait(trait: Trait, clusterId: Int) {
-		val traitId = getIdForTrait(trait)
+	fun setTraitCluster(trait: Trait, clusterId: Int) {
+		val traitId = getTraitId(trait)
 		if (traitId == INVALID_ID) throw InvalidTraitException(trait)
-		idToClusterIdMap[traitId] = clusterId
+
+		if (clusteredTraits.contains(traitId)) throw Exception("Trait $trait already has a cluster ID")
+		clusteredTraits.add(traitId)
+
+		if (!traitClusters.containsKey(clusterId)) {
+			traitClusters[clusterId] = ArrayList<Trait>()
+		}
+		traitClusters[clusterId]!!.add(trait)
+	}
+
+	fun getTraitsForCluster(clusterId: Int): ArrayList<Trait> {
+		return traitClusters[clusterId] ?: throw ClusterIdException(clusterId)
 	}
 
 	fun forEachTrait(exec: (trait: Trait, id: Int) -> Unit) {
-		val allTraits = traitToIdMap.entries
-		allTraits.forEach { e -> exec(e.key, e.value) }
+		traitToTraitIdIdMap.entries.forEach { e -> exec(e.key, e.value) }
 	}
 
 	var size: Int = 0
-		get() = traitToIdMap.size
+		get() = traitToTraitIdIdMap.size
 
 }
 
 class InvalidTraitException(trait: Trait) : Exception("The trait '$trait' is not a valid trait")
+
+class ClusterIdException(clusterId: Int) : Exception("The cluster ID '$clusterId' is not valid")

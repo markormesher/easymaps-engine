@@ -1,11 +1,8 @@
 package uk.co.markormesher.easymaps.engine.domain_specific
 
-import uk.co.markormesher.easymaps.engine.interfaces.LogFile
-import uk.co.markormesher.easymaps.engine.domain_specific.SampleLogEntry
-import uk.co.markormesher.easymaps.engine.domain_specific.SampleLogFile
-import uk.co.markormesher.easymaps.engine.domain_specific.SampleTrait
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.helpers.printWarning
+import uk.co.markormesher.easymaps.engine.interfaces.LogFile
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
 import java.io.File
 import java.util.*
@@ -15,7 +12,7 @@ class SampleLogReader : LogReader {
 
 	val filePaths = ArrayList<String>()
 	var currentFile = -1
-	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,trait_[0-9]+)+)\\]")!!
+	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,trait_[A-Z]_[0-9]+)+)\\]")!!
 
 	override fun init(location: String) {
 		val folder = File(location)

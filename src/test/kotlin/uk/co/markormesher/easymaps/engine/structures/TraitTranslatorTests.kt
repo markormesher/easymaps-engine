@@ -6,6 +6,7 @@ import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 class TraitTranslatorTests {
 
@@ -27,19 +28,19 @@ class TraitTranslatorTests {
 		tt.offerTrait(TRAIT_1)
 		tt.offerTrait(TRAIT_2)
 		tt.offerTrait(TRAIT_3)
-		assertEquals(0, tt.getIdForTrait(TRAIT_1))
-		assertEquals(1, tt.getIdForTrait(TRAIT_2))
-		assertEquals(2, tt.getIdForTrait(TRAIT_3))
+		assertEquals(0, tt.getTraitId(TRAIT_1))
+		assertEquals(1, tt.getTraitId(TRAIT_2))
+		assertEquals(2, tt.getTraitId(TRAIT_3))
 	}
 
 	@Test
 	fun duplicateOffersShouldNotAffectId() {
 		val tt = TraitTranslator()
 		tt.offerTrait(TRAIT_1)
-		val expectedId = tt.getIdForTrait(TRAIT_1)
+		val expectedId = tt.getTraitId(TRAIT_1)
 		tt.offerTrait(TRAIT_1)
 		tt.offerTrait(TRAIT_1)
-		val actualId = tt.getIdForTrait(TRAIT_1)
+		val actualId = tt.getTraitId(TRAIT_1)
 		assertEquals(expectedId, actualId)
 	}
 
@@ -59,36 +60,37 @@ class TraitTranslatorTests {
 	@Test
 	fun getIdForTraitShouldReturnInvalidIdForUnknownTrait() {
 		val tt = TraitTranslator()
-		assertEquals(tt.INVALID_ID, tt.getIdForTrait(TRAIT_1))
+		assertEquals(tt.INVALID_ID, tt.getTraitId(TRAIT_1))
 	}
 
 	@Test
-	fun clusterIdsForTraitsShouldBeStored() {
+	fun setClusterShouldRejectDuplicateCalls() {
+		val tt = TraitTranslator()
+		tt.offerTrait(TRAIT_1)
+		tt.setTraitCluster(TRAIT_1, 7)
+		assertFailsWith(Exception::class, { tt.setTraitCluster(TRAIT_1, 8) })
+	}
+
+	@Test
+	fun setClusterShouldRejectUnknownTraits() {
+		val tt = TraitTranslator()
+		assertFailsWith(InvalidTraitException::class, { tt.setTraitCluster(TRAIT_1, 1) })
+	}
+
+	@Test
+	fun getTraitsForClusterShouldBeAccurate() {
 		val tt = TraitTranslator()
 		tt.offerTrait(TRAIT_1)
 		tt.offerTrait(TRAIT_2)
 		tt.offerTrait(TRAIT_3)
-		tt.setClusterIdForTrait(TRAIT_1, 7)
-		tt.setClusterIdForTrait(TRAIT_2, 8)
-		tt.setClusterIdForTrait(TRAIT_3, 9)
-		assertEquals(7, tt.getClusterIdForTrait(TRAIT_1))
-		assertEquals(8, tt.getClusterIdForTrait(TRAIT_2))
-		assertEquals(9, tt.getClusterIdForTrait(TRAIT_3))
-	}
-
-	@Test
-	fun setClusterIdShouldOverrideExistingValues() {
-		val tt = TraitTranslator()
-		tt.offerTrait(TRAIT_1)
-		tt.setClusterIdForTrait(TRAIT_1, 7)
-		tt.setClusterIdForTrait(TRAIT_1, 8)
-		assertEquals(8, tt.getClusterIdForTrait(TRAIT_1))
-	}
-
-	@Test
-	fun setClusterIdShouldRejectUnknownTraits() {
-		val tt = TraitTranslator()
-		assertFailsWith(InvalidTraitException::class, { tt.setClusterIdForTrait(TRAIT_1, 1) })
+		tt.setTraitCluster(TRAIT_1, 1)
+		tt.setTraitCluster(TRAIT_2, 1)
+		tt.setTraitCluster(TRAIT_3, 1)
+		val result = tt.getTraitsForCluster(1)
+		assertEquals(3, result.size)
+		assertTrue(result.contains(TRAIT_1))
+		assertTrue(result.contains(TRAIT_2))
+		assertTrue(result.contains(TRAIT_3))
 	}
 
 	@Test
