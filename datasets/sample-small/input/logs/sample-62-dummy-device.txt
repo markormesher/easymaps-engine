@@ -1,2 +1,0 @@
-[dummy-device,1478964952316,trait_F_166,trait_F_176,trait_F_156,trait_F_159,trait_F_174,trait_F_157,trait_F_162,trait_F_160,trait_F_173]
-[dummy-device,1478964976753,trait_F_162,trait_F_171,trait_F_167,trait_F_177,trait_F_172]

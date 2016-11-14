@@ -1,65 +1,34 @@
 package uk.co.markormesher.easymaps.engine
 
-import uk.co.markormesher.easymaps.engine.core.*
-import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiLogReader
-import uk.co.markormesher.easymaps.engine.domain_specific.LUWifiOptionProvider
-import uk.co.markormesher.easymaps.engine.domain_specific.SampleLogReader
-import uk.co.markormesher.easymaps.engine.domain_specific.SampleOptionProvider
+import uk.co.markormesher.easymaps.engine.domain_specific.*
+import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonLogReader
+import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonOptionProvider
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogReader
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleOptionProvider
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleWalkerOptionProvider
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
 import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
-import uk.co.markormesher.easymaps.engine.structures.TraitTranslator
+import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
 import java.io.File
 import java.util.*
 
 private val options = HashMap<String, String?>()
 
-private val PATH_TYPE_FILE = 1
-private val PATH_TYPE_FOLDER = 2
-
-data class Config(
-		val logReader: LogReader,
-		val optionProvider: OptionProvider,
-		val traitTranslator: TraitTranslator,
-		val logFolderPath: String,
-		val knownNetworkFilePath: String,
-		val outputFolderPath: String,
-		val dotExec: String
-)
+val PATH_TYPE_FILE = 1
+val PATH_TYPE_FOLDER = 2
 
 fun main(args: Array<String>) {
-	var timer = -System.currentTimeMillis()
-
-	// preamble
-	printHeader("EasyMaps Engine $VERSION")
-
-	// options file
-	if (args.size == 1) readOptionsFile(args[0])
-
-	// options
-	val cfg = Config(
-			logReader = selectLogReader(),
-			optionProvider = selectOptionProvider(),
-			traitTranslator = TraitTranslator(),
-			logFolderPath = enterPath("Enter path to log input folder", "logFolderPath", PATH_TYPE_FOLDER),
-			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
-			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
-			dotExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "dotExec", PATH_TYPE_FILE)
-	)
-
-	val parsedLogFiles = parseAndCleanData(cfg)
-	val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
-	val knownNetwork = parseKnownNetwork(cfg)
-	val isomorphisms = matchNetworks(observedNetwork, knownNetwork)
-	writeOutput(knownNetwork, isomorphisms, cfg)
-
-	printSubHeader("Done!")
-
-	// run stats
-	timer += System.currentTimeMillis()
-	printInfo("Execution took $timer ms")
-
-	println()
+	if (args.size == 2 && args[0] == "-walker") {
+		printHeader("EasyMaps Walker $VERSION")
+		runWalker(args[1])
+	} else if (args.size == 1) {
+		printHeader("EasyMaps Engine $VERSION")
+		runEngine(args[0])
+	} else {
+		printHeader("EasyMaps Engine $VERSION")
+		runEngine()
+	}
 }
 
 fun readOptionsFile(filePath: String) {
@@ -91,7 +60,7 @@ fun selectLogReader(): LogReader {
 		}
 
 		when (input) {
-			"london" -> return LUWifiLogReader()
+			"london" -> return LondonLogReader()
 			"sample" -> return SampleLogReader()
 			else -> if (!quiet) printError("that's not a valid option")
 		}
@@ -136,8 +105,28 @@ fun selectOptionProvider(): OptionProvider {
 		}
 
 		when (input) {
-			"london" -> return LUWifiOptionProvider()
+			"london" -> return LondonOptionProvider()
 			"sample" -> return SampleOptionProvider()
+			else -> if (!quiet) printError("that's not a valid option")
+		}
+	}
+}
+
+fun selectWalkerOptionProvider(): WalkerOptionProvider {
+
+	while (true) {
+		var input = options["walkerOptionProvider"]
+		options.put("walkerOptionProvider", null)
+
+		val quiet = !input.isNullOrEmpty()
+		if (input.isNullOrEmpty()) {
+			println("\nSelect walker option provider [sample]")
+			print(INPUT_PROMPT)
+			input = readLine()!!.trim()
+		}
+
+		when (input) {
+			"sample" -> return SampleWalkerOptionProvider()
 			else -> if (!quiet) printError("that's not a valid option")
 		}
 	}

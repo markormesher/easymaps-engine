@@ -1,8 +1,0 @@
-[dummy-device,1478964952311,trait_P_477,trait_P_466,trait_P_454,trait_P_453,trait_P_456,trait_P_465,trait_P_457]
-[dummy-device,1478964981470,trait_P_450,trait_P_476,trait_P_466,trait_P_470,trait_P_452,trait_P_473,trait_P_451,trait_P_478,trait_P_454,trait_P_464,trait_P_469,trait_P_477,trait_P_475,trait_P_461,trait_P_451,trait_P_478,trait_P_454,trait_P_461]
-[dummy-device,1478965042416,trait_L_337,trait_L_350,trait_L_355,trait_L_350,trait_L_350]
-[dummy-device,1478965079362,trait_L_358,trait_L_337,trait_L_358,trait_L_357,trait_L_356,trait_L_341,trait_L_338,trait_L_331,trait_L_331,trait_L_354,trait_L_333,trait_L_352,trait_L_355]
-[dummy-device,1478965099883,trait_L_355,trait_L_334,trait_L_345,trait_L_354,trait_L_347,trait_L_351,trait_L_358,trait_L_355,trait_L_341,trait_L_356,trait_L_350,trait_L_341,trait_L_355,trait_L_337]
-[dummy-device,1478965155354,trait_Q_493,trait_Q_505,trait_Q_496,trait_Q_498,trait_Q_491,trait_Q_496,trait_Q_483,trait_Q_508,trait_Q_495,trait_Q_496,trait_Q_480,trait_Q_500,trait_Q_495,trait_Q_482,trait_Q_501,trait_Q_504,trait_Q_502,trait_Q_498,trait_Q_498]
-[dummy-device,1478965183582,trait_Q_488,trait_Q_487,trait_Q_505,trait_Q_495,trait_Q_501,trait_Q_486,trait_Q_502]
-[dummy-device,1478965221358,trait_Q_500,trait_Q_486,trait_Q_499,trait_Q_499,trait_Q_509,trait_Q_508,trait_Q_488,trait_Q_503,trait_Q_487]

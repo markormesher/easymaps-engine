@@ -30,7 +30,7 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 		get() = n * n
 
 	val nonZeroValues: Int
-		get() = rows.fold(0, { sum, row -> sum + row.nonZeroValues })
+		get() = rows.fold(0, { sum, row -> sum + row.nonZeroSize })
 
 	val density: Double
 		get() = nonZeroValues / possibleValues.toDouble()
@@ -47,6 +47,12 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 				operator(row, col, value)
 			}
 		}
+	}
+
+	// TODO: tests
+	fun getRow(row: Int): SparseVector {
+		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
+		return rows[row]
 	}
 
 	override fun toString(): String {

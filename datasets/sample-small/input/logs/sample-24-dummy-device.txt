@@ -1,2 +1,0 @@
-[dummy-device,1478964952305,trait_N_400,trait_N_400,trait_N_414,trait_N_407,trait_N_400,trait_N_414,trait_N_400,trait_N_405]
-[dummy-device,1478964991418,trait_N_409,trait_N_416,trait_N_411,trait_N_406,trait_N_415,trait_N_400,trait_N_409,trait_N_417,trait_N_412]

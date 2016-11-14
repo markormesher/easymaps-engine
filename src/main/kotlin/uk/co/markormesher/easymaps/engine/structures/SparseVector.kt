@@ -27,8 +27,11 @@ class SparseVector(private val n: Int) : Vector {
 	override val size: Int
 		get() = n
 
-	val nonZeroValues: Int
+	val nonZeroSize: Int
 		get() = map.size
+
+	val nonZeroValues: MutableCollection<Double>
+		get() = map.values
 
 	fun forEach(exec: (position: Int, value: Double) -> Unit) {
 		map.forEach(exec)

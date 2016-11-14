@@ -1,8 +1,8 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.Config
-import uk.co.markormesher.easymaps.engine.data.ParsedLogEntry
-import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
+import uk.co.markormesher.easymaps.engine.EngineConfig
+import uk.co.markormesher.easymaps.engine.structures.ParsedLogEntry
+import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
@@ -10,7 +10,7 @@ import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import java.io.PrintWriter
 import java.util.*
 
-fun parseAndCleanData(cfg: Config): List<ParsedLogFile> {
+fun parseAndCleanData(cfg: EngineConfig): List<ParsedLogFile> {
 
 	printSubHeader("Parsing and Cleaning Data")
 
@@ -22,7 +22,7 @@ fun parseAndCleanData(cfg: Config): List<ParsedLogFile> {
 	return convertLogsIntoParsedLogs(cfg)
 }
 
-private fun buildTraitMap(cfg: Config) {
+private fun buildTraitMap(cfg: EngineConfig) {
 
 	printInfo("Building trait map...")
 
@@ -45,7 +45,7 @@ private fun buildTraitMap(cfg: Config) {
 	printSubInfo("Found ${cfg.traitTranslator.size} trait(s)")
 }
 
-private fun generateLeaderBoardData(cfg: Config) {
+private fun generateLeaderBoardData(cfg: EngineConfig) {
 
 	printInfo("Creating leader-board data...")
 
@@ -85,7 +85,7 @@ private fun generateLeaderBoardData(cfg: Config) {
 	printSubInfo("Data written to $file")
 }
 
-private fun applyObserverCountFilter(cfg: Config) {
+private fun applyObserverCountFilter(cfg: EngineConfig) {
 
 	printInfo("Running unique observer threshold filter...")
 
@@ -114,7 +114,7 @@ private fun applyObserverCountFilter(cfg: Config) {
 	printSubInfo("Dropped ${traitsToDrop.size} trait(s)")
 }
 
-private fun convertLogsIntoParsedLogs(cfg: Config): List<ParsedLogFile> {
+private fun convertLogsIntoParsedLogs(cfg: EngineConfig): List<ParsedLogFile> {
 
 	printInfo("Converting raw logs into parsed logs...")
 

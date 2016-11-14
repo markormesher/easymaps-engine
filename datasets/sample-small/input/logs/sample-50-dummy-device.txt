@@ -1,3 +1,0 @@
-[dummy-device,1478964952313,trait_N_416,trait_N_400,trait_N_398,trait_N_413,trait_N_404,trait_N_408]
-[dummy-device,1478964974545,trait_N_397,trait_N_395,trait_N_404,trait_N_411,trait_N_409,trait_N_410,trait_N_410,trait_N_407,trait_N_409]
-[dummy-device,1478965013221,trait_N_413,trait_N_400,trait_N_392,trait_N_402,trait_N_410,trait_N_408,trait_N_399,trait_N_398,trait_N_399,trait_N_405,trait_N_419,trait_N_391,trait_N_401,trait_N_409,trait_N_400,trait_N_404,trait_N_393]

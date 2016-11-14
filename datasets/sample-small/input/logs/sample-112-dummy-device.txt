@@ -1,3 +1,0 @@
-[dummy-device,1478964952323,trait_I_240,trait_I_244,trait_I_245,trait_I_245,trait_I_241,trait_I_240,trait_I_268,trait_I_266,trait_I_262,trait_I_248,trait_I_260]
-[dummy-device,1478964990723,trait_I_246,trait_I_264,trait_I_241,trait_I_267,trait_I_266,trait_I_261,trait_I_255]
-[dummy-device,1478965020921,trait_I_261,trait_I_252,trait_I_259,trait_I_256,trait_I_240,trait_I_244,trait_I_244,trait_I_269,trait_I_257,trait_I_249,trait_I_266,trait_I_257,trait_I_260,trait_I_249,trait_I_247]

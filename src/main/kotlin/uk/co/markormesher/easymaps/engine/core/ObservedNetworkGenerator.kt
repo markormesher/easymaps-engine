@@ -1,13 +1,13 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.Config
-import uk.co.markormesher.easymaps.engine.data.Network
-import uk.co.markormesher.easymaps.engine.data.ParsedLogFile
+import uk.co.markormesher.easymaps.engine.EngineConfig
+import uk.co.markormesher.easymaps.engine.structures.Network
+import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.DisjointSet
 import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
 
-fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config): Network {
+fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): Network {
 
 	printSubHeader("Generating Observed Network")
 
@@ -21,7 +21,7 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: Config): N
 	return network
 }
 
-private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: Config): SparseSquareMatrix {
+private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseSquareMatrix {
 
 	printInfo("Generating trait co-occurrence matrix...")
 
@@ -41,7 +41,7 @@ private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg:
 	return coMatrix
 }
 
-private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: Config): DisjointSet {
+private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: EngineConfig): DisjointSet {
 
 	printInfo("Building disjoint set of trait clusters...")
 
@@ -58,7 +58,7 @@ private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: Config): Disj
 	return clusterSets
 }
 
-private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: Config): SparseSquareMatrix {
+private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseSquareMatrix {
 
 	printInfo("Generating cluster adjacency matrix...")
 
@@ -70,7 +70,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 		var lastNodeSeenAt = -1L
 
 		logFile.logEntries.forEach logEntries@ { logEntry ->
-			val thisNode = logEntry.traits.map({ i -> clusterSets.findRootPosition(i) }).getMajorityElement(-1)
+			val thisNode = logEntry.traits.map({ i -> clusterSets.findRootPosition(i) }).majorityElement(-1)
 			val thisNodeSeenAt = logEntry.timestamp
 			if (thisNode < 0) {
 				printSubWarning("Could not determine majority trait in file $fileId; skipping entry")
@@ -111,7 +111,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 	return adjMatrix
 }
 
-private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: Config) {
+private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: EngineConfig) {
 
 	printInfo("Mapping individual traits to cluster IDs...")
 

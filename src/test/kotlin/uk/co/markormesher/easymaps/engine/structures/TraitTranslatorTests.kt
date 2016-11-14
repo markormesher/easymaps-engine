@@ -1,7 +1,7 @@
 package uk.co.markormesher.easymaps.engine.structures
 
 import org.junit.Test
-import uk.co.markormesher.easymaps.engine.domain_specific.SampleTrait
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleTrait
 import uk.co.markormesher.easymaps.engine.interfaces.Trait
 import java.util.*
 import kotlin.test.assertEquals

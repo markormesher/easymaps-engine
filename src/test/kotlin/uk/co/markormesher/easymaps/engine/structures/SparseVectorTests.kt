@@ -35,7 +35,7 @@ class SparseVectorTests {
 	@Test
 	fun emptyVectorShouldStoreNoValues() {
 		val sv = SparseVector(10)
-		assertEquals(0, sv.nonZeroValues)
+		assertEquals(0, sv.nonZeroSize)
 	}
 
 	@Test
@@ -48,7 +48,7 @@ class SparseVectorTests {
 	fun zeroValuesShouldNotBeStored() {
 		val sv = SparseVector(10)
 		sv[1] = 0.0
-		assertEquals(0, sv.nonZeroValues)
+		assertEquals(0, sv.nonZeroSize)
 		assertEquals(0.0, sv[1])
 	}
 
@@ -60,7 +60,7 @@ class SparseVectorTests {
 		sv[4] = 7.89
 		sv[6] = 0.0
 
-		assertEquals(3, sv.nonZeroValues)
+		assertEquals(3, sv.nonZeroSize)
 		assertEquals(1.23, sv[0])
 		assertEquals(4.56, sv[2])
 		assertEquals(7.89, sv[4])

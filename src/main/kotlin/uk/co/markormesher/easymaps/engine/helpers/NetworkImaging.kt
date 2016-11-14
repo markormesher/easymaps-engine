@@ -1,12 +1,12 @@
 package uk.co.markormesher.easymaps.engine.helpers
 
-import uk.co.markormesher.easymaps.engine.Config
-import uk.co.markormesher.easymaps.engine.data.Network
+import uk.co.markormesher.easymaps.engine.SharedConfig
+import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.PrintWriter
 import java.util.*
 
 // TODO: add tests
-fun generateNetworkImage(network: Network, label: String, cfg: Config) {
+fun generateNetworkImage(network: Network, label: String, cfg: SharedConfig) {
 	val dotFile = "${cfg.outputFolderPath}/$label.dot"
 	val pngFile = "${cfg.outputFolderPath}/$label.png"
 	with(PrintWriter(dotFile, "UTF-8")) {

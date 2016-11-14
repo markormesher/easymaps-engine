@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.data.Network
+import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import java.util.*

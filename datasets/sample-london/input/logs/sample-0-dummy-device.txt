@@ -1,2 +1,0 @@
-[dummy-device,1478964952286,trait_A_1,trait_A_2]
-[dummy-device,1478964968286,trait_A_3,trait_A_4]
