@@ -3,7 +3,6 @@ package uk.co.markormesher.easymaps.engine.core
 import uk.co.markormesher.easymaps.engine.data.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
-import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import java.util.*
 
 fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<MutableMap<Int, Int>> {
@@ -21,6 +20,7 @@ private fun initSearch(observedNetwork: Network, knownNetwork: Network): List<Mu
 	return isomorphisms
 }
 
+// TODO: find all
 private fun search(
 		observedNetwork: Network,
 		knownNetwork: Network,
@@ -55,7 +55,6 @@ private fun search(
 	for (j in possibleAssignments) {
 		if (!assignments.containsValue(j)) {
 			assignments.put(pivotNode, j)
-			printSubInfo("Trying with $assignments")
 			search(observedNetwork, knownNetwork, assignments, isomorphisms)
 			assignments.remove(pivotNode)
 		}

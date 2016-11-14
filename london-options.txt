@@ -1,5 +1,0 @@
-logReader = london
-optionProvider = london
-logFolderPath = /home/markormesher/Downloads/london_clean-scan-logs
-outputFolderPath = ./output
-dotExec = /usr/bin/neato
