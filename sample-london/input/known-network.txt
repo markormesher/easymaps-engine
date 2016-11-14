@@ -1,0 +1,402 @@
+// victoria
+
+"Brixton" -- "Stockwell"
+"Stockwell" -- "Vauxhall"
+"Vauxhall" -- "Pimlico"
+"Pimlico" -- "Victoria"
+"Victoria" -- "Green Park"
+"Green Park" -- "Oxford Circus"
+"Oxford Circus" -- "Warren Street"
+"Warren Street" -- "Euston"
+"Euston" -- "King's Cross St. Pancras"
+"King's Cross St. Pancras" -- "Highbury and Islington"
+"Highbury and Islington" -- "Finsbury Park"
+"Finsbury Park" -- "Seven Sisters"
+"Seven Sisters" -- "Tottenham Hale"
+"Tottenham Hale" -- "Blackhorse Road"
+"Blackhorse Road" -- "Walthamstow Central"
+
+// central, top-left spur
+
+"West Ruislip" -- "Ruislip Gardens"
+"Ruislip Gardens" -- "South Ruislip"
+"South Ruislip" -- "Northolt"
+"Northolt" -- "Greenford"
+"Greenford" -- "Perivale"
+"Perivale" -- "Hanger Lane"
+"Hanger Lane" -- "North Acton"
+
+// central, main line
+
+"Ealing Broadway" -- "West Acton"
+"West Acton" -- "North Acton"
+"North Acton" -- "East Acton"
+"East Acton" -- "White City"
+"White City" -- "Shepherd's Bush"
+"Shepherd's Bush" -- "Holland Park"
+"Holland Park" -- "Notting Hill Gate"
+"Notting Hill Gate" -- "Queensway"
+"Queensway" -- "Lancaster Gate"
+"Lancaster Gate" -- "Marble Arch"
+"Marble Arch" -- "Bond Street"
+"Bond Street" -- "Oxford Circus"
+"Oxford Circus" -- "Tottenham Court Road"
+"Tottenham Court Road" -- "Holborn"
+"Holborn" -- "Chancery Lane"
+"Chancery Lane" -- "St. Paul's"
+"St. Paul's" -- "Bank/Monument"
+"Bank/Monument" -- "Liverpool Street"
+"Liverpool Street" -- "Bethnal Green"
+"Bethnal Green" -- "Mile End"
+"Mile End" -- "Stratford"
+"Stratford" -- "Leyton"
+"Leyton" -- "Leytonstone"
+"Leytonstone" -- "Snaresbrook"
+"Snaresbrook" -- "South Woodford"
+"South Woodford" -- "Woodford"
+"Woodford" -- "Buckhurst Hill"
+"Buckhurst Hill" -- "Loughton"
+"Loughton" -- "Debden"
+"Debden" -- "Theydon Bols"
+"Theydon Bols" -- "Epping"
+
+// central, hainault loop
+
+"Leytonstone" -- "Wanstead"
+"Wanstead" -- "Redbridge"
+"Redbridge" -- "Gants Hill"
+"Gants Hill" -- "Newbury Park"
+"Newbury Park" -- "Barkingside"
+"Barkingside" -- "Fairlop"
+"Fairlop" -- "Hainault"
+"Hainault" -- "Grange Hill"
+"Grange Hill" -- "Chigwell"
+"Chigwell" -- "Roding Valley"
+"Roding Valley" -- "Woodford"
+
+// bakerloo
+
+"Elephant and Castle" -- "Lambeth North"
+"Lambeth North" -- "Waterloo"
+"Waterloo" -- "Embankment"
+"Embankment" -- "Charing Cross"
+"Charing Cross" -- "Piccadilly Circus"
+"Piccadilly Circus" -- "Oxford Circus"
+"Oxford Circus" -- "Regent's Park"
+"Regent's Park" -- "Baker Street"
+"Baker Street" -- "Marylebone"
+"Marylebone" -- "Edgeware Road (B)"
+"Edgeware Road (B)" -- "Paddington (B)"
+"Paddington (B)" -- "Warwick Avenue"
+"Warwick Avenue" -- "Maida Vale"
+"Maida Vale" -- "Kilburn Park"
+"Kilburn Park" -- "Queen's Park"
+"Queen's Park" -- "Kensal Green"
+"Kensal Green" -- "Willesden Junction"
+"Willesden Junction" -- "Harlesden"
+"Harlesden" -- "Stonebridge Park"
+"Stonebridge Park" -- "Wembley Central"
+"Wembley Central" -- "North Wembley"
+"North Wembley" -- "South Kenton"
+"South Kenton" -- "Kenton"
+"Kenton" -- "Harrow and Wealdstone"
+
+// jubilee
+
+"Stratford" -- "West Ham"
+"West Ham" -- "Canning Town"
+"Canning Town" -- "North Greenwich"
+"North Greenwich" -- "Canary Wharf"
+"Canary Wharf" -- "Canada Water"
+"Canada Water" -- "Bermondsey"
+"Bermondsey" -- "London Bridge"
+"London Bridge" -- "Southwark"
+"Southwark" -- "Waterloo"
+"Waterloo" -- "Westminster"
+"Westminster" -- "Green Park"
+"Green Park" -- "Bond Street"
+"Bond Street" -- "Baker Street"
+"Baker Street" -- "St. John's Wood"
+"St. John's Wood" -- "Swiss Cottage"
+"Swiss Cottage" -- "Finchley Road"
+"Finchley Road" -- "West Hampstead"
+"West Hampstead" -- "Kilburn"
+"Kilburn" -- "Willesden Green"
+"Willesden Green" -- "Dollis Hill"
+"Dollis Hill" -- "Neasden"
+"Neasden" -- "Kingsbury"
+"Kingsbury" -- "Queensbury"
+"Queensbury" -- "Canons Park"
+"Canons Park" -- "Stanmore"
+
+// circle (incl. some of hammersmith and city, some of district)
+
+"Hammersmith (CHC)" -- "Goldhawk Road"
+"Goldhawk Road" -- "Shepherd's Bush Market"
+"Shepherd's Bush Market" -- "Wood Lane"
+"Wood Lane" -- "Latimer Road"
+"Latimer Road" -- "Ladbroke Grove"
+"Ladbroke Grove" -- "Westbourne Park"
+"Westbourne Park" -- "Royal Oak"
+"Royal Oak" -- "Paddington (C)"
+"Paddington (C)" -- "Edgeware Road (C)"
+"Edgeware Road (C)" -- "Baker Street"
+"Baker Street" -- "Great Portland Street"
+"Great Portland Street" -- "Euston Square"
+"Euston Square" -- "King's Cross St. Pancras"
+"King's Cross St. Pancras" -- "Farringdon"
+"Farringdon" -- "Barbican"
+"Barbican" -- "Moorgate"
+"Moorgate" -- "Liverpool Street"
+"Liverpool Street" -- "Aldgate"
+"Aldgate" -- "Tower Hill"
+"Tower Hill" -- "Bank/Monument"
+"Bank/Monument" -- "Cannon Street"
+"Cannon Street" -- "Mansion House"
+"Mansion House" -- "Blackfriars"
+"Blackfriars" -- "Temple"
+"Temple" -- "Embankment"
+"Embankment" -- "Westminster"
+"Westminster" -- "St. Jame's Park"
+"St. Jame's Park" -- "Victoria"
+"Victoria" -- "Slonne Square"
+"Slonne Square" -- "South Kensington"
+"South Kensington" -- "Gloucester Road"
+"Gloucester Road" -- "High Street Kensington"
+"High Street Kensington" -- "Notting Hill Gate"
+"Notting Hill Gate" -- "Bayswater"
+"Bayswater" -- "Edgeware Road (C)"
+
+// hammersmith and city (excl. some of circle, incl. some of district)
+
+"Liverpool Street" -- "Aldgate East"
+"Aldgate East" -- "Whitechapel"
+"Whitechapel" -- "Stepney Green"
+"Stepney Green" -- "Mile End"
+"Mile End" -- "Bow Road"
+"Bow Road" -- "Bromley-by-Bow"
+"Bromley-by-Bow" -- "West Ham"
+"West Ham" -- "Plaistow"
+"Plaistow" -- "Upton Park"
+"Upton Park" -- "East Ham"
+"East Ham" -- "Barking"
+
+// piccadilly, uxbridge spur (incl. some of metropolitan)
+
+"Uxbridge" -- "Hillingdon"
+"Hillingdon" -- "Ickenham"
+"Ickenham" -- "Ruislip"
+"Ruislip" -- "Ruislip Manor"
+"Ruislip Manor" -- "Eastcote"
+"Eastcote" -- "Rayners Lane"
+"Rayners Lane" -- "South Harrow"
+"South Harrow" -- "Sudbury Hill"
+"Sudbury Hill" -- "Sudbury Town"
+"Sudbury Town" -- "Alperton"
+"Alperton" -- "Park Royal"
+"Park Royal" -- "North Ealing"
+"North Ealing" -- "Ealing Common"
+"Ealing Common" -- "Acton Town"
+
+// piccadilly, heathrow spur
+
+"Heathrow T5" -- "Heathrow T123"
+"Heathrow T123" -- "Hatton Cross"
+"Hatton Cross" -> "Heathrow T4"
+"Heathrow T4" -> "Heathrow T123"
+"Hatton Cross" -- "Hounslow West"
+"Hounslow West" -- "Hounslow Central"
+"Hounslow Central" -- "Hounslow East"
+"Hounslow East" -- "Osterley"
+"Osterley" -- "Boston Manor" 
+"Boston Manor" -- "Northfields"
+"Northfields" -- "South Ealing"
+"South Ealing" -- "Acton Town"
+
+// piccadilly, main line (incl. some of district)
+
+"Acton Town" -- "Turnham Green"
+"Turnham Green" -- "Hammersmith (DP)"
+"Hammersmith (DP)" -- "Barons Court"
+"Barons Court" -- "Earl's Court"
+"Earl's Court" -- "Gloucester Road"
+"Gloucester Road" -- "South Kensington"
+"South Kensington" -- "Knightsbridge"
+"Knightsbridge" -- "Hyde Park Corner"
+"Hyde Park Corner" -- "Green Park"
+"Green Park" -- "Piccadilly Circus"
+"Piccadilly Circus" -- "Leicester Square"
+"Leicester Square" -- "Covent Garden"
+"Covent Garden" -- "Holborn"
+"Holborn" -- "Russel Square"
+"Russel Square" -- "King's Cross St. Pancras"
+"King's Cross St. Pancras" -- "Caledonian Road"
+"Caledonian Road" -- "Holloway Road"
+"Holloway Road" -- "Arsenal"
+"Arsenal" -- "Finsbury Park"
+"Finsbury Park" -- "Manor House"
+"Manor House" -- "Turnpike Lane"
+"Turnpike Lane" -- "Wood Green"
+"Wood Green" -- "Bounds Green"
+"Bounds Green" -- "Arnos Grove"
+"Arnos Grove" -- "Southgate"
+"Southgate" -- "Oakwood"
+"Oakwood" -- "Cockfosters"
+
+// waterloo and city
+
+"Bank/Monument" -- "Waterloo"
+
+// district, ealing broadway spur
+
+"Ealing Broadway" -- "Ealing Common"
+"Ealing Common" -- "Acton Town"
+"Acton Town" -- "Chiswick Park"
+"Chiswick Park" -- "Turnham Green"
+
+// district, richmond spur
+
+"Richmond" -- "Kew Gardens"
+"Kew Gardens" -- "Gunnersbury"
+"Gunnersbury" -- "Turnham Green"
+
+// district, wimbledon spur
+
+"Wimbledon" -- "Wimbledon Park"
+"Wimbledon Park" -- "Southfields"
+"Southfields" -- "East Putney"
+"East Putney" -- "Putney Bridge"
+"Putney Bridge" -- "Parsons Green"
+"Parsons Green" -- "Fulham Broadway"
+"Fulham Broadway" -- "West Brompton"
+"West Brompton" -- "Earl's Court"
+
+// district, kensington olympia spur
+
+"Kensington (Olympia)" -- "Earl's Court"
+
+// district, west main line (excl. some of circle)
+
+"Turnham Green" -- "Stamford Brook"
+"Stamford Brook" -- "Ravenscourt Park"
+"Ravenscourt Park" -- "Hammersmith (DP)"
+"Hammersmith (DP)" -- "Barons Court"
+"Barons Court" -- "West Kensington"
+"West Kensington" -- "Earl's Court"
+"Earl's Court" -- "Gloucester Road"
+
+// district, upminster spur (excl. some of circle)
+
+"Tower Hill" -- "Aldgate East"
+// hammersmith and city covers this branch
+"Barking" -- "Upney"
+"Upney" -- "Becontree"
+"Becontree" -- "Dagenham Heathway"
+"Dagenham Heathway" -- "Dagenham East"
+"Dagenham East" -- "Elm Park"
+"Elm Park" -- "Hornchurch"
+"Hornchurch" -- "Upminster Bridge"
+"Upminster Bridge" -- "Upminster"
+
+// northern, south spur
+
+"Morden" -- "South Wimbledon"
+"South Wimbledon" -- "Colliers Wood"
+"Colliers Wood" -- "Tooting Broadway"
+"Tooting Broadway" -- "Tooting Bec"
+"Tooting Bec" -- "Balham"
+"Balham" -- "Clapham South"
+"Clapham South" -- "Clapham Common"
+"Clapham Common" -- "Clapham North"
+"Clapham North" -- "Stockwell"
+"Stockwell" -- "Oval"
+"Oval" -- "Kennington"
+
+// northern, bank branch
+
+"Kennington" -- "Elephant and Castle"
+"Elephant and Castle" -- "Borough"
+"Borough" -- "London Bridge"
+"London Bridge" -- "Bank/Monument"
+"Bank/Monument" -- "Moorgate"
+"Moorgate" -- "Old Street"
+"Old Street" -- "Angel"
+"Angel" -- "King's Cross St. Pancras"
+"King's Cross St. Pancras" -- "Euston"
+
+// northern, charing cross branch
+
+"Kennington" -- "Waterloo"
+"Waterloo" -- "Embankment"
+"Embankment" -- "Charing Cross"
+"Charing Cross" -- "Leicester Square"
+"Leicester Square" -- "Tottenham Court Road"
+"Tottenham Court Road" -- "Goodge Street"
+"Goodge Street" -- "Warren Street"
+"Warren Street" -- "Euston"
+
+// northern, mornington crescent
+
+"Euston" -- "Mornington Crescent"
+"Mornington Crescent" -- "Camden Town"
+"Euston" -- "Camden Town"
+
+// northern, edgeware spur
+
+"Camden Town" -- "Chalk Farm"
+"Chalk Farm" -- "Belsize Park"
+"Belsize Park" -- "Hampstead"
+"Hampstead" -- "Golders Green"
+"Golders Green" -- "Brent Cross"
+"Brent Cross" -- "Hendon Central"
+"Hendon Central" -- "Colindale"
+"Colindale" -- "Burnt Oak"
+"Burnt Oak" -- "Edgeware"
+
+// northern, high barnet spur
+
+"Camden Town" -- "Kentish Town"
+"Kentish Town" -- "Tufnell Park"
+"Tufnell Park" -- "Archway"
+"Archway" -- "Highgate"
+"Highgate" -- "East Finchley"
+"East Finchley" -- "Finchley Central"
+"Finchley Central" -- "West Finchley"
+"West Finchley" -- "Woodside Park"
+"Woodside Park" -- "Totteridge and Whetstone"
+"Totteridge and Whetstone" -- "High Barnet"
+
+// northern, mill hill east spur
+
+"Finchley Central" -- "Mill Hill East"
+
+// metropolitan, main line
+
+"Baker Street" -- "Finchley Road"
+"Finchley Road" -- "Wembley Park"
+"Wembley Park" -- "Preston Road"
+"Preston Road" -- "Northwick Park"
+"Northwick Park" -- "Harrow-on-the-Hill"
+
+// metropolitan, uxbridge spur (excl. some of piccadilly)
+
+"Harrow-on-the-Hill" -- "West Harrow"
+"West Harrow" -- "Rayners Lane"
+
+// metropolitan, amersham spur
+
+"Harrow-on-the-Hill" -- "North Harrow"
+"North Harrow" -- "Pinner"
+"Pinner" -- "Northwood Hills"
+"Northwood Hills" -- "Northwood"
+"Northwood" -- "Moor Park"
+"Moor Park" -- "Rickmansworth"
+"Rickmansworth" -- "Chorleywood"
+"Chorleywood" -- "Chalfront and Latimer"
+"Chalfront and Latimer" -- "Amersham"
+"Chalfront and Latimer" -- "Chesham"
+
+// metropoliam, watford spur
+
+"Moor Park" -- "Croxley"
+"Croxley" -- "Watford"

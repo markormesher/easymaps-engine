@@ -3,6 +3,7 @@ package uk.co.markormesher.easymaps.engine.core
 import uk.co.markormesher.easymaps.engine.data.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
+import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import java.util.*
 
 fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<MutableMap<Int, Int>> {
@@ -42,7 +43,7 @@ private fun search(
 	if (failed) return false
 
 	// if all nodes of the observed network have assignments, we're done
-	if (assignments.size == observedNetwork.size) {
+	if (assignments.size == observedNetwork.nodeCount) {
 		printInfo("Isomorphism found!")
 		val clone = HashMap<Int, Int>()
 		clone.putAll(assignments)
@@ -50,10 +51,11 @@ private fun search(
 	}
 
 	// go through all possible assignments for the pivot node
-	val possibleAssignments = Array(observedNetwork.size, { i -> i }) // TODO: keep optimised set
+	val possibleAssignments = Array(observedNetwork.nodeCount, { i -> i }) // TODO: keep optimised set
 	for (j in possibleAssignments) {
 		if (!assignments.containsValue(j)) {
 			assignments.put(pivotNode, j)
+			printSubInfo("Trying with $assignments")
 			search(observedNetwork, knownNetwork, assignments, isomorphisms)
 			assignments.remove(pivotNode)
 		}

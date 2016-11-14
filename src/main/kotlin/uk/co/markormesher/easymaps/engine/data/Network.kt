@@ -11,7 +11,10 @@ class Network(private val n: Int) {
 		if (from < 0 || from >= n) throw IndexOutOfBoundsException("from = $from, size = $n")
 		if (to < 0 || to >= n) throw IndexOutOfBoundsException("to = $to, size = $n")
 
-		adj[from, to] = 1.0
+		if (adj[from, to] == 0.0) {
+			adj[from, to] = 1.0
+			++edgeCount
+		}
 	}
 
 	fun hasEdge(from: Int, to: Int): Boolean {
@@ -25,7 +28,10 @@ class Network(private val n: Int) {
 		adj.forEachNonZero { from, to, weight -> exec(from, to) }
 	}
 
-	val size: Int
+	val nodeCount: Int
 		get() = n
+
+	var edgeCount = 0
+		private set
 
 }
