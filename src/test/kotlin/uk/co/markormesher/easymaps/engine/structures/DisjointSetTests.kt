@@ -96,7 +96,7 @@ class DisjointSetTests {
 
 	@Test
 	fun massiveSetsShouldBeFast() {
-		val LIMIT = 2500L // 2.5 seconds
+		val LIMIT = 5000L // 5 seconds
 		var timer = -System.currentTimeMillis()
 		val rand = ThreadLocalRandom.current()
 
@@ -125,7 +125,7 @@ class DisjointSetTests {
 
 		timer += System.currentTimeMillis()
 
-		assertTrue(timer <= LIMIT, "Massive set took ${timer}ms")
+		assertTrue(timer <= LIMIT, "Massive set took ${timer}ms, limit was ${LIMIT}ms")
 	}
 
 }
