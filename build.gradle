@@ -1,6 +1,3 @@
-group 'easymaps-engine'
-version '1.0.0'
-
 buildscript {
 	ext.kotlin_version = '1.0.4'
 
@@ -13,9 +10,15 @@ buildscript {
 	}
 }
 
+plugins {
+	id 'net.saliman.cobertura' version '2.3.2'
+}
+
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
+group 'easymaps-engine'
+version '1.0.0'
 mainClassName = 'uk.co.markormesher.easymaps.engine.EntryPointKt'
 
 run {
@@ -29,13 +32,18 @@ test {
 	}
 }
 
+cobertura {
+	coverageSourceDirs = sourceSets.main.kotlin.srcDirs
+	coverageIncludes = [".*"]
+}
+
 task fatJar(type: Jar) {
 	manifest {
 		attributes 'Implementation-Title': 'EasyMaps Engine',
 				'Implementation-Version': version,
 				'Main-Class': 'uk.co.markormesher.easymaps.engine.EntryPointKt'
 	}
-	baseName = project.name + '-all'
+	baseName = project.name
 	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 	with jar
 }
@@ -46,9 +54,9 @@ repositories {
 
 dependencies {
 	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
 	compile 'com.google.guava:guava:20.0'
 
+	testRuntime "org.slf4j:slf4j-api:1.7.10"
 	testCompile 'junit:junit:4.11'
 	testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
