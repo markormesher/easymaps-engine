@@ -1,5 +1,0 @@
-COMPILE:
-kotlinc SampleDataGenerator.kt -include-runtime -d SampleDataGenerator.jar
-
-RUN:
-java -jar SampleDataGenerator.jar path/to/output/folder
