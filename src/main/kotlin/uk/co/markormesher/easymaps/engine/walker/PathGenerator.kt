@@ -34,11 +34,16 @@ fun generateRandomPaths(network: Network, cfg: WalkerConfig): List<List<Int>> {
 
 		// visit some more nodes
 		var curNode = startNode
+		var prevNode = -1
 		val pathLength = cfg.walkerOptionProvider.walkLengths.randomElement()
 		for (i in 2..pathLength) {
 			val successors = network.getSuccessors(curNode)
 			if (successors.isEmpty()) break
-			curNode = successors.randomElement() // TODO: break out next node selection
+
+			val nextNode = cfg.walkerOptionProvider.getNextNode(prevNode, curNode, successors)
+			prevNode = curNode
+			curNode = nextNode
+
 			path.add(curNode)
 			++visits[curNode]
 		}

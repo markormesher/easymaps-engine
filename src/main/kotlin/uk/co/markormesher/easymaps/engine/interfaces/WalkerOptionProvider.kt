@@ -1,5 +1,7 @@
 package uk.co.markormesher.easymaps.engine.interfaces
 
+import uk.co.markormesher.easymaps.engine.helpers.randomElement
+
 abstract class WalkerOptionProvider {
 
 	abstract val walkLengths: Array<Int>
@@ -19,6 +21,8 @@ abstract class WalkerOptionProvider {
 	abstract val minTraitsPerScan: Int
 
 	abstract val maxTraitsPerScan: Int
+
+	open fun getNextNode(prev: Int, current: Int, successors: List<Int>): Int = successors.randomElement()
 
 	abstract fun generateTrait(nodeLabel: String): String
 
