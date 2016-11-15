@@ -24,6 +24,6 @@ abstract class WalkerOptionProvider {
 
 	abstract fun generateLogLine(timestamp: Long, userId: String, traits: List<String>): String
 
-	fun generateLogFileName(index: Int, timestamp: Long, userId: String): String = "log-$index.txt"
+	fun generateLogFileName(index: Int, timestamp: Long, userId: String): String = "$userId-$timestamp-$index.txt"
 
 }
