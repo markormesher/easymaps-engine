@@ -15,6 +15,6 @@ To run walk generator:
 To run tests and generate coverage report:
 
     gradle cobertura
-
-Test report will be located in build/reports/tests/test/index.html
-Coverage report will be located in build/reports/cobertura/index.html
+    
+    # test report: build/reports/tests/test/index.html
+    # coverage report: build/reports/cobertura/index.html
