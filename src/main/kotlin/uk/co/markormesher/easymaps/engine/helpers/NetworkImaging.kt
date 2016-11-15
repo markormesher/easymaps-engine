@@ -13,7 +13,7 @@ fun generateNetworkImage(network: Network, label: String, cfg: SharedConfig) {
 		print(generateDotFormatString(network))
 		close()
 	}
-	Runtime.getRuntime().exec("${cfg.dotExec} -Tpng -o $pngFile $dotFile").waitFor()
+	Runtime.getRuntime().exec("${cfg.graphvizExec} -Tpng -o $pngFile $dotFile").waitFor()
 	printSubInfo("Written to $dotFile")
 	printSubInfo("Diagram in $pngFile")
 }
