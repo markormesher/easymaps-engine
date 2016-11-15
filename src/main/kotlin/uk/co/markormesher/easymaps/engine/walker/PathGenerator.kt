@@ -11,7 +11,7 @@ import java.util.*
 // TODO: tests for generateRandomPaths()
 fun generateRandomPaths(network: Network, cfg: WalkerConfig): List<List<Int>> {
 
-	printInfo("Generating random paths...")
+	printInfo("Generating random paths")
 
 	// count visits per node and store the nodes that haven't met the threshold
 	val visits = Array(network.nodeCount, { 0 })

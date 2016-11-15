@@ -17,14 +17,14 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConf
 	val adjMatrix = generateClusterAdjacencyMatrix(clusterSets, parsedLogFiles, cfg)
 	populateTraitToClusterMap(clusterSets, cfg)
 	val network = generateNetwork(adjMatrix)
-	printInfo("Writing observed network to file...")
+	printInfo("Writing observed network to file")
 	generateNetworkImage(network, "observed-network", cfg)
 	return network
 }
 
 private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseSquareMatrix {
 
-	printInfo("Generating trait co-occurrence matrix...")
+	printInfo("Generating trait co-occurrence matrix")
 
 	val coMatrix = SparseSquareMatrix(cfg.traitTranslator.size)
 	parsedLogFiles.forEach { logFile ->
@@ -44,7 +44,7 @@ private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg:
 
 private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: EngineConfig): DisjointSet {
 
-	printInfo("Building disjoint set of trait clusters...")
+	printInfo("Building disjoint set of trait clusters")
 
 	val clusterSets = DisjointSet(cfg.traitTranslator.size)
 	coMatrix.forEachNonZero { row, col, value ->
@@ -61,7 +61,7 @@ private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: EngineConfig)
 
 private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseSquareMatrix {
 
-	printInfo("Generating cluster adjacency matrix...")
+	printInfo("Generating cluster adjacency matrix")
 
 	val adjMatrix = SparseSquareMatrix(clusterSets.setCount)
 	var fileId = 0
@@ -114,7 +114,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 
 private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: EngineConfig) {
 
-	printInfo("Mapping individual traits to cluster IDs...")
+	printInfo("Mapping individual traits to cluster IDs")
 
 	cfg.traitTranslator.forEachTrait { trait, i ->
 		cfg.traitTranslator.setTraitCluster(trait, clusterSets.findRootPosition(i))
@@ -123,7 +123,7 @@ private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: EngineConfi
 
 private fun generateNetwork(adjMatrix: SparseSquareMatrix): Network {
 
-	printInfo("Generating final network...")
+	printInfo("Generating final network")
 
 	val network = Network(adjMatrix.width)
 	adjMatrix.forEachNonZero { row, col, value -> network.addEdge(row, col) }

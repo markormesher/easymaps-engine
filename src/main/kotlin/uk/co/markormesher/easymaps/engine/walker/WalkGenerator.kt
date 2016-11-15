@@ -14,7 +14,7 @@ import java.util.*
 fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 	val opts = cfg.walkerOptionProvider
 
-	printInfo("Generating and writing walks...")
+	printInfo("Generating and writing walks")
 
 	// for every path...
 	paths.forEachIndexed { i, path ->

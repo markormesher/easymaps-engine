@@ -18,14 +18,15 @@ fun parseAndCleanData(cfg: EngineConfig): List<ParsedLogFile> {
 	cfg.logReader.init(cfg.logFolderPath)
 	buildTraitMap(cfg)
 	generateLeaderBoardData(cfg)
+	printInfo("Applying filters")
 	applyObserverCountFilter(cfg)
-	printInfo("Continuing with ${cfg.traitTranslator.size} trait(s)")
+	printSubInfo("Continuing with ${cfg.traitTranslator.size} trait(s)")
 	return convertLogsIntoParsedLogs(cfg)
 }
 
 private fun buildTraitMap(cfg: EngineConfig) {
 
-	printInfo("Building trait map...")
+	printInfo("Building trait map")
 
 	var entryCount = 0
 	var dataPointsCount = 0
@@ -48,7 +49,7 @@ private fun buildTraitMap(cfg: EngineConfig) {
 
 private fun generateLeaderBoardData(cfg: EngineConfig) {
 
-	printInfo("Creating leader-board data...")
+	printInfo("Creating leader-board data")
 
 	val totalDataPerUser = HashMap<String, Int>()
 	val uniquePointsPerUser = HashMap<String, HashSet<Trait>>()
@@ -88,8 +89,6 @@ private fun generateLeaderBoardData(cfg: EngineConfig) {
 
 private fun applyObserverCountFilter(cfg: EngineConfig) {
 
-	printInfo("Running unique observer threshold filter...")
-
 	val observersPerTrait = HashMap<Trait, HashSet<String>>()
 	cfg.logReader.resetIterator()
 	while (cfg.logReader.hasNextLogFile()) {
@@ -112,12 +111,12 @@ private fun applyObserverCountFilter(cfg: EngineConfig) {
 	}
 	traitsToDrop.forEach { t -> cfg.traitTranslator.removeTrait(t) }
 
-	printSubInfo("Dropped ${traitsToDrop.size} trait(s)")
+	printSubInfo("Unique observer threshold filter dropped ${traitsToDrop.size} trait(s)")
 }
 
 private fun convertLogsIntoParsedLogs(cfg: EngineConfig): List<ParsedLogFile> {
 
-	printInfo("Converting raw logs into parsed logs...")
+	printInfo("Converting raw logs into parsed logs")
 
 	val parsedLogFiles = ArrayList<ParsedLogFile>()
 	var parsedEntryCount = 0

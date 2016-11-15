@@ -17,7 +17,7 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 	val validLineFormat = Pattern.compile("\"($validNodeRegex+)\" (\\-\\-|\\->) \"($validNodeRegex+)\"")!!
 
 	// read file to collect valid lines
-	printInfo("Reading file...")
+	printInfo("Reading file")
 	val lines = ArrayList<String>()
 	val file = File(cfg.knownNetworkFilePath)
 	file.forEachLine { tmpLine ->
@@ -50,7 +50,7 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 	nodeLabelToIdMap.forEach { label, id -> network.nodeLabels[id] = label }
 
 	// create edges
-	printInfo("Constructing network...")
+	printInfo("Constructing network")
 	lines.forEach {
 		line ->
 		val matcher = validLineFormat.matcher(line)
@@ -70,7 +70,7 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 	printSubInfo("Network has ${network.nodeCount} node(s)")
 	printSubInfo("Network has ${network.edgeCount} edge(s)")
 
-	printInfo("Writing known network to file...")
+	printInfo("Writing known network to file")
 	generateNetworkImage(network, "known-network", cfg)
 
 	return network
