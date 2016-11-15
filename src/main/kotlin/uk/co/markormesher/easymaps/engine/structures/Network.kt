@@ -1,6 +1,5 @@
 package uk.co.markormesher.easymaps.engine.structures
 
-import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
 import java.util.*
 
 class Network(private val n: Int) {
@@ -29,10 +28,10 @@ class Network(private val n: Int) {
 		adj.forEachNonZero { from, to, weight -> exec(from, to) }
 	}
 
-	// TODO: tests
+	// TODO: tests for getSuccessors()
 	fun getSuccessors(from: Int): List<Int> {
 		val row = adj.getRow(from)
-		val successors = ArrayList<Int>()
+		val successors = ArrayList<Int>(row.nonZeroSize)
 		row.forEach { to, weight -> successors.add(to) }
 		return successors
 	}
