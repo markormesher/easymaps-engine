@@ -1,14 +1,16 @@
 package uk.co.markormesher.easymaps.engine.walker
 
 import uk.co.markormesher.easymaps.engine.WalkerConfig
-import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.randomElement
 import uk.co.markormesher.easymaps.engine.helpers.randomInt
 import uk.co.markormesher.easymaps.engine.helpers.randomLong
+import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.PrintWriter
 import java.util.*
 
+// TODO: break out walk string generation
+// TODO: tests for walk generation
 fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 	val opts = cfg.walkerOptionProvider
 

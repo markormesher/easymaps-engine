@@ -2,6 +2,7 @@ package uk.co.markormesher.easymaps.engine.helpers
 
 import java.io.File
 
+// TODO: tests for directory cleaning
 fun clearDirectory(path: String) {
 	val dir = File(path)
 	dir.listFiles().forEach { f ->

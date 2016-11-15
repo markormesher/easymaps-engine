@@ -1,12 +1,14 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.SharedConfig
-import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.helpers.*
+import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.File
 import java.util.*
 import java.util.regex.Pattern
 
+// TODO: break out segments (file reading, etc)
+// TODO: tests for network parsing
 fun parseKnownNetwork(cfg: SharedConfig): Network {
 
 	printSubHeader("Parsing Known Network")

@@ -1,10 +1,11 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
+import uk.co.markormesher.easymaps.engine.structures.Network
 import java.util.*
 
+// TODO: tests for network matching
 fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<MutableMap<Int, Int>> {
 
 	printSubHeader("Matching Networks")
@@ -15,12 +16,13 @@ fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Mutable
 }
 
 private fun initSearch(observedNetwork: Network, knownNetwork: Network): List<MutableMap<Int, Int>> {
+	// TODO: order network by degree count
+
 	val isomorphisms = ArrayList<MutableMap<Int, Int>>()
 	search(observedNetwork, knownNetwork, HashMap<Int, Int>(), isomorphisms)
 	return isomorphisms
 }
 
-// TODO: find all
 private fun search(
 		observedNetwork: Network,
 		knownNetwork: Network,
@@ -51,7 +53,7 @@ private fun search(
 	}
 
 	// go through all possible assignments for the pivot node
-	val possibleAssignments = Array(observedNetwork.nodeCount, { i -> i }) // TODO: keep optimised set
+	val possibleAssignments = Array(observedNetwork.nodeCount, { i -> i }) // TODO: optimised set
 	for (j in possibleAssignments) {
 		if (!assignments.containsValue(j)) {
 			assignments.put(pivotNode, j)

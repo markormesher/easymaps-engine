@@ -5,7 +5,7 @@ import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.PrintWriter
 import java.util.*
 
-// TODO: add tests
+// TODO: tests for generateNetworkImage()
 fun generateNetworkImage(network: Network, label: String, cfg: SharedConfig) {
 	val dotFile = "${cfg.outputFolderPath}/$label.dot"
 	val pngFile = "${cfg.outputFolderPath}/$label.png"

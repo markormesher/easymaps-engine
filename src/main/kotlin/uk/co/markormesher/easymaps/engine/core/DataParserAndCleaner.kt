@@ -1,15 +1,16 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.EngineConfig
-import uk.co.markormesher.easymaps.engine.structures.ParsedLogEntry
-import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.interfaces.Trait
+import uk.co.markormesher.easymaps.engine.structures.ParsedLogEntry
+import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import java.io.PrintWriter
 import java.util.*
 
+// TODO: tests for data parsing and cleaning
 fun parseAndCleanData(cfg: EngineConfig): List<ParsedLogFile> {
 
 	printSubHeader("Parsing and Cleaning Data")

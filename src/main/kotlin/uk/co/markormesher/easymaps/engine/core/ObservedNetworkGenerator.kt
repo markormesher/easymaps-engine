@@ -1,12 +1,13 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.EngineConfig
-import uk.co.markormesher.easymaps.engine.structures.Network
-import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.DisjointSet
+import uk.co.markormesher.easymaps.engine.structures.Network
+import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
 
+// TODO: tests for all segments of observed network generation
 fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): Network {
 
 	printSubHeader("Generating Observed Network")
@@ -125,10 +126,6 @@ private fun generateNetwork(adjMatrix: SparseSquareMatrix): Network {
 	printInfo("Generating final network...")
 
 	val network = Network(adjMatrix.width)
-	adjMatrix.forEachNonZero { row, col, value ->
-		// TODO: assume bi-directional for now
-		network.addEdge(row, col)
-		network.addEdge(col, row)
-	}
+	adjMatrix.forEachNonZero { row, col, value -> network.addEdge(row, col) }
 	return network
 }
