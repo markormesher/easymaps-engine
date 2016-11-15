@@ -30,12 +30,17 @@ fun runEngine(optionFile: String? = null) {
 
 	var timer = -System.currentTimeMillis()
 
-	val parsedLogFiles = parseAndCleanData(cfg)
-	val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
-	val knownNetwork = parseKnownNetwork(cfg)
-	val isomorphisms = matchNetworks(observedNetwork, knownNetwork)
-	writeOutput(knownNetwork, isomorphisms, cfg)
-	printSubHeader("Done!")
+	try {
+		val parsedLogFiles = parseAndCleanData(cfg)
+		val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
+		val knownNetwork = parseKnownNetwork(cfg)
+		val isomorphisms = matchNetworks(observedNetwork, knownNetwork)
+		writeOutput(knownNetwork, isomorphisms, cfg)
+		printSubHeader("Done!")
+	} catch (e: PrematureFailureException) {
+		printError("Premature failure")
+		println()
+	}
 
 	timer += System.currentTimeMillis()
 	printInfo("Execution took $timer ms")

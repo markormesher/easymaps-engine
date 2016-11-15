@@ -1,6 +1,8 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.EngineConfig
+import uk.co.markormesher.easymaps.engine.PrematureFailureException
+import uk.co.markormesher.easymaps.engine.helpers.printError
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
@@ -20,6 +22,10 @@ fun parseAndCleanData(cfg: EngineConfig): List<ParsedLogFile> {
 	generateLeaderBoardData(cfg)
 	printInfo("Applying filters")
 	applyObserverCountFilter(cfg)
+	if (cfg.traitTranslator.size == 0) {
+		printError("Cannot continue with 0 traits")
+		throw PrematureFailureException()
+	}
 	printSubInfo("Continuing with ${cfg.traitTranslator.size} trait(s)")
 	return convertLogsIntoParsedLogs(cfg)
 }

@@ -1,6 +1,5 @@
 package uk.co.markormesher.easymaps.engine
 
-import uk.co.markormesher.easymaps.engine.domain_specific.*
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonLogReader
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogReader
@@ -131,3 +130,5 @@ fun selectWalkerOptionProvider(): WalkerOptionProvider {
 		}
 	}
 }
+
+class PrematureFailureException : Exception("Premature failure")

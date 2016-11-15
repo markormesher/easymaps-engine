@@ -1,6 +1,7 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.EngineConfig
+import uk.co.markormesher.easymaps.engine.PrematureFailureException
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.DisjointSet
 import uk.co.markormesher.easymaps.engine.structures.Network
@@ -127,5 +128,13 @@ private fun generateNetwork(adjMatrix: SparseSquareMatrix): Network {
 
 	val network = Network(adjMatrix.width)
 	adjMatrix.forEachNonZero { row, col, value -> network.addEdge(row, col) }
+	printSubInfo("Network has ${network.nodeCount} node(s)")
+	printSubInfo("Network has ${network.edgeCount} edge(s)")
+
+	if (network.edgeCount == 0) {
+		printError("Cannot continue with 0 edges")
+		throw PrematureFailureException()
+	}
+
 	return network
 }

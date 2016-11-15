@@ -1,5 +1,6 @@
 package uk.co.markormesher.easymaps.engine.core
 
+import uk.co.markormesher.easymaps.engine.PrematureFailureException
 import uk.co.markormesher.easymaps.engine.SharedConfig
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.Network
@@ -69,6 +70,16 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 	}
 	printSubInfo("Network has ${network.nodeCount} node(s)")
 	printSubInfo("Network has ${network.edgeCount} edge(s)")
+
+	if (network.nodeCount <= 1) {
+		printError("Cannot continue with <= 1 node")
+		throw PrematureFailureException()
+	}
+
+	if (network.edgeCount == 0) {
+		printError("Cannot continue with 0 edges")
+		throw PrematureFailureException()
+	}
 
 	printInfo("Writing known network to file")
 	generateNetworkImage(network, "known-network", cfg)

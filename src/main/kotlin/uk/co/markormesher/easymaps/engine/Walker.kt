@@ -1,10 +1,7 @@
 package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.core.parseKnownNetwork
-import uk.co.markormesher.easymaps.engine.helpers.INPUT_PROMPT
-import uk.co.markormesher.easymaps.engine.helpers.printInfo
-import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
-import uk.co.markormesher.easymaps.engine.helpers.printWarning
+import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.walker.generateRandomPaths
 import uk.co.markormesher.easymaps.engine.walker.generateWalks
 
@@ -31,10 +28,15 @@ fun runWalker(optionFile: String? = null) {
 
 	var timer = -System.currentTimeMillis()
 
-	val network = parseKnownNetwork(cfg)
-	val paths = generateRandomPaths(network, cfg)
-	generateWalks(network, paths, cfg)
-	printSubHeader("Done!")
+	try {
+		val network = parseKnownNetwork(cfg)
+		val paths = generateRandomPaths(network, cfg)
+		generateWalks(network, paths, cfg)
+		printSubHeader("Done!")
+	} catch (e: PrematureFailureException) {
+		printError("Premature failure")
+		println()
+	}
 
 	timer += System.currentTimeMillis()
 	printInfo("Execution took $timer ms")
