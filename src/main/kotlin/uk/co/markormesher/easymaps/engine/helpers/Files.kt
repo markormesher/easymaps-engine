@@ -8,6 +8,7 @@ fun clearDirectory(path: String) {
 	dir.listFiles().forEach { f ->
 		if (f.isDirectory) {
 			clearDirectory(f.absolutePath)
+			if (f.listFiles().isEmpty()) f.delete()
 		} else if (f.name != ".gitignore") {
 			f.delete()
 		}

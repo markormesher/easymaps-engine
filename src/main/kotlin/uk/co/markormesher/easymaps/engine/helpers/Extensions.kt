@@ -35,7 +35,6 @@ fun <T> Collection<T>.majorityElement(failure: T): T {
 /**
  * Returns a randomly selected element from the list.
  */
-// TODO: tests for random elements from lists
 fun <T> List<T>.randomElement(): T {
 	if (isEmpty()) throw ArrayIndexOutOfBoundsException()
 	return this[randomInt(0, size)]
@@ -44,7 +43,6 @@ fun <T> List<T>.randomElement(): T {
 /**
  * Returns a randomly selected element from the array.
  */
-// TODO: tests for random elements from arrays
 fun <T> Array<T>.randomElement(): T {
 	if (isEmpty()) throw ArrayIndexOutOfBoundsException()
 	return this[randomInt(0, size)]

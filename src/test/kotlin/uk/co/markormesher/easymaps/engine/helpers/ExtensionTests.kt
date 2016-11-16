@@ -47,9 +47,22 @@ class ExtensionTests {
 	}
 
 	@Test
+	fun getRandomElementOfListShouldReturnValueForSingleList() {
+		val list = ArrayList<Int>()
+		list.add(1)
+		assertEquals(1, list.randomElement())
+	}
+
+	@Test
 	fun getRandomElementOfArrayShouldFailForEmptyArray() {
 		val array = Array(0, { 0 })
 		assertFailsWith(ArrayIndexOutOfBoundsException::class, { array.randomElement() })
+	}
+
+	@Test
+	fun getRandomElementOfArrayShouldReturnValueForSingleList() {
+		val array = Array(1, { 1 })
+		assertEquals(1, array.randomElement())
 	}
 
 }
