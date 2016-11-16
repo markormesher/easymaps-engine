@@ -14,7 +14,7 @@ To run walk generator:
 
 To run tests and generate coverage report:
 
-    gradle cobertura
+    gradle test
     
     # test report: build/reports/tests/test/index.html
-    # coverage report: build/reports/cobertura/index.html
+    # coverage report: build/reports/jacoco/index.html
