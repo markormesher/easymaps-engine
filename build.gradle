@@ -42,6 +42,7 @@ jacocoTestReport {
 }
 
 task testEnd << {
+	println()
 	println("Test results in file://${buildDir}/reports/tests/test/index.html")
 	println("Coverage results in file://${buildDir}/reports/jacoco/index.html")
 }

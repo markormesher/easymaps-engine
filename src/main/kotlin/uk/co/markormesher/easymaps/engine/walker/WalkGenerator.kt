@@ -36,7 +36,7 @@ fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 				while (traits.size < traitsInThisScan) traits.add(opts.generateTrait(network.nodeLabels[node]))
 
 				// add log line
-				sb.append(opts.generateLogLine(timestamp, userId, traits.toList())).append("\n")
+				sb.append(opts.generateLogLine(userId, timestamp, traits.toList())).append("\n")
 
 				// advance time
 				val timeStep = randomLong(opts.minScanGap, opts.maxScanGap)
@@ -45,7 +45,7 @@ fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 			}
 		}
 
-		writeWalkLog(cfg.walkerOptionProvider.generateLogFileName(i, firstTimestamp, userId), sb, cfg)
+		writeWalkLog(cfg.walkerOptionProvider.generateLogFileName(userId, firstTimestamp, i), sb, cfg)
 	}
 }
 

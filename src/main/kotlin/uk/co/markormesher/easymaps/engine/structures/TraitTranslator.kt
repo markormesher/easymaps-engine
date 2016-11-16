@@ -39,7 +39,7 @@ class TraitTranslator {
 		if (!traitClusters.containsKey(clusterId)) {
 			traitClusters[clusterId] = ArrayList<Trait>()
 		}
-		traitClusters[clusterId]!!.add(trait)
+		traitClusters[clusterId]?.add(trait)
 	}
 
 	fun getTraitsForCluster(clusterId: Int): ArrayList<Trait> {
@@ -50,7 +50,7 @@ class TraitTranslator {
 		traitToTraitIdIdMap.entries.forEach { e -> exec(e.key, e.value) }
 	}
 
-	var size: Int = 0
+	val size: Int
 		get() = traitToTraitIdIdMap.size
 
 }

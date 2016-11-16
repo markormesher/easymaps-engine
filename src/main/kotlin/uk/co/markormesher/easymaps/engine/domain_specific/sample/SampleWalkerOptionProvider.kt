@@ -43,7 +43,7 @@ class SampleWalkerOptionProvider : WalkerOptionProvider() {
 		return "${cleanLabel}_$number"
 	}
 
-	override fun generateLogLine(timestamp: Long, userId: String, traits: List<String>): String {
+	override fun generateLogLine(userId: String, timestamp: Long, traits: List<String>): String {
 		return "[$userId,$timestamp,${traits.joinToString(",")}]"
 	}
 }

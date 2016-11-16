@@ -4,11 +4,12 @@ import org.junit.Test
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 class SparseVectorTests {
 
 	@Test
-	fun shouldNotAllowSizesBelowZero() {
+	fun shouldNotAllowSizesZeroOrBelow() {
 		assertFailsWith(IllegalArgumentException::class, { SparseVector(-1) })
 		assertFailsWith(IllegalArgumentException::class, { SparseVector(0) })
 	}
@@ -65,6 +66,25 @@ class SparseVectorTests {
 		assertEquals(4.56, sv[2])
 		assertEquals(7.89, sv[4])
 		assertEquals(0.0, sv[6])
+	}
+
+	@Test
+	fun nonZeroValuesShouldReturnEmptyForEmptyVector() {
+		val sv = SparseVector(10)
+		assertEquals(0, sv.nonZeroValues.size)
+	}
+
+	@Test
+	fun nonZeroValuesShouldReturnCorrectValues() {
+		val sv = SparseVector(10)
+		sv[0] = 1.23
+		sv[2] = 4.56
+		sv[4] = 7.89
+		sv[6] = 0.0
+		assertEquals(3, sv.nonZeroValues.size)
+		assertTrue(sv.nonZeroValues.contains(1.23))
+		assertTrue(sv.nonZeroValues.contains(4.56))
+		assertTrue(sv.nonZeroValues.contains(7.89))
 	}
 
 	@Test

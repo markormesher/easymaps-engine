@@ -49,16 +49,16 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 		}
 	}
 
-	// TODO: tests for getRow()
 	fun getRow(row: Int): SparseVector {
 		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
 		return rows[row]
 	}
 
-	// TODO: implement getColumn()
-	// TODO: tests for getColumn()
 	fun getColumn(col: Int): SparseVector {
-		throw Exception("Unimplemented")
+		if (col < 0 || col >= n) throw IndexOutOfBoundsException("col = $col; size = $n")
+		val tempColumn = SparseVector(n)
+		forEachNonZero { r, c, v -> if (c == col) tempColumn[r] = v }
+		return tempColumn
 	}
 
 	override fun toString(): String {

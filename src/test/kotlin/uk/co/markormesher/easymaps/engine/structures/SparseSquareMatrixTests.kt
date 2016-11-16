@@ -9,7 +9,7 @@ import kotlin.test.assertNotEquals
 class SparseSquareMatrixTests {
 
 	@Test
-	fun shouldNotAllowSizesBelowZero() {
+	fun shouldNotAllowSizesZeroOrBelow() {
 		assertFailsWith(IllegalArgumentException::class, { SparseSquareMatrix(-1) })
 		assertFailsWith(IllegalArgumentException::class, { SparseSquareMatrix(0) })
 	}
@@ -158,6 +158,46 @@ class SparseSquareMatrixTests {
 		assertEquals(expectedValues.size, actualValues.size)
 		for (i in 0..5) assertEquals(expectedIds[i], actualIds[i])
 		for (i in 0..2) assertEquals(expectedValues[i], actualValues[i])
+	}
+
+	@Test
+	fun getRowShouldFailWithInvalidIndex() {
+		val sm = SparseSquareMatrix(10)
+		assertFailsWith(IndexOutOfBoundsException::class, "row = -1; size = 10", { sm.getRow(-1) })
+		assertFailsWith(IndexOutOfBoundsException::class, "row = 10; size = 10", { sm.getRow(10) })
+	}
+
+	@Test
+	fun getRowShouldContainCorrectValues() {
+		val sm = SparseSquareMatrix(10)
+		sm[0, 1] = 1.23
+		sm[2, 3] = 4.56
+		sm[2, 5] = 7.89
+
+		val row = sm.getRow(2)
+		assertEquals(2, row.nonZeroSize)
+		assertEquals(4.56, row[3])
+		assertEquals(7.89, row[5])
+	}
+
+	@Test
+	fun getColumnShouldFailWithInvalidIndex() {
+		val sm = SparseSquareMatrix(10)
+		assertFailsWith(IndexOutOfBoundsException::class, "col = -1; size = 10", { sm.getColumn(-1) })
+		assertFailsWith(IndexOutOfBoundsException::class, "col = 10; size = 10", { sm.getColumn(10) })
+	}
+
+	@Test
+	fun getColumnShouldContainCorrectValues() {
+		val sm = SparseSquareMatrix(10)
+		sm[0, 1] = 1.23
+		sm[2, 1] = 4.56
+		sm[2, 5] = 7.89
+
+		val col = sm.getColumn(1)
+		assertEquals(2, col.nonZeroSize)
+		assertEquals(1.23, col[0])
+		assertEquals(4.56, col[2])
 	}
 
 	@Test

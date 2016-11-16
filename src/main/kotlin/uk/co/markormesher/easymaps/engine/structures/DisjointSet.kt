@@ -7,7 +7,10 @@ class DisjointSet(private val size: Int) {
 	private val parent = IntArray(size, { i -> i })
 	private val rank = IntArray(size, { i -> 1 })
 	private val rootPositions = HashMap<Int, Int>()
-	var setCount = size
+
+	private var _setCount = size
+	val setCount: Int
+		get() = _setCount
 
 	fun findRoot(i: Int): Int {
 		if (i < 0 || i >= size) throw IndexOutOfBoundsException("index = $i, size = $size")
@@ -46,7 +49,7 @@ class DisjointSet(private val size: Int) {
 				}
 			}
 
-			--setCount
+			--_setCount
 		}
 	}
 
