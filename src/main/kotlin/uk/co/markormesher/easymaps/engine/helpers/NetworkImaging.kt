@@ -17,7 +17,7 @@ fun generateNetworkImage(network: Network, label: String, cfg: SharedConfig) {
 	// check graphviz
 	val graphViz = File(cfg.graphvizExec)
 	if (!graphViz.exists() || graphViz.isDirectory) {
-		throw Exception("The GraphViz executable ${cfg.graphvizExec} could not be found")
+		throw Exception("The GraphViz executable '${cfg.graphvizExec}' could not be found")
 	}
 
 	val dotFile = "${cfg.outputFolderPath}/$label.dot"

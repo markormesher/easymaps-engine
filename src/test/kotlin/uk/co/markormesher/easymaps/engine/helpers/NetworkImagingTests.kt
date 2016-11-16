@@ -51,7 +51,7 @@ class NetworkImagingTests {
 		val network = Network(2)
 		network.addEdge(0, 1)
 
-		assertFailsWith(Exception::class, "The GraphViz executable /tmp/not-real could not be found", {
+		assertFailsWith(Exception::class, "The GraphViz executable '/tmp/not-real' could not be found", {
 			generateNetworkImage(network, "test-network", config)
 		})
 	}
@@ -68,7 +68,7 @@ class NetworkImagingTests {
 		val network = Network(2)
 		network.addEdge(0, 1)
 
-		assertFailsWith(Exception::class, "The GraphViz executable /tmp could not be found", {
+		assertFailsWith(Exception::class, "The GraphViz executable '/tmp' could not be found", {
 			generateNetworkImage(network, "test-network", config)
 		})
 	}

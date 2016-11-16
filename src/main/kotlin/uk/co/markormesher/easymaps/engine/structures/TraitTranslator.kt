@@ -43,7 +43,7 @@ class TraitTranslator {
 	}
 
 	fun getTraitsForCluster(clusterId: Int): ArrayList<Trait> {
-		return traitClusters[clusterId] ?: throw ClusterIdException(clusterId)
+		return traitClusters[clusterId] ?: throw InvalidClusterIdException(clusterId)
 	}
 
 	fun forEachTrait(exec: (trait: Trait, id: Int) -> Unit) {
@@ -57,4 +57,4 @@ class TraitTranslator {
 
 class InvalidTraitException(trait: Trait) : Exception("The trait '$trait' is not a valid trait")
 
-class ClusterIdException(clusterId: Int) : Exception("The cluster ID '$clusterId' is not valid")
+class InvalidClusterIdException(clusterId: Int) : Exception("The cluster ID '$clusterId' is not valid")

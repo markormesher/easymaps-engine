@@ -94,6 +94,14 @@ class TraitTranslatorTests {
 	}
 
 	@Test
+	fun getTraitsForClusterShouldRejectInvalidCluster() {
+		val tt = TraitTranslator()
+		assertFailsWith(InvalidClusterIdException::class, "The cluster ID '2' is not valid", {
+			tt.getTraitsForCluster(2)
+		})
+	}
+
+	@Test
 	fun forEachTraitShouldIncludeAllValues() {
 		val tt = TraitTranslator()
 		tt.offerTrait(TRAIT_1)
