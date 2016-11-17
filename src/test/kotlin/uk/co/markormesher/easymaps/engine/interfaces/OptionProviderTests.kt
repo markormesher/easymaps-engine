@@ -1,6 +1,7 @@
 package uk.co.markormesher.easymaps.engine.interfaces
 
 import org.junit.Test
+import uk.co.markormesher.easymaps.engine._mocks.MockOptionProvider
 import kotlin.test.assertNotNull
 
 /**
@@ -8,11 +9,9 @@ import kotlin.test.assertNotNull
  */
 class OptionProviderTests {
 
-	class OptionProviderMock : OptionProvider()
-
 	@Test
 	fun defaultPropertiesShouldExist() {
-		val mock = OptionProviderMock()
+		val mock = MockOptionProvider()
 		assertNotNull(mock.uniqueObserversRequiredPerTrait)
 		assertNotNull(mock.coOccurrencesRequiredPerTraitLink)
 		assertNotNull(mock.minTimeGapBetweenClusters)

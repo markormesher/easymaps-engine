@@ -9,8 +9,6 @@ import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.PrintWriter
 import java.util.*
 
-// TODO: break out walk string generation
-// TODO: tests for walk generation
 fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 	val opts = cfg.walkerOptionProvider
 
@@ -18,41 +16,49 @@ fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 
 	// for every path...
 	paths.forEachIndexed { i, path ->
-		var timestamp = System.currentTimeMillis()
-		val firstTimestamp = timestamp
+		val timestamp = System.currentTimeMillis()
 		val userId = opts.userIds.randomElement()
-
-		val sb = StringBuilder()
-
-		// for every node in this path...
-		path.forEach { node ->
-			var timeInThisNode = randomLong(opts.minTimePerNode, opts.maxTimePerNode)
-
-			// for every scan in this node...
-			while (timeInThisNode > 0) {
-				// collect traits
-				val traitsInThisScan = randomInt(opts.minTraitsPerScan, opts.maxTraitsPerScan)
-				val traits = HashSet<String>()
-				while (traits.size < traitsInThisScan) traits.add(opts.generateTrait(network.nodeLabels[node]))
-
-				// add log line
-				sb.append(opts.generateLogLine(userId, timestamp, traits.toList())).append("\n")
-
-				// advance time
-				val timeStep = randomLong(opts.minScanGap, opts.maxScanGap)
-				timeInThisNode -= timeStep
-				timestamp += timeStep
-			}
-		}
-
-		writeWalkLog(cfg.walkerOptionProvider.generateLogFileName(userId, firstTimestamp, i), sb, cfg)
+		val walk = generateWalkLog(network, path, timestamp, userId, cfg)
+		writeWalkLog(cfg.walkerOptionProvider.generateLogFileName(userId, timestamp, i), walk, cfg)
 	}
 }
 
-private fun writeWalkLog(name: String, sb: StringBuilder, cfg: WalkerConfig) {
+// TODO: gap between nodes?
+internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long, userId: String, cfg: WalkerConfig): String {
+	val opts = cfg.walkerOptionProvider
+	var _timestamp = timestamp
+
+	val sb = StringBuilder()
+
+	// for every node in this path...
+	path.forEach { node ->
+		var timeRemainingInThisNode = randomLong(opts.minTimePerNode, opts.maxTimePerNode)
+
+		// for every scan in this node...
+		while (timeRemainingInThisNode > 0) {
+			// advance time
+			val timeStep = randomLong(opts.minScanGap, opts.maxScanGap)
+			timeRemainingInThisNode -= timeStep
+			_timestamp += timeStep
+			if (timeRemainingInThisNode < 0) break
+
+			// collect traits
+			val traitsInThisScan = randomInt(opts.minTraitsPerScan, opts.maxTraitsPerScan)
+			val traits = HashSet<String>()
+			while (traits.size < traitsInThisScan) traits.add(opts.generateTrait(network.nodeLabels[node]))
+
+			// add log line
+			sb.append(opts.generateLogLine(userId, _timestamp, traits.toList())).append("\n")
+		}
+	}
+
+	return sb.toString()
+}
+
+internal fun writeWalkLog(name: String, log: String, cfg: WalkerConfig) {
 	val file = "${cfg.logFolderPath}/$name"
 	with(PrintWriter(file, "UTF-8")) {
-		print(sb.toString())
+		print(log)
 		close()
 	}
 }

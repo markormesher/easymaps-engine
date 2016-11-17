@@ -28,7 +28,6 @@ class EngineConfig(
 )
 
 class WalkerConfig(
-		val optionProvider: OptionProvider,
 		val walkerOptionProvider: WalkerOptionProvider,
 		override val knownNetworkFilePath: String,
 		override val logFolderPath: String,

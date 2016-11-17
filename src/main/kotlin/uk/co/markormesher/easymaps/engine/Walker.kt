@@ -8,10 +8,9 @@ import uk.co.markormesher.easymaps.engine.walker.generateWalks
 fun runWalker(optionFile: String? = null) {
 	if (optionFile != null) readOptionsFile(optionFile)
 	val cfg = WalkerConfig(
-			optionProvider = selectOptionProvider(),
 			walkerOptionProvider = selectWalkerOptionProvider(),
-			logFolderPath = enterPath("Enter path to log folder", "logFolderPath", PATH_TYPE_FOLDER),
 			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
+			logFolderPath = enterPath("Enter path to log folder", "logFolderPath", PATH_TYPE_FOLDER),
 			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
 			graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE)
 	)

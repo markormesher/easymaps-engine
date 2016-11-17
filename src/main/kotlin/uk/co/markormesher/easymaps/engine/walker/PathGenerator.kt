@@ -8,7 +8,6 @@ import uk.co.markormesher.easymaps.engine.helpers.randomInt
 import uk.co.markormesher.easymaps.engine.structures.Network
 import java.util.*
 
-// TODO: tests for generateRandomPaths()
 fun generateRandomPaths(network: Network, cfg: WalkerConfig): List<List<Int>> {
 
 	printInfo("Generating random paths")
