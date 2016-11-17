@@ -52,7 +52,7 @@ test.finalizedBy(testEnd)
 
 /* compiling */
 
-task fatJar(type: Jar) << {
+task fatJar(type: Jar) {
 	manifest {
 		attributes 'Implementation-Title': 'EasyMaps Engine',
 				'Implementation-Version': version,
