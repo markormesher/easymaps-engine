@@ -24,7 +24,7 @@ fun writeOutput(knownNetwork: Network, isomorphisms: List<Map<Int, Int>>, cfg: E
 					append("\"")
 					append(trait)
 					append("\" = \"")
-					append(knownNetwork.nodeLabels[knownNodeId])
+					append(knownNetwork.nodeLabel(knownNodeId))
 					append("\"\n")
 				}
 			}

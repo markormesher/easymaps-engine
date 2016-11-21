@@ -38,7 +38,7 @@ internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long,
 			// collect traits
 			val traitsInThisScan = randomInt(opts.minTraitsPerScan, opts.maxTraitsPerScan)
 			val traits = HashSet<String>()
-			while (traits.size < traitsInThisScan) traits.add(opts.generateTrait(network.nodeLabels[node]))
+			while (traits.size < traitsInThisScan) traits.add(opts.generateTrait(network.nodeLabel(node)))
 
 			// add log line
 			sb.append(opts.generateLogLine(userId, _timestamp, traits.toList())).append("\n")

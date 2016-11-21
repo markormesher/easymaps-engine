@@ -18,16 +18,16 @@ class NetworkTests {
 	@Test
 	fun shouldAssignDefaultNetworkLabels() {
 		val network = Network(3)
-		assertEquals("0", network.nodeLabels[0])
-		assertEquals("1", network.nodeLabels[1])
-		assertEquals("2", network.nodeLabels[2])
+		assertEquals("0", network.nodeLabel(0))
+		assertEquals("1", network.nodeLabel(1))
+		assertEquals("2", network.nodeLabel(2))
 	}
 
 	@Test
 	fun shouldPreserveNetworkLabels() {
 		val network = Network(3)
-		network.nodeLabels[0] = "test node"
-		assertEquals("test node", network.nodeLabels[0])
+		network.setNodeLabel(0, "test node")
+		assertEquals("test node", network.nodeLabel(0))
 	}
 
 	@Test
@@ -50,6 +50,30 @@ class NetworkTests {
 		network.addEdge(0, 1)
 		network.addEdge(0, 1)
 		assertTrue(network.hasEdge(0, 1))
+	}
+
+	@Test
+	fun removeEdgeShouldRemoveEdge() {
+		val network = Network(10)
+		network.addEdge(0, 1)
+		network.removeEdge(0, 1)
+		assertFalse(network.hasEdge(0, 1))
+	}
+
+	@Test
+	fun removeEdgeShouldNotFailWithDuplicateRemovals() {
+		val network = Network(10)
+		network.addEdge(0, 1)
+		network.removeEdge(0, 1)
+		network.removeEdge(0, 1)
+		assertFalse(network.hasEdge(0, 1))
+	}
+
+	@Test
+	fun removeEdgeShouldNotFailWithNonEdge() {
+		val network = Network(10)
+		network.removeEdge(0, 1)
+		assertFalse(network.hasEdge(0, 1))
 	}
 
 	@Test
@@ -108,6 +132,18 @@ class NetworkTests {
 		network.addEdge(0, 0)
 		assertEquals(1, network.getSuccessors(0).size)
 		assertTrue(network.getSuccessors(0).contains(0))
+	}
+
+	@Test
+	fun nodeDegreeShouldBeAccurate() {
+		val network = Network(10)
+		assertEquals(0, network.nodeDegree(5))
+		network.addEdge(5, 5)
+		assertEquals(1, network.nodeDegree(5))
+		network.addEdge(5, 1)
+		network.addEdge(5, 2)
+		network.addEdge(5, 3)
+		assertEquals(4, network.nodeDegree(5))
 	}
 
 	@Test

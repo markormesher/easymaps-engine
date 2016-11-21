@@ -61,7 +61,7 @@ class WalkGeneratorTests {
 	@Test
 	fun generateWalkLogShouldUseNodeLabels() {
 		val network = Network(5)
-		network.nodeLabels[3] = "three"
+		network.setNodeLabel(3, "three")
 		val walk = generateWalkLog(
 				network,
 				arrayListOf(3),

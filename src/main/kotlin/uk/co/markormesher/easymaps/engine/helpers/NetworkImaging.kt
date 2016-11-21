@@ -53,12 +53,12 @@ internal fun generateDotFormatString(network: Network): String {
 
 internal fun makeEdge(network: Network, from: Int, to: Int): String {
 	if (network.hasEdge(from, to) && network.hasEdge(to, from)) {
-		val fromLabel = network.nodeLabels[Math.min(from, to)]
-		val toLabel = network.nodeLabels[Math.max(from, to)]
+		val fromLabel = network.nodeLabel(Math.min(from, to))
+		val toLabel = network.nodeLabel(Math.max(from, to))
 		return "\"$fromLabel\" -> \"$toLabel\" [dir = both];"
 	} else if (network.hasEdge(from, to)) {
-		val fromLabel = network.nodeLabels[from]
-		val toLabel = network.nodeLabels[to]
+		val fromLabel = network.nodeLabel(from)
+		val toLabel = network.nodeLabel(to)
 		return "\"$fromLabel\" -> \"$toLabel\";"
 	} else {
 		throw IllegalArgumentException("The edge $from -> $to does not exist in the given network")

@@ -109,8 +109,8 @@ class NetworkImagingTests {
 	fun makeEdgeShouldApplyNodeLabels() {
 		val network = Network(2)
 		network.addEdge(0, 1)
-		network.nodeLabels[0] = "a"
-		network.nodeLabels[1] = "b"
+		network.setNodeLabel(0, "a")
+		network.setNodeLabel(1, "b")
 		assertEquals("\"a\" -> \"b\";", makeEdge(network, 0, 1))
 	}
 

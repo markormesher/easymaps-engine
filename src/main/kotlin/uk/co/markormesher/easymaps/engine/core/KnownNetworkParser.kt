@@ -48,7 +48,7 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 
 	// create network with named nodes
 	val network = Network(nodeLabelToIdMap.size)
-	nodeLabelToIdMap.forEach { label, id -> network.nodeLabels[id] = label }
+	nodeLabelToIdMap.forEach { label, id -> network.setNodeLabel(id, label) }
 
 	// create edges
 	printInfo("Constructing network")
