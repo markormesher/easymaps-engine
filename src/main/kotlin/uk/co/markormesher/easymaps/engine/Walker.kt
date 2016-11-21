@@ -23,6 +23,8 @@ fun runWalker(optionFile: String? = null) {
 	if (choice != "y") {
 		printSubHeader("Aborted")
 		return
+	} else {
+		clearDirectory(cfg.logFolderPath)
 	}
 
 	var timer = -System.currentTimeMillis()

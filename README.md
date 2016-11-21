@@ -10,7 +10,7 @@ To run main algorithm:
 To run walk generator:
 
     gradle clean fatjar
-    java -jar build/libs/easymaps-engine-<version>.jar -walker [walker options file]
+    java -jar build/libs/easymaps-engine-<version>.jar --walker [walker options file]
 
 To run tests and generate coverage report:
 

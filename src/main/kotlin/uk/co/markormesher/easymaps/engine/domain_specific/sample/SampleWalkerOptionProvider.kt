@@ -13,7 +13,7 @@ class SampleWalkerOptionProvider : WalkerOptionProvider() {
 
 	override val userIds = arrayOf("abcdef")
 
-	override val minVisitsPerNode = 10
+	override val minVisitsPerNode = 20
 
 	override val minTimePerNode = 30000L // 30 seconds
 	override val maxTimePerNode = 240000L // 240 seconds
@@ -24,7 +24,7 @@ class SampleWalkerOptionProvider : WalkerOptionProvider() {
 	override val minScanGap = 15000L // 15 seconds
 	override val maxScanGap = 30000L // 30 seconds
 
-	override val minTraitsPerScan = 1
+	override val minTraitsPerScan = 2
 	override val maxTraitsPerScan = 20
 
 	override fun getNextNode(prev: Int, current: Int, successors: List<Int>): Int {
