@@ -7,6 +7,7 @@ import uk.co.markormesher.easymaps.engine.structures.DisjointSet
 import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
+import java.util.*
 
 // TODO: tests for all segments of observed network generation
 fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): Network {
@@ -70,6 +71,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 		++fileId
 		var lastNode = -1
 		var lastNodeSeenAt = -1L
+		var lastNodeScanGaps = ArrayList<Long>()
 
 		logFile.logEntries.forEach logEntries@ { logEntry ->
 			val thisNode = logEntry.traits.map({ i -> clusterSets.findRootPosition(i) }).majorityElement(-1)
@@ -88,20 +90,26 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 			}
 
 			if (lastNode != thisNode) {
-				val timeGap = thisNodeSeenAt - lastNodeSeenAt
-				if (cfg.optionProvider.minTimeGapBetweenClusters >= 0 && timeGap < cfg.optionProvider.minTimeGapBetweenClusters) {
-					printSubWarning("Minimum time gap not met in file $fileId (gap: $timeGap); skipping rest of file")
+				val averageScanGapsInLastNode = lastNodeScanGaps.average()
+				lastNodeScanGaps.clear()
+
+				// gap may be artificially extended by the gap between scans
+				val minNodeGap = thisNodeSeenAt - lastNodeSeenAt
+				val maxNodeGap = (thisNodeSeenAt - lastNodeSeenAt) - averageScanGapsInLastNode
+
+				if (cfg.optionProvider.minTimeGapBetweenClusters >= 0 && minNodeGap < cfg.optionProvider.minTimeGapBetweenClusters) {
+					printSubWarning("Minimum time gap not met in file $fileId (gap: $minNodeGap); skipping rest of file")
 					return@logFiles
 				}
-				if (cfg.optionProvider.maxTimeGapBetweenClusters >= 0 && timeGap > cfg.optionProvider.maxTimeGapBetweenClusters) {
-					printSubWarning("Maximum time gap exceeded in file $fileId (gap: $timeGap); skipping rest of file")
+				if (cfg.optionProvider.maxTimeGapBetweenClusters >= 0 && maxNodeGap > cfg.optionProvider.maxTimeGapBetweenClusters) {
+					printSubWarning("Maximum time gap exceeded in file $fileId (gap: $maxNodeGap); skipping rest of file")
 					return@logFiles
 				}
 
-				// assumes that the graph is non-directional
-				val from = Math.max(lastNode, thisNode)
-				val to = Math.min(lastNode, thisNode)
-				adjMatrix[from, to] = adjMatrix[from, to] + 1
+				adjMatrix[lastNode, thisNode] = adjMatrix[lastNode, thisNode] + 1
+			} else {
+				val scanGap = thisNodeSeenAt - lastNodeSeenAt
+				lastNodeScanGaps.add(scanGap)
 			}
 
 			lastNode = thisNode

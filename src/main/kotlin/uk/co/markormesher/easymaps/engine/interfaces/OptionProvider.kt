@@ -3,27 +3,27 @@ package uk.co.markormesher.easymaps.engine.interfaces
 abstract class OptionProvider {
 
 	/**
-	 * The minimum number of observers required for a trait to be considered.
+	 * Minimum number of observers required for a trait to be considered.
 	 * Useful for rejecting spurious traits captured by very few observers.
 	 */
-	open val uniqueObserversRequiredPerTrait = 1
+	abstract val uniqueObserversRequiredPerTrait: Int
 
 	/**
-	 * The minimum number of scans in which traits must co-occur in order to be clustered together.
+	 * Minimum number of scans in which traits must co-occur in order to be clustered together.
 	 * Useful for preventing sparsely-linked clusters from becoming joined.
 	 */
-	open val coOccurrencesRequiredPerTraitLink = 1
+	abstract val coOccurrencesRequiredPerTraitLink: Int
 
 	/**
-	 * The minimum time gap between clusters (within one trait log) to imply a connection between them.
+	 * Minimum time gap between clusters (within one trait log) to imply a connection between them.
 	 * Set to -1 for no minimum.
 	 */
-	open val minTimeGapBetweenClusters = 10000L // 10s
+	abstract val minTimeGapBetweenClusters: Long
 
 	/**
-	 * The maximum time gap between clusters (within one trait log) to imply a connection between them.
+	 * Maximum time gap between clusters (within one trait log) to imply a connection between them.
 	 * Set to -1 for no maximum.
 	 */
-	open val maxTimeGapBetweenClusters = 120000L // 120s
+	abstract val maxTimeGapBetweenClusters: Long
 
 }
