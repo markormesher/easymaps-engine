@@ -4,6 +4,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 import uk.co.markormesher.easymaps.engine._mocks.getMockWalkerConfig
+import uk.co.markormesher.easymaps.engine.helpers.randomLong
 import uk.co.markormesher.easymaps.engine.structures.Network
 import java.util.*
 import java.util.regex.Pattern
@@ -13,8 +14,23 @@ import kotlin.test.assertTrue
 
 class WalkGeneratorTests {
 
+	/**
+	 * NOTE: throughout these tests, values are compared to the min... constraints,
+	 * because the mock option provider gives equal min/max values for all
+	 * constraints (see mockWalkerOptionsShouldHaveEqualMinMax()), thereby
+	 * eliminating the random element without invalidating the tests.
+	 */
+
 	@Rule @JvmField
 	val tempFolder = TemporaryFolder()
+
+	@Test
+	fun mockWalkerOptionsShouldHaveEqualMinMax() {
+		val walkerOpts = getMockWalkerConfig().walkerOptionProvider
+		assertTrue(walkerOpts.minTimePerNode == walkerOpts.maxTimePerNode)
+		assertTrue(walkerOpts.minGapBetweenNodes == walkerOpts.maxGapBetweenNodes)
+		assertTrue(walkerOpts.minScanGap == walkerOpts.maxScanGap)
+	}
 
 	@Test
 	fun generateWalksShouldCreateFile() {
@@ -63,7 +79,72 @@ class WalkGeneratorTests {
 	}
 
 	@Test
-	fun generateWalkLogShouldUseAppropriateScanGap() {
+	fun generateWalkLogShouldObeyMinMaxGapBetweenNodes() {
+		val walkerOpts = getMockWalkerConfig().walkerOptionProvider
+
+		val walk = generateWalkLog(
+				Network(5),
+				arrayListOf(0, 1, 0, 1, 0, 1, 0, 1, 0),
+				randomLong(0L, 100000L),
+				"mark",
+				getMockWalkerConfig()
+		)
+
+		var fileEmpty = true
+		var lastNode = 0
+		var lastNodeExitTime = 0L
+		walk.split("\n").forEach { line ->
+			if (line.isBlank()) return@forEach
+			val scanTime = line.drop(6).split(';')[0].toLong()
+			val node = if (line.contains("0_")) 0 else 1
+
+			if (node != lastNode) {
+				val gapBetweenNodes = (scanTime - lastNodeExitTime) - walkerOpts.minScanGap
+				assertEquals(walkerOpts.minGapBetweenNodes, gapBetweenNodes)
+			}
+
+			lastNode = node
+			lastNodeExitTime = scanTime
+
+			fileEmpty = false
+		}
+		assertFalse(fileEmpty)
+	}
+
+	@Test
+	fun generateWalkLogShouldObeyMinMaxTimePerNode() {
+		val walkerOpts = getMockWalkerConfig().walkerOptionProvider
+
+		var entryScanTime = randomLong(0L, 100000L)
+		val walk = generateWalkLog(
+				Network(5),
+				arrayListOf(0, 1, 0, 1, 0, 1, 0, 1, 0),
+				entryScanTime,
+				"mark",
+				getMockWalkerConfig()
+		)
+
+		var fileEmpty = true
+		var lastNode = 0
+		walk.split("\n").forEach { line ->
+			if (line.isBlank()) return@forEach
+			val scanTime = line.drop(6).split(';')[0].toLong()
+			val node = if (line.contains("0_")) 0 else 1
+
+			if (node != lastNode) {
+				val timeInLastNode = (scanTime - entryScanTime) - walkerOpts.minGapBetweenNodes
+				assertEquals(walkerOpts.minTimePerNode, timeInLastNode)
+				entryScanTime = scanTime
+			}
+			lastNode = node
+
+			fileEmpty = false
+		}
+		assertFalse(fileEmpty)
+	}
+
+	@Test
+	fun generateWalkLogShouldObeyMinMaxScanGap() {
 		val walk = generateWalkLog(
 				Network(5),
 				arrayListOf(3),
@@ -87,36 +168,7 @@ class WalkGeneratorTests {
 	}
 
 	@Test
-	fun generateWalkLogShouldSpendAppropriateTimeInNode() {
-		val walk = generateWalkLog(
-				Network(5),
-				arrayListOf(0, 1, 0, 1, 0, 1, 0, 1, 0),
-				1000L, "mark",
-				getMockWalkerConfig()
-		)
-		var fileEmpty = true
-		var entryScanTime = 1000L
-		var lastNode = 0
-		walk.split("\n").forEach { line ->
-			if (line.isBlank()) return@forEach
-			val scanTime = line.drop(6).split(';')[0].toLong()
-			val node = if (line.contains("0_")) 0 else 1
-
-			if (node != lastNode) {
-				val timeInLastNode = scanTime - entryScanTime
-				assertTrue(timeInLastNode >= getMockWalkerConfig().walkerOptionProvider.minTimePerNode, "time in node $timeInLastNode")
-				assertTrue(timeInLastNode <= getMockWalkerConfig().walkerOptionProvider.maxTimePerNode, "time in node $timeInLastNode")
-				entryScanTime = scanTime
-			}
-			lastNode = node
-
-			fileEmpty = false
-		}
-		assertFalse(fileEmpty)
-	}
-
-	@Test
-	fun generateWalkLogShouldUseAppropriateNumberOfTraits() {
+	fun generateWalkLogShouldObeyMinMaxinTraitsPerScan() {
 		val walk = generateWalkLog(
 				Network(5),
 				arrayListOf(3),

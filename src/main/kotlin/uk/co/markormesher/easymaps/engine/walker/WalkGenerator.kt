@@ -23,7 +23,6 @@ fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
 	}
 }
 
-// TODO: gap between nodes?
 internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long, userId: String, cfg: WalkerConfig): String {
 	val opts = cfg.walkerOptionProvider
 	var _timestamp = timestamp
@@ -36,12 +35,6 @@ internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long,
 
 		// for every scan in this node...
 		while (timeRemainingInThisNode > 0) {
-			// advance time
-			val timeStep = randomLong(opts.minScanGap, opts.maxScanGap)
-			timeRemainingInThisNode -= timeStep
-			_timestamp += timeStep
-			if (timeRemainingInThisNode < 0) break
-
 			// collect traits
 			val traitsInThisScan = randomInt(opts.minTraitsPerScan, opts.maxTraitsPerScan)
 			val traits = HashSet<String>()
@@ -49,7 +42,15 @@ internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long,
 
 			// add log line
 			sb.append(opts.generateLogLine(userId, _timestamp, traits.toList())).append("\n")
+
+			// advance time
+			val timeStep = randomLong(opts.minScanGap, opts.maxScanGap)
+			timeRemainingInThisNode -= timeStep
+			_timestamp += timeStep
 		}
+
+		// spend some time travelling to the next node
+		_timestamp += randomLong(opts.minGapBetweenNodes, opts.maxGapBetweenNodes)
 	}
 
 	return sb.toString()

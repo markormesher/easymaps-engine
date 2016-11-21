@@ -10,16 +10,16 @@ abstract class WalkerOptionProvider {
 
 	abstract val minVisitsPerNode: Int
 
-	abstract val minTimePerNode: Long
+	abstract val minGapBetweenNodes: Long
+	abstract val maxGapBetweenNodes: Long
 
+	abstract val minTimePerNode: Long
 	abstract val maxTimePerNode: Long
 
 	abstract val minScanGap: Long
-
 	abstract val maxScanGap: Long
 
 	abstract val minTraitsPerScan: Int
-
 	abstract val maxTraitsPerScan: Int
 
 	open fun getNextNode(prev: Int, current: Int, successors: List<Int>): Int = successors.randomElement()

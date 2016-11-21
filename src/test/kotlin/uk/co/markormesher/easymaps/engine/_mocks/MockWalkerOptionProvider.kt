@@ -6,12 +6,20 @@ import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
 class MockWalkerOptionProvider : WalkerOptionProvider() {
 
 	override val walkLengths = arrayOf(1, 2, 3)
+
 	override val userIds = arrayOf("a", "b", "c")
+
 	override val minVisitsPerNode = 5
-	override val minTimePerNode = 30000L // 30 seconds
-	override val maxTimePerNode = 240000L // 240 seconds
-	override val minScanGap = 15000L // 15 seconds
-	override val maxScanGap = 30000L // 30 seconds
+
+	override val minGapBetweenNodes = 15000L // 15 seconds
+	override val maxGapBetweenNodes = 15000L // 15 seconds
+
+	override val minTimePerNode = 120000L // 120 seconds
+	override val maxTimePerNode = 120000L // 120 seconds
+
+	override val minScanGap = 10000L // 10 seconds
+	override val maxScanGap = 10000L // 10 seconds
+
 	override val minTraitsPerScan = 1
 	override val maxTraitsPerScan = 20
 
