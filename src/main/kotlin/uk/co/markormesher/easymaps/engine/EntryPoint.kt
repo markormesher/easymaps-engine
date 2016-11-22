@@ -18,12 +18,14 @@ val PATH_TYPE_FILE = 1
 val PATH_TYPE_FOLDER = 2
 
 fun main(args: Array<String>) {
-	if (args.size == 2 && args[0] == "--walker") {
+	val cleanArgs = args.filter { a -> !a.isNullOrBlank() }
+
+	if (cleanArgs.size == 2 && cleanArgs[0] == "--walker") {
 		printHeader("EasyMaps Walker $VERSION")
-		runWalker(args[1])
-	} else if (args.size == 1) {
+		runWalker(cleanArgs[1])
+	} else if (cleanArgs.size == 1) {
 		printHeader("EasyMaps Engine $VERSION")
-		runEngine(args[0])
+		runEngine(cleanArgs[0])
 	} else {
 		printHeader("EasyMaps Engine $VERSION")
 		runEngine()
