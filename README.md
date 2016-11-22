@@ -5,12 +5,12 @@
 To run main algorithm:
 
     gradle clean fatjar
-    java -jar build/libs/easymaps-engine-<version>.jar [options file]
+    ./engine.sh <dataset-folder-name>
 
 To run walk generator:
 
     gradle clean fatjar
-    java -jar build/libs/easymaps-engine-<version>.jar --walker [walker options file]
+    ./walker.sh <dataset-folder-name>
 
 To run tests and generate coverage report:
 
