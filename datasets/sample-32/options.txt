@@ -1,0 +1,6 @@
+logReader = sample
+optionProvider = sample
+logFolderPath = ./datasets/sample-32/input/logs
+knownNetworkFilePath = ./datasets/sample-32/input/known-network.txt
+outputFolderPath = ./datasets/sample-32/output
+graphvizExec = /usr/bin/neato

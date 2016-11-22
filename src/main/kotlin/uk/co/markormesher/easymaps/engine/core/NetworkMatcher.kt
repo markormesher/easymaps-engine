@@ -7,8 +7,6 @@ import uk.co.markormesher.easymaps.engine.structures.Network
 import java.util.*
 import kotlin.comparisons.compareBy
 
-val tries = HashSet<String>()
-
 fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<MutableMap<Int, Int>> {
 
 	printSubHeader("Matching Networks")
