@@ -16,28 +16,6 @@ class NetworkTests {
 	}
 
 	@Test
-	fun shouldAssignDefaultNetworkLabels() {
-		val network = Network(3)
-		assertEquals("0", network.nodeLabel(0))
-		assertEquals("1", network.nodeLabel(1))
-		assertEquals("2", network.nodeLabel(2))
-	}
-
-	@Test
-	fun shouldPreserveNetworkLabels() {
-		val network = Network(3)
-		network.setNodeLabel(0, "test node")
-		assertEquals("test node", network.nodeLabel(0))
-	}
-
-	@Test
-	fun validateIndexShouldRejectOutOfBoundsIndexes() {
-		val network = Network(10)
-		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { network.validateIndex(-1) })
-		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { network.validateIndex(10) })
-	}
-
-	@Test
 	fun addEdgeShouldAddEdge() {
 		val network = Network(10)
 		network.addEdge(0, 1)
@@ -82,6 +60,21 @@ class NetworkTests {
 		network.addEdge(0, 1)
 		assertTrue(network.hasEdge(0, 1))
 		assertFalse(network.hasEdge(1, 0))
+	}
+
+	@Test
+	fun shouldReturnDefaultNetworkLabelsWhenUnassigned() {
+		val network = Network(3)
+		assertEquals("0", network.nodeLabel(0))
+		assertEquals("1", network.nodeLabel(1))
+		assertEquals("2", network.nodeLabel(2))
+	}
+
+	@Test
+	fun shouldPreserveNetworkLabels() {
+		val network = Network(3)
+		network.setNodeLabel(0, "test node")
+		assertEquals("test node", network.nodeLabel(0))
 	}
 
 	@Test

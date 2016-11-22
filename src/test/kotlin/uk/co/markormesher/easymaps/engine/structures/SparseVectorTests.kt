@@ -15,19 +15,6 @@ class SparseVectorTests {
 	}
 
 	@Test
-	fun shouldRejectInvalidIndexes() {
-		val sv = SparseVector(10)
-
-		// get
-		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { sv[-1] })
-		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { sv[10] })
-
-		// set
-		assertFailsWith(IndexOutOfBoundsException::class, "index = -1, size = 10", { sv[-1] = 1.0 })
-		assertFailsWith(IndexOutOfBoundsException::class, "index = 10, size = 10", { sv[10] = 1.0 })
-	}
-
-	@Test
 	fun sizeShouldBeAccurate() {
 		val sv = SparseVector(10)
 		assertEquals(10, sv.size)
@@ -109,20 +96,6 @@ class SparseVectorTests {
 		assertEquals(expectedValues.size, actualValues.size)
 		for (i in 0..2) assertEquals(expectedIds[i], actualIds[i])
 		for (i in 0..2) assertEquals(expectedValues[i], actualValues[i])
-	}
-
-	@Test
-	fun toStringShouldBeCorrect() {
-		val sv = SparseVector(10)
-		sv[0] = 1.23
-		sv[2] = 4.56
-		sv[4] = 7.89
-		sv[6] = 0.0
-
-		val expectedString = "[1.23, 0.0, 4.56, 0.0, 7.89, 0.0, 0.0, 0.0, 0.0, 0.0]"
-		val actualString = sv.toString()
-
-		assertEquals(expectedString, actualString)
 	}
 
 }

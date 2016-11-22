@@ -9,14 +9,16 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 	private val rows = Array(n, { SparseVector(n) })
 
 	override operator fun get(row: Int, col: Int): Double {
-		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
-		if (col < 0 || col >= n) throw IndexOutOfBoundsException("col = $col; size = $n")
+		validateIndex(row, n, "row")
+		validateIndex(col, n, "col")
+
 		return rows[row][col]
 	}
 
 	override operator fun set(row: Int, col: Int, value: Double) {
-		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
-		if (col < 0 || col >= n) throw IndexOutOfBoundsException("col = $col; size = $n")
+		validateIndex(row, n, "row")
+		validateIndex(col, n, "col")
+
 		rows[row][col] = value
 	}
 
@@ -50,26 +52,17 @@ class SparseSquareMatrix(private val n: Int) : Matrix {
 	}
 
 	fun getRow(row: Int): SparseVector {
-		if (row < 0 || row >= n) throw IndexOutOfBoundsException("row = $row; size = $n")
+		validateIndex(row, n, "row")
+
 		return rows[row]
 	}
 
 	fun getColumn(col: Int): SparseVector {
-		if (col < 0 || col >= n) throw IndexOutOfBoundsException("col = $col; size = $n")
+		validateIndex(col, n, "col")
+
 		val tempColumn = SparseVector(n)
 		forEachNonZero { r, c, v -> if (c == col) tempColumn[r] = v }
 		return tempColumn
-	}
-
-	override fun toString(): String {
-		val sb = StringBuilder()
-		for (row in 0..n - 1) {
-			for (col in 0..n - 1) {
-				sb.append(this[row, col].toString()).append(" ")
-			}
-			sb.append("\n")
-		}
-		return sb.toString()
 	}
 
 }

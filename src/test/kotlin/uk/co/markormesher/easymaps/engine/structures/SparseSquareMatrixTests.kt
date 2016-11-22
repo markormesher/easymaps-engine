@@ -15,23 +15,6 @@ class SparseSquareMatrixTests {
 	}
 
 	@Test
-	fun shouldRejectInvalidIndexes() {
-		val sm = SparseSquareMatrix(10)
-
-		// get
-		assertFailsWith(IndexOutOfBoundsException::class, "row = -1, size = 10", { sm[-1, 0] })
-		assertFailsWith(IndexOutOfBoundsException::class, "col = -1, size = 10", { sm[0, -1] })
-		assertFailsWith(IndexOutOfBoundsException::class, "row = 10, size = 10", { sm[10, 0] })
-		assertFailsWith(IndexOutOfBoundsException::class, "col = 10, size = 10", { sm[0, 10] })
-
-		// set
-		assertFailsWith(IndexOutOfBoundsException::class, "row = -1, size = 10", { sm[-1, 0] = 1.0 })
-		assertFailsWith(IndexOutOfBoundsException::class, "col = -1, size = 10", { sm[0, -1] = 1.0 })
-		assertFailsWith(IndexOutOfBoundsException::class, "row = 10, size = 10", { sm[10, 0] = 1.0 })
-		assertFailsWith(IndexOutOfBoundsException::class, "col = 10, size = 10", { sm[0, 10] = 1.0 })
-	}
-
-	@Test
 	fun sizeShouldBeAccurate() {
 		val sm = SparseSquareMatrix(10)
 		assertEquals(10, sm.width)
@@ -161,13 +144,6 @@ class SparseSquareMatrixTests {
 	}
 
 	@Test
-	fun getRowShouldFailWithInvalidIndex() {
-		val sm = SparseSquareMatrix(10)
-		assertFailsWith(IndexOutOfBoundsException::class, "row = -1; size = 10", { sm.getRow(-1) })
-		assertFailsWith(IndexOutOfBoundsException::class, "row = 10; size = 10", { sm.getRow(10) })
-	}
-
-	@Test
 	fun getRowShouldContainCorrectValues() {
 		val sm = SparseSquareMatrix(10)
 		sm[0, 1] = 1.23
@@ -181,13 +157,6 @@ class SparseSquareMatrixTests {
 	}
 
 	@Test
-	fun getColumnShouldFailWithInvalidIndex() {
-		val sm = SparseSquareMatrix(10)
-		assertFailsWith(IndexOutOfBoundsException::class, "col = -1; size = 10", { sm.getColumn(-1) })
-		assertFailsWith(IndexOutOfBoundsException::class, "col = 10; size = 10", { sm.getColumn(10) })
-	}
-
-	@Test
 	fun getColumnShouldContainCorrectValues() {
 		val sm = SparseSquareMatrix(10)
 		sm[0, 1] = 1.23
@@ -198,21 +167,6 @@ class SparseSquareMatrixTests {
 		assertEquals(2, col.nonZeroSize)
 		assertEquals(1.23, col[0])
 		assertEquals(4.56, col[2])
-	}
-
-	@Test
-	fun toStringShouldBeCorrect() {
-		val sm = SparseSquareMatrix(4)
-		sm[0, 1] = 1.23
-		sm[2, 3] = 4.56
-
-		val expectedString = "0.0 1.23 0.0 0.0 \n" +
-				"0.0 0.0 0.0 0.0 \n" +
-				"0.0 0.0 0.0 4.56 \n" +
-				"0.0 0.0 0.0 0.0 \n"
-		val actualString = sm.toString()
-
-		assertEquals(expectedString, actualString)
 	}
 
 }

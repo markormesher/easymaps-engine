@@ -11,7 +11,8 @@ class SparseVector(private val n: Int) : Vector {
 	}
 
 	override operator fun set(i: Int, value: Double) {
-		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; size = $n")
+		validateIndex(i, n, "i")
+
 		if (value == 0.0) {
 			map.remove(i)
 			return
@@ -20,7 +21,8 @@ class SparseVector(private val n: Int) : Vector {
 	}
 
 	override operator fun get(i: Int): Double {
-		if (i < 0 || i >= n) throw IndexOutOfBoundsException("index = $i; size = $n")
+		validateIndex(i, n, "i")
+
 		return map[i] ?: 0.0
 	}
 
@@ -34,16 +36,5 @@ class SparseVector(private val n: Int) : Vector {
 		get() = map.values
 
 	fun forEach(exec: (position: Int, value: Double) -> Unit) = map.forEach(exec)
-
-	override fun toString(): String {
-		val sb = StringBuilder()
-		sb.append("[")
-		sb.append(get(0))
-		for (i in 1..n - 1) {
-			sb.append(", ").append(get(i))
-		}
-		sb.append("]")
-		return sb.toString()
-	}
 
 }
