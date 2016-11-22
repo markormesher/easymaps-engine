@@ -9,7 +9,8 @@ open class SharedConfig(
 		open val logFolderPath: String,
 		open val knownNetworkFilePath: String,
 		open val outputFolderPath: String,
-		open val graphvizExec: String
+		open val graphvizExec: String,
+		open val drawGraphs: Boolean
 )
 
 class EngineConfig(
@@ -19,12 +20,14 @@ class EngineConfig(
 		override val logFolderPath: String,
 		override val knownNetworkFilePath: String,
 		override val outputFolderPath: String,
-		override val graphvizExec: String
+		override val graphvizExec: String,
+		override val drawGraphs: Boolean
 ) : SharedConfig(
 		logFolderPath,
 		knownNetworkFilePath,
 		outputFolderPath,
-		graphvizExec
+		graphvizExec,
+		drawGraphs
 )
 
 class WalkerConfig(
@@ -32,10 +35,12 @@ class WalkerConfig(
 		override val knownNetworkFilePath: String,
 		override val logFolderPath: String,
 		override val outputFolderPath: String,
-		override val graphvizExec: String
+		override val graphvizExec: String,
+		override val drawGraphs: Boolean
 ) : SharedConfig(
 		logFolderPath,
 		knownNetworkFilePath,
 		outputFolderPath,
-		graphvizExec
+		graphvizExec,
+		drawGraphs
 )

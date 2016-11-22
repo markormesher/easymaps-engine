@@ -8,11 +8,13 @@ fun getMockWalkerConfig(
 		knownNetworkFilePath: String = "",
 		logFolderPath: String = "",
 		outputFolderPath: String = "",
-		graphvizExec: String = "/usr/bin/dot"
+		graphvizExec: String = "/usr/bin/dot",
+		drawGraphs: Boolean = true
 ) = WalkerConfig(
 		walkerOptionProvider = walkerOptionProvider,
 		knownNetworkFilePath = knownNetworkFilePath,
 		logFolderPath = logFolderPath,
 		outputFolderPath = outputFolderPath,
-		graphvizExec = graphvizExec
+		graphvizExec = graphvizExec,
+		drawGraphs = drawGraphs
 )

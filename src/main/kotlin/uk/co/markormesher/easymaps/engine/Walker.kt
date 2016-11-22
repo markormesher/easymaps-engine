@@ -12,15 +12,14 @@ fun runWalker(optionFile: String? = null) {
 			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
 			logFolderPath = enterPath("Enter path to log folder", "logFolderPath", PATH_TYPE_FOLDER),
 			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
-			graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE)
+			graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE),
+			drawGraphs = selectYesNo("Draw graphs?", "drawGraphs")
 	)
 
 	// just to be sure...
 	println()
-	printWarning("This will delete everything in ${cfg.logFolderPath} - are you sure you want to continue? [y/n]")
-	print(INPUT_PROMPT)
-	val choice = readLine()!!.trim()
-	if (choice != "y") {
+	printWarning("This will delete everything in ${cfg.logFolderPath}!")
+	if (!selectYesNo("Are you sure you want to continue?", "")) {
 		printSubHeader("Aborted")
 		return
 	} else {

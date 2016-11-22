@@ -6,10 +6,7 @@ import org.junit.rules.TemporaryFolder
 import uk.co.markormesher.easymaps.engine.SharedConfig
 import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.File
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class NetworkImagingTests {
 
@@ -27,7 +24,8 @@ class NetworkImagingTests {
 				logFolderPath = "",
 				knownNetworkFilePath = "",
 				outputFolderPath = tempFolder.root.path,
-				graphvizExec = "/usr/bin/dot"
+				graphvizExec = "/usr/bin/dot",
+				drawGraphs = true
 		)
 
 		val network = Network(2)
@@ -40,12 +38,32 @@ class NetworkImagingTests {
 	}
 
 	@Test
+	fun generateNetworkImageShouldNotCreateImageIfDisabled() {
+		val config = SharedConfig(
+				logFolderPath = "",
+				knownNetworkFilePath = "",
+				outputFolderPath = tempFolder.root.path,
+				graphvizExec = "/usr/bin/dot",
+				drawGraphs = false
+		)
+
+		val network = Network(2)
+		network.addEdge(0, 1)
+
+		generateNetworkImage(network, "test-network", config)
+
+		assertTrue(File(tempFolder.root, "test-network.dot").exists())
+		assertFalse(File(tempFolder.root, "test-network.png").exists())
+	}
+
+	@Test
 	fun generateNetworkImageShouldFailWithMissingExecutable() {
 		val config = SharedConfig(
 				logFolderPath = "",
 				knownNetworkFilePath = "",
 				outputFolderPath = "",
-				graphvizExec = "/tmp/not-real"
+				graphvizExec = "/tmp/not-real",
+				drawGraphs = true
 		)
 
 		val network = Network(2)
@@ -62,7 +80,8 @@ class NetworkImagingTests {
 				logFolderPath = "",
 				knownNetworkFilePath = "",
 				outputFolderPath = "",
-				graphvizExec = "/tmp"
+				graphvizExec = "/tmp",
+				drawGraphs = true
 		)
 
 		val network = Network(2)

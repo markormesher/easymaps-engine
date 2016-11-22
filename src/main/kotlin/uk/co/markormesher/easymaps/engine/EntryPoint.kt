@@ -93,7 +93,6 @@ fun enterPath(prompt: String, optionKey: String, searchType: Int = -1): String {
 }
 
 fun selectOptionProvider(): OptionProvider {
-
 	while (true) {
 		var input = options["optionProvider"]
 		options.put("optionProvider", null)
@@ -114,7 +113,6 @@ fun selectOptionProvider(): OptionProvider {
 }
 
 fun selectWalkerOptionProvider(): WalkerOptionProvider {
-
 	while (true) {
 		var input = options["walkerOptionProvider"]
 		options.put("walkerOptionProvider", null)
@@ -128,6 +126,26 @@ fun selectWalkerOptionProvider(): WalkerOptionProvider {
 
 		when (input) {
 			"sample" -> return SampleWalkerOptionProvider()
+			else -> if (!quiet) printError("that's not a valid option")
+		}
+	}
+}
+
+fun selectYesNo(prompt: String, optionKey: String): Boolean {
+	while (true) {
+		var input = options[optionKey]
+		options.put(optionKey, null)
+
+		val quiet = !input.isNullOrEmpty()
+		if (input.isNullOrEmpty()) {
+			println("\n$prompt [y/n]")
+			print(INPUT_PROMPT)
+			input = readLine()!!.trim().toLowerCase()
+		}
+
+		when (input) {
+			"y" -> return true
+			"n" -> return false
 			else -> if (!quiet) printError("that's not a valid option")
 		}
 	}
