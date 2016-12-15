@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.structures
 
-class SparseMatrix(private val w: Int, private val h: Int) : Matrix {
+class SparseMatrix(private val w: Int, private val h: Int): Matrix {
 
 	init {
 		if (w <= 0) throw IllegalArgumentException("Width must be greater than zero")
@@ -23,20 +23,34 @@ class SparseMatrix(private val w: Int, private val h: Int) : Matrix {
 		rows[row][col] = value
 	}
 
+	override fun clear() {
+		rows.forEach { it.clear() }
+	}
+
+	override fun clearRow(row: Int) {
+		validateIndex(row, h, "row")
+		rows[row].clear()
+	}
+
+	override fun clearColumn(column: Int) {
+		validateIndex(column, w, "column")
+		(0..height - 1).forEach { row -> set(row, column, 0.0) }
+	}
+
 	override val width: Int
 		get() = w
 
 	override val height: Int
 		get() = h
 
-	val possibleValues: Int
+	val maxSize: Int
 		get() = width * height
 
-	val nonZeroValues: Int
+	val nonZeroSize: Int
 		get() = rows.fold(0, { sum, row -> sum + row.nonZeroSize })
 
 	val density: Double
-		get() = nonZeroValues / possibleValues.toDouble()
+		get() = nonZeroSize / maxSize.toDouble()
 
 	override fun clone(): SparseMatrix {
 		val output = SparseMatrix(w, h)
@@ -64,11 +78,6 @@ class SparseMatrix(private val w: Int, private val h: Int) : Matrix {
 		val tempColumn = SparseVector(w)
 		forEachNonZero { r, c, v -> if (c == col) tempColumn[r] = v }
 		return tempColumn
-	}
-
-	fun clearRow(row: Int) {
-		validateIndex(row, w, "row")
-		rows[row].clear()
 	}
 
 }

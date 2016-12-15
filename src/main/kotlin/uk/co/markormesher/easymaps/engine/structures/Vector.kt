@@ -6,6 +6,8 @@ interface Vector {
 
 	operator fun set(i: Int, value: Double)
 
+	fun clear()
+
 	val size: Int
 
 }

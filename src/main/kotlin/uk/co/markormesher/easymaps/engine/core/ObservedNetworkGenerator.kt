@@ -116,7 +116,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 			lastNodeSeenAt = thisNodeSeenAt
 		}
 	}
-	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroValues} edges")
+	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroSize} edges")
 
 	return adjMatrix
 }

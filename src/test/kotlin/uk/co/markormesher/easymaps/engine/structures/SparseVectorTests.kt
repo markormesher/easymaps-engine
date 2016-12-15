@@ -62,6 +62,17 @@ class SparseVectorTests {
 	}
 
 	@Test
+	fun clearShouldRemoveAllValues() {
+		val sv = SparseVector(10)
+		sv[0] = 1.23
+		sv[2] = 4.56
+		sv[4] = 7.89
+		sv[6] = 0.0
+		sv.clear()
+		assertEquals(0, sv.nonZeroSize)
+	}
+
+	@Test
 	fun nonZeroValuesShouldReturnCorrectValues() {
 		val sv = SparseVector(10)
 		sv[0] = 1.23

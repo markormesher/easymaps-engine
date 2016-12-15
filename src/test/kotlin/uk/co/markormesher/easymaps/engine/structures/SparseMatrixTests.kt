@@ -26,13 +26,13 @@ class SparseMatrixTests {
 	@Test
 	fun possibleValueCountShouldBeAccurate() {
 		val sm = SparseMatrix(2, 4)
-		assertEquals(8, sm.possibleValues)
+		assertEquals(8, sm.maxSize)
 	}
 
 	@Test
 	fun emptyMatrixShouldStoreNoValues() {
 		val sm = SparseMatrix(2, 4)
-		assertEquals(0, sm.nonZeroValues)
+		assertEquals(0, sm.nonZeroSize)
 	}
 
 	@Test
@@ -49,7 +49,7 @@ class SparseMatrixTests {
 	fun zeroValuesShouldNotBeStored() {
 		val sm = SparseMatrix(10, 10)
 		sm[1, 2] = 0.0
-		assertEquals(0, sm.nonZeroValues)
+		assertEquals(0, sm.nonZeroSize)
 		assertEquals(0.0, sm[1, 2])
 	}
 
@@ -61,7 +61,7 @@ class SparseMatrixTests {
 		sm[4, 5] = 7.89
 		sm[6, 7] = 0.0
 
-		assertEquals(3, sm.nonZeroValues)
+		assertEquals(3, sm.nonZeroSize)
 		assertEquals(1.23, sm[0, 1])
 		assertEquals(4.56, sm[2, 3])
 		assertEquals(7.89, sm[4, 5])
@@ -93,6 +93,41 @@ class SparseMatrixTests {
 			}
 		}
 		assertEquals(1.0, sm.density)
+	}
+
+	@Test
+	fun clearShouldRemoveAllValues() {
+		val sm = SparseMatrix(10, 10)
+		sm[0, 1] = 1.23
+		sm[2, 3] = 4.56
+		sm[4, 5] = 7.89
+		sm[6, 7] = 0.0
+		sm.clear()
+		assertEquals(0, sm.nonZeroSize)
+	}
+
+	@Test
+	fun clearRowShouldRemoveCorrectValues() {
+		val sm = SparseMatrix(10, 10)
+		sm[0, 1] = 1.23
+		sm[2, 3] = 4.56
+		sm[4, 5] = 7.89
+		sm[6, 7] = 0.0
+		sm.clearRow(2)
+		assertEquals(2, sm.nonZeroSize)
+		(0..9).forEach { assertEquals(0.0, sm[2, it]) }
+	}
+
+	@Test
+	fun clearColumnShouldRemoveCorrectValues() {
+		val sm = SparseMatrix(10, 10)
+		sm[0, 1] = 1.23
+		sm[2, 3] = 4.56
+		sm[4, 5] = 7.89
+		sm[6, 7] = 0.0
+		sm.clearColumn(3)
+		assertEquals(2, sm.nonZeroSize)
+		(0..9).forEach { assertEquals(0.0, sm[it, 3]) }
 	}
 
 	@Test

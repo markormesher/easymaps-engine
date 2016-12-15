@@ -6,6 +6,12 @@ interface Matrix {
 
 	operator fun set(row: Int, col: Int, value: Double)
 
+	fun clear()
+
+	fun clearRow(row: Int)
+
+	fun clearColumn(column: Int)
+
 	val width: Int
 
 	val height: Int
