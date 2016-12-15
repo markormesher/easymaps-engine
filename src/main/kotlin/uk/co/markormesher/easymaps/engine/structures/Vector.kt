@@ -10,4 +10,6 @@ interface Vector {
 
 	val size: Int
 
+	fun forEach(exec: (position: Int, value: Double) -> Unit)
+
 }

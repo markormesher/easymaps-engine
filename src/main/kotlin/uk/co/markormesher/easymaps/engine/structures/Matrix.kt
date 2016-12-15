@@ -12,6 +12,8 @@ interface Matrix {
 
 	fun clearColumn(column: Int)
 
+	fun getRow(row: Int): Vector
+
 	val width: Int
 
 	val height: Int

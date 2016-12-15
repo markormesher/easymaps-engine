@@ -37,6 +37,12 @@ class SparseMatrix(private val w: Int, private val h: Int): Matrix {
 		(0..height - 1).forEach { row -> set(row, column, 0.0) }
 	}
 
+	override fun getRow(row: Int): SparseVector {
+		validateIndex(row, w, "row")
+
+		return rows[row]
+	}
+
 	override val width: Int
 		get() = w
 
@@ -64,12 +70,6 @@ class SparseMatrix(private val w: Int, private val h: Int): Matrix {
 				operator(row, col, value)
 			}
 		}
-	}
-
-	fun getRow(row: Int): SparseVector {
-		validateIndex(row, w, "row")
-
-		return rows[row]
 	}
 
 	fun getColumn(col: Int): SparseVector {

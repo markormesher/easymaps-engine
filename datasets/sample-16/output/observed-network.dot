@@ -1,0 +1,23 @@
+digraph Map {
+graph[overlap = false, splines = true];
+edge[arrowsize = 0.4];
+node[fontsize = 8, margin = "0.07,0.02"];
+"0" -> "1" [dir = both];
+"1" -> "2" [dir = both];
+"1" -> "7" [dir = both];
+"2" -> "3" [dir = both];
+"2" -> "5" [dir = both];
+"2" -> "6" [dir = both];
+"2" -> "7" [dir = both];
+"3" -> "4" [dir = both];
+"3" -> "5" [dir = both];
+"3" -> "10" [dir = both];
+"3" -> "13" [dir = both];
+"8" -> "13" [dir = both];
+"8" -> "14" [dir = both];
+"9" -> "10" [dir = both];
+"11" -> "12" [dir = both];
+"12" -> "13" [dir = both];
+"12" -> "14" [dir = both];
+"13" -> "15" [dir = both];
+}
