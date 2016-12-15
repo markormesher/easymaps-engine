@@ -38,7 +38,7 @@ class SparseMatrix(private val w: Int, private val h: Int) : Matrix {
 	val density: Double
 		get() = nonZeroValues / possibleValues.toDouble()
 
-	override fun clone(): Matrix {
+	override fun clone(): SparseMatrix {
 		val output = SparseMatrix(w, h)
 		forEachNonZero { row, col, value -> output[row, col] = value }
 		return output
@@ -64,6 +64,11 @@ class SparseMatrix(private val w: Int, private val h: Int) : Matrix {
 		val tempColumn = SparseVector(w)
 		forEachNonZero { r, c, v -> if (c == col) tempColumn[r] = v }
 		return tempColumn
+	}
+
+	fun clearRow(row: Int) {
+		validateIndex(row, w, "row")
+		rows[row].clear()
 	}
 
 }

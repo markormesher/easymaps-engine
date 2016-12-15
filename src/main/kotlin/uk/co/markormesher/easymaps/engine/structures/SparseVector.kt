@@ -26,6 +26,8 @@ class SparseVector(private val n: Int) : Vector {
 		return map[i] ?: 0.0
 	}
 
+	fun clear() = map.clear()
+
 	override val size: Int
 		get() = n
 

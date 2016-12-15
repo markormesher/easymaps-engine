@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.algorithms.ImprovedBruteForceIsomorphismFinder
+import uk.co.markormesher.easymaps.engine.algorithms.Ullmann1976IsomorphismFinder
 import uk.co.markormesher.easymaps.engine.helpers.printError
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
@@ -10,7 +10,7 @@ fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int
 
 	printSubHeader("Matching Networks")
 
-	val isomorphismFinder = ImprovedBruteForceIsomorphismFinder(observedNetwork, knownNetwork)
+	val isomorphismFinder = Ullmann1976IsomorphismFinder(observedNetwork, knownNetwork)
 	val isomorphisms = isomorphismFinder.findIsomorphisms()
 
 	if (isomorphisms.isEmpty()) {
