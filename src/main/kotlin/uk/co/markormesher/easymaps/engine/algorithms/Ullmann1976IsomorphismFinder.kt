@@ -1,6 +1,8 @@
 package uk.co.markormesher.easymaps.engine.algorithms
 
+import uk.co.markormesher.easymaps.engine.structures.Matrix
 import uk.co.markormesher.easymaps.engine.structures.Network
+import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
 import kotlin.comparisons.compareBy
 
@@ -29,16 +31,17 @@ class Ullmann1976IsomorphismFinder(val candidate: Network, val master: Network):
 			.map({ i -> i.first })
 
 	// for all candidate nodes, calc the list of master nodes that are of equal or higher degree
-	private fun calcInitialPossibleAssignments() = Array(candidate.nodeCount, { cNode ->
-		val matches = HashSet<Int>()
-		matches.addAll((0..master.nodeCount - 1).filter { mNode -> candidate.nodeDegree(cNode) <= master.nodeDegree(mNode) })
-		return@Array matches
-	})
+	private fun calcInitialPossibleAssignments(): Matrix {
+		val m = SparseMatrix(master.nodeCount, candidate.nodeCount)
+		for (cNode in 0..candidate.nodeCount - 1) {
+			(0..master.nodeCount - 1)
+					.filter { mNode -> candidate.nodeDegree(cNode) <= master.nodeDegree(mNode) }
+					.forEach { mNode -> m[cNode, mNode] = 1.0 }
+		}
+		return m
+	}
 
-	private fun search(assignments: MutableMap<Int, Int>, possibleAssignments: Array<HashSet<Int>>): Boolean {
-		// update assignments
-		updatePossibleAssignments(possibleAssignments)
-
+	private fun search(assignments: MutableMap<Int, Int>, possibleAssignments: Matrix): Boolean {
 		// check that the assignments don't create non-existent edges
 		var failed = false
 		candidate.forEachEdge { from, to ->
@@ -53,6 +56,9 @@ class Ullmann1976IsomorphismFinder(val candidate: Network, val master: Network):
 		}
 		if (failed) return false
 
+		// update assignments
+		updatePossibleAssignments(possibleAssignments)
+
 		// if all nodes of the candidate network have assignments, we're done
 		if (assignments.size == candidate.nodeCount) {
 			val clone = HashMap<Int, Int>(candidate.nodeCount)
@@ -65,54 +71,43 @@ class Ullmann1976IsomorphismFinder(val candidate: Network, val master: Network):
 		val pivotNode = candidatePivotOrder[assignments.size]
 
 		// try all possible assignments for the pivot node
-		for (a in possibleAssignments[pivotNode]) {
-			if (assignments.containsValue(a)) continue
+		possibleAssignments.forEachOnRow(pivotNode, { possibleMNode, value ->
+			if (value != 1.0 || assignments.containsValue(possibleMNode)) return@forEachOnRow
 
-			// let's assume "pivotNode => a"
-			assignments.put(pivotNode, a)
+			assignments.put(pivotNode, possibleMNode)
 
-			// create a clone of our possible assignments, where pivotNode is only assigned to a
-			val possibleAssignmentsClone = possibleAssignments.deepClone()
-			possibleAssignmentsClone[pivotNode].clear()
-			possibleAssignmentsClone[pivotNode].add(a)
+			val possibleAssignmentsClone = possibleAssignments.clone()
+			possibleAssignmentsClone.clearRow(pivotNode)
+			possibleAssignmentsClone[pivotNode, possibleMNode] = 1.0
 
-			// search recursively
 			search(assignments, possibleAssignmentsClone)
-
-			// undo the assumption "pivotNode => a"
 			assignments.remove(pivotNode)
-		}
+		})
 
 		return false
 	}
 
-	private fun updatePossibleAssignments(possibleAssignments: Array<HashSet<Int>>) {
+	private fun updatePossibleAssignments(possibleAssignments: Matrix) {
 		var changes = true
 		while (changes) {
 			changes = false
 
 			for (cNode in 0..candidate.nodeCount - 1) {
-				val removals = LinkedList<Pair<Int, Int>>()
-				for (cNodeAssignment in possibleAssignments[cNode]) {
+				possibleAssignments.forEachOnRow(cNode, { cNodeAssignment, value ->
+					if (value != 1.0) return@forEachOnRow
+
 					for (cNodeSuccessor in candidate.getSuccessors(cNode)) {
-						val match = (0..master.nodeCount - 1).any { mNode ->
-							possibleAssignments[cNodeSuccessor].contains(mNode) && master.hasEdge(cNodeAssignment, mNode)
+						val possible = (0..master.nodeCount - 1).any { mNode ->
+							possibleAssignments[cNodeSuccessor, mNode] == 1.0 && master.hasEdge(cNodeAssignment, mNode)
 						}
-						if (!match) {
-							removals.add(Pair(cNode, cNodeAssignment))
+						if (!possible) {
+							possibleAssignments[cNode, cNodeAssignment] = 0.0
 							changes = true
 						}
 					}
-				}
-				removals.forEach { r -> possibleAssignments[r.first].remove(r.second) }
+				})
 			}
 		}
 	}
 
 }
-
-fun <E> Array<HashSet<E>>.deepClone() = Array(this.size, { i ->
-	val clone = HashSet<E>()
-	clone.addAll(this[i])
-	return@Array clone
-})
