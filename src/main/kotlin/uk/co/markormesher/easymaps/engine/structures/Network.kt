@@ -4,7 +4,7 @@ import java.util.*
 
 class Network(private val n: Int) {
 
-	private val adj = SparseSquareMatrix(n)
+	private val adj = SparseMatrix(n, n)
 	private val nodeLabels = HashMap<Int, String>()
 
 	fun addEdge(from: Int, to: Int) {

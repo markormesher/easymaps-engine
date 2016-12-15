@@ -6,7 +6,7 @@ import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.DisjointSet
 import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
-import uk.co.markormesher.easymaps.engine.structures.SparseSquareMatrix
+import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
 
 // TODO: tests for all segments of observed network generation
@@ -24,11 +24,11 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConf
 	return network
 }
 
-private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseSquareMatrix {
+private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseMatrix {
 
 	printInfo("Generating trait co-occurrence matrix")
 
-	val coMatrix = SparseSquareMatrix(cfg.traitTranslator.size)
+	val coMatrix = SparseMatrix(cfg.traitTranslator.size, cfg.traitTranslator.size)
 	parsedLogFiles.forEach { logFile ->
 		logFile.logEntries.forEach { logEntry ->
 			logEntry.traits.forEachPair { a, b ->
@@ -44,7 +44,7 @@ private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg:
 	return coMatrix
 }
 
-private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: EngineConfig): DisjointSet {
+private fun generateClusterSets(coMatrix: SparseMatrix, cfg: EngineConfig): DisjointSet {
 
 	printInfo("Building disjoint set of trait clusters")
 
@@ -61,11 +61,11 @@ private fun generateClusterSets(coMatrix: SparseSquareMatrix, cfg: EngineConfig)
 	return clusterSets
 }
 
-private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseSquareMatrix {
+private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseMatrix {
 
 	printInfo("Generating cluster adjacency matrix")
 
-	val adjMatrix = SparseSquareMatrix(clusterSets.setCount)
+	val adjMatrix = SparseMatrix(clusterSets.setCount, clusterSets.setCount)
 	var fileId = 0
 	parsedLogFiles.forEach logFiles@ { logFile ->
 		++fileId
@@ -130,7 +130,7 @@ private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: EngineConfi
 	}
 }
 
-private fun generateNetwork(adjMatrix: SparseSquareMatrix): Network {
+private fun generateNetwork(adjMatrix: SparseMatrix): Network {
 
 	printInfo("Generating final network")
 

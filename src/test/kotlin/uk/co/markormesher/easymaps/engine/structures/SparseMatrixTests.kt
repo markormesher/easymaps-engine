@@ -6,36 +6,38 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotEquals
 
-class SparseSquareMatrixTests {
+class SparseMatrixTests {
 
 	@Test
 	fun shouldNotAllowSizesZeroOrBelow() {
-		assertFailsWith(IllegalArgumentException::class, { SparseSquareMatrix(-1) })
-		assertFailsWith(IllegalArgumentException::class, { SparseSquareMatrix(0) })
+		assertFailsWith(IllegalArgumentException::class, { SparseMatrix(-1, 1) })
+		assertFailsWith(IllegalArgumentException::class, { SparseMatrix(0, 1) })
+		assertFailsWith(IllegalArgumentException::class, { SparseMatrix(1, -1) })
+		assertFailsWith(IllegalArgumentException::class, { SparseMatrix(1, 0) })
 	}
 
 	@Test
 	fun sizeShouldBeAccurate() {
-		val sm = SparseSquareMatrix(10)
-		assertEquals(10, sm.width)
-		assertEquals(10, sm.height)
+		val sm = SparseMatrix(2, 4)
+		assertEquals(2, sm.width)
+		assertEquals(4, sm.height)
 	}
 
 	@Test
 	fun possibleValueCountShouldBeAccurate() {
-		val sm = SparseSquareMatrix(10)
-		assertEquals(100, sm.possibleValues)
+		val sm = SparseMatrix(2, 4)
+		assertEquals(8, sm.possibleValues)
 	}
 
 	@Test
 	fun emptyMatrixShouldStoreNoValues() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(2, 4)
 		assertEquals(0, sm.nonZeroValues)
 	}
 
 	@Test
 	fun nonSetValuesShouldBeZero() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		for (r in 0..9) {
 			for (c in 0..9) {
 				assertEquals(0.0, sm[r, c])
@@ -45,7 +47,7 @@ class SparseSquareMatrixTests {
 
 	@Test
 	fun zeroValuesShouldNotBeStored() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		sm[1, 2] = 0.0
 		assertEquals(0, sm.nonZeroValues)
 		assertEquals(0.0, sm[1, 2])
@@ -53,7 +55,7 @@ class SparseSquareMatrixTests {
 
 	@Test
 	fun nonZeroValuesShouldBeStored() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		sm[0, 1] = 1.23
 		sm[2, 3] = 4.56
 		sm[4, 5] = 7.89
@@ -68,23 +70,23 @@ class SparseSquareMatrixTests {
 
 	@Test
 	fun densityShouldBeAccurateWhenEmpty() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		assertEquals(0.0, sm.density)
 	}
 
 	@Test
 	fun densityShouldBeAccurateWhenSemiFull() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		sm[0, 1] = 1.23
 		sm[2, 3] = 4.56
 		sm[4, 5] = 7.89
 		sm[6, 7] = 0.0
-		assertEquals(0.03, sm.density)
+		assertEquals(0.03, sm.density) // 3 out of 100
 	}
 
 	@Test
 	fun densityShouldBeAccurateWhenFull() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		for (r in 0..9) {
 			for (c in 0..9) {
 				sm[r, c] = 1.0
@@ -96,7 +98,7 @@ class SparseSquareMatrixTests {
 	@Test
 	fun cloneShouldCreateNonLinkedDuplicate() {
 		// populate original with zero and non-zero values
-		val smOriginal = SparseSquareMatrix(10)
+		val smOriginal = SparseMatrix(10, 10)
 		val values = doubleArrayOf(0.0, 1.2, 3.4, 5.6)
 		var valueCounter = 0
 		for (r in 0..9) {
@@ -120,7 +122,7 @@ class SparseSquareMatrixTests {
 
 	@Test
 	fun forEachNonZeroShouldSkipZeroValues() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		sm[0, 1] = 1.23
 		sm[2, 3] = 4.56
 		sm[4, 5] = 7.89
@@ -145,7 +147,7 @@ class SparseSquareMatrixTests {
 
 	@Test
 	fun getRowShouldContainCorrectValues() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		sm[0, 1] = 1.23
 		sm[2, 3] = 4.56
 		sm[2, 5] = 7.89
@@ -158,7 +160,7 @@ class SparseSquareMatrixTests {
 
 	@Test
 	fun getColumnShouldContainCorrectValues() {
-		val sm = SparseSquareMatrix(10)
+		val sm = SparseMatrix(10, 10)
 		sm[0, 1] = 1.23
 		sm[2, 1] = 4.56
 		sm[2, 5] = 7.89
