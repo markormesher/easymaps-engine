@@ -1,7 +1,10 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.algorithms.Ullmann1976IsomorphismFinder
-import uk.co.markormesher.easymaps.engine.helpers.*
+import uk.co.markormesher.easymaps.engine.helpers.printError
+import uk.co.markormesher.easymaps.engine.helpers.printInfo
+import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
+import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.structures.Network
 
 fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int, Int>> {
@@ -24,7 +27,7 @@ fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int
 		printSubInfo("$timer ms")
 		timerTotal += timer
 	}
-	printSubWarning("Average: ${timerTotal / loops} ms")
+	printSubInfo("Average: ${timerTotal / loops} ms")
 
 
 

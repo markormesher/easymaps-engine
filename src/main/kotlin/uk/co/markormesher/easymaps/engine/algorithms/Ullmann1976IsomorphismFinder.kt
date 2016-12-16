@@ -20,9 +20,7 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 	}
 
 	// calc the order in which candidate nodes should be selected as pivots (descending degree order)
-	private fun calcCandidatePivotOrder() = Array(candidate.nodeCount, { i -> Pair(i, candidate.nodeDegree(i)) })
-			.sortedByDescending { i -> i.second }
-			.map { i -> i.first }
+	private fun calcCandidatePivotOrder() = Array(candidate.nodeCount, { it }).sortedByDescending { i -> candidate.nodeDegree(i) }
 
 	// for all candidate nodes, calc the list of master nodes that are of equal or higher degree
 	private fun calcInitialPossibleAssignments(): Matrix {
