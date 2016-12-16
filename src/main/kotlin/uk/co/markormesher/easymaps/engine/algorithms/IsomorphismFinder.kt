@@ -20,10 +20,9 @@ abstract class IsomorphismFinder(val candidate: Network, val master: Network) {
 		var failed = false
 		candidate.forEachEdge { from, to ->
 			if (failed) return@forEachEdge
-			if (from != lastAssigned && to != lastAssigned) return@forEachEdge
-			val assignedFrom = assignment[from]
-			val assignedTo = assignment[to]
-			if (assignedFrom != null && assignedTo != null) {
+			if (from == lastAssigned || to == lastAssigned) {
+				val assignedFrom = assignment[from] ?: return@forEachEdge
+				val assignedTo = assignment[to] ?: return@forEachEdge
 				if (!master.hasEdge(assignedFrom, assignedTo)) {
 					failed = true
 				}
