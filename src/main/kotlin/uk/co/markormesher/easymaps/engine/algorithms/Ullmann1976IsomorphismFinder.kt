@@ -1,6 +1,5 @@
 package uk.co.markormesher.easymaps.engine.algorithms
 
-import uk.co.markormesher.easymaps.engine.structures.Matrix
 import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
@@ -23,7 +22,7 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 	private fun calcCandidatePivotOrder() = Array(candidate.nodeCount, { it }).sortedByDescending { i -> candidate.nodeDegree(i) }
 
 	// for all candidate nodes, calc the list of master nodes that are of equal or higher degree
-	private fun calcInitialPossibleAssignments(): Matrix<Boolean> {
+	private fun calcInitialPossibleAssignments(): SparseMatrix<Boolean> {
 		val m = SparseMatrix(master.nodeCount, candidate.nodeCount, false)
 		for (cNode in 0..candidate.nodeCount - 1) {
 			(0..master.nodeCount - 1)
@@ -33,7 +32,7 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 		return m
 	}
 
-	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: Matrix<Boolean>) {
+	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: SparseMatrix<Boolean>) {
 		// if we reached an impossible assignment, backtrack
 		if (!validateAssignment(assignment)) return
 
@@ -45,8 +44,8 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 
 		val pivotNode = candidatePivotOrder[assignment.size]
 		prunePossibleAssignments(possibleAssignments)
-		possibleAssignments.forEachOnRow(pivotNode, { possibleMNode, hasEdge -> // TODO: non-zero
-			if (hasEdge || assignment.containsValue(possibleMNode)) return@forEachOnRow
+		possibleAssignments.forEachNonDefaultOnRow(pivotNode, { possibleMNode, edge ->
+			if (!edge || assignment.containsValue(possibleMNode)) return@forEachNonDefaultOnRow
 
 			assignment.put(pivotNode, possibleMNode)
 
@@ -66,17 +65,16 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 	// suitable neighbours then cNode cannot be assigned to mNode, so remove mNode from cNode's
 	// possible assignment list. this may cause other assignments to become impossible, so repeat
 	// this process until no more changes are made.
-	private fun prunePossibleAssignments(possibleAssignments: Matrix<Boolean>) {
+	private fun prunePossibleAssignments(possibleAssignments: SparseMatrix<Boolean>) {
 		var changes = true
 		while (changes) {
 			changes = false
 
 			// for every candidate node (cNode)
 			for (cNode in 0..candidate.nodeCount - 1) {
-
 				// for every possible assignment (mNode) of cNode
-				possibleAssignments.forEachOnRow(cNode, { mNode, hasEdge -> // TODO: non-zero
-					if (!hasEdge) return@forEachOnRow
+				possibleAssignments.forEachNonDefaultOnRow(cNode, { mNode, edge ->
+					if (!edge) return@forEachNonDefaultOnRow
 
 					// for each of cNode's neighbours...
 					for (cNodeNeighbour in candidate.getSuccessors(cNode)) {
