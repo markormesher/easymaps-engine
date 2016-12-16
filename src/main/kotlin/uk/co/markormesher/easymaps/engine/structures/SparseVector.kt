@@ -2,22 +2,19 @@ package uk.co.markormesher.easymaps.engine.structures
 
 import java.util.*
 
-class SparseVector<E>(private val n: Int, private val default: E) : Vector<E> {
+class SparseVector<E>(override val size: Int, private val default: E) : Vector<E> {
 
 	private val map = HashMap<Int, E>()
 
 	init {
-		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")
+		if (size <= 0) throw IllegalArgumentException("Size must be greater than zero")
 	}
-
-	override val size: Int
-		get() = n
 
 	val realSize: Int
 		get() = map.size
 
 	override operator fun set(i: Int, value: E) {
-		validateIndex(i, n, "i")
+		validateIndex(i, size, "i")
 
 		if (value == default) {
 			map.remove(i)
@@ -27,7 +24,7 @@ class SparseVector<E>(private val n: Int, private val default: E) : Vector<E> {
 	}
 
 	override operator fun get(i: Int): E {
-		validateIndex(i, n, "i")
+		validateIndex(i, size, "i")
 
 		return map[i] ?: default
 	}
@@ -46,7 +43,7 @@ class SparseVector<E>(private val n: Int, private val default: E) : Vector<E> {
 	override fun clear() = map.clear()
 
 	override fun clone(): SparseVector<E> {
-		val output = SparseVector(n, default)
+		val output = SparseVector(size, default)
 		forEachNonDefault { position, value -> output[position] = value }
 		return output
 	}

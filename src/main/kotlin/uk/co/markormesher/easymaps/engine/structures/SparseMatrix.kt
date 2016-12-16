@@ -1,19 +1,13 @@
 package uk.co.markormesher.easymaps.engine.structures
 
-class SparseMatrix<E>(private val w: Int, private val h: Int, private val default: E): Matrix<E> {
+class SparseMatrix<E>(override val width: Int, override val height: Int, private val default: E): Matrix<E> {
 
 	init {
-		if (w <= 0) throw IllegalArgumentException("Width must be greater than zero")
-		if (h <= 0) throw IllegalArgumentException("Height must be greater than zero")
+		if (width <= 0) throw IllegalArgumentException("Width must be greater than zero")
+		if (height <= 0) throw IllegalArgumentException("Height must be greater than zero")
 	}
 
-	private val rows = Array(w, { SparseVector(w, default) })
-
-	override val width: Int
-		get() = w
-
-	override val height: Int
-		get() = h
+	private val rows = Array(height, { SparseVector(width, default) })
 
 	val size: Int
 		get() = width * height
@@ -39,15 +33,15 @@ class SparseMatrix<E>(private val w: Int, private val h: Int, private val defaul
 	}
 
 	override fun getRow(row: Int): SparseVector<E> {
-		validateIndex(row, w, "row")
+		validateIndex(row, width, "row")
 
 		return rows[row].clone()
 	}
 
 	override fun getColumn(column: Int): SparseVector<E> {
-		validateIndex(column, w, "col")
+		validateIndex(column, width, "col")
 
-		val tempColumn = SparseVector(h, default)
+		val tempColumn = SparseVector(height, default)
 		forEachNonDefault { r, c, v -> if (column == c) tempColumn[r] = v }
 		return tempColumn
 	}
@@ -87,17 +81,17 @@ class SparseMatrix<E>(private val w: Int, private val h: Int, private val defaul
 	}
 
 	override fun clearRow(row: Int) {
-		validateIndex(row, h, "row")
+		validateIndex(row, height, "row")
 		rows[row].clear()
 	}
 
 	override fun clearColumn(column: Int) {
-		validateIndex(column, w, "column")
+		validateIndex(column, width, "column")
 		(0..height - 1).forEach { row -> set(row, column, default) }
 	}
 
 	override fun clone(): SparseMatrix<E> {
-		val output = SparseMatrix(w, h, default)
+		val output = SparseMatrix(width, height, default)
 		forEachNonDefault { row, column, value -> output[row, column] = value }
 		return output
 	}
