@@ -20,14 +20,16 @@ fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int
 	printInfo("Ullmann:")
 	timerTotal = 0
 	Ullmann1976IsomorphismFinder(observedNetwork, knownNetwork).findIsomorphisms()
+	Ullmann1976IsomorphismFinder(observedNetwork, knownNetwork).findIsomorphisms()
 	for (i in 1..loops) {
-		timer = -System.currentTimeMillis()
-		Ullmann1976IsomorphismFinder(observedNetwork, knownNetwork).findIsomorphisms()
-		timer += System.currentTimeMillis()
-		printSubInfo("$timer ms")
+		timer = -System.nanoTime()
+		val u = Ullmann1976IsomorphismFinder(observedNetwork, knownNetwork)
+		u.findIsomorphisms()
+		timer += System.nanoTime()
+		printSubInfo("${u.searchCount} searches in $timer ns")
 		timerTotal += timer
 	}
-	printSubInfo("Average: ${timerTotal / loops} ms")
+	printSubInfo("Average: ${(timerTotal / loops.toDouble()) / 1000000000} s")
 
 
 
