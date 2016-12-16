@@ -72,12 +72,14 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 
 			// for every candidate node (cNode)
 			for (cNode in 0..candidate.nodeCount - 1) {
+
 				// for every possible assignment (mNode) of cNode
 				possibleAssignments.forEachNonDefaultOnRow(cNode, { mNode, edge ->
 					if (!edge) return@forEachNonDefaultOnRow
 
 					// for each of cNode's neighbours...
 					for (cNodeNeighbour in candidate.getSuccessors(cNode)) {
+
 						// check whether mNode has a suitable neighbour
 						val mNodeHasSuitableNeighbour = (0..master.nodeCount - 1).any { mNodeNeighbour ->
 							possibleAssignments[cNodeNeighbour, mNodeNeighbour] && master.hasEdge(mNode, mNodeNeighbour)

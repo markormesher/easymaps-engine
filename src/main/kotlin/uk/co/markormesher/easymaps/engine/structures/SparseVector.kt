@@ -4,7 +4,7 @@ import java.util.*
 
 class SparseVector<E>(private val n: Int, private val default: E) : Vector<E> {
 
-	private val map = TreeMap<Int, E>()
+	private val map = HashMap<Int, E>()
 
 	init {
 		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")
@@ -47,7 +47,7 @@ class SparseVector<E>(private val n: Int, private val default: E) : Vector<E> {
 
 	override fun clone(): SparseVector<E> {
 		val output = SparseVector(n, default)
-		forEach { position, value -> output[position] = value }
+		forEachNonDefault { position, value -> output[position] = value }
 		return output
 	}
 

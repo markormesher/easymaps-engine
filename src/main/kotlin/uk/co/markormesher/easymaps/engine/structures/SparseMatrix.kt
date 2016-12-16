@@ -48,13 +48,13 @@ class SparseMatrix<E>(private val w: Int, private val h: Int, private val defaul
 		validateIndex(column, w, "col")
 
 		val tempColumn = SparseVector(h, default)
-		forEach { r, c, v -> if (c == column) tempColumn[r] = v }
+		forEachNonDefault { r, c, v -> if (column == c) tempColumn[r] = v }
 		return tempColumn
 	}
 
 	override fun forEach(exec: (Int, Int, E) -> Unit) {
 		for (row in 0..height - 1) {
-			for (column  in 0..width - 1) {
+			for (column in 0..width - 1) {
 				exec(row, column, get(row, column))
 			}
 		}
@@ -98,7 +98,7 @@ class SparseMatrix<E>(private val w: Int, private val h: Int, private val defaul
 
 	override fun clone(): SparseMatrix<E> {
 		val output = SparseMatrix(w, h, default)
-		forEach { row, col, value -> output[row, col] = value }
+		forEachNonDefault { row, column, value -> output[row, column] = value }
 		return output
 	}
 
