@@ -4,31 +4,25 @@ import uk.co.markormesher.easymaps.engine.structures.Matrix
 import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
-import kotlin.comparisons.compareBy
 
 /*
 Approach: perform a depth-first-search of all possible node assignments, pruning branches
-when an impossible assignment is reached and limiting the search space by, pivoting on nodes
-in descending degree order, and for each pivot node in the candidate graph selecting only
-the nodes from the master graph with greater or equal degree.
+when an impossible assignment is reached, pivoting on nodes in descending degree order, and
+limiting the search space by removing possible assignments in the manner described below.
 */
 
-class Ullmann1976IsomorphismFinder(val candidate: Network, val master: Network): IsomorphismFinder {
+class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): IsomorphismFinder(candidate, master) {
 
-	val isomorphisms = ArrayList<Map<Int, Int>>()
 	val candidatePivotOrder by lazy { calcCandidatePivotOrder() }
 
-	override fun findIsomorphisms(): List<Map<Int, Int>> {
-		isomorphisms.clear()
+	override fun beginSearch() {
 		search(HashMap<Int, Int>(candidate.nodeCount), calcInitialPossibleAssignments())
-		return isomorphisms
 	}
 
-	// calc the order the candidate nodes should be selected as pivots, using the highest-degree nodes first
+	// calc the order in which candidate nodes should be selected as pivots (descending degree order)
 	private fun calcCandidatePivotOrder() = Array(candidate.nodeCount, { i -> Pair(i, candidate.nodeDegree(i)) })
-			.sortedWith(compareBy { i -> i.second })
-			.reversed()
-			.map({ i -> i.first })
+			.sortedByDescending { i -> i.second }
+			.map { i -> i.first }
 
 	// for all candidate nodes, calc the list of master nodes that are of equal or higher degree
 	private fun calcInitialPossibleAssignments(): Matrix {
@@ -41,68 +35,63 @@ class Ullmann1976IsomorphismFinder(val candidate: Network, val master: Network):
 		return m
 	}
 
-	private fun search(assignments: MutableMap<Int, Int>, possibleAssignments: Matrix): Boolean {
-		// check that the assignments don't create non-existent edges
-		var failed = false
-		candidate.forEachEdge { from, to ->
-			if (failed) return@forEachEdge
-			val assignedFrom = assignments[from]
-			val assignedTo = assignments[to]
-			if (assignedFrom != null && assignedTo != null) {
-				if (!master.hasEdge(assignedFrom, assignedTo)) {
-					failed = true
-				}
-			}
-		}
-		if (failed) return false
+	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: Matrix) {
+		// if we reached an impossible assignment, backtrack
+		if (!validateAssignment(assignment)) return
 
-		// update assignments
-		updatePossibleAssignments(possibleAssignments)
-
-		// if all nodes of the candidate network have assignments, we're done
-		if (assignments.size == candidate.nodeCount) {
-			val clone = HashMap<Int, Int>(candidate.nodeCount)
-			clone.putAll(assignments)
-			isomorphisms.add(clone)
-			return true
+		// if all nodes of the candidate network have assignment, we're done
+		if (assignment.size == candidate.nodeCount) {
+			submitResult(assignment)
+			return
 		}
 
-		// the node in the candidate network that we are trying to assign
-		val pivotNode = candidatePivotOrder[assignments.size]
-
-		// try all possible assignments for the pivot node
+		val pivotNode = candidatePivotOrder[assignment.size]
+		prunePossibleAssignments(possibleAssignments)
 		possibleAssignments.forEachOnRow(pivotNode, { possibleMNode, value ->
-			if (value != 1.0 || assignments.containsValue(possibleMNode)) return@forEachOnRow
+			if (value != 1.0 || assignment.containsValue(possibleMNode)) return@forEachOnRow
 
-			assignments.put(pivotNode, possibleMNode)
+			assignment.put(pivotNode, possibleMNode)
 
 			val possibleAssignmentsClone = possibleAssignments.clone()
 			possibleAssignmentsClone.clearRow(pivotNode)
 			possibleAssignmentsClone[pivotNode, possibleMNode] = 1.0
+			search(assignment, possibleAssignmentsClone)
 
-			search(assignments, possibleAssignmentsClone)
-			assignments.remove(pivotNode)
+			assignment.remove(pivotNode)
 		})
-
-		return false
 	}
 
-	private fun updatePossibleAssignments(possibleAssignments: Matrix) {
+	// prune possible assignments on the following logic:
+	// for every candidate node (cNode), for every possible master node assignment (mNode), check
+	// whether cNode's neighbours will have suitable neighbours from mNode (by checking for nodes
+	// with a equal or greater degree that exist as possible assignments). if there would be no
+	// suitable neighbours then cNode cannot be assigned to mNode, so remove mNode from cNode's
+	// possible assignment list. this may cause other assignments to become impossible, so repeat
+	// this process until no more changes are made.
+	private fun prunePossibleAssignments(possibleAssignments: Matrix) {
 		var changes = true
 		while (changes) {
 			changes = false
 
+			// for every candidate node (cNode)
 			for (cNode in 0..candidate.nodeCount - 1) {
-				possibleAssignments.forEachOnRow(cNode, { cNodeAssignment, value ->
+
+				// for every possible assignment (mNode) of cNode
+				possibleAssignments.forEachOnRow(cNode, { mNode, value ->
 					if (value != 1.0) return@forEachOnRow
 
-					for (cNodeSuccessor in candidate.getSuccessors(cNode)) {
-						val possible = (0..master.nodeCount - 1).any { mNode ->
-							possibleAssignments[cNodeSuccessor, mNode] == 1.0 && master.hasEdge(cNodeAssignment, mNode)
+					// for each of cNode's neighbours...
+					for (cNodeNeighbour in candidate.getSuccessors(cNode)) {
+						// check whether mNode has a suitable neighbour
+						val mNodeHasSuitableNeighbour = (0..master.nodeCount - 1).any { mNodeNeighbour ->
+							possibleAssignments[cNodeNeighbour, mNodeNeighbour] == 1.0 && master.hasEdge(mNode, mNodeNeighbour)
 						}
-						if (!possible) {
-							possibleAssignments[cNode, cNodeAssignment] = 0.0
+
+						// if not, remove the cNode => mNode possible assignment
+						if (!mNodeHasSuitableNeighbour) {
+							possibleAssignments[cNode, mNode] = 0.0
 							changes = true
+							break
 						}
 					}
 				})
