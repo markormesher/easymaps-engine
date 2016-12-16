@@ -10,7 +10,7 @@ when an impossible assignment is reached, pivoting on nodes in descending degree
 limiting the search space by removing possible assignments in the manner described below.
 */
 
-class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): IsomorphismFinder(candidate, master) {
+class Ullmann1976IsomorphismFinder_SparseMatrix(candidate: Network, master: Network): IsomorphismFinder(candidate, master) {
 
 	var searchCount = 0L
 	val candidatePivotOrder by lazy { calcCandidatePivotOrder() }
@@ -35,6 +35,7 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 
 	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: SparseMatrix<Boolean>, lastAssigned: Int = -1) {
 		++searchCount
+
 		// if we reached an impossible assignment, backtrack
 		if (!validateAssignment(assignment, lastAssigned)) return
 

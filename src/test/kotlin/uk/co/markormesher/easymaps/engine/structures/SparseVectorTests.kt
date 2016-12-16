@@ -2,14 +2,16 @@ package uk.co.markormesher.easymaps.engine.structures
 
 import org.junit.Test
 import java.util.*
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertNotEquals
 
 class SparseVectorTests {
 
 	@Test
 	fun shouldNotAllowSizesZeroOrBelow() {
-		assertFailsWith(IllegalArgumentException::class, { SparseVector(-1, 0) })
 		assertFailsWith(IllegalArgumentException::class, { SparseVector(0, 0) })
+		assertFailsWith(IllegalArgumentException::class, { SparseVector(-1, 0) })
 	}
 
 	@Test
@@ -19,9 +21,12 @@ class SparseVectorTests {
 	}
 
 	@Test
-	fun emptyVectorShouldStoreNoValues() {
+	fun realSizeShouldBeAccurate() {
 		val sv = SparseVector(10, 0)
 		assertEquals(0, sv.realSize)
+
+		for (i in 0..9) sv[i] = 1
+		assertEquals(10, sv.realSize)
 	}
 
 	@Test
@@ -34,7 +39,6 @@ class SparseVectorTests {
 	fun defaultValuesShouldNotBeStored() {
 		val sv = SparseVector(10, 0)
 		sv[1] = 0
-		assertEquals(0, sv.realSize)
 		assertEquals(0, sv[1])
 	}
 
@@ -44,32 +48,9 @@ class SparseVectorTests {
 		sv[0] = 1
 		sv[2] = 2
 		sv[4] = 3
-		sv[6] = 0
-		assertEquals(3, sv.realSize)
 		assertEquals(1, sv[0])
 		assertEquals(2, sv[2])
 		assertEquals(3, sv[4])
-		assertEquals(0, sv[6])
-	}
-
-	@Test
-	fun nonDefaultValuesShouldReturnEmptyForEmptyVector() {
-		val sv = SparseVector(10, 0)
-		assertEquals(0, sv.nonDefaultValues.size)
-	}
-
-	@Test
-	fun nonDefaultValuesShouldReturnCorrectValues() {
-		val sv = SparseVector(10, 0)
-		sv[0] = 1
-		sv[2] = 2
-		sv[4] = 3
-		sv[6] = 0
-		assertEquals(3, sv.nonDefaultValues.size)
-		assertTrue(sv.nonDefaultValues.contains(1))
-		assertTrue(sv.nonDefaultValues.contains(2))
-		assertTrue(sv.nonDefaultValues.contains(3))
-		assertFalse(sv.nonDefaultValues.contains(0))
 	}
 
 	@Test
@@ -78,7 +59,6 @@ class SparseVectorTests {
 		sv[0] = 1
 		sv[2] = 2
 		sv[4] = 3
-		sv[6] = 0
 
 		val expectedIds = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 		val expectedValues = intArrayOf(1, 0, 2, 0, 3, 0, 0, 0, 0, 0)
@@ -102,7 +82,6 @@ class SparseVectorTests {
 		sv[0] = 1
 		sv[2] = 2
 		sv[4] = 3
-		sv[6] = 0
 
 		val expectedIds = intArrayOf(0, 2, 4)
 		val expectedValues = intArrayOf(1, 2, 3)
@@ -126,26 +105,24 @@ class SparseVectorTests {
 		sv[0] = 1
 		sv[2] = 2
 		sv[4] = 3
-		sv[6] = 0
 		sv.clear()
 		assertEquals(0, sv.realSize)
+		for (i in 0..9) assertEquals(0, sv[i])
 	}
 
 	@Test
-	fun cloneShouldCreateNonLinkedDuplicate() {
-		// populate original with default and non-default values
+	fun cloneShouldCreateDuplicate() {
 		val svOriginal = SparseVector(10, 0)
-		val values = intArrayOf(0, 1, 2, 3)
-		var valueCounter = 0
-		for (p in 0..9) {
-			svOriginal[p] = values[valueCounter++ % 4]
-		}
-
+		for (p in 0..9) svOriginal[p] = p
 		val svClone = svOriginal.clone()
 
-		for (p in 0..9) {
-			assertEquals(svOriginal[p], svClone[p])
-		}
+		for (p in 0..9) assertEquals(svOriginal[p], svClone[p])
+	}
+
+	@Test
+	fun cloneShouldCreateNonLinkedObject() {
+		val svOriginal = SparseVector(10, 0)
+		val svClone = svOriginal.clone()
 
 		svOriginal[5] = 10
 		svClone[5] = 20

@@ -4,8 +4,8 @@ import java.util.*
 
 class DisjointSet(private val size: Int) {
 
-	private val parent = IntArray(size, { i -> i })
-	private val rank = IntArray(size, { i -> 1 })
+	private val parent = IntArray(size, { it })
+	private val rank = IntArray(size, { 1 })
 	private val rootPositions = HashMap<Int, Int>()
 
 	private var _setCount = size
