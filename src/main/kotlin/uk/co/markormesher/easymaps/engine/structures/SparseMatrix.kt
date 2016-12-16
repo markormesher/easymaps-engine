@@ -1,13 +1,13 @@
 package uk.co.markormesher.easymaps.engine.structures
 
-class SparseMatrix(private val w: Int, private val h: Int): Matrix {
+class SparseMatrix<E>(private val w: Int, private val h: Int, private val default: E): Matrix<E> {
 
 	init {
 		if (w <= 0) throw IllegalArgumentException("Width must be greater than zero")
 		if (h <= 0) throw IllegalArgumentException("Height must be greater than zero")
 	}
 
-	private val rows = Array(w, { SparseVector(w) })
+	private val rows = Array(w, { SparseVector(w, default) })
 
 	override val width: Int
 		get() = w
@@ -15,60 +15,71 @@ class SparseMatrix(private val w: Int, private val h: Int): Matrix {
 	override val height: Int
 		get() = h
 
-	val maxSize: Int
+	val size: Int
 		get() = width * height
 
-	val nonZeroSize: Int
-		get() = rows.fold(0, { sum, row -> sum + row.nonZeroSize })
+	val realSize: Int
+		get() = rows.fold(0, { sum, row -> sum + row.realSize })
 
 	val density: Double
-		get() = nonZeroSize / maxSize.toDouble()
+		get() = realSize / size.toDouble()
 
-	override operator fun set(row: Int, col: Int, value: Double) {
+	override operator fun set(row: Int, col: Int, value: E) {
 		validateIndex(row, height, "row")
 		validateIndex(col, width, "col")
 
 		rows[row][col] = value
 	}
 
-	override operator fun get(row: Int, col: Int): Double {
+	override operator fun get(row: Int, col: Int): E {
 		validateIndex(row, height, "row")
 		validateIndex(col, width, "col")
 
 		return rows[row][col]
 	}
 
-	override fun getRow(row: Int): SparseVector {
+	override fun getRow(row: Int): SparseVector<E> {
 		validateIndex(row, w, "row")
 
-		// TODO: replace with .clone()
-		val tempRow = SparseVector(w)
-		rows[row].forEach { pos, value -> tempRow[pos] = value }
-		return tempRow
+		return rows[row].clone()
 	}
 
-	override fun getColumn(column: Int): SparseVector {
+	override fun getColumn(column: Int): SparseVector<E> {
 		validateIndex(column, w, "col")
 
-		val tempColumn = SparseVector(h)
-		forEachNonZero { r, c, v -> if (c == column) tempColumn[r] = v }
+		val tempColumn = SparseVector(h, default)
+		forEach { r, c, v -> if (c == column) tempColumn[r] = v }
 		return tempColumn
 	}
 
-	override fun forEachOnRow(row: Int, exec: (Int, Double) -> Unit) {
+	override fun forEach(exec: (Int, Int, E) -> Unit) {
+		for (row in 0..height - 1) {
+			for (column  in 0..width - 1) {
+				exec(row, column, get(row, column))
+			}
+		}
+	}
+
+	fun forEachNonDefault(exec: (Int, Int, E) -> Unit) {
+		for (row in 0..height - 1) {
+			rows[row].forEachNonDefault { column, value -> exec(row, column, value) }
+		}
+	}
+
+	override fun forEachOnRow(row: Int, exec: (Int, E) -> Unit) {
 		getRow(row).forEach { pos, value -> exec(pos, value) }
 	}
 
-	override fun forEachOnColumn(column: Int, exec: (Int, Double) -> Unit) {
+	fun forEachNonDefaultOnRow(row: Int, exec: (Int, E) -> Unit) {
+		getRow(row).forEachNonDefault { pos, value -> exec(pos, value) }
+	}
+
+	override fun forEachOnColumn(column: Int, exec: (Int, E) -> Unit) {
 		getColumn(column).forEach { pos, value -> exec(pos, value) }
 	}
 
-	fun forEachNonZero(operator: (Int, Int, Double) -> Unit) {
-		for (row in 0..height - 1) {
-			rows[row].forEach { col, value ->
-				operator(row, col, value)
-			}
-		}
+	fun forEachNonDefaultOnColumn(column: Int, exec: (Int, E) -> Unit) {
+		getColumn(column).forEachNonDefault { pos, value -> exec(pos, value) }
 	}
 
 	override fun clear() {
@@ -82,12 +93,12 @@ class SparseMatrix(private val w: Int, private val h: Int): Matrix {
 
 	override fun clearColumn(column: Int) {
 		validateIndex(column, w, "column")
-		(0..height - 1).forEach { row -> set(row, column, 0.0) }
+		(0..height - 1).forEach { row -> set(row, column, default) }
 	}
 
-	override fun clone(): SparseMatrix {
-		val output = SparseMatrix(w, h)
-		forEachNonZero { row, col, value -> output[row, col] = value }
+	override fun clone(): SparseMatrix<E> {
+		val output = SparseMatrix(w, h, default)
+		forEach { row, col, value -> output[row, col] = value }
 		return output
 	}
 

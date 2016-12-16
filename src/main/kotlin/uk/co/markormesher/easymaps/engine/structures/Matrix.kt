@@ -1,22 +1,24 @@
 package uk.co.markormesher.easymaps.engine.structures
 
-interface Matrix {
+interface Matrix<E> {
 
 	val width: Int
 
 	val height: Int
 
-	operator fun set(row: Int, col: Int, value: Double)
+	operator fun set(row: Int, col: Int, value: E)
 
-	operator fun get(row: Int, col: Int): Double
+	operator fun get(row: Int, col: Int): E
 
-	fun getRow(row: Int): Vector
+	fun getRow(row: Int): Vector<E>
 
-	fun getColumn(column: Int): Vector
+	fun getColumn(column: Int): Vector<E>
 
-	fun forEachOnRow(row: Int, exec: (Int, Double) -> Unit)
+	fun forEach(exec: (row: Int, column: Int, value: E) -> Unit)
 
-	fun forEachOnColumn(column: Int, exec: (Int, Double) -> Unit)
+	fun forEachOnRow(row: Int, exec: (column: Int, value: E) -> Unit)
+
+	fun forEachOnColumn(column: Int, exec: (row: Int, value: E) -> Unit)
 
 	fun clear()
 
@@ -24,6 +26,6 @@ interface Matrix {
 
 	fun clearColumn(column: Int)
 
-	fun clone(): Matrix
+	fun clone(): Matrix<E>
 
 }

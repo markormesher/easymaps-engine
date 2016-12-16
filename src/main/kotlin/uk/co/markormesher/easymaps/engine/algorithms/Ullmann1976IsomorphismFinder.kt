@@ -23,17 +23,17 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 	private fun calcCandidatePivotOrder() = Array(candidate.nodeCount, { it }).sortedByDescending { i -> candidate.nodeDegree(i) }
 
 	// for all candidate nodes, calc the list of master nodes that are of equal or higher degree
-	private fun calcInitialPossibleAssignments(): Matrix {
-		val m = SparseMatrix(master.nodeCount, candidate.nodeCount)
+	private fun calcInitialPossibleAssignments(): Matrix<Boolean> {
+		val m = SparseMatrix(master.nodeCount, candidate.nodeCount, false)
 		for (cNode in 0..candidate.nodeCount - 1) {
 			(0..master.nodeCount - 1)
 					.filter { mNode -> candidate.nodeDegree(cNode) <= master.nodeDegree(mNode) }
-					.forEach { mNode -> m[cNode, mNode] = 1.0 }
+					.forEach { mNode -> m[cNode, mNode] = true }
 		}
 		return m
 	}
 
-	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: Matrix) {
+	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: Matrix<Boolean>) {
 		// if we reached an impossible assignment, backtrack
 		if (!validateAssignment(assignment)) return
 
@@ -45,14 +45,14 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 
 		val pivotNode = candidatePivotOrder[assignment.size]
 		prunePossibleAssignments(possibleAssignments)
-		possibleAssignments.forEachOnRow(pivotNode, { possibleMNode, value ->
-			if (value != 1.0 || assignment.containsValue(possibleMNode)) return@forEachOnRow
+		possibleAssignments.forEachOnRow(pivotNode, { possibleMNode, hasEdge -> // TODO: non-zero
+			if (hasEdge || assignment.containsValue(possibleMNode)) return@forEachOnRow
 
 			assignment.put(pivotNode, possibleMNode)
 
 			val possibleAssignmentsClone = possibleAssignments.clone()
 			possibleAssignmentsClone.clearRow(pivotNode)
-			possibleAssignmentsClone[pivotNode, possibleMNode] = 1.0
+			possibleAssignmentsClone[pivotNode, possibleMNode] = true
 			search(assignment, possibleAssignmentsClone)
 
 			assignment.remove(pivotNode)
@@ -66,7 +66,7 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 	// suitable neighbours then cNode cannot be assigned to mNode, so remove mNode from cNode's
 	// possible assignment list. this may cause other assignments to become impossible, so repeat
 	// this process until no more changes are made.
-	private fun prunePossibleAssignments(possibleAssignments: Matrix) {
+	private fun prunePossibleAssignments(possibleAssignments: Matrix<Boolean>) {
 		var changes = true
 		while (changes) {
 			changes = false
@@ -75,19 +75,19 @@ class Ullmann1976IsomorphismFinder(candidate: Network, master: Network): Isomorp
 			for (cNode in 0..candidate.nodeCount - 1) {
 
 				// for every possible assignment (mNode) of cNode
-				possibleAssignments.forEachOnRow(cNode, { mNode, value ->
-					if (value != 1.0) return@forEachOnRow
+				possibleAssignments.forEachOnRow(cNode, { mNode, hasEdge -> // TODO: non-zero
+					if (!hasEdge) return@forEachOnRow
 
 					// for each of cNode's neighbours...
 					for (cNodeNeighbour in candidate.getSuccessors(cNode)) {
 						// check whether mNode has a suitable neighbour
 						val mNodeHasSuitableNeighbour = (0..master.nodeCount - 1).any { mNodeNeighbour ->
-							possibleAssignments[cNodeNeighbour, mNodeNeighbour] == 1.0 && master.hasEdge(mNode, mNodeNeighbour)
+							possibleAssignments[cNodeNeighbour, mNodeNeighbour] && master.hasEdge(mNode, mNodeNeighbour)
 						}
 
 						// if not, remove the cNode => mNode possible assignment
 						if (!mNodeHasSuitableNeighbour) {
-							possibleAssignments[cNode, mNode] = 0.0
+							possibleAssignments[cNode, mNode] = false
 							changes = true
 							break
 						}

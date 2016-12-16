@@ -24,11 +24,11 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConf
 	return network
 }
 
-private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseMatrix {
+private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseMatrix<Int> {
 
 	printInfo("Generating trait co-occurrence matrix")
 
-	val coMatrix = SparseMatrix(cfg.traitTranslator.size, cfg.traitTranslator.size)
+	val coMatrix = SparseMatrix(cfg.traitTranslator.size, cfg.traitTranslator.size, 0)
 	parsedLogFiles.forEach { logFile ->
 		logFile.logEntries.forEach { logEntry ->
 			logEntry.traits.forEachPair { a, b ->
@@ -44,12 +44,12 @@ private fun generateCoOccurrenceMatrix(parsedLogFiles: List<ParsedLogFile>, cfg:
 	return coMatrix
 }
 
-private fun generateClusterSets(coMatrix: SparseMatrix, cfg: EngineConfig): DisjointSet {
+private fun generateClusterSets(coMatrix: SparseMatrix<Int>, cfg: EngineConfig): DisjointSet {
 
 	printInfo("Building disjoint set of trait clusters")
 
 	val clusterSets = DisjointSet(cfg.traitTranslator.size)
-	coMatrix.forEachNonZero { row, col, value ->
+	coMatrix.forEachNonDefault { row, col, value ->
 		if (value >= cfg.optionProvider.coOccurrencesRequiredPerTraitLink) {
 			clusterSets.join(row, col)
 		}
@@ -61,11 +61,11 @@ private fun generateClusterSets(coMatrix: SparseMatrix, cfg: EngineConfig): Disj
 	return clusterSets
 }
 
-private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseMatrix {
+private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): SparseMatrix<Int> {
 
 	printInfo("Generating cluster adjacency matrix")
 
-	val adjMatrix = SparseMatrix(clusterSets.setCount, clusterSets.setCount)
+	val adjMatrix = SparseMatrix(clusterSets.setCount, clusterSets.setCount, 0)
 	var fileId = 0
 	parsedLogFiles.forEach logFiles@ { logFile ->
 		++fileId
@@ -116,7 +116,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 			lastNodeSeenAt = thisNodeSeenAt
 		}
 	}
-	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.nonZeroSize} edges")
+	printSubInfo("Cluster adjacency matrix contains ${adjMatrix.realSize} edges")
 
 	return adjMatrix
 }
@@ -130,12 +130,12 @@ private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: EngineConfi
 	}
 }
 
-private fun generateNetwork(adjMatrix: SparseMatrix): Network {
+private fun generateNetwork(adjMatrix: SparseMatrix<Int>): Network {
 
 	printInfo("Generating final network")
 
 	val network = Network(adjMatrix.width)
-	adjMatrix.forEachNonZero { row, col, value -> network.addEdge(row, col) }
+	adjMatrix.forEachNonDefault { row, col, value -> network.addEdge(row, col) }
 	printSubInfo("Network has ${network.nodeCount} node(s)")
 	printSubInfo("Network has ${network.edgeCount} edge(s)")
 

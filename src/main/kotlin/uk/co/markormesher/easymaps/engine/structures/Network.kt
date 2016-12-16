@@ -4,15 +4,15 @@ import java.util.*
 
 class Network(private val n: Int) {
 
-	private val adj = SparseMatrix(n, n)
+	private val adj = SparseMatrix(n, n, 0)
 	private val nodeLabels = HashMap<Int, String>()
 
 	fun addEdge(from: Int, to: Int) {
 		validateIndex(from, n, "from")
 		validateIndex(to, n, "to")
 
-		if (adj[from, to] == 0.0) {
-			adj[from, to] = 1.0
+		if (adj[from, to] == 0) {
+			adj[from, to] = 1
 			++_edgeCount
 		}
 	}
@@ -21,8 +21,8 @@ class Network(private val n: Int) {
 		validateIndex(from, n, "from")
 		validateIndex(to, n, "to")
 
-		if (adj[from, to] != 0.0) {
-			adj[from, to] = 0.0
+		if (adj[from, to] != 0) {
+			adj[from, to] = 0
 			--_edgeCount
 		}
 	}
@@ -31,19 +31,19 @@ class Network(private val n: Int) {
 		validateIndex(from, n, "from")
 		validateIndex(to, n, "to")
 
-		return adj[from, to] != 0.0
+		return adj[from, to] != 0
 	}
 
 	fun forEachEdge(exec: (from: Int, to: Int) -> Unit) {
-		adj.forEachNonZero { from, to, weight -> exec(from, to) }
+		adj.forEachNonDefault { from, to, weight -> exec(from, to) }
 	}
 
 	fun getSuccessors(from: Int): List<Int> {
 		validateIndex(from, n, "from")
 
 		val row = adj.getRow(from)
-		val successors = ArrayList<Int>(row.nonZeroSize)
-		row.forEach { to, weight -> successors.add(to) }
+		val successors = ArrayList<Int>(row.realSize)
+		row.forEachNonDefault { to, weight -> successors.add(to) }
 		return successors
 	}
 
@@ -58,7 +58,7 @@ class Network(private val n: Int) {
 	fun nodeDegree(node: Int): Int {
 		validateIndex(node, n, "node")
 
-		return adj.getRow(node).nonZeroSize
+		return adj.getRow(node).realSize
 	}
 
 	val nodeCount: Int

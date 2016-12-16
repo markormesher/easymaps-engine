@@ -2,41 +2,53 @@ package uk.co.markormesher.easymaps.engine.structures
 
 import java.util.*
 
-class SparseVector(private val n: Int) : Vector {
+class SparseVector<E>(private val n: Int, private val default: E) : Vector<E> {
 
-	private val map = TreeMap<Int, Double>()
+	private val map = TreeMap<Int, E>()
 
 	init {
 		if (n <= 0) throw IllegalArgumentException("Size must be greater than zero")
 	}
 
-	override operator fun set(i: Int, value: Double) {
+	override val size: Int
+		get() = n
+
+	val realSize: Int
+		get() = map.size
+
+	override operator fun set(i: Int, value: E) {
 		validateIndex(i, n, "i")
 
-		if (value == 0.0) {
+		if (value == default) {
 			map.remove(i)
 			return
 		}
 		map.put(i, value)
 	}
 
-	override operator fun get(i: Int): Double {
+	override operator fun get(i: Int): E {
 		validateIndex(i, n, "i")
 
-		return map[i] ?: 0.0
+		return map[i] ?: default
 	}
+
+	val nonDefaultValues: MutableCollection<E>
+		get() = map.values
+
+	override fun forEach(exec: (position: Int, value: E) -> Unit) {
+		for (position in 0..size - 1) {
+			exec(position, get(position))
+		}
+	}
+
+	fun forEachNonDefault(exec: (position: Int, value: E) -> Unit) = map.forEach(exec)
 
 	override fun clear() = map.clear()
 
-	override val size: Int
-		get() = n
-
-	val nonZeroSize: Int
-		get() = map.size
-
-	val nonZeroValues: MutableCollection<Double>
-		get() = map.values
-
-	override fun forEach(exec: (position: Int, value: Double) -> Unit) = map.forEach(exec)
+	override fun clone(): SparseVector<E> {
+		val output = SparseVector(n, default)
+		forEach { position, value -> output[position] = value }
+		return output
+	}
 
 }
