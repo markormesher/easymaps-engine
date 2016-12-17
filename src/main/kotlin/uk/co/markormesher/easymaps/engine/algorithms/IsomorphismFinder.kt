@@ -8,8 +8,10 @@ abstract class IsomorphismFinder(val candidate: Network, val master: Network) {
 	protected val isomorphisms = ArrayList<Map<Int, Int>>()
 
 	fun findIsomorphisms(): List<Map<Int, Int>> {
-		isomorphisms.clear()
-		beginSearch()
+		if (candidate.nodeCount <= master.nodeCount) {
+			isomorphisms.clear()
+			beginSearch()
+		}
 		return isomorphisms
 	}
 
