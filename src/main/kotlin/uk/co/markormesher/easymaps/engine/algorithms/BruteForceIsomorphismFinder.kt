@@ -10,11 +10,15 @@ when an impossible assignment is reached.
 
 class BruteForceIsomorphismFinder(candidate: Network, master: Network): IsomorphismFinder(candidate, master) {
 
+	var searchCount = 0L
+
 	override fun beginSearch() {
 		search(HashMap<Int, Int>(candidate.nodeCount))
 	}
 
 	private fun search(assignment: MutableMap<Int, Int>) {
+		++searchCount
+
 		// if we reached an impossible assignment, backtrack
 		if (!validateAssignment(assignment)) return
 
