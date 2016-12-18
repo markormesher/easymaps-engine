@@ -1,0 +1,92 @@
+// M1 (and some of M3 and one link of M4)
+
+"Pantelimon" -- "Republica"
+"Republica" -- "Costin Georgian"
+"Costin Georgian" -- "Titan"
+"Titan" -- "Nicolae Grigorescu"
+"Nicolae Grigorescu" -- "Dristor"
+"Dristor" -- "Mihai Bravu"
+"Mihai Bravu" -- "Timprui Noi"
+"Timprui Noi" -- "Piata Unirii"
+"Piata Unirii" -- "Izvor"
+"Izvor" -- "Eroilor"
+"Eroilor" -- "Grozavesti"
+"Grozavesti" -- "Petrache Poenaru"
+"Petrache Poenaru" -- "Crangasi"
+"Crangasi" -- "Basarab"
+"Basarab" -- "Gara de Nord"
+"Gara de Nord" -- "Piata Victoriei"
+"Piata Victoriei" -- "Stefan cel Mare"
+"Stefan cel Mare" -- "Obor"
+"Obor" -- "Iancului"
+"Iancului" -- "Piata Muncii"
+"Piata Muncii" -- "Dristor"
+
+// M2
+
+"Berceni" -- "Dimitrie Leonida"
+"Dimitrie Leonida" -- "Aparatorii Patriei"
+"Aparatorii Patriei" -- "Piata Subului"
+"Piata Subului" -- "Constantin Brancoveanu"
+"Constantin Brancoveanu" -- "Eroii Revolutiei"
+"Eroii Revolutiei" -- "Tineretului"
+"Tineretului" -- "Piata Unirii"
+"Piata Unirii" -- "Universitate"
+"Universitate" -- "Piata Romana"
+"Piata Romana" -- "Piata Victoriei"
+"Piata Victoriei" -- "Aviatorilor"
+"Aviatorilor" -- "Aurel Vlaicu"
+"Aurel Vlaicu" -- "Pipera"
+
+// M3 (excl. parts covered by M1)
+
+"Anghel Saligny" -- "1 Decembrie 1918"
+"1 Decembrie 1918" -- "Nicolae Grigorescu"
+"Eroilor" -- "Politehnica"
+"Politehnica" -- "Lujerului"
+"Lujerului" -- "Gorjului"
+"Gorjului" -- "Pacii"
+"Pacii" -- "Precizei"
+
+// M4 (excl. link covered by M1)
+
+"Basarab" -- "Grivita"
+"Grivita" -- "1 Mai"
+"1 Mai" -- "Jiului"
+"Jiului" -- "Parc Bazilescu"
+"Parc Bazilescu" -- "Laminorului"
+"Laminorului" -- "Lac Straulesti"
+
+// M5
+
+"Pantelimon" -- "Iancului"
+"Iancului" -- "Piata Romana"
+"Piata Romana" -- "Cismigiu"
+"Cismigiu" -- "Hasdeu"
+"Hasdeu" -- "Eroilor"
+"Eroilor" -- "Academia Militara"
+"Academia Militara" -- "Orizont"
+"Orizont" -- "Favorit"
+"Favorit" -- "Drumul Taberei 34"
+"Drumul Taberei 34" -- "Parc Drumul Taberei"
+"Parc Drumul Taberei" -- "Romancierilor"
+"Romancierilor" -- "Valea Ialomitei"
+
+"Romancierilor" -- "Brancusi"
+"Brancusi" -- "Raul Doamnei"
+"Raul Doamnei" -- "Ghencea"
+
+// M6
+
+"1 Mai" -- "Piata Presei Libere"
+"Piata Presei Libere" -- "Padina"
+"Padina" -- "Privighetilor"
+"Privighetilor" -- "Cartier Baneasa"
+"Cartier Baneasa" -- "Baneasa Institut"
+"Baneasa Institut" -- "Meteo Baneasa"
+"Meteo Baneasa" -- "Aeroportul Baneasa"
+"Aeroportul Baneasa" -- "Supermarket"
+"Supermarket" -- "Otopeni Sud"
+"Otopeni Sud" -- "Otopeni Centru"
+"Otopeni Centru" -- "Otopeni Nord"
+"Otopeni Nord" -- "Aeroportul Henry Coanda"

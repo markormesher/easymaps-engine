@@ -1,0 +1,6 @@
+optionProvider = sample
+walkerOptionProvider = sample
+logFolderPath = ./datasets/sample-210/input/logs
+knownNetworkFilePath = ./datasets/sample-210/input/known-network.txt
+outputFolderPath = ./datasets/sample-210/output
+graphvizExec = /usr/bin/neato
