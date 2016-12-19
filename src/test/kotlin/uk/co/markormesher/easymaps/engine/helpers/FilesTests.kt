@@ -52,7 +52,7 @@ class FilesTests {
 	}
 
 	@Test
-	fun clearDirectoryShouldDoNotDeleteGitignoreFile() {
+	fun clearDirectoryShouldNotDeleteGitignoreFile() {
 		val gitIgnoreFile = File(tempFolder.root, ".gitignore")
 		gitIgnoreFile.createNewFile()
 
@@ -62,7 +62,7 @@ class FilesTests {
 	}
 
 	@Test
-	fun clearDirectoryShouldDoNotDeleteNestedGitignoreFile() {
+	fun clearDirectoryShouldNotDeleteNestedGitignoreFile() {
 		val innerDirectory = File(tempFolder.root, "inner-dir")
 		innerDirectory.mkdir()
 		val gitIgnoreFile = File(innerDirectory, ".gitignore")
@@ -72,6 +72,29 @@ class FilesTests {
 
 		assertTrue(innerDirectory.exists())
 		assertTrue(gitIgnoreFile.exists())
+	}
+
+	@Test
+	fun clearDirectoryShouldDeleteGitignoreFileWhenFlagSet() {
+		val gitIgnoreFile = File(tempFolder.root, ".gitignore")
+		gitIgnoreFile.createNewFile()
+
+		clearDirectory(tempFolder.root.absolutePath, true)
+
+		assertFalse(gitIgnoreFile.exists())
+	}
+
+	@Test
+	fun clearDirectoryShouldDeleteNestedGitignoreFileWhenFlagSet() {
+		val innerDirectory = File(tempFolder.root, "inner-dir")
+		innerDirectory.mkdir()
+		val gitIgnoreFile = File(innerDirectory, ".gitignore")
+		gitIgnoreFile.createNewFile()
+
+		clearDirectory(tempFolder.root.absolutePath, true)
+
+		assertFalse(innerDirectory.exists())
+		assertFalse(gitIgnoreFile.exists())
 	}
 
 }
