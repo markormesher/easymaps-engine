@@ -1,0 +1,4 @@
+[abcdef,1482144539897,ji_18,ji_4,ji_6,ji_12,ji_9,ji_21]
+[abcdef,1482144564321,ji_17,ji_0,ji_15,ji_5,ji_25,ji_14,ji_22,ji_7,ji_19]
+[abcdef,1482144589952,ji_1,ji_28,ji_17,ji_29,ji_3,ji_15,ji_26,ji_24,ji_4,ji_14,ji_22,ji_12,ji_23,ji_6,ji_8,ji_20,ji_10,ji_21]
+[abcdef,1482144614684,ji_28,ji_29,ji_0,ji_3,ji_15,ji_27,ji_16,ji_13,ji_5,ji_24,ji_25,ji_11,ji_7,ji_22,ji_12,ji_21]

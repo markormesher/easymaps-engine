@@ -1,0 +1,4 @@
+[abcdef,1482144458845,eu_19,eu_12,eu_9,eu_25,eu_20,eu_3,eu_10,eu_0]
+[abcdef,1482144487743,eu_29,eu_24,eu_13,eu_23,eu_12,eu_26,eu_25,eu_20,eu_6,eu_4,eu_11,eu_2]
+[abcdef,1482144515172,eu_19,eu_11,eu_21]
+[abcdef,1482144543873,eu_17,eu_18,eu_23,eu_9,eu_15,eu_7,eu_11,eu_4,eu_1]

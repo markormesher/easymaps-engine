@@ -1,0 +1,4 @@
+[abcdef,1482144244105,cf_28,cf_18,cf_9,cf_16,cf_4,cf_5,cf_3,cf_13,cf_25,cf_22,cf_23]
+[abcdef,1482144272700,cf_15,cf_8,cf_26,cf_16,cf_9,cf_5,cf_10,cf_24,cf_14]
+[abcdef,1482144293717,cf_28,cf_18,cf_15,cf_26,cf_27,cf_6,cf_21,cf_10,cf_3,cf_13,cf_25]
+[abcdef,1482144309837,cf_29,cf_8,cf_27,cf_6,cf_7,cf_19,cf_2,cf_10,cf_3,cf_22]

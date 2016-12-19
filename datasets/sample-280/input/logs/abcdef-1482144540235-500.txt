@@ -1,0 +1,4 @@
+[abcdef,1482144540235,fp_21,fp_24,fp_23,fp_26,fp_14,fp_28,fp_17,fp_27,fp_16,fp_19,fp_2,fp_3,fp_4,fp_5]
+[abcdef,1482144564790,fp_7,fp_9]
+[abcdef,1482144594100,fp_7,fp_24,fp_15,fp_26,fp_28,fp_17,fp_27,fp_19,fp_18]
+[abcdef,1482144611348,fp_21,fp_15,fp_2]

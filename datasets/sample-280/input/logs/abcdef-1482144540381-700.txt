@@ -1,0 +1,6 @@
+[abcdef,1482144540381,am_7,am_4,am_3,am_28,am_27,am_16,am_2,am_18,am_1,am_20,am_11,am_21,am_10,am_13,am_23,am_15,am_25]
+[abcdef,1482144557342,am_7,am_9,am_4,am_3,am_5,am_28,am_0,am_17,am_16,am_19,am_18,am_29,am_20,am_11,am_10,am_21,am_23,am_15,am_25]
+[abcdef,1482144582825,am_7,am_4,am_3,am_17,am_0,am_28,am_16,am_2,am_19,am_29,am_18,am_20,am_21,am_13,am_24,am_23,am_26,am_25]
+[abcdef,1482144610440,am_0,am_28,am_29,am_20,am_21,am_13,am_24,am_23,am_12,am_3,am_15,am_14]
+[abcdef,1482144635926,am_0,am_28,am_18,am_1,am_8,am_21,am_10,am_24,am_3,am_15,am_25,am_5]
+[abcdef,1482144662019,am_28,am_2,am_19,am_7,am_10,am_24,am_14]

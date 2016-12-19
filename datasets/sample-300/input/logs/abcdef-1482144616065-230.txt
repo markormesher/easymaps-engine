@@ -1,0 +1,4 @@
+[abcdef,1482144616065,au_13,au_24,au_12,au_7,au_9,au_4,au_22,au_5,au_21,au_1,au_17,au_16]
+[abcdef,1482144631734,au_13,au_7,au_25,au_20,au_6,au_11,au_5,au_27,au_16,au_29]
+[abcdef,1482144648138,au_13,au_24,au_12,au_26,au_25,au_11,au_5,au_10,au_2,au_27,au_18]
+[abcdef,1482144670196,au_8,au_24,au_7,au_20,au_3,au_6,au_10]

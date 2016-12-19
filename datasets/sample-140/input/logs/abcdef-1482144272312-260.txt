@@ -1,0 +1,3 @@
+[abcdef,1482144272312,ay_18,ay_6,ay_28,ay_2,ay_22,ay_21,ay_20,ay_8]
+[abcdef,1482144297388,ay_4,ay_18,ay_29,ay_13,ay_9]
+[abcdef,1482144321491,ay_17,ay_16,ay_13,ay_2,ay_12,ay_11,ay_10,ay_20,ay_7,ay_9]

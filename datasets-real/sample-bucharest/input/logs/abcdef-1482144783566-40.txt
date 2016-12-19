@@ -1,0 +1,7 @@
+[abcdef,1482144783566,titan_20,titan_15,titan_14,titan_25,titan_12,titan_23,titan_19,titan_16,titan_1,titan_3,titan_5,titan_7,titan_8]
+[abcdef,1482144813183,titan_15,titan_25,titan_17,titan_27,titan_1]
+[abcdef,1482144834898,titan_22,titan_11,titan_10,titan_20,titan_15,titan_14,titan_24,titan_19,titan_18,titan_29,titan_17,titan_0,titan_1,titan_3,titan_4,titan_6,titan_8,titan_9]
+[abcdef,1482144863905,titan_22,titan_11,titan_10,titan_21,titan_20,titan_26,titan_25,titan_14,titan_12,titan_23,titan_29,titan_28,titan_27,titan_2,titan_3,titan_4,titan_5,titan_8]
+[abcdef,1482144883893,titan_11,titan_20,titan_26,titan_14,titan_25,titan_24,titan_12,titan_18,titan_17,titan_0,titan_1,titan_3,titan_5,titan_6,titan_9]
+[abcdef,1482144902572,titan_11,titan_3,titan_6,titan_15,titan_25,titan_9,titan_29,titan_2]
+[abcdef,1482144922952,titan_10,titan_4,titan_20,titan_15,titan_8,titan_24,titan_12,titan_23,titan_28,titan_17,titan_16,titan_2]

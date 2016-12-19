@@ -1,0 +1,3 @@
+[abcdef,1482144405714,ia_7,ia_11,ia_10,ia_27,ia_1,ia_29,ia_4,ia_13,ia_3,ia_12,ia_26,ia_25,ia_14]
+[abcdef,1482144428926,ia_8,ia_22,ia_9,ia_10,ia_16,ia_18,ia_3,ia_26,ia_25,ia_14]
+[abcdef,1482144452304,ia_8,ia_7,ia_22,ia_11,ia_10,ia_9,ia_19,ia_1,ia_18,ia_15,ia_25]

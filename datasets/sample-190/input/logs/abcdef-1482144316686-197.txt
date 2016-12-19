@@ -1,0 +1,3 @@
+[abcdef,1482144316686,dd_23,dd_27,dd_17,dd_20]
+[abcdef,1482144345482,dd_20,dd_10,dd_11,dd_23,dd_12,dd_24,dd_13,dd_25,dd_15,dd_26,dd_27,dd_17,dd_7,dd_8,dd_19,dd_6,dd_1]
+[abcdef,1482144365867,dd_13,dd_24,dd_25,dd_15,dd_27,dd_16,dd_17,dd_8,dd_4,dd_1,dd_10]

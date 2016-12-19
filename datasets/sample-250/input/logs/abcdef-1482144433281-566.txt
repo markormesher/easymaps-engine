@@ -1,0 +1,5 @@
+[abcdef,1482144433281,ha_12,ha_7,ha_8,ha_9,ha_1,ha_2,ha_15,ha_4]
+[abcdef,1482144449914,ha_20,ha_19,ha_0,ha_2,ha_26,ha_5]
+[abcdef,1482144479470,ha_12,ha_7,ha_10,ha_19,ha_29,ha_18,ha_17,ha_14,ha_13,ha_0,ha_3,ha_4,ha_5]
+[abcdef,1482144507471,ha_23,ha_8,ha_17,ha_26,ha_13]
+[abcdef,1482144534190,ha_23,ha_22,ha_21,ha_19,ha_28,ha_16,ha_2,ha_14,ha_4,ha_25,ha_13]

@@ -1,0 +1,6 @@
+[abcdef,1482144575954,kg_23,kg_25,kg_26,kg_9]
+[abcdef,1482144596721,kg_13,kg_6,kg_25,kg_26,kg_21,kg_27,kg_17,kg_19]
+[abcdef,1482144614906,kg_23,kg_24,kg_15,kg_4,kg_7,kg_8,kg_22,kg_27,kg_2,kg_19]
+[abcdef,1482144636973,kg_12,kg_5,kg_23,kg_6,kg_25,kg_15,kg_8,kg_28,kg_17,kg_2,kg_0]
+[abcdef,1482144666180,kg_24,kg_21,kg_11,kg_22,kg_1,kg_16,kg_17]
+[abcdef,1482144682391,kg_12,kg_5,kg_13,kg_24,kg_20,kg_7,kg_1,kg_16,kg_17,kg_2,kg_29,kg_19]

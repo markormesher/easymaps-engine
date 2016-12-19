@@ -1,0 +1,6 @@
+[abcdef,1482144287587,du_17,du_26,du_14,du_13,du_10,du_3,du_2]
+[abcdef,1482144305662,du_27,du_22,du_3,du_21]
+[abcdef,1482144334187,du_18,du_17,du_7,du_24,du_5,du_21]
+[abcdef,1482144359551,du_15,du_8,du_25,du_5,du_11,du_22,du_2,du_0]
+[abcdef,1482144384799,du_19,du_29,du_18,du_17,du_28,du_9,du_15,du_26,du_14,du_25,du_6,du_13,du_4,du_1,du_0,du_11,du_21]
+[abcdef,1482144405045,du_19,du_17,du_8,du_7,du_12,du_21]

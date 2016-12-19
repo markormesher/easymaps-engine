@@ -1,0 +1,4 @@
+[abcdef,1482144500762,ct_20,ct_23,ct_6,ct_4,ct_2,ct_26,ct_3]
+[abcdef,1482144526009,ct_10,ct_6,ct_22,ct_25,ct_16,ct_27,ct_3,ct_15,ct_26,ct_18]
+[abcdef,1482144544835,ct_8,ct_10,ct_23,ct_24,ct_27,ct_3,ct_1]
+[abcdef,1482144569139,ct_9,ct_23,ct_7,ct_14,ct_4,ct_13,ct_5,ct_26,ct_28]

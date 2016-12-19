@@ -4,4 +4,3 @@ logFolderPath = ./datasets/sample-250/input/logs
 knownNetworkFilePath = ./datasets/sample-250/input/known-network.txt
 outputFolderPath = ./datasets/sample-250/output
 graphvizExec = /usr/bin/neato
-drawGraphs=y

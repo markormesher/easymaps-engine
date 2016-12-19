@@ -1,0 +1,6 @@
+[abcdef,1482144540224,er_24,er_1,er_25,er_10,er_9,er_28,er_19]
+[abcdef,1482144569668,er_13,er_25,er_20,er_10,er_23,er_8,er_7,er_28,er_17,er_4,er_29,er_19]
+[abcdef,1482144590811,er_25,er_15,er_16,er_10,er_7,er_6,er_28,er_4,er_18,er_29,er_3,er_2]
+[abcdef,1482144611306,er_13,er_0,er_15,er_29]
+[abcdef,1482144635733,er_13,er_14,er_16,er_27]
+[abcdef,1482144654808,er_0,er_19]

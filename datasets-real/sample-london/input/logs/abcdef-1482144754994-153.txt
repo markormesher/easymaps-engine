@@ -1,0 +1,3 @@
+[abcdef,1482144754994,moorgate_27,moorgate_9,moorgate_28,moorgate_29,moorgate_18,moorgate_19,moorgate_25,moorgate_14,moorgate_21,moorgate_4]
+[abcdef,1482144774871,moorgate_27,moorgate_20]
+[abcdef,1482144798190,moorgate_17,moorgate_29,moorgate_19,moorgate_23,moorgate_12,moorgate_25,moorgate_15,moorgate_20,moorgate_6,moorgate_3]

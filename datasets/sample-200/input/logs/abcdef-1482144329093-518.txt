@@ -1,0 +1,5 @@
+[abcdef,1482144329093,bg_13,bg_16,bg_21,bg_12,bg_23,bg_11,bg_22,bg_9,bg_6,bg_7,bg_4,bg_5,bg_3,bg_19,bg_1]
+[abcdef,1482144345664,bg_5,bg_28,bg_14,bg_13,bg_21,bg_10]
+[abcdef,1482144369498,bg_8,bg_6,bg_28,bg_17,bg_2,bg_19,bg_3,bg_13,bg_16,bg_15,bg_12,bg_11]
+[abcdef,1482144394764,bg_25,bg_16,bg_27,bg_15,bg_21,bg_20,bg_23,bg_22,bg_11,bg_8,bg_6,bg_18,bg_4,bg_28,bg_3,bg_0]
+[abcdef,1482144422534,bg_6,bg_7,bg_4,bg_29,bg_24]

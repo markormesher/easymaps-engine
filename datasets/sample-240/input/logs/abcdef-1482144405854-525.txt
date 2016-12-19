@@ -1,0 +1,4 @@
+[abcdef,1482144405854,ew_8,ew_6,ew_13,ew_20]
+[abcdef,1482144433125,ew_23,ew_24,ew_10]
+[abcdef,1482144449864,ew_9,ew_6,ew_23,ew_12,ew_13,ew_24,ew_3,ew_2,ew_10,ew_11,ew_1,ew_0,ew_18,ew_16,ew_27,ew_17,ew_15,ew_26]
+[abcdef,1482144471144,ew_8,ew_24,ew_3,ew_21,ew_10,ew_22,ew_1,ew_0,ew_20,ew_18,ew_16,ew_27,ew_28,ew_25]

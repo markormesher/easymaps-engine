@@ -1,0 +1,2 @@
+[abcdef,1482144458674,av_25,av_14,av_6,av_27,av_9,av_16,av_8,av_15,av_10,av_23,av_11,av_1,av_0,av_28,av_17,av_19]
+[abcdef,1482144480492,av_6,av_16,av_5,av_4,av_19]

@@ -1,0 +1,4 @@
+[abcdef,1482144616319,dq_1,dq_0,dq_22,dq_8]
+[abcdef,1482144642435,dq_13,dq_16,dq_15,dq_26,dq_21,dq_12,dq_9,dq_8,dq_7,dq_18,dq_17,dq_3,dq_2]
+[abcdef,1482144671567,dq_25,dq_26,dq_22,dq_9,dq_18,dq_29]
+[abcdef,1482144701550,dq_14,dq_13,dq_24,dq_27,dq_16,dq_26,dq_20,dq_12,dq_23,dq_11,dq_9,dq_8,dq_7,dq_6,dq_18,dq_29]

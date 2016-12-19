@@ -1,0 +1,3 @@
+[abcdef,1482144616448,gu_23,gu_2,gu_24,gu_21,gu_11,gu_4,gu_5,gu_17,gu_6,gu_14,gu_15,gu_9]
+[abcdef,1482144633721,gu_1,gu_10,gu_21,gu_11,gu_27,gu_28,gu_6,gu_26,gu_9,gu_0]
+[abcdef,1482144658795,gu_12,gu_17,gu_6,gu_14,gu_15,gu_9]

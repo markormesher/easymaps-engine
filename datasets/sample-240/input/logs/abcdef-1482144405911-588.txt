@@ -1,0 +1,7 @@
+[abcdef,1482144405911,io_13,io_12,io_11,io_21,io_28,io_27,io_15,io_26,io_0,io_2,io_4,io_3,io_20,io_8,io_7,io_9,io_19]
+[abcdef,1482144426139,io_13,io_24,io_22,io_16,io_0,io_25,io_19,io_3,io_29,io_20,io_6]
+[abcdef,1482144451713,io_13,io_23,io_12,io_11,io_21,io_28,io_16,io_15,io_26,io_3,io_6,io_20,io_7,io_9,io_18,io_29]
+[abcdef,1482144467728,io_24,io_22,io_11,io_28,io_17,io_1,io_29]
+[abcdef,1482144487131,io_24,io_9,io_12,io_11,io_10,io_16,io_27,io_25,io_14,io_3,io_18,io_6]
+[abcdef,1482144506710,io_9,io_21,io_17,io_26,io_19,io_29,io_6,io_5]
+[abcdef,1482144534475,io_24,io_23,io_12,io_26,io_1,io_4,io_18,io_29,io_3,io_5,io_7]

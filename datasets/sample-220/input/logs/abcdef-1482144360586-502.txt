@@ -1,0 +1,5 @@
+[abcdef,1482144360586,bi_12,bi_9]
+[abcdef,1482144376027,bi_2,bi_27,bi_13,bi_8,bi_23]
+[abcdef,1482144400650,bi_10,bi_21,bi_1,bi_17,bi_18,bi_15,bi_13,bi_24,bi_8]
+[abcdef,1482144416613,bi_21,bi_19,bi_0,bi_1]
+[abcdef,1482144438316,bi_20,bi_17,bi_18,bi_29,bi_15,bi_27,bi_16,bi_24,bi_25,bi_11,bi_8,bi_9,bi_6,bi_7,bi_5,bi_3,bi_19,bi_0,bi_1]

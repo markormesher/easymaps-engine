@@ -1,0 +1,8 @@
+[abcdef,1482144272220,by_16,by_28,by_23,by_19]
+[abcdef,1482144289167,by_7,by_26,by_15,by_18,by_2,by_3,by_1,by_19,by_8]
+[abcdef,1482144313970,by_6,by_4,by_5,by_3,by_1,by_29,by_28,by_23,by_12,by_11,by_22,by_14,by_24,by_13,by_10,by_21,by_20,by_9]
+[abcdef,1482144339988,by_15,by_7,by_18,by_2,by_12,by_3,by_14,by_21]
+[abcdef,1482144369639,by_27,by_4,by_24,by_21,by_19]
+[abcdef,1482144392201,by_4,by_21]
+[abcdef,1482144409956,by_6,by_5,by_2,by_15,by_26,by_18,by_28,by_23,by_11,by_24,by_13,by_10,by_20,by_8]
+[abcdef,1482144430707,by_6,by_15,by_29,by_18,by_23,by_22,by_24,by_21,by_9]

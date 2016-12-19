@@ -1,0 +1,7 @@
+[abcdef,1482144755759,richmond_18,richmond_27,richmond_1,richmond_2,richmond_5,richmond_14,richmond_26,richmond_3,richmond_12,richmond_4,richmond_24,richmond_21,richmond_22,richmond_7,richmond_8,richmond_20]
+[abcdef,1482144771066,richmond_18,richmond_29,richmond_16,richmond_27,richmond_28,richmond_1,richmond_2,richmond_5,richmond_14,richmond_12,richmond_23,richmond_10,richmond_9,richmond_22]
+[abcdef,1482144786789,richmond_16,richmond_27,richmond_17,richmond_28,richmond_1,richmond_2,richmond_14,richmond_25,richmond_15,richmond_6,richmond_3,richmond_12,richmond_24,richmond_13,richmond_11,richmond_22,richmond_7,richmond_8]
+[abcdef,1482144812891,richmond_29,richmond_19,richmond_27,richmond_16,richmond_28,richmond_1,richmond_2,richmond_0,richmond_14,richmond_25,richmond_6,richmond_23,richmond_4,richmond_9,richmond_21,richmond_22,richmond_8,richmond_20]
+[abcdef,1482144836279,richmond_27,richmond_17,richmond_28,richmond_26,richmond_24,richmond_22]
+[abcdef,1482144860041,richmond_29,richmond_27,richmond_28,richmond_17,richmond_1,richmond_2,richmond_5,richmond_14,richmond_15,richmond_6,richmond_3,richmond_12,richmond_4,richmond_24,richmond_21,richmond_22,richmond_11,richmond_8,richmond_20]
+[abcdef,1482144876819,richmond_15,richmond_10]

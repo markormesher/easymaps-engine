@@ -1,0 +1,3 @@
+[abcdef,1482144540244,ki_1,ki_7,ki_8,ki_5,ki_6,ki_9,ki_20,ki_26,ki_16,ki_17,ki_22,ki_23,ki_12,ki_13,ki_29,ki_19]
+[abcdef,1482144556744,ki_3,ki_4,ki_2,ki_8,ki_5,ki_6,ki_9,ki_20,ki_15,ki_27,ki_16,ki_17,ki_21,ki_11,ki_22,ki_12,ki_24,ki_13,ki_19]
+[abcdef,1482144580024,ki_3,ki_17,ki_8]

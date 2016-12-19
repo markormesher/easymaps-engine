@@ -1,0 +1,3 @@
+[abcdef,1482144244155,aa_27,aa_16,aa_17,aa_29,aa_18,aa_12,aa_24,aa_14,aa_26,aa_15,aa_8,aa_3,aa_6,aa_21,aa_10,aa_5,aa_22,aa_0,aa_2]
+[abcdef,1482144269448,aa_27,aa_8,aa_3,aa_5]
+[abcdef,1482144295174,aa_28,aa_18,aa_29,aa_4,aa_1]

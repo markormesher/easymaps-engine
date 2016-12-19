@@ -1,0 +1,4 @@
+[abcdef,1482144500538,gu_0,gu_12,gu_2,gu_13,gu_21,gu_11,gu_16,gu_5,gu_6,gu_17,gu_14,gu_15,gu_8,gu_9,gu_18,gu_29,gu_19]
+[abcdef,1482144525066,gu_21,gu_5,gu_28,gu_17,gu_7]
+[abcdef,1482144543520,gu_12,gu_4,gu_6,gu_7,gu_14,gu_8,gu_15,gu_29]
+[abcdef,1482144565336,gu_0,gu_13,gu_24,gu_21,gu_10,gu_3,gu_22,gu_11,gu_16,gu_5,gu_28,gu_7,gu_14,gu_26,gu_8,gu_9,gu_18,gu_19]

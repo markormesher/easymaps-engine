@@ -1,0 +1,4 @@
+[abcdef,1482144783709,pipera_6,pipera_9,pipera_3,pipera_5,pipera_23,pipera_11,pipera_22,pipera_27,pipera_14,pipera_25,pipera_13,pipera_19,pipera_29,pipera_17,pipera_28]
+[abcdef,1482144808159,pipera_7,pipera_23,pipera_11,pipera_6,pipera_22,pipera_20,pipera_3,pipera_13,pipera_19]
+[abcdef,1482144837563,pipera_7,pipera_8,pipera_3,pipera_5,pipera_4,pipera_12,pipera_23,pipera_21,pipera_10,pipera_20,pipera_14,pipera_13,pipera_24,pipera_19,pipera_1,pipera_0,pipera_28,pipera_17]
+[abcdef,1482144862873,pipera_11,pipera_10,pipera_8,pipera_2,pipera_26,pipera_25,pipera_13,pipera_4,pipera_29]

@@ -1,0 +1,6 @@
+[abcdef,1482144576140,ij_1,ij_23,ij_14,ij_6,ij_15,ij_18,ij_17,ij_28,ij_19]
+[abcdef,1482144596208,ij_20,ij_7,ij_24,ij_8]
+[abcdef,1482144614985,ij_1,ij_10,ij_2,ij_20,ij_5,ij_11,ij_4,ij_7,ij_6,ij_9,ij_13,ij_24,ij_16,ij_27,ij_26,ij_18,ij_29,ij_17,ij_19]
+[abcdef,1482144633898,ij_0,ij_21,ij_20,ij_23,ij_5,ij_4,ij_24,ij_27,ij_8,ij_29,ij_28]
+[abcdef,1482144650444,ij_10,ij_3,ij_20,ij_2,ij_5,ij_25,ij_8,ij_15,ij_29,ij_28]
+[abcdef,1482144677413,ij_3,ij_23,ij_4,ij_25,ij_14,ij_24,ij_27,ij_19]

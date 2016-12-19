@@ -1,0 +1,6 @@
+[abcdef,1482144298206,dd_9,dd_16,dd_18,dd_8,dd_5,dd_3]
+[abcdef,1482144327623,dd_20,dd_10,dd_11,dd_23,dd_14,dd_9,dd_16,dd_28,dd_18,dd_7,dd_19,dd_3,dd_4,dd_2]
+[abcdef,1482144355259,dd_24,dd_26,dd_9,dd_17,dd_18,dd_6,dd_1,dd_10]
+[abcdef,1482144378949,dd_10,dd_11,dd_12,dd_23,dd_24,dd_14,dd_15,dd_9,dd_16,dd_28,dd_18,dd_5,dd_1]
+[abcdef,1482144399162,dd_25,dd_8,dd_4]
+[abcdef,1482144424607,dd_20,dd_21,dd_14,dd_15,dd_16,dd_27,dd_28,dd_17,dd_7,dd_8,dd_19,dd_6,dd_3,dd_2]

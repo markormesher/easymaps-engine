@@ -1,0 +1,6 @@
+[abcdef,1482144783806,berceni_13,berceni_26,berceni_4,berceni_9,berceni_11,berceni_16,berceni_2,berceni_18,berceni_0,berceni_19]
+[abcdef,1482144800517,berceni_5,berceni_6,berceni_3,berceni_4,berceni_7,berceni_8,berceni_23,berceni_24,berceni_25,berceni_11,berceni_27,berceni_16,berceni_1,berceni_18]
+[abcdef,1482144823152,berceni_23,berceni_6,berceni_13,berceni_15,berceni_20,berceni_8,berceni_17,berceni_2,berceni_18,berceni_0]
+[abcdef,1482144838360,berceni_14,berceni_25,berceni_15,berceni_9,berceni_21,berceni_7,berceni_10,berceni_22,berceni_1,berceni_27,berceni_18,berceni_19]
+[abcdef,1482144855359,berceni_5,berceni_6,berceni_4,berceni_9,berceni_7,berceni_8,berceni_23,berceni_12,berceni_13,berceni_15,berceni_21,berceni_11,berceni_27,berceni_17,berceni_19,berceni_0]
+[abcdef,1482144877358,berceni_6,berceni_24,berceni_13,berceni_14,berceni_25,berceni_15,berceni_20,berceni_21,berceni_27,berceni_1,berceni_2,berceni_29,berceni_19]

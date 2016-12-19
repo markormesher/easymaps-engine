@@ -1,0 +1,3 @@
+[abcdef,1482144272260,cr_21,cr_22,cr_13,cr_24,cr_26,cr_27,cr_17,cr_0,cr_1,cr_29]
+[abcdef,1482144294461,cr_6,cr_11,cr_22,cr_23,cr_13,cr_4,cr_14,cr_25,cr_26,cr_16,cr_0,cr_28]
+[abcdef,1482144322939,cr_21,cr_13,cr_26,cr_3,cr_0]

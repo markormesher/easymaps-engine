@@ -1,0 +1,4 @@
+[abcdef,1482144616308,hk_20,hk_25,hk_1,hk_28,hk_27,hk_16,hk_26,hk_7]
+[abcdef,1482144640645,hk_0,hk_1,hk_18,hk_4,hk_29,hk_6,hk_15,hk_26,hk_8,hk_9,hk_10,hk_20,hk_25,hk_24,hk_12,hk_22]
+[abcdef,1482144666357,hk_2,hk_18,hk_5,hk_16,hk_6,hk_7,hk_15,hk_19,hk_21,hk_14,hk_24,hk_23,hk_22,hk_11]
+[abcdef,1482144694606,hk_10,hk_21,hk_14,hk_25,hk_1,hk_2,hk_3,hk_5,hk_6,hk_15]

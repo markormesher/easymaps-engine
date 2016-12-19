@@ -1,0 +1,3 @@
+[abcdef,1482144249754,ca_10,ca_21,ca_0,ca_11,ca_12,ca_25,ca_15,ca_27,ca_16,ca_19,ca_6,ca_1,ca_20]
+[abcdef,1482144273134,ca_0,ca_12,ca_23,ca_25,ca_14,ca_27,ca_9,ca_7,ca_8,ca_5,ca_6,ca_3,ca_1]
+[abcdef,1482144288632,ca_0,ca_11,ca_22,ca_23,ca_12,ca_13,ca_24,ca_17,ca_9,ca_7,ca_8,ca_6,ca_4,ca_1,ca_20,ca_2]

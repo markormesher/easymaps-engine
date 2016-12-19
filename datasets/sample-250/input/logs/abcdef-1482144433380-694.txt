@@ -1,0 +1,5 @@
+[abcdef,1482144433380,je_23,je_5,je_4,je_25,je_13,je_24,je_9,je_8,je_20,je_26,je_28,je_17,je_1,je_0]
+[abcdef,1482144451411,je_5,je_23,je_4,je_11,je_22,je_7,je_14,je_27,je_15,je_26,je_29,je_28,je_17,je_1,je_2]
+[abcdef,1482144467136,je_23,je_4,je_22,je_14,je_13,je_24,je_20,je_16,je_26,je_15,je_18,je_28,je_1,je_2]
+[abcdef,1482144482774,je_22,je_14,je_6,je_13,je_9,je_19,je_27,je_0]
+[abcdef,1482144498615,je_5,je_4,je_22,je_7,je_21]

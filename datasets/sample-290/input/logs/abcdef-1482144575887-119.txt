@@ -1,0 +1,6 @@
+[abcdef,1482144575887,kn_2,kn_3,kn_1,kn_14,kn_13,kn_7,kn_24,kn_12,kn_23,kn_5,kn_10,kn_21,kn_20,kn_9,kn_18,kn_17,kn_16,kn_27,kn_26]
+[abcdef,1482144601365,kn_29,kn_2,kn_0]
+[abcdef,1482144629127,kn_19,kn_29,kn_28,kn_3,kn_6,kn_14,kn_7,kn_23,kn_11,kn_20]
+[abcdef,1482144653940,kn_2,kn_1,kn_14,kn_22,kn_10,kn_20,kn_9]
+[abcdef,1482144670397,kn_26,kn_6,kn_7,kn_22]
+[abcdef,1482144695821,kn_3,kn_0,kn_25,kn_12,kn_11,kn_21,kn_20,kn_8,kn_19,kn_18,kn_17,kn_16,kn_26]

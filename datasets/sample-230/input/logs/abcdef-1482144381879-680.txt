@@ -1,0 +1,4 @@
+[abcdef,1482144381879,ad_9,ad_29,ad_6,ad_25,ad_24,ad_20]
+[abcdef,1482144408651,ad_15,ad_2]
+[abcdef,1482144437132,ad_19,ad_27,ad_15,ad_26,ad_29,ad_17,ad_8,ad_4,ad_7,ad_6,ad_23,ad_14,ad_3,ad_13,ad_24,ad_21,ad_10,ad_20]
+[abcdef,1482144464651,ad_16,ad_27,ad_18,ad_28,ad_17,ad_9,ad_8,ad_5,ad_4,ad_7,ad_1,ad_12,ad_14,ad_25,ad_24,ad_13,ad_21,ad_10]

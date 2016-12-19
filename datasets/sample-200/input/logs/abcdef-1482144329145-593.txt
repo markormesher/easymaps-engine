@@ -1,0 +1,5 @@
+[abcdef,1482144329145,ej_1,ej_0,ej_26]
+[abcdef,1482144347101,ej_9,ej_6,ej_5,ej_3,ej_2,ej_20,ej_21,ej_0,ej_22,ej_23,ej_13,ej_14,ej_15]
+[abcdef,1482144362702,ej_17,ej_29,ej_9,ej_8,ej_5,ej_20,ej_21,ej_0,ej_11,ej_12,ej_24,ej_13,ej_14,ej_26,ej_16]
+[abcdef,1482144378496,ej_3,ej_22,ej_25]
+[abcdef,1482144395623,ej_9,ej_0,ej_24,ej_13,ej_25,ej_26]
