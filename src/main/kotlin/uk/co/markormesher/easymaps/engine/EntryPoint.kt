@@ -2,14 +2,14 @@ package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonLogReader
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonOptionProvider
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleDatasetGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogReader
-import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleNetworkGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleOptionProvider
 import uk.co.markormesher.easymaps.engine.helpers.*
+import uk.co.markormesher.easymaps.engine.interfaces.DatasetGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
-import uk.co.markormesher.easymaps.engine.interfaces.NetworkGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
 import java.io.File
 import java.util.*
@@ -24,9 +24,9 @@ fun main(args: Array<String>) {
 	if (cleanArgs.isEmpty()) cleanArgs.add("--engine")
 
 	when (cleanArgs[0]) {
-		"--network-generator" -> {
-			printHeader("EasyMaps Network Generator $VERSION")
-			runNetworkGenerator(args.drop(1).toTypedArray())
+		"--dataset-generator" -> {
+			printHeader("EasyMaps Dataset Generator $VERSION")
+			runDatasetGenerator(args.drop(1).toTypedArray())
 		}
 
 		"--log-generator" -> {
@@ -124,20 +124,20 @@ fun selectOptionProvider(): OptionProvider {
 	}
 }
 
-fun selectNetworkGeneratorOptionProvider(): NetworkGeneratorOptionProvider {
+fun selectDatasetGeneratorOptionProvider(): DatasetGeneratorOptionProvider {
 	while (true) {
 		var input = options["networkGeneratorOptionProvider"]
 		options.put("networkGeneratorOptionProvider", null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
-			println("\nSelect network generator option provider [sample]")
+			println("\nSelect dataset generator option provider [sample]")
 			print(INPUT_PROMPT)
 			input = readLine()!!.trim()
 		}
 
 		when (input) {
-			"sample" -> return SampleNetworkGeneratorOptionProvider()
+			"sample" -> return SampleDatasetGeneratorOptionProvider()
 			else -> if (!quiet) printError("that's not a valid option")
 		}
 	}

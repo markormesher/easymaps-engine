@@ -1,27 +1,21 @@
-package uk.co.markormesher.easymaps.engine.network_generator
+package uk.co.markormesher.easymaps.engine.dataset_generator
 
-import uk.co.markormesher.easymaps.engine.NetworkGeneratorConfig
+import uk.co.markormesher.easymaps.engine.DatasetGeneratorConfig
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
-import uk.co.markormesher.easymaps.engine.helpers.randomDouble
-import uk.co.markormesher.easymaps.engine.helpers.randomInt
-import uk.co.markormesher.easymaps.engine.interfaces.NetworkGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.runLogGenerator
 import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.File
 import java.io.PrintWriter
 import java.util.*
 
-fun generateNetworks(cfg: NetworkGeneratorConfig) {
-	val opts = cfg.networkGeneratorOptionProvider
+fun generateDatasets(networks: List<Network>, cfg: DatasetGeneratorConfig) {
+	val opts = cfg.datasetGeneratorOptionProvider
 
-	val networks = ArrayList<Pair<Int, Int>>()
-
-	for (size in opts.sizes) {
-		printSubHeader("Generating Network (n = $size)")
+	for (network in networks) {
+		val size = network.nodeCount
+		printSubHeader("Generating Dataset (n = $size)")
 
 		createFileStructure(size, cfg)
-		val network = generateNetwork(size, opts)
-		networks.add(Pair(network.nodeCount, network.edgeCount))
 		writeNetwork(size, network, cfg)
 		runLogGenerator(arrayOf("${cfg.outputFolderPath}/${opts.generateGraphFolderName(size)}/log-generator-options.txt"), true)
 	}
@@ -29,9 +23,9 @@ fun generateNetworks(cfg: NetworkGeneratorConfig) {
 	generateSummary(networks, cfg)
 }
 
-internal fun createFileStructure(size: Int, cfg: NetworkGeneratorConfig) {
-	val opts = cfg.networkGeneratorOptionProvider
-	val folderName = cfg.networkGeneratorOptionProvider.generateGraphFolderName(size)
+internal fun createFileStructure(size: Int, cfg: DatasetGeneratorConfig) {
+	val opts = cfg.datasetGeneratorOptionProvider
+	val folderName = cfg.datasetGeneratorOptionProvider.generateGraphFolderName(size)
 
 	// create folders
 	File("${cfg.outputFolderPath}/$folderName").mkdir()
@@ -71,45 +65,7 @@ internal fun createFileStructure(size: Int, cfg: NetworkGeneratorConfig) {
 	}
 }
 
-internal fun generateNetwork(size: Int, opts: NetworkGeneratorOptionProvider): Network {
-	val network = Network(size)
-
-	// chains
-	var skippedLastEdge = false
-	for (i in 1..size - 1) {
-		// make sure every node is part of a chain
-		val canSkipEdge = !skippedLastEdge && i != 1 && i != size - 1
-
-		if (!canSkipEdge || randomDouble() > opts.chainBreakChance) {
-			if (randomDouble() > opts.singleDirectionChance) {
-				network.addEdge(i - 1, i)
-				network.addEdge(i, i - 1)
-			} else {
-				network.addEdge(i - 1, i)
-			}
-			skippedLastEdge = false
-		} else {
-			skippedLastEdge = true
-		}
-	}
-
-	// more edges
-	val targetEdges = Math.round(size * randomDouble(opts.minConnectivity, opts.maxConnectivity)).toInt()
-	while (network.edgeCount < targetEdges) {
-		val from = randomInt(0, size)
-		val to = randomInt(0, size)
-		if (randomDouble() > opts.singleDirectionChance) {
-			network.addEdge(from, to)
-			network.addEdge(to, from)
-		} else {
-			network.addEdge(from, to)
-		}
-	}
-
-	return network
-}
-
-internal fun writeNetwork(size: Int, network: Network, cfg: NetworkGeneratorConfig) {
+internal fun writeNetwork(size: Int, network: Network, cfg: DatasetGeneratorConfig) {
 	val sb = StringBuilder()
 
 	val edgesPrinted = HashSet<String>()
@@ -121,28 +77,28 @@ internal fun writeNetwork(size: Int, network: Network, cfg: NetworkGeneratorConf
 		}
 	}
 
-	val folderName = cfg.networkGeneratorOptionProvider.generateGraphFolderName(size)
+	val folderName = cfg.datasetGeneratorOptionProvider.generateGraphFolderName(size)
 	with(PrintWriter("${cfg.outputFolderPath}/$folderName/input/known-network.txt", "UTF-8")) {
 		print(sb.toString())
 		close()
 	}
 }
 
-internal fun makeEdge(size: Int, network: Network, from: Int, to: Int, cfg: NetworkGeneratorConfig): String {
+internal fun makeEdge(size: Int, network: Network, from: Int, to: Int, cfg: DatasetGeneratorConfig): String {
 	if (network.hasEdge(from, to) && network.hasEdge(to, from)) {
-		val fromLabel = cfg.networkGeneratorOptionProvider.generateGraphNodeLabel(size, Math.min(from, to))
-		val toLabel = cfg.networkGeneratorOptionProvider.generateGraphNodeLabel(size, Math.max(from, to))
+		val fromLabel = cfg.datasetGeneratorOptionProvider.generateGraphNodeLabel(size, Math.min(from, to))
+		val toLabel = cfg.datasetGeneratorOptionProvider.generateGraphNodeLabel(size, Math.max(from, to))
 		return "\"$fromLabel\" -- \"$toLabel\""
 	} else if (network.hasEdge(from, to)) {
-		val fromLabel = cfg.networkGeneratorOptionProvider.generateGraphNodeLabel(size, from)
-		val toLabel = cfg.networkGeneratorOptionProvider.generateGraphNodeLabel(size, to)
+		val fromLabel = cfg.datasetGeneratorOptionProvider.generateGraphNodeLabel(size, from)
+		val toLabel = cfg.datasetGeneratorOptionProvider.generateGraphNodeLabel(size, to)
 		return "\"$fromLabel\" -> \"$toLabel\""
 	} else {
 		throw IllegalArgumentException("The edge $from -> $to does not exist in the given network")
 	}
 }
 
-internal fun generateSummary(networks: List<Pair<Int, Int>>, cfg: NetworkGeneratorConfig) {
+internal fun generateSummary(networks: List<Network>, cfg: DatasetGeneratorConfig) {
 	val sb = StringBuilder()
 
 	// prefix
@@ -168,12 +124,12 @@ internal fun generateSummary(networks: List<Pair<Int, Int>>, cfg: NetworkGenerat
 
 	// networks
 	for (network in networks) {
-		val folderName = cfg.networkGeneratorOptionProvider.generateGraphFolderName(network.first)
+		val folderName = cfg.datasetGeneratorOptionProvider.generateGraphFolderName(network.nodeCount)
 		val image = "./$folderName/output/known-network.png"
 		sb.append("<tr>")
-		sb.append("<td>${network.first}</td>")
-		sb.append("<td>${network.second}</td>")
-		sb.append("<td>${String.format("%.2f", network.second / network.first.toDouble())}</td>")
+		sb.append("<td>${network.nodeCount}</td>")
+		sb.append("<td>${network.edgeCount}</td>")
+		sb.append("<td>${String.format("%.2f", network.edgeCount / network.nodeCount.toDouble())}</td>")
 		sb.append("<td><a href=\"$image\">Link</a></td>")
 		sb.append("</tr>")
 	}
@@ -190,3 +146,4 @@ internal fun generateSummary(networks: List<Pair<Int, Int>>, cfg: NetworkGenerat
 		close()
 	}
 }
+

@@ -1,11 +1,12 @@
 package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.helpers.*
-import uk.co.markormesher.easymaps.engine.network_generator.generateNetworks
+import uk.co.markormesher.easymaps.engine.dataset_generator.generateDatasets
+import uk.co.markormesher.easymaps.engine.dataset_generator.generateNetworks
 
-fun runNetworkGenerator(args: Array<String>) {
-	val cfg = NetworkGeneratorConfig(
-			networkGeneratorOptionProvider = selectNetworkGeneratorOptionProvider(),
+fun runDatasetGenerator(args: Array<String>) {
+	val cfg = DatasetGeneratorConfig(
+			datasetGeneratorOptionProvider = selectDatasetGeneratorOptionProvider(),
 			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER)
 	)
 
@@ -23,7 +24,8 @@ fun runNetworkGenerator(args: Array<String>) {
 	var timer = -System.currentTimeMillis()
 
 	try {
-		generateNetworks(cfg)
+		val networks = generateNetworks(cfg)
+		generateDatasets(networks, cfg)
 		printSubHeader("Done!")
 	} catch (e: PrematureFailureException) {
 		printError("Premature failure")

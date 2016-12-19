@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.interfaces
 
-abstract class NetworkGeneratorOptionProvider {
+abstract class DatasetGeneratorOptionProvider {
 
 	/**
 	 * Name of the log reader to write into option files.

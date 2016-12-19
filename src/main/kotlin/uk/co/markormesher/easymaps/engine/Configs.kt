@@ -2,7 +2,7 @@ package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
-import uk.co.markormesher.easymaps.engine.interfaces.NetworkGeneratorOptionProvider
+import uk.co.markormesher.easymaps.engine.interfaces.DatasetGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
 import uk.co.markormesher.easymaps.engine.structures.TraitTranslator
 
@@ -31,8 +31,8 @@ class EngineConfig(
 		drawGraphs
 )
 
-class NetworkGeneratorConfig(
-		val networkGeneratorOptionProvider: NetworkGeneratorOptionProvider,
+class DatasetGeneratorConfig(
+		val datasetGeneratorOptionProvider: DatasetGeneratorOptionProvider,
 		val outputFolderPath: String
 )
 

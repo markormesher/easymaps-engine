@@ -9,6 +9,13 @@ To run main algorithm:
     
     # eg: ./engine.sh sample-64
 
+To run full dataset generator:
+
+    gradle clean fatjar
+    ./dataset-generator.sh
+    
+    # eg: ./dataset-generator.sh
+
 To run log generator:
 
     gradle clean fatjar
@@ -25,13 +32,4 @@ To run tests and generate coverage report:
 
 ## Sample Datasets
 
-| Network | Nodes | Edges |
-| --- | --- | --- |
-| `sample-16` | 16 | 36 |
-| `sample-32` | 32 | 78 |
-| `sample-64` | 64 | 161 |
-| `sample-128` | 128 | 310 |
-| `sample-256` | 256 | 608 |
-| - |  |  |
-| `sample-bucharest` | 70 | 148 |
-| `sample-london` | 269 | 612 |
+See `datasets/summary.html` and `datasets-real/summary.html`.
