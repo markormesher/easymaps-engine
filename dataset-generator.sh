@@ -7,4 +7,4 @@ if [ ! -f "build/libs/easymaps-engine-1.0.0.jar" ]; then
 fi
 
 # go!
-java -jar "build/libs/easymaps-engine-1.0.0.jar" "--dataset-generator"
+java -jar "build/libs/easymaps-engine-1.0.0.jar" "--dataset-generator" $@

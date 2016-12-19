@@ -8,7 +8,7 @@ import java.io.File
 import java.io.PrintWriter
 import java.util.*
 
-fun generateDatasets(networks: List<Network>, cfg: DatasetGeneratorConfig) {
+fun generateDatasets(networks: List<Network>, cfg: DatasetGeneratorConfig, args: Array<String>) {
 	val opts = cfg.datasetGeneratorOptionProvider
 
 	for (network in networks) {
@@ -17,7 +17,7 @@ fun generateDatasets(networks: List<Network>, cfg: DatasetGeneratorConfig) {
 
 		createFileStructure(size, cfg)
 		writeNetwork(size, network, cfg)
-		runLogGenerator(arrayOf("${cfg.outputFolderPath}/${opts.generateGraphFolderName(size)}/log-generator-options.txt"), true)
+		runLogGenerator(arrayOf("${cfg.outputFolderPath}/${opts.generateGraphFolderName(size)}/log-generator-options.txt", "--force") + args)
 	}
 
 	generateSummary(networks, cfg)

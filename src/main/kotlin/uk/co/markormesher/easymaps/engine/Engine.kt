@@ -5,10 +5,11 @@ import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.TraitTranslator
 
 fun runEngine(args: Array<String>) {
-	if (args.size == 1) {
-		readOptionsFile(args[0])
-		println()
-	}
+	if (args.isNotEmpty()) readOptionsFile(args[0])
+
+	if (args.contains("--graphs")) entryPointOptions.put("drawGraphs", "y")
+	if (args.contains("--no-graphs")) entryPointOptions.put("drawGraphs", "n")
+	if (args.contains("--force")) entryPointOptions.put("force", "y")
 
 	val cfg = EngineConfig(
 			logReader = selectLogReader(),
@@ -22,18 +23,20 @@ fun runEngine(args: Array<String>) {
 	)
 
 	// just to be sure...
-	println()
-	printWarning("This will delete everything in '${cfg.outputFolderPath}'!")
-	if (selectYesNo("Are you sure you want to continue?", "")) {
-		clearDirectory(cfg.outputFolderPath)
-	} else {
-		printSubHeader("Aborted")
-		return
+	if ((entryPointOptions["force"] ?: "n") != "y") {
+		println()
+		printWarning("This will delete everything in '${cfg.outputFolderPath}'!")
+		if (selectYesNo("Are you sure you want to continue?", "")) {
+			clearDirectory(cfg.outputFolderPath)
+		} else {
+			printSubHeader("Aborted")
+			return
+		}
 	}
-	println()
 
 	var timer = -System.currentTimeMillis()
 
+	println()
 	try {
 		val parsedLogFiles = parseAndCleanData(cfg)
 		val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)

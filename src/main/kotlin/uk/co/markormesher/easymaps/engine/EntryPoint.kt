@@ -14,7 +14,7 @@ import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
 import java.io.File
 import java.util.*
 
-private val options = HashMap<String, String?>()
+val entryPointOptions = HashMap<String, String?>()
 
 val PATH_TYPE_FILE = 1
 val PATH_TYPE_FOLDER = 2
@@ -48,19 +48,19 @@ fun readOptionsFile(filePath: String) {
 
 	optFile.readLines().filter({ line -> !line.trim().isNullOrBlank() }).forEach { line ->
 		val chunks = line.trim().split("=").map(String::trim)
-		if (chunks.size == 2) options.put(chunks[0], chunks[1])
+		if (chunks.size == 2) entryPointOptions.put(chunks[0], chunks[1])
 	}
 
-	if (options.size > 0) {
+	if (entryPointOptions.size > 0) {
 		printInfo("Parsed options from file:")
-		options.forEach { key, value -> printSubInfo("$key => $value") }
+		entryPointOptions.forEach { key, value -> printSubInfo("$key => $value") }
 	}
 }
 
 fun selectLogReader(): LogReader {
 	while (true) {
-		var input = options["logReader"]
-		options.put("logReader", null)
+		var input = entryPointOptions["logReader"]
+		entryPointOptions.put("logReader", null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
@@ -79,8 +79,8 @@ fun selectLogReader(): LogReader {
 
 fun enterPath(prompt: String, optionKey: String, searchType: Int = -1): String {
 	while (true) {
-		var input = options[optionKey]
-		options.put(optionKey, null)
+		var input = entryPointOptions[optionKey]
+		entryPointOptions.put(optionKey, null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
@@ -106,8 +106,8 @@ fun enterPath(prompt: String, optionKey: String, searchType: Int = -1): String {
 
 fun selectOptionProvider(): OptionProvider {
 	while (true) {
-		var input = options["optionProvider"]
-		options.put("optionProvider", null)
+		var input = entryPointOptions["optionProvider"]
+		entryPointOptions.put("optionProvider", null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
@@ -126,8 +126,8 @@ fun selectOptionProvider(): OptionProvider {
 
 fun selectDatasetGeneratorOptionProvider(): DatasetGeneratorOptionProvider {
 	while (true) {
-		var input = options["networkGeneratorOptionProvider"]
-		options.put("networkGeneratorOptionProvider", null)
+		var input = entryPointOptions["networkGeneratorOptionProvider"]
+		entryPointOptions.put("networkGeneratorOptionProvider", null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
@@ -145,8 +145,8 @@ fun selectDatasetGeneratorOptionProvider(): DatasetGeneratorOptionProvider {
 
 fun selectLogGeneratorOptionProvider(): LogGeneratorOptionProvider {
 	while (true) {
-		var input = options["logGeneratorOptionProvider"]
-		options.put("logGeneratorOptionProvider", null)
+		var input = entryPointOptions["logGeneratorOptionProvider"]
+		entryPointOptions.put("logGeneratorOptionProvider", null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
@@ -164,8 +164,8 @@ fun selectLogGeneratorOptionProvider(): LogGeneratorOptionProvider {
 
 fun selectYesNo(prompt: String, optionKey: String): Boolean {
 	while (true) {
-		var input = options[optionKey]
-		options.put(optionKey, null)
+		var input = entryPointOptions[optionKey]
+		entryPointOptions.put(optionKey, null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {

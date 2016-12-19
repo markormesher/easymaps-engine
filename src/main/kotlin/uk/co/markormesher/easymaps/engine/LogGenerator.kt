@@ -5,11 +5,12 @@ import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.log_generator.generateLogs
 import uk.co.markormesher.easymaps.engine.log_generator.generateRandomPaths
 
-fun runLogGenerator(args: Array<String>, force: Boolean = false) {
-	if (args.size == 1) {
-		readOptionsFile(args[0])
-		println()
-	}
+fun runLogGenerator(args: Array<String>) {
+	if (args.isNotEmpty()) readOptionsFile(args[0])
+
+	if (args.contains("--graphs")) entryPointOptions.put("drawGraphs", "y")
+	if (args.contains("--no-graphs")) entryPointOptions.put("drawGraphs", "n")
+	if (args.contains("--force")) entryPointOptions.put("force", "y")
 
 	val cfg = LogGeneratorConfig(
 			logGeneratorOptionProvider = selectLogGeneratorOptionProvider(),
@@ -21,7 +22,8 @@ fun runLogGenerator(args: Array<String>, force: Boolean = false) {
 	)
 
 	// just to be sure...
-	if (!force) {
+	if ((entryPointOptions["force"] ?: "n") != "y") {
+		println()
 		printWarning("This will delete everything in '${cfg.logFolderPath}'!")
 		if (selectYesNo("Are you sure you want to continue?", "")) {
 			clearDirectory(cfg.logFolderPath)
@@ -29,11 +31,11 @@ fun runLogGenerator(args: Array<String>, force: Boolean = false) {
 			printSubHeader("Aborted")
 			return
 		}
-		println()
 	}
 
 	var timer = -System.currentTimeMillis()
 
+	println()
 	try {
 		val network = parseKnownNetwork(cfg)
 		val paths = generateRandomPaths(network, cfg)

@@ -19,4 +19,4 @@ if [ "$#" == 1 ]; then
 fi
 
 # go!
-java -jar "build/libs/easymaps-engine-1.0.0.jar" "--log-generator" "$option"
+java -jar "build/libs/easymaps-engine-1.0.0.jar" "--log-generator" "$option" $@
