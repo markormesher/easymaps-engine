@@ -1,6 +1,6 @@
-package uk.co.markormesher.easymaps.engine.walker
+package uk.co.markormesher.easymaps.engine.log_generator
 
-import uk.co.markormesher.easymaps.engine.WalkerConfig
+import uk.co.markormesher.easymaps.engine.LogGeneratorConfig
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.randomElement
 import uk.co.markormesher.easymaps.engine.helpers.randomInt
@@ -9,22 +9,22 @@ import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.PrintWriter
 import java.util.*
 
-fun generateWalks(network: Network, paths: List<List<Int>>, cfg: WalkerConfig) {
-	val opts = cfg.walkerOptionProvider
+fun generateLogs(network: Network, paths: List<List<Int>>, cfg: LogGeneratorConfig) {
+	val opts = cfg.logGeneratorOptionProvider
 
-	printInfo("Generating and writing walks")
+	printInfo("Generating and writing logs")
 
 	// for every path...
 	paths.forEachIndexed { i, path ->
 		val timestamp = System.currentTimeMillis()
 		val userId = opts.userIds.randomElement()
-		val walk = generateWalkLog(network, path, timestamp, userId, cfg)
-		writeWalkLog(cfg.walkerOptionProvider.generateLogFileName(userId, timestamp, i), walk, cfg)
+		val log = generateSingleLog(network, path, timestamp, userId, cfg)
+		writeSingleLog(cfg.logGeneratorOptionProvider.generateLogFileName(userId, timestamp, i), log, cfg)
 	}
 }
 
-internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long, userId: String, cfg: WalkerConfig): String {
-	val opts = cfg.walkerOptionProvider
+internal fun generateSingleLog(network: Network, path: List<Int>, timestamp: Long, userId: String, cfg: LogGeneratorConfig): String {
+	val opts = cfg.logGeneratorOptionProvider
 	var _timestamp = timestamp
 
 	val sb = StringBuilder()
@@ -56,7 +56,7 @@ internal fun generateWalkLog(network: Network, path: List<Int>, timestamp: Long,
 	return sb.toString()
 }
 
-internal fun writeWalkLog(name: String, log: String, cfg: WalkerConfig) {
+internal fun writeSingleLog(name: String, log: String, cfg: LogGeneratorConfig) {
 	val file = "${cfg.logFolderPath}/$name"
 	with(PrintWriter(file, "UTF-8")) {
 		print(log)

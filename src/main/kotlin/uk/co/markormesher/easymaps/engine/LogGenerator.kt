@@ -2,13 +2,13 @@ package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.core.parseKnownNetwork
 import uk.co.markormesher.easymaps.engine.helpers.*
-import uk.co.markormesher.easymaps.engine.walker.generateRandomPaths
-import uk.co.markormesher.easymaps.engine.walker.generateWalks
+import uk.co.markormesher.easymaps.engine.log_generator.generateLogs
+import uk.co.markormesher.easymaps.engine.log_generator.generateRandomPaths
 
-fun runWalker(optionFile: String? = null) {
+fun runLogGenerator(optionFile: String? = null) {
 	if (optionFile != null) readOptionsFile(optionFile)
-	val cfg = WalkerConfig(
-			walkerOptionProvider = selectWalkerOptionProvider(),
+	val cfg = LogGeneratorConfig(
+			logGeneratorOptionProvider = selectLogGeneratorOptionProvider(),
 			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
 			logFolderPath = enterPath("Enter path to log folder", "logFolderPath", PATH_TYPE_FOLDER),
 			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
@@ -31,7 +31,7 @@ fun runWalker(optionFile: String? = null) {
 	try {
 		val network = parseKnownNetwork(cfg)
 		val paths = generateRandomPaths(network, cfg)
-		generateWalks(network, paths, cfg)
+		generateLogs(network, paths, cfg)
 		printSubHeader("Done!")
 	} catch (e: PrematureFailureException) {
 		printError("Premature failure")

@@ -1,7 +1,7 @@
 package uk.co.markormesher.easymaps.engine.interfaces
 
 import org.junit.Test
-import uk.co.markormesher.easymaps.engine._mocks.MockWalkerOptionProvider
+import uk.co.markormesher.easymaps.engine._mocks.MockLogGeneratorOptionProvider
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
@@ -9,12 +9,12 @@ import kotlin.test.assertTrue
 /**
  * These tests are just to silence warnings from JaCoCo.
  */
-class WalkerOptionProviderTests {
+class LogGeneratorOptionProviderTests {
 
 	@Test
 	fun defaultPropertiesShouldExist() {
-		val mock = MockWalkerOptionProvider()
-		assertNotNull(mock.walkLengths)
+		val mock = MockLogGeneratorOptionProvider()
+		assertNotNull(mock.pathLengths)
 		assertNotNull(mock.userIds)
 		assertNotNull(mock.minVisitsPerNode)
 		assertNotNull(mock.minTimePerNode)

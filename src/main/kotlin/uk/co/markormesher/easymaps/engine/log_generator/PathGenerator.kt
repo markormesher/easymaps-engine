@@ -1,6 +1,6 @@
-package uk.co.markormesher.easymaps.engine.walker
+package uk.co.markormesher.easymaps.engine.log_generator
 
-import uk.co.markormesher.easymaps.engine.WalkerConfig
+import uk.co.markormesher.easymaps.engine.LogGeneratorConfig
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubInfo
 import uk.co.markormesher.easymaps.engine.helpers.randomElement
@@ -8,7 +8,7 @@ import uk.co.markormesher.easymaps.engine.helpers.randomInt
 import uk.co.markormesher.easymaps.engine.structures.Network
 import java.util.*
 
-fun generateRandomPaths(network: Network, cfg: WalkerConfig): List<List<Int>> {
+fun generateRandomPaths(network: Network, cfg: LogGeneratorConfig): List<List<Int>> {
 
 	printInfo("Generating random paths")
 
@@ -34,12 +34,12 @@ fun generateRandomPaths(network: Network, cfg: WalkerConfig): List<List<Int>> {
 		// visit some more nodes
 		var curNode = startNode
 		var prevNode = -1
-		val pathLength = cfg.walkerOptionProvider.walkLengths.randomElement()
+		val pathLength = cfg.logGeneratorOptionProvider.pathLengths.randomElement()
 		for (i in 2..pathLength) {
 			val successors = network.getSuccessors(curNode)
 			if (successors.isEmpty()) break
 
-			val nextNode = cfg.walkerOptionProvider.getNextNode(prevNode, curNode, successors)
+			val nextNode = cfg.logGeneratorOptionProvider.getNextNode(prevNode, curNode, successors)
 			prevNode = curNode
 			curNode = nextNode
 
@@ -48,7 +48,7 @@ fun generateRandomPaths(network: Network, cfg: WalkerConfig): List<List<Int>> {
 		}
 
 		// remove nodes from the need-to-visit list if the threshold has passed
-		nodesToVisit.removeIf { node -> visits[node] >= cfg.walkerOptionProvider.minVisitsPerNode }
+		nodesToVisit.removeIf { node -> visits[node] >= cfg.logGeneratorOptionProvider.minVisitsPerNode }
 
 		paths.add(path)
 	}

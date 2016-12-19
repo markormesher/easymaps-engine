@@ -2,7 +2,7 @@ package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
 import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
-import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
+import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.structures.TraitTranslator
 
 open class SharedConfig(
@@ -30,8 +30,8 @@ class EngineConfig(
 		drawGraphs
 )
 
-class WalkerConfig(
-		val walkerOptionProvider: WalkerOptionProvider,
+class LogGeneratorConfig(
+		val logGeneratorOptionProvider: LogGeneratorOptionProvider,
 		override val knownNetworkFilePath: String,
 		override val logFolderPath: String,
 		override val outputFolderPath: String,

@@ -1,11 +1,11 @@
 package uk.co.markormesher.easymaps.engine._mocks
 
 import uk.co.markormesher.easymaps.engine.helpers.randomInt
-import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
+import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 
-class MockWalkerOptionProvider : WalkerOptionProvider() {
+class MockLogGeneratorOptionProvider: LogGeneratorOptionProvider() {
 
-	override val walkLengths = arrayOf(1, 2, 3)
+	override val pathLengths = arrayOf(1, 2, 3)
 
 	override val userIds = arrayOf("a", "b", "c")
 

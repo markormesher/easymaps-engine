@@ -2,14 +2,14 @@ package uk.co.markormesher.easymaps.engine.domain_specific.sample
 
 import uk.co.markormesher.easymaps.engine.helpers.randomElement
 import uk.co.markormesher.easymaps.engine.helpers.randomInt
-import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
+import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 import java.util.*
 
-class SampleWalkerOptionProvider : WalkerOptionProvider() {
+class SampleLogGeneratorOptionProvider: LogGeneratorOptionProvider() {
 
 	private val traitsPerNode = 30
 
-	override val walkLengths = arrayOf(1, 5, 10, 15, 20)
+	override val pathLengths = arrayOf(1, 5, 10, 15, 20)
 
 	override val userIds = arrayOf("abcdef")
 

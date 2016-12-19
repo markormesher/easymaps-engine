@@ -9,12 +9,12 @@ To run main algorithm:
     
     # eg: ./engine.sh sample-64
 
-To run walk generator:
+To run log generator:
 
     gradle clean fatjar
-    ./walker.sh <dataset-folder-name>
+    ./log-generator.sh <dataset-folder-name>
     
-    # eg: ./walker.sh sample-64
+    # eg: ./log-generator.sh sample-64
 
 To run tests and generate coverage report:
 

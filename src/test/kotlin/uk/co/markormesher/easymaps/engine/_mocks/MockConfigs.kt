@@ -1,17 +1,17 @@
 package uk.co.markormesher.easymaps.engine._mocks
 
-import uk.co.markormesher.easymaps.engine.WalkerConfig
-import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
+import uk.co.markormesher.easymaps.engine.LogGeneratorConfig
+import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 
-fun getMockWalkerConfig(
-		walkerOptionProvider: WalkerOptionProvider = MockWalkerOptionProvider(),
+fun getMockLogGeneratorConfig(
+		logGeneratorOptionProvider: LogGeneratorOptionProvider = MockLogGeneratorOptionProvider(),
 		knownNetworkFilePath: String = "",
 		logFolderPath: String = "",
 		outputFolderPath: String = "",
 		graphvizExec: String = "/usr/bin/dot",
 		drawGraphs: Boolean = true
-) = WalkerConfig(
-		walkerOptionProvider = walkerOptionProvider,
+) = LogGeneratorConfig(
+		logGeneratorOptionProvider = logGeneratorOptionProvider,
 		knownNetworkFilePath = knownNetworkFilePath,
 		logFolderPath = logFolderPath,
 		outputFolderPath = outputFolderPath,

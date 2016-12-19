@@ -2,13 +2,13 @@ package uk.co.markormesher.easymaps.engine
 
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonLogReader
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonOptionProvider
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogReader
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleOptionProvider
-import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleWalkerOptionProvider
 import uk.co.markormesher.easymaps.engine.helpers.*
+import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
 import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
-import uk.co.markormesher.easymaps.engine.interfaces.WalkerOptionProvider
 import java.io.File
 import java.util.*
 
@@ -20,9 +20,9 @@ val PATH_TYPE_FOLDER = 2
 fun main(args: Array<String>) {
 	val cleanArgs = args.filter { a -> !a.isNullOrBlank() }
 
-	if (cleanArgs.size == 2 && cleanArgs[0] == "--walker") {
-		printHeader("EasyMaps Walker $VERSION")
-		runWalker(cleanArgs[1])
+	if (cleanArgs.size == 2 && cleanArgs[0] == "--log-generator") {
+		printHeader("EasyMaps Log Generator $VERSION")
+		runLogGenerator(cleanArgs[1])
 	} else if (cleanArgs.size == 1) {
 		printHeader("EasyMaps Engine $VERSION")
 		runEngine(cleanArgs[0])
@@ -112,20 +112,20 @@ fun selectOptionProvider(): OptionProvider {
 	}
 }
 
-fun selectWalkerOptionProvider(): WalkerOptionProvider {
+fun selectLogGeneratorOptionProvider(): LogGeneratorOptionProvider {
 	while (true) {
-		var input = options["walkerOptionProvider"]
-		options.put("walkerOptionProvider", null)
+		var input = options["logGeneratorOptionProvider"]
+		options.put("logGeneratorOptionProvider", null)
 
 		val quiet = !input.isNullOrEmpty()
 		if (input.isNullOrEmpty()) {
-			println("\nSelect walker option provider [sample]")
+			println("\nSelect log generator option provider [sample]")
 			print(INPUT_PROMPT)
 			input = readLine()!!.trim()
 		}
 
 		when (input) {
-			"sample" -> return SampleWalkerOptionProvider()
+			"sample" -> return SampleLogGeneratorOptionProvider()
 			else -> if (!quiet) printError("that's not a valid option")
 		}
 	}
