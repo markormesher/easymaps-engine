@@ -5,8 +5,9 @@ import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.log_generator.generateLogs
 import uk.co.markormesher.easymaps.engine.log_generator.generateRandomPaths
 
-fun runLogGenerator(optionFile: String? = null) {
-	if (optionFile != null) readOptionsFile(optionFile)
+fun runLogGenerator(args: Array<String>) {
+	if (args.size == 1) readOptionsFile(args[0])
+
 	val cfg = LogGeneratorConfig(
 			logGeneratorOptionProvider = selectLogGeneratorOptionProvider(),
 			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
@@ -18,13 +19,14 @@ fun runLogGenerator(optionFile: String? = null) {
 
 	// just to be sure...
 	println()
-	printWarning("This will delete everything in ${cfg.logFolderPath}!")
+	printWarning("This will delete everything in '${cfg.logFolderPath}'!")
 	if (!selectYesNo("Are you sure you want to continue?", "")) {
 		printSubHeader("Aborted")
 		return
 	} else {
 		clearDirectory(cfg.logFolderPath)
 	}
+	println()
 
 	var timer = -System.currentTimeMillis()
 

@@ -4,8 +4,9 @@ import uk.co.markormesher.easymaps.engine.core.*
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.structures.TraitTranslator
 
-fun runEngine(optionFile: String? = null) {
-	if (optionFile != null) readOptionsFile(optionFile)
+fun runEngine(args: Array<String>) {
+	if (args.size == 1) readOptionsFile(args[0])
+
 	val cfg = EngineConfig(
 			logReader = selectLogReader(),
 			optionProvider = selectOptionProvider(),
@@ -19,13 +20,14 @@ fun runEngine(optionFile: String? = null) {
 
 	// just to be sure...
 	println()
-	printWarning("This will delete everything in ${cfg.outputFolderPath}!")
+	printWarning("This will delete everything in '${cfg.outputFolderPath}'!")
 	if (!selectYesNo("Are you sure you want to continue?", "")) {
 		printSubHeader("Aborted")
 		return
 	} else {
 		clearDirectory(cfg.outputFolderPath)
 	}
+	println()
 
 	var timer = -System.currentTimeMillis()
 

@@ -4,10 +4,12 @@ import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonLogReader
 import uk.co.markormesher.easymaps.engine.domain_specific.london.LondonOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleLogReader
+import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleNetworkGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.domain_specific.sample.SampleOptionProvider
 import uk.co.markormesher.easymaps.engine.helpers.*
 import uk.co.markormesher.easymaps.engine.interfaces.LogGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.LogReader
+import uk.co.markormesher.easymaps.engine.interfaces.NetworkGeneratorOptionProvider
 import uk.co.markormesher.easymaps.engine.interfaces.OptionProvider
 import java.io.File
 import java.util.*
@@ -18,17 +20,24 @@ val PATH_TYPE_FILE = 1
 val PATH_TYPE_FOLDER = 2
 
 fun main(args: Array<String>) {
-	val cleanArgs = args.filter { a -> !a.isNullOrBlank() }
+	val cleanArgs = args.filter { a -> !a.trim().isNullOrBlank() }.toMutableList()
+	if (cleanArgs.isEmpty()) cleanArgs.add("--engine")
 
-	if (cleanArgs.size == 2 && cleanArgs[0] == "--log-generator") {
-		printHeader("EasyMaps Log Generator $VERSION")
-		runLogGenerator(cleanArgs[1])
-	} else if (cleanArgs.size == 1) {
-		printHeader("EasyMaps Engine $VERSION")
-		runEngine(cleanArgs[0])
-	} else {
-		printHeader("EasyMaps Engine $VERSION")
-		runEngine()
+	when (cleanArgs[0]) {
+		"--network-generator" -> {
+			printHeader("EasyMaps Network Generator $VERSION")
+			runNetworkGenerator(args.drop(1).toTypedArray())
+		}
+
+		"--log-generator" -> {
+			printHeader("EasyMaps Log Generator $VERSION")
+			runLogGenerator(args.drop(1).toTypedArray())
+		}
+
+		else -> {
+			printHeader("EasyMaps Engine $VERSION")
+			runEngine(args.drop(1).toTypedArray())
+		}
 	}
 }
 
@@ -82,12 +91,15 @@ fun enterPath(prompt: String, optionKey: String, searchType: Int = -1): String {
 
 		if (!File(input).exists()) {
 			if (!quiet) printError("that location doesn't exist")
+
 		} else if (searchType == PATH_TYPE_FOLDER && !File(input).isDirectory) {
 			if (!quiet) printError("that location isn't a directory")
+
 		} else if (searchType == PATH_TYPE_FILE && !File(input).isFile) {
 			if (!quiet) printError("that location isn't a directory")
+
 		} else if (input != null) {
-			return if (input.last() == '/') input.drop(1) else input
+			return if (input.last() == '/') input.dropLast(1) else input
 		}
 	}
 }
@@ -107,6 +119,25 @@ fun selectOptionProvider(): OptionProvider {
 		when (input) {
 			"london" -> return LondonOptionProvider()
 			"sample" -> return SampleOptionProvider()
+			else -> if (!quiet) printError("that's not a valid option")
+		}
+	}
+}
+
+fun selectNetworkGeneratorOptionProvider(): NetworkGeneratorOptionProvider {
+	while (true) {
+		var input = options["networkGeneratorOptionProvider"]
+		options.put("networkGeneratorOptionProvider", null)
+
+		val quiet = !input.isNullOrEmpty()
+		if (input.isNullOrEmpty()) {
+			println("\nSelect network generator option provider [sample]")
+			print(INPUT_PROMPT)
+			input = readLine()!!.trim()
+		}
+
+		when (input) {
+			"sample" -> return SampleNetworkGeneratorOptionProvider()
 			else -> if (!quiet) printError("that's not a valid option")
 		}
 	}
