@@ -2,7 +2,7 @@ package uk.co.markormesher.easymaps.engine._mocks
 
 import uk.co.markormesher.easymaps.engine.interfaces.DatasetGeneratorOptionProvider
 
-class MockDatasetGeneratorOptionProvider: DatasetGeneratorOptionProvider() {
+class MockDatasetGeneratorOptionProvider(override val sizes: List<Int>): DatasetGeneratorOptionProvider() {
 
 	val characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray()
 
@@ -12,15 +12,13 @@ class MockDatasetGeneratorOptionProvider: DatasetGeneratorOptionProvider() {
 
 	override val logGeneratorOptionProviderName = "sample"
 
-	override val sizes = (10..20 step 10).toList()
-
 	override val minConnectivity = 2.0
 
-	override val maxConnectivity = 2.0
+	override val maxConnectivity = 2.5
 
-	override val singleDirectionChance = 0.05
+	override val singleDirectionChance = 0.5
 
-	override val chainBreakChance = 0.1
+	override val chainBreakChance = 0.5
 
 	override fun generateGraphFolderName(size: Int) = String.format("sample-%03d", size)
 
