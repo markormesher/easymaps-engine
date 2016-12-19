@@ -46,7 +46,7 @@ fun readOptionsFile(filePath: String) {
 	if (!optFile.exists()) return printError("Could not load options: '$filePath' does not exist")
 	if (!optFile.isFile) return printError("Could not load options: '$filePath' is not a file")
 
-	optFile.readLines().forEach { line ->
+	optFile.readLines().filter({ line -> !line.trim().isNullOrBlank() }).forEach { line ->
 		val chunks = line.trim().split("=").map(String::trim)
 		if (chunks.size == 2) options.put(chunks[0], chunks[1])
 	}

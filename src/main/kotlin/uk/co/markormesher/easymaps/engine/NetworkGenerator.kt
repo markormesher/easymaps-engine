@@ -12,11 +12,11 @@ fun runNetworkGenerator(args: Array<String>) {
 	// just to be sure...
 	println()
 	printWarning("This will delete everything in '${cfg.outputFolderPath}'!")
-	if (!selectYesNo("Are you sure you want to continue?", "")) {
+	if (selectYesNo("Are you sure you want to continue?", "")) {
+		clearDirectory(cfg.outputFolderPath, true)
+	} else {
 		printSubHeader("Aborted")
 		return
-	} else {
-		clearDirectory(cfg.outputFolderPath)
 	}
 	println()
 
