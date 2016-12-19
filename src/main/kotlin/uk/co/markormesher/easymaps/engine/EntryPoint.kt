@@ -34,9 +34,14 @@ fun main(args: Array<String>) {
 			runLogGenerator(args.drop(1).toTypedArray())
 		}
 
-		else -> {
+		"--engine" -> {
 			printHeader("EasyMaps Engine $VERSION")
 			runEngine(args.drop(1).toTypedArray())
+		}
+
+		else -> {
+			printHeader("EasyMaps Engine $VERSION")
+			runEngine(args)
 		}
 	}
 }

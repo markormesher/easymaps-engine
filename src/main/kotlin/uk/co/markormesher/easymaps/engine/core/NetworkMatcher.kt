@@ -1,6 +1,5 @@
 package uk.co.markormesher.easymaps.engine.core
 
-import uk.co.markormesher.easymaps.engine.algorithms.BruteForceIsomorphismFinder
 import uk.co.markormesher.easymaps.engine.algorithms.Ullmann1976IsomorphismFinder_DenseMatrix
 import uk.co.markormesher.easymaps.engine.algorithms.Ullmann1976IsomorphismFinder_SparseMatrix
 import uk.co.markormesher.easymaps.engine.helpers.printError
@@ -19,9 +18,9 @@ fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int
 	timedExecution("Ullmann (Sparse)", 2, 5, {
 		Ullmann1976IsomorphismFinder_SparseMatrix(observedNetwork, knownNetwork).findIsomorphisms()
 	})
-	timedExecution("Brute-force", 2, 5, {
-		BruteForceIsomorphismFinder(observedNetwork, knownNetwork).findIsomorphisms()
-	})
+	//timedExecution("Brute-force", 2, 5, {
+	//	BruteForceIsomorphismFinder(observedNetwork, knownNetwork).findIsomorphisms()
+	//})
 
 	val isomorphismFinder = Ullmann1976IsomorphismFinder_SparseMatrix(observedNetwork, knownNetwork)
 	val isomorphisms = isomorphismFinder.findIsomorphisms()

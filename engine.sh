@@ -8,15 +8,9 @@ fi
 
 # check option file
 option=""
-if [ "$#" == 1 ]; then
-	dataset=$1
-	if [ -f "datasets/$dataset/options.txt" ];then
-		option="datasets/$dataset/options.txt"
-	else
-		echo "No option file found at datasets/$dataset/options.txt"
-		exit 1
-	fi
+if [ -f "datasets/$1/options.txt" ]; then
+	option="datasets/$1/options.txt"
 fi
 
 # go!
-java -jar "build/libs/easymaps-engine-1.0.0.jar" "$option" $@
+java -jar "build/libs/easymaps-engine-1.0.0.jar" "--engine" "$option" $@
