@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import kotlin.test.assertEquals
 
-class PrintingTest {
+class PrintingTests {
 
 	var originalStdOut: PrintStream? = null
 	val stdOut = ByteArrayOutputStream()
