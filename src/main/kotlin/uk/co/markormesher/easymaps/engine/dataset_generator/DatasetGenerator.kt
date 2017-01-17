@@ -8,7 +8,7 @@ import java.io.File
 import java.io.PrintWriter
 import java.util.*
 
-fun generateDatasets(networks: List<Network>, cfg: DatasetGeneratorConfig, args: Array<String>) {
+fun generateDatasets(networks: List<Network>, cfg: DatasetGeneratorConfig, args: Array<String> = emptyArray()) {
 	val opts = cfg.datasetGeneratorOptionProvider
 
 	for (network in networks) {
