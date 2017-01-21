@@ -47,6 +47,8 @@ fun main(args: Array<String>) {
 }
 
 fun readOptionsFile(filePath: String) {
+	if (filePath.isNullOrEmpty()) return
+
 	val optFile = File(filePath)
 	if (!optFile.exists()) return printError("Could not load options: '$filePath' does not exist")
 	if (!optFile.isFile) return printError("Could not load options: '$filePath' is not a file")
