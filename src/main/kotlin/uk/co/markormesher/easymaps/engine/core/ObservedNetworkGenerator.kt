@@ -98,12 +98,16 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 				val maxNodeGap = (thisNodeSeenAt - lastNodeSeenAt) - averageScanGapsInLastNode
 
 				if (cfg.optionProvider.minTimeGapBetweenClusters >= 0 && minNodeGap < cfg.optionProvider.minTimeGapBetweenClusters) {
-					printSubWarning("Minimum time gap not met in file $fileId (gap: $minNodeGap); skipping rest of file")
-					return@logFiles
+					printSubWarning("Minimum time gap not met in file $fileId (gap: $minNodeGap); starting again from this entry")
+					lastNode = thisNode
+					lastNodeSeenAt = thisNodeSeenAt
+					return@logEntries
 				}
 				if (cfg.optionProvider.maxTimeGapBetweenClusters >= 0 && maxNodeGap > cfg.optionProvider.maxTimeGapBetweenClusters) {
-					printSubWarning("Maximum time gap exceeded in file $fileId (gap: $maxNodeGap); skipping rest of file")
-					return@logFiles
+					printSubWarning("Maximum time gap exceeded in file $fileId (gap: $maxNodeGap); starting again from this entry")
+					lastNode = thisNode
+					lastNodeSeenAt = thisNodeSeenAt
+					return@logEntries
 				}
 
 				adjMatrix[lastNode, thisNode] = adjMatrix[lastNode, thisNode] + 1
