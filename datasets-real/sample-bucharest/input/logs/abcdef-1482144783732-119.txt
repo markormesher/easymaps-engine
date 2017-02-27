@@ -1,2 +1,0 @@
-[abcdef,1482144783732,titan_3,titan_20,titan_5,titan_6,titan_14,titan_13,titan_19,titan_28,titan_17,titan_16]
-[abcdef,1482144813039,titan_11,titan_20,titan_15,titan_14,titan_25,titan_13,titan_24,titan_12,titan_18,titan_17,titan_0,titan_2,titan_3,titan_4,titan_5]

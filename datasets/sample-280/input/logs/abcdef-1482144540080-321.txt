@@ -1,2 +1,0 @@
-[abcdef,1482144540080,dv_21,dv_10,dv_7,dv_23,dv_6,dv_12,dv_1]
-[abcdef,1482144566411,dv_9,dv_7,dv_6,dv_25,dv_3,dv_26,dv_15,dv_2,dv_27,dv_17,dv_28,dv_29,dv_19,dv_20,dv_21,dv_22,dv_24,dv_13]

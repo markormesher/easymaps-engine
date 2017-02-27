@@ -1,5 +1,0 @@
-[abcdef,1482144405866,ij_0,ij_3,ij_2,ij_13]
-[abcdef,1482144422402,ij_0,ij_10,ij_21,ij_2,ij_22,ij_11,ij_4,ij_7,ij_6,ij_8,ij_25,ij_13,ij_16,ij_15,ij_18,ij_17,ij_19]
-[abcdef,1482144437989,ij_0,ij_10,ij_3,ij_20,ij_12,ij_9,ij_16,ij_27,ij_17,ij_28]
-[abcdef,1482144454699,ij_1,ij_10,ij_20,ij_2,ij_23,ij_22,ij_4,ij_8,ij_14,ij_24,ij_13,ij_16,ij_26,ij_28,ij_17,ij_19]
-[abcdef,1482144470457,ij_21,ij_16]

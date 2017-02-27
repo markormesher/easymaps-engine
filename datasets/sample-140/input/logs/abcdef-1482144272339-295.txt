@@ -1,5 +1,0 @@
-[abcdef,1482144272339,al_16,al_15,al_17,al_8,al_10,al_24]
-[abcdef,1482144299608,al_18,al_8]
-[abcdef,1482144317896,al_26,al_17,al_2,al_21]
-[abcdef,1482144337856,al_16,al_1,al_15,al_26,al_28,al_2,al_9,al_20,al_5,al_4,al_22,al_24]
-[abcdef,1482144362436,al_18,al_29,al_10,al_5,al_11,al_14]

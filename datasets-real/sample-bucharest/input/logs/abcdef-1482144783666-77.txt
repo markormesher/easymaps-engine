@@ -1,2 +1,0 @@
-[abcdef,1482144783666,mai_7,mai_22,mai_9,mai_12,mai_13,mai_3,mai_14,mai_15,mai_26,mai_16,mai_27,mai_4,mai_17,mai_28,mai_19]
-[abcdef,1482144802918,mai_20,mai_10,mai_9,mai_22,mai_11,mai_12,mai_8,mai_24,mai_13,mai_3,mai_2,mai_26,mai_4,mai_16,mai_1,mai_28,mai_18]

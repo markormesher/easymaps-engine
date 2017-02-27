@@ -1,3 +1,0 @@
-[abcdef,1482144616067,aa_16,aa_0]
-[abcdef,1482144645944,aa_17,aa_29,aa_23,aa_12,aa_25,aa_14,aa_15,aa_8,aa_7,aa_4,aa_20,aa_22,aa_0,aa_2,aa_1]
-[abcdef,1482144666339,aa_16,aa_29,aa_12,aa_7,aa_14,aa_15,aa_9,aa_4,aa_6,aa_5,aa_0]

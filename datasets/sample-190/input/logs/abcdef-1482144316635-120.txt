@@ -1,3 +1,0 @@
-[abcdef,1482144316635,fi_28,fi_15,fi_16,fi_24,fi_11,fi_22,fi_9,fi_8,fi_7,fi_6,fi_21,fi_5,fi_2]
-[abcdef,1482144340695,fi_28,fi_18,fi_26,fi_13,fi_24,fi_14,fi_25,fi_9,fi_8,fi_7,fi_21,fi_6,fi_3,fi_1,fi_0]
-[abcdef,1482144366458,fi_25,fi_11,fi_23,fi_21,fi_5,fi_2,fi_28]

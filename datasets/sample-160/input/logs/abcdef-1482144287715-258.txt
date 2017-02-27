@@ -1,3 +1,0 @@
-[abcdef,1482144287715,do_12,do_23,do_25,do_24,do_21,do_20,do_19,do_9,do_6,do_29,do_28,do_1,do_0]
-[abcdef,1482144314490,do_3,do_2,do_14,do_13,do_9,do_29,do_28]
-[abcdef,1482144342178,do_12,do_23,do_22,do_14,do_13,do_10,do_20,do_16,do_7,do_15,do_26,do_5,do_29,do_4,do_17,do_28,do_3,do_2,do_1]

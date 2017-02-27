@@ -1,5 +1,0 @@
-[abcdef,1482144287702,dw_20,dw_10,dw_11,dw_17,dw_0]
-[abcdef,1482144302915,dw_20,dw_21,dw_8,dw_12,dw_23,dw_13,dw_5,dw_15,dw_16,dw_28,dw_18,dw_19]
-[abcdef,1482144330901,dw_9,dw_20,dw_11,dw_19]
-[abcdef,1482144355145,dw_11,dw_26]
-[abcdef,1482144376412,dw_20,dw_8,dw_10,dw_12,dw_24,dw_13,dw_14,dw_16,dw_27,dw_0,dw_19]

@@ -1,5 +1,0 @@
-[abcdef,1482144279873,ff_20,ff_28,ff_16]
-[abcdef,1482144301698,ff_9,ff_7,ff_5,ff_13,ff_2,ff_23,ff_12,ff_25]
-[abcdef,1482144323963,ff_24,ff_15]
-[abcdef,1482144340628,ff_11,ff_8,ff_6,ff_17,ff_16,ff_19,ff_0,ff_25]
-[abcdef,1482144358661,ff_20,ff_11,ff_28,ff_27,ff_16,ff_4,ff_2,ff_24,ff_23]

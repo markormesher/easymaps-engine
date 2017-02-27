@@ -1,6 +1,0 @@
-[abcdef,1482144783714,grozavesti_0,grozavesti_13,grozavesti_23,grozavesti_12,grozavesti_11,grozavesti_22,grozavesti_28,grozavesti_17,grozavesti_16,grozavesti_26,grozavesti_14,grozavesti_25,grozavesti_20,grozavesti_3,grozavesti_5]
-[abcdef,1482144813609,grozavesti_18,grozavesti_29,grozavesti_13,grozavesti_23,grozavesti_11,grozavesti_21,grozavesti_10,grozavesti_28,grozavesti_15,grozavesti_26,grozavesti_9,grozavesti_20,grozavesti_4,grozavesti_3,grozavesti_8]
-[abcdef,1482144839317,grozavesti_19,grozavesti_29,grozavesti_20,grozavesti_24,grozavesti_4,grozavesti_13,grozavesti_3,grozavesti_2,grozavesti_26,grozavesti_15]
-[abcdef,1482144866211,grozavesti_19,grozavesti_0,grozavesti_24,grozavesti_12,grozavesti_23,grozavesti_22,grozavesti_17,grozavesti_26,grozavesti_15,grozavesti_25,grozavesti_9,grozavesti_20,grozavesti_3,grozavesti_1,grozavesti_6]
-[abcdef,1482144889536,grozavesti_22,grozavesti_11]
-[abcdef,1482144905761,grozavesti_19,grozavesti_9,grozavesti_29,grozavesti_20,grozavesti_16,grozavesti_26]

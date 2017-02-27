@@ -1,5 +1,0 @@
-[abcdef,1482144616070,at_23,at_11,at_25,at_14,at_13,at_4,at_7,at_6,at_19,at_2]
-[abcdef,1482144633156,at_12,at_1,at_27,at_17,at_28]
-[abcdef,1482144655759,at_11,at_22,at_8,at_14,at_13,at_5,at_4,at_21,at_10,at_6,at_20,at_3,at_16,at_27]
-[abcdef,1482144685143,at_23,at_12,at_8,at_22,at_25,at_24,at_13,at_21,at_1,at_19,at_27,at_17]
-[abcdef,1482144711666,at_12,at_8,at_11,at_14,at_24,at_5,at_21,at_7,at_10,at_6,at_2,at_19,at_16,at_15,at_26,at_18,at_29,at_28]

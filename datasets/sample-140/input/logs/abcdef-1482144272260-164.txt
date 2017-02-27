@@ -1,3 +1,0 @@
-[abcdef,1482144272260,cy_8,cy_23,cy_10,cy_28,cy_16,cy_2,cy_20]
-[abcdef,1482144288390,cy_5,cy_6,cy_4,cy_27]
-[abcdef,1482144311611,cy_13,cy_24,cy_8,cy_12,cy_23,cy_5,cy_11,cy_21,cy_6,cy_28,cy_27,cy_4,cy_1]

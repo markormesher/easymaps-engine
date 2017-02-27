@@ -1,3 +1,0 @@
-[abcdef,1482144244093,ay_3,ay_17,ay_6,ay_16,ay_5,ay_13,ay_24,ay_23,ay_1,ay_11,ay_22,ay_10,ay_8,ay_7,ay_9]
-[abcdef,1482144261173,ay_19,ay_4,ay_18,ay_28,ay_26,ay_25,ay_24,ay_12,ay_11,ay_21,ay_8]
-[abcdef,1482144284867,ay_19,ay_29,ay_18,ay_28,ay_27,ay_16,ay_5,ay_25,ay_2,ay_13,ay_1,ay_10,ay_20,ay_9]

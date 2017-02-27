@@ -1,8 +1,0 @@
-[abcdef,1482144500584,cn_3,cn_20,cn_8,cn_17,cn_28,cn_4,cn_15,cn_26,cn_27,cn_16]
-[abcdef,1482144523312,cn_13,cn_20,cn_28,cn_29,cn_5]
-[abcdef,1482144539178,cn_13,cn_3,cn_22,cn_0]
-[abcdef,1482144557432,cn_2,cn_24,cn_13,cn_25,cn_14,cn_11,cn_23,cn_21,cn_17,cn_28,cn_16]
-[abcdef,1482144585518,cn_24,cn_0,cn_11,cn_23,cn_19,cn_9,cn_6,cn_29,cn_15,cn_26,cn_5]
-[abcdef,1482144606957,cn_8,cn_6,cn_7,cn_13,cn_2,cn_24,cn_3,cn_14,cn_0,cn_1,cn_23,cn_12,cn_20,cn_19,cn_17,cn_28,cn_15,cn_27]
-[abcdef,1482144635806,cn_2,cn_12]
-[abcdef,1482144664234,cn_24,cn_3,cn_14,cn_22,cn_23,cn_10,cn_21,cn_19,cn_28,cn_18,cn_15,cn_4]

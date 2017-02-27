@@ -1,5 +1,0 @@
-[abcdef,1482144755297,croxley_6,croxley_4,croxley_2,croxley_0,croxley_8,croxley_22,croxley_11,croxley_10,croxley_7,croxley_15,croxley_17,croxley_28,croxley_27,croxley_29]
-[abcdef,1482144778253,croxley_5,croxley_3,croxley_20,croxley_9,croxley_22,croxley_11,croxley_21,croxley_7,croxley_13,croxley_23,croxley_12,croxley_15,croxley_17,croxley_27,croxley_19]
-[abcdef,1482144800137,croxley_20,croxley_9,croxley_8,croxley_10,croxley_6,croxley_13,croxley_15,croxley_26,croxley_28,croxley_29]
-[abcdef,1482144823049,croxley_9,croxley_8,croxley_22,croxley_12,croxley_2,croxley_18]
-[abcdef,1482144839004,croxley_6,croxley_4,croxley_2,croxley_1,croxley_0,croxley_20,croxley_9,croxley_11,croxley_22,croxley_8,croxley_10,croxley_21,croxley_13,croxley_23,croxley_15,croxley_14,croxley_25,croxley_28,croxley_19]

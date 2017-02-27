@@ -1,5 +1,0 @@
-[abcdef,1482144287708,et_8,et_6,et_21,et_4,et_20,et_1,et_26,et_15,et_29,et_17,et_22,et_11,et_24,et_19]
-[abcdef,1482144305981,et_8,et_7,et_3,et_2,et_27,et_15,et_28,et_12,et_22,et_25,et_14,et_13,et_24,et_19]
-[abcdef,1482144326676,et_9,et_7,et_10,et_21,et_20,et_26,et_29,et_17,et_28,et_12,et_22,et_11,et_14,et_13,et_19]
-[abcdef,1482144350568,et_9,et_8,et_6,et_10,et_5,et_20,et_1,et_0,et_16,et_26,et_18,et_28,et_17,et_11,et_22,et_14,et_19]
-[abcdef,1482144378123,et_16,et_29,et_28,et_22,et_14,et_24,et_7,et_21,et_0]

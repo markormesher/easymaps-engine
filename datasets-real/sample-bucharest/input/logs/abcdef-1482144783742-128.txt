@@ -1,4 +1,0 @@
-[abcdef,1482144783742,laminorului_28,laminorului_7,laminorului_29,laminorului_15,laminorului_27,laminorului_16,laminorului_13,laminorului_24,laminorului_14,laminorului_3,laminorului_11,laminorului_23]
-[abcdef,1482144806823,laminorului_16,laminorului_5,laminorului_24,laminorului_13,laminorului_0,laminorului_20]
-[abcdef,1482144828952,laminorului_8,laminorului_19,laminorului_9,laminorului_6,laminorului_4,laminorului_5,laminorului_3,laminorului_0,laminorului_23,laminorului_21]
-[abcdef,1482144851010,laminorului_19,laminorului_9,laminorului_18,laminorului_15,laminorului_5,laminorului_13,laminorului_0,laminorului_23]

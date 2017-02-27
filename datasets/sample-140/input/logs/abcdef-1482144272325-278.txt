@@ -1,3 +1,0 @@
-[abcdef,1482144272325,eq_8,eq_6,eq_5,eq_23,eq_12,eq_1,eq_24,eq_14,eq_20,eq_10,eq_21,eq_11,eq_27,eq_29,eq_19]
-[abcdef,1482144296494,eq_7,eq_27]
-[abcdef,1482144323721,eq_6,eq_5,eq_3,eq_23,eq_2,eq_13,eq_24,eq_1,eq_25,eq_26,eq_21,eq_11,eq_22,eq_16,eq_27]

@@ -1,2 +1,0 @@
-[abcdef,1482144500330,ja_9,ja_8,ja_25,ja_24,ja_22,ja_11,ja_18,ja_29,ja_17,ja_28,ja_16,ja_27,ja_26,ja_0,ja_3,ja_4,ja_7,ja_6]
-[abcdef,1482144525601,ja_8,ja_21,ja_10,ja_20,ja_12,ja_22,ja_11,ja_18,ja_28,ja_17,ja_27,ja_16,ja_26,ja_1,ja_0,ja_3,ja_2,ja_5,ja_6]

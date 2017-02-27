@@ -1,4 +1,0 @@
-[abcdef,1482144500450,cu_9,cu_20,cu_10,cu_8,cu_24,cu_13,cu_5,cu_6,cu_12,cu_3,cu_4,cu_15,cu_25,cu_14,cu_17,cu_27,cu_16,cu_19,cu_18]
-[abcdef,1482144528490,cu_9,cu_20,cu_7,cu_11,cu_8,cu_21,cu_25,cu_28,cu_0,cu_29]
-[abcdef,1482144551838,cu_20,cu_7,cu_14,cu_1,cu_27]
-[abcdef,1482144569683,cu_11,cu_21,cu_5,cu_24,cu_6,cu_26,cu_4,cu_25,cu_14,cu_17,cu_2,cu_16]

@@ -1,6 +1,0 @@
-[abcdef,1482144755173,colindale_1,colindale_20,colindale_12,colindale_13,colindale_27,colindale_15,colindale_18,colindale_19,colindale_5]
-[abcdef,1482144775403,colindale_10,colindale_23,colindale_11,colindale_22,colindale_25,colindale_24,colindale_16,colindale_27,colindale_18,colindale_29,colindale_17,colindale_8,colindale_6,colindale_5,colindale_3,colindale_1]
-[abcdef,1482144797390,colindale_2,colindale_1,colindale_10,colindale_22,colindale_14,colindale_16,colindale_27,colindale_18,colindale_8,colindale_7,colindale_4]
-[abcdef,1482144823054,colindale_21,colindale_10,colindale_12,colindale_22,colindale_11,colindale_14,colindale_25,colindale_13,colindale_16,colindale_26,colindale_9,colindale_29,colindale_18,colindale_8,colindale_7,colindale_19,colindale_6,colindale_4,colindale_0]
-[abcdef,1482144852456,colindale_23,colindale_22,colindale_11,colindale_25,colindale_24,colindale_13,colindale_27,colindale_26,colindale_9,colindale_8,colindale_7,colindale_6,colindale_19,colindale_5,colindale_3,colindale_2,colindale_1]
-[abcdef,1482144872023,colindale_10,colindale_0,colindale_23,colindale_22,colindale_13,colindale_15,colindale_29,colindale_18,colindale_17,colindale_7,colindale_6,colindale_4]

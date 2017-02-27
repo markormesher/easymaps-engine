@@ -1,5 +1,0 @@
-[abcdef,1482144616337,in_23,in_16,in_15,in_18,in_6]
-[abcdef,1482144642807,in_23,in_21,in_10,in_27,in_16,in_1,in_19,in_7]
-[abcdef,1482144669997,in_23,in_12,in_11,in_21,in_27,in_26,in_13,in_0,in_24,in_2,in_5,in_4,in_6,in_9,in_8,in_29,in_18,in_28,in_17]
-[abcdef,1482144695242,in_22,in_27,in_15,in_25,in_1,in_6,in_8]
-[abcdef,1482144718445,in_0,in_7,in_6,in_8]

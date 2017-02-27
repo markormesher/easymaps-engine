@@ -1,7 +1,0 @@
-[abcdef,1482144754818,bermondsey_10,bermondsey_3,bermondsey_5,bermondsey_24,bermondsey_12,bermondsey_15,bermondsey_1,bermondsey_25]
-[abcdef,1482144780909,bermondsey_11,bermondsey_21,bermondsey_8,bermondsey_3,bermondsey_17,bermondsey_5,bermondsey_29,bermondsey_6,bermondsey_12,bermondsey_15,bermondsey_1]
-[abcdef,1482144810560,bermondsey_22,bermondsey_10,bermondsey_9,bermondsey_4]
-[abcdef,1482144829072,bermondsey_22,bermondsey_21,bermondsey_10,bermondsey_28,bermondsey_16,bermondsey_5,bermondsey_18,bermondsey_24,bermondsey_26,bermondsey_25]
-[abcdef,1482144857681,bermondsey_20,bermondsey_11,bermondsey_7,bermondsey_8,bermondsey_9,bermondsey_3,bermondsey_17,bermondsey_28,bermondsey_4,bermondsey_19,bermondsey_6,bermondsey_24,bermondsey_0,bermondsey_1,bermondsey_14]
-[abcdef,1482144883720,bermondsey_10,bermondsey_5,bermondsey_13,bermondsey_23,bermondsey_15,bermondsey_2]
-[abcdef,1482144903693,bermondsey_21,bermondsey_10,bermondsey_7,bermondsey_9,bermondsey_28,bermondsey_17,bermondsey_5,bermondsey_6,bermondsey_29,bermondsey_18,bermondsey_13,bermondsey_24,bermondsey_26,bermondsey_14]

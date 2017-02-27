@@ -1,3 +1,0 @@
-[abcdef,1482144539873,ge_1,ge_2,ge_3,ge_4,ge_5,ge_20,ge_23,ge_13,ge_22,ge_11,ge_27,ge_16,ge_17,ge_25,ge_0,ge_15]
-[abcdef,1482144565879,ge_2,ge_3,ge_4,ge_8,ge_9,ge_24,ge_21,ge_22,ge_17,ge_25]
-[abcdef,1482144586211,ge_3,ge_4,ge_7,ge_13,ge_16,ge_26]

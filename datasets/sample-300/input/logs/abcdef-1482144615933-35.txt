@@ -1,4 +1,0 @@
-[abcdef,1482144615933,as_13,as_2,as_3]
-[abcdef,1482144645093,as_21,as_11,as_22,as_12,as_13,as_24,as_6,as_5,as_20,as_7,as_1,as_14,as_26,as_15,as_16,as_17,as_28]
-[abcdef,1482144670112,as_8,as_7,as_0,as_28]
-[abcdef,1482144697821,as_21,as_22,as_9,as_11,as_6,as_5,as_8,as_1,as_4,as_3,as_18,as_29,as_19,as_14,as_15,as_27,as_28,as_17]

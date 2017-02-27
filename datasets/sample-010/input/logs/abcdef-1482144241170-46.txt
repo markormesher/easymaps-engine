@@ -1,7 +1,0 @@
-[abcdef,1482144241170,aa_16,aa_29,aa_18,aa_24,aa_14,aa_7,aa_9,aa_4,aa_20,aa_6,aa_10,aa_11,aa_5,aa_22,aa_2]
-[abcdef,1482144263572,aa_12,aa_23,aa_7,aa_21,aa_11,aa_5,aa_1]
-[abcdef,1482144282276,aa_29,aa_2]
-[abcdef,1482144305940,aa_29,aa_19,aa_26,aa_4,aa_0]
-[abcdef,1482144327092,aa_16,aa_28,aa_8,aa_26,aa_9,aa_20,aa_21,aa_6,aa_10,aa_5,aa_1]
-[abcdef,1482144346585,aa_27,aa_29,aa_3,aa_10,aa_21,aa_6,aa_11,aa_22,aa_1]
-[abcdef,1482144365831,aa_27,aa_28,aa_29,aa_18,aa_19,aa_23,aa_13,aa_26,aa_7,aa_9,aa_4,aa_20,aa_21,aa_6,aa_11,aa_0,aa_2,aa_1]

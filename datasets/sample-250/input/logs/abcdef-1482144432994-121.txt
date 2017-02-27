@@ -1,4 +1,0 @@
-[abcdef,1482144432994,iy_15,iy_27,iy_16]
-[abcdef,1482144459861,iy_0,iy_23,iy_13,iy_15,iy_26,iy_27,iy_3,iy_5,iy_7,iy_10]
-[abcdef,1482144477737,iy_12,iy_24,iy_16,iy_6,iy_18,iy_19,iy_5,iy_10]
-[abcdef,1482144504376,iy_0,iy_23,iy_25,iy_14,iy_16,iy_18,iy_29,iy_7,iy_11,iy_22]

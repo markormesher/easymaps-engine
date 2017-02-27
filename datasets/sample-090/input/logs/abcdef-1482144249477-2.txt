@@ -1,5 +1,0 @@
-[abcdef,1482144249477,aj_14,aj_27,aj_4,aj_19,aj_0,aj_9,aj_8]
-[abcdef,1482144278908,aj_24,aj_25,aj_16,aj_28,aj_23]
-[abcdef,1482144304755,aj_24,aj_14,aj_4,aj_27,aj_1,aj_7,aj_20,aj_10,aj_21,aj_9]
-[abcdef,1482144320791,aj_15,aj_5,aj_27,aj_17,aj_29,aj_18,aj_19,aj_7,aj_8,aj_23]
-[abcdef,1482144340555,aj_25,aj_29,aj_12]

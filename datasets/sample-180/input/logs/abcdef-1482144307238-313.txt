@@ -1,4 +1,0 @@
-[abcdef,1482144307238,et_14,et_13,et_24,et_6,et_4,et_1]
-[abcdef,1482144329482,et_13,et_6]
-[abcdef,1482144347972,et_9,et_7,et_6,et_4,et_20,et_2,et_0,et_27,et_15,et_29,et_18,et_28,et_12,et_11,et_14,et_25]
-[abcdef,1482144370432,et_27,et_16,et_23,et_12,et_13,et_4,et_19]

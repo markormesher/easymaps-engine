@@ -1,6 +1,0 @@
-[abcdef,1482144755055,waterloo_14,waterloo_13,waterloo_9,waterloo_27,waterloo_10,waterloo_1,waterloo_17]
-[abcdef,1482144783436,waterloo_9,waterloo_15,waterloo_21,waterloo_20,waterloo_12,waterloo_23,waterloo_0,waterloo_28]
-[abcdef,1482144804440,waterloo_28,waterloo_19,waterloo_14,waterloo_25,waterloo_6,waterloo_16,waterloo_9,waterloo_15,waterloo_8,waterloo_10,waterloo_3,waterloo_21,waterloo_20,waterloo_12,waterloo_23,waterloo_22,waterloo_4,waterloo_1,waterloo_0]
-[abcdef,1482144824596,waterloo_16,waterloo_9,waterloo_22,waterloo_28]
-[abcdef,1482144844587,waterloo_29,waterloo_28,waterloo_25,waterloo_7,waterloo_14,waterloo_16,waterloo_27,waterloo_8,waterloo_21,waterloo_10,waterloo_2,waterloo_23,waterloo_12,waterloo_5,waterloo_22,waterloo_4,waterloo_0]
-[abcdef,1482144869541,waterloo_6,waterloo_24,waterloo_27,waterloo_8,waterloo_3,waterloo_21,waterloo_2,waterloo_11,waterloo_1,waterloo_28,waterloo_19]

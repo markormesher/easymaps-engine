@@ -1,8 +1,0 @@
-[abcdef,1482144754501,kingsbury_18,kingsbury_19,kingsbury_5,kingsbury_15,kingsbury_27,kingsbury_2,kingsbury_4]
-[abcdef,1482144776871,kingsbury_18,kingsbury_29,kingsbury_15,kingsbury_21,kingsbury_2]
-[abcdef,1482144795022,kingsbury_29,kingsbury_27,kingsbury_28,kingsbury_3]
-[abcdef,1482144810287,kingsbury_6,kingsbury_8]
-[abcdef,1482144836923,kingsbury_20,kingsbury_0,kingsbury_29,kingsbury_19,kingsbury_6,kingsbury_15,kingsbury_28,kingsbury_22,kingsbury_12,kingsbury_4]
-[abcdef,1482144860751,kingsbury_0,kingsbury_15,kingsbury_2]
-[abcdef,1482144884930,kingsbury_18,kingsbury_19,kingsbury_6,kingsbury_7,kingsbury_8,kingsbury_2,kingsbury_4,kingsbury_14,kingsbury_25,kingsbury_26,kingsbury_15,kingsbury_16,kingsbury_27,kingsbury_21,kingsbury_22,kingsbury_11,kingsbury_23,kingsbury_13,kingsbury_24]
-[abcdef,1482144904595,kingsbury_0,kingsbury_18,kingsbury_6,kingsbury_8,kingsbury_1]

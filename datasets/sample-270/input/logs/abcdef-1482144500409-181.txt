@@ -1,3 +1,0 @@
-[abcdef,1482144500409,fy_27,fy_2,fy_22]
-[abcdef,1482144527569,fy_19,fy_27,fy_26,fy_29,fy_18,fy_1,fy_4,fy_11,fy_5,fy_6,fy_25,fy_24,fy_7,fy_13,fy_21,fy_20]
-[abcdef,1482144554374,fy_19,fy_26,fy_15,fy_18,fy_17,fy_28,fy_0,fy_1,fy_2,fy_23,fy_12,fy_5,fy_11,fy_14,fy_25,fy_24,fy_13,fy_10,fy_20]

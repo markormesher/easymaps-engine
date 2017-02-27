@@ -1,5 +1,0 @@
-[abcdef,1482144298009,ga_7,ga_10,ga_21,ga_4]
-[abcdef,1482144319031,ga_5,ga_26,ga_7,ga_27,ga_17,ga_29,ga_18,ga_20,ga_10,ga_11,ga_3,ga_23]
-[abcdef,1482144338904,ga_7,ga_1,ga_10]
-[abcdef,1482144368226,ga_5,ga_7,ga_9,ga_25,ga_14,ga_15,ga_26,ga_29,ga_19,ga_20,ga_1,ga_10,ga_2,ga_11,ga_22,ga_23,ga_3,ga_24]
-[abcdef,1482144391448,ga_15,ga_16,ga_0,ga_11]

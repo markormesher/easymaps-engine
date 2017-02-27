@@ -1,3 +1,0 @@
-[abcdef,1482144328782,az_4,az_16,az_7]
-[abcdef,1482144346715,az_17,az_14,az_10]
-[abcdef,1482144375183,az_19,az_5,az_29,az_17,az_4,az_27,az_16,az_15,az_25,az_1,az_14,az_24,az_12,az_23,az_21,az_10,az_7,az_9,az_8]

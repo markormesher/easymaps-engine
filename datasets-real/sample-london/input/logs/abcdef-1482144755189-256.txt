@@ -1,8 +1,0 @@
-[abcdef,1482144755189,heathrowt_20,heathrowt_22,heathrowt_11,heathrowt_10,heathrowt_21,heathrowt_24,heathrowt_12,heathrowt_9,heathrowt_5,heathrowt_8,heathrowt_26,heathrowt_14,heathrowt_17,heathrowt_28,heathrowt_27,heathrowt_18,heathrowt_29]
-[abcdef,1482144780123,heathrowt_22,heathrowt_21,heathrowt_24,heathrowt_12,heathrowt_9,heathrowt_6,heathrowt_8,heathrowt_7,heathrowt_2,heathrowt_1,heathrowt_4,heathrowt_28,heathrowt_17,heathrowt_16,heathrowt_19,heathrowt_29,heathrowt_0]
-[abcdef,1482144803651,heathrowt_3,heathrowt_19]
-[abcdef,1482144832232,heathrowt_9,heathrowt_20,heathrowt_5,heathrowt_8,heathrowt_13,heathrowt_2,heathrowt_14,heathrowt_4,heathrowt_27,heathrowt_16,heathrowt_19,heathrowt_0]
-[abcdef,1482144849140,heathrowt_22,heathrowt_11,heathrowt_21,heathrowt_10,heathrowt_24,heathrowt_13,heathrowt_12,heathrowt_9,heathrowt_8,heathrowt_7,heathrowt_15,heathrowt_26,heathrowt_25,heathrowt_28,heathrowt_17,heathrowt_16,heathrowt_27,heathrowt_19,heathrowt_29]
-[abcdef,1482144867367,heathrowt_9,heathrowt_25,heathrowt_3]
-[abcdef,1482144887134,heathrowt_9,heathrowt_20,heathrowt_21,heathrowt_24,heathrowt_17,heathrowt_28,heathrowt_19,heathrowt_18]
-[abcdef,1482144914731,heathrowt_9,heathrowt_6,heathrowt_22,heathrowt_24,heathrowt_23,heathrowt_12,heathrowt_15,heathrowt_1,heathrowt_14,heathrowt_17,heathrowt_4,heathrowt_18]

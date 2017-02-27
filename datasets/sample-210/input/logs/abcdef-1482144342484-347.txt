@@ -1,2 +1,0 @@
-[abcdef,1482144342484,dj_20,dj_12,dj_24,dj_10,dj_11,dj_27,dj_25,dj_9,dj_26,dj_8,dj_6,dj_29,dj_18,dj_19,dj_1,dj_0]
-[abcdef,1482144371807,dj_7,dj_6,dj_29,dj_20,dj_1,dj_12,dj_24,dj_11,dj_22,dj_27,dj_16,dj_14]

@@ -1,7 +1,0 @@
-[abcdef,1482144575867,dd_10,dd_22,dd_11,dd_12,dd_24,dd_14,dd_25,dd_26,dd_16,dd_17,dd_28,dd_18,dd_29,dd_8,dd_5,dd_6,dd_3,dd_1]
-[abcdef,1482144597559,dd_25,dd_29,dd_7,dd_20]
-[abcdef,1482144625884,dd_24,dd_25,dd_16,dd_17,dd_18,dd_5,dd_6,dd_1,dd_10,dd_21,dd_11]
-[abcdef,1482144649041,dd_12,dd_24,dd_9,dd_27,dd_18,dd_8,dd_4,dd_2,dd_11]
-[abcdef,1482144667216,dd_20,dd_10,dd_11,dd_23,dd_24,dd_13,dd_25,dd_16,dd_9,dd_17,dd_7,dd_29,dd_18,dd_8,dd_5,dd_6,dd_3,dd_2,dd_0]
-[abcdef,1482144686984,dd_20,dd_21,dd_22,dd_23,dd_12,dd_14,dd_16,dd_27,dd_17,dd_28,dd_19,dd_8,dd_6,dd_1,dd_2]
-[abcdef,1482144715286,dd_20,dd_10,dd_22,dd_12,dd_24,dd_13,dd_25,dd_26,dd_9,dd_17,dd_18,dd_8,dd_19,dd_6,dd_4,dd_2,dd_0]

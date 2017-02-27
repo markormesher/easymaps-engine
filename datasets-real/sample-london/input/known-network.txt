@@ -400,3 +400,68 @@
 // waterloo and city
 
 "Bank/Monument" -- "Waterloo"
+
+// dlr (main horizontal branch)
+
+"Bank/Monument" -- "Shadwell"
+"Tower Hill" -- "Shadwell"
+"Shadwell" -- "Limehouse"
+"Limehouse" -- "Westferry"
+"Westferry" -- "Poplar"
+"Poplar" -- "Blackwall"
+"Blackwall" -- "East India"
+"East India" -- "Canning Town"
+"Canning Town" -- "Royal Victoria"
+"Royal Victoria" -- "Custom House for ExCel"
+"Custom House for ExCel" -- "Prince Regent"
+"Prince Regent" -- "Royal Albert"
+"Royal Albert" -- "Beckton Park"
+"Beckton Park" -- "Cyprus"
+"Cyprus" -- "Gallions Reach"
+"Gallions Reach" -- "Beckton"
+
+// dlr (branch up to stratford)
+
+"Canning Town" -- "Star Lane"
+"Star Lane" -- "West Ham"
+"West Ham" -- "Abbey Road"
+"Abbey Road" -- "Stratford High Street"
+"Stratford High Street" -- "Stratford"
+"Stratford" -- "Stratford International"
+
+// dlr (branch from stratford down to lewisham)
+
+"Stratford" -- "Pudding Mill Lane"
+"Pudding Mill Lane" -- "Bow Church"
+"Bow Church" -- "Devons Road"
+"Devons Road" -- "Langdon Park"
+"Langdon Park" -- "All Saints"
+"All Saints" -- "Poplar"
+"Poplar" -- "West India Quay"
+"West India Quay" -- "Canary Wharf"
+"Canary Wharf" -- "Heron Quays"
+"Heron Quays" -- "South Quay"
+"South Quay" -- "Crossharbour"
+"Crossharbour" -- "Mudchute"
+"Mudchute" -- "Island Gardens"
+"Island Gardens" -- "Cutty Sark"
+"Cutty Sark" -- "Greenwich"
+"Greenwich" -- "Deptford Bridge"
+"Deptford Bridge" -- "Elverson Road"
+"Elverson Road" -- "Lewisham"
+
+// dlr (bow church/bow road)
+
+"Bow Church" -- "Bow Road"
+
+// dlr (westferry/west india quay)
+
+"Westferry" -- "West India Quay"
+
+// dlr (branch down to woolwich)
+
+"Canning Town" -- "West Silvertown"
+"West Silvertown" -- "Pontoon Dock"
+"Pontoon Dock" -- "London City Airport"
+"London City Airport" -- "King George V"
+"King George V" -- "Woolwich Arsenal"

@@ -1,3 +1,0 @@
-[abcdef,1482144328985,cu_23,cu_1]
-[abcdef,1482144344852,cu_20,cu_8,cu_21,cu_24,cu_5,cu_6,cu_3,cu_4,cu_2,cu_0,cu_26,cu_25,cu_28,cu_16]
-[abcdef,1482144364364,cu_11,cu_7,cu_10,cu_8,cu_13,cu_4,cu_2,cu_19]

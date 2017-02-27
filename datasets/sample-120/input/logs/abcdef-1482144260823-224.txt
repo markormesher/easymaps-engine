@@ -1,4 +1,0 @@
-[abcdef,1482144260823,bi_20,bi_21,bi_15,bi_23]
-[abcdef,1482144282175,bi_10,bi_5,bi_1,bi_28,bi_18,bi_15,bi_14,bi_8,bi_12]
-[abcdef,1482144306047,bi_21,bi_10,bi_28,bi_18,bi_15,bi_26,bi_27,bi_24,bi_25,bi_11,bi_8,bi_6,bi_5,bi_0]
-[abcdef,1482144329023,bi_2,bi_29,bi_11]

@@ -1,4 +1,0 @@
-[abcdef,1482144755200,grangehill_20,grangehill_1,grangehill_3,grangehill_23,grangehill_29]
-[abcdef,1482144780136,grangehill_4,grangehill_10,grangehill_0,grangehill_11,grangehill_23,grangehill_29]
-[abcdef,1482144804449,grangehill_5,grangehill_10,grangehill_21,grangehill_24,grangehill_13,grangehill_14,grangehill_11,grangehill_29,grangehill_18,grangehill_26,grangehill_27,grangehill_9,grangehill_8]
-[abcdef,1482144825909,grangehill_4,grangehill_19,grangehill_20,grangehill_14,grangehill_11,grangehill_22,grangehill_27]

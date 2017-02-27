@@ -1,2 +1,0 @@
-[abcdef,1482144575916,di_9,di_5,di_22,di_26,di_14]
-[abcdef,1482144602623,di_11,di_12,di_20,di_10,di_21,di_15,di_27,di_16,di_25,di_28,di_29,di_18,di_5,di_4,di_3,di_2,di_1]

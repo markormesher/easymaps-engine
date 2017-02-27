@@ -1,6 +1,0 @@
-[abcdef,1482144265971,eq_12,eq_24,eq_14,eq_10,eq_21,eq_6,eq_19]
-[abcdef,1482144292696,eq_2,eq_13,eq_1,eq_14,eq_0,eq_15,eq_20,eq_22,eq_11,eq_27,eq_17,eq_28,eq_29]
-[abcdef,1482144312762,eq_6,eq_3,eq_2,eq_12,eq_23,eq_13,eq_0,eq_14,eq_15,eq_26,eq_20,eq_10,eq_21,eq_11,eq_16,eq_27,eq_17,eq_28,eq_18]
-[abcdef,1482144328903,eq_8,eq_6,eq_3,eq_23,eq_2,eq_25,eq_14,eq_26,eq_10,eq_21,eq_11,eq_22,eq_16,eq_27,eq_17,eq_18,eq_19]
-[abcdef,1482144346960,eq_7,eq_6,eq_4,eq_3,eq_12,eq_23,eq_13,eq_14,eq_25,eq_26,eq_21,eq_10,eq_11,eq_22,eq_16,eq_27,eq_17,eq_28,eq_19]
-[abcdef,1482144371580,eq_7,eq_6,eq_5,eq_3,eq_12,eq_24,eq_1,eq_14,eq_26,eq_20,eq_21,eq_10,eq_22,eq_16,eq_17,eq_28,eq_29,eq_18,eq_19]

@@ -1,6 +1,0 @@
-[abcdef,1482144576103,go_7,go_8,go_16,go_0,go_1,go_2,go_3,go_4,go_6]
-[abcdef,1482144605831,go_19,go_14,go_25,go_13,go_23,go_12,go_11,go_2,go_6]
-[abcdef,1482144633578,go_8,go_28,go_21]
-[abcdef,1482144655336,go_9,go_23,go_5]
-[abcdef,1482144676076,go_19,go_29,go_28,go_15,go_14,go_24,go_22,go_21,go_0,go_4]
-[abcdef,1482144696559,go_9,go_16,go_25,go_23]

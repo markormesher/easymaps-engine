@@ -1,4 +1,0 @@
-[abcdef,1482144540187,ez_3,ez_26]
-[abcdef,1482144562426,ez_8,ez_12,ez_24,ez_5,ez_29]
-[abcdef,1482144582073,ez_9,ez_21,ez_11,ez_23,ez_25,ez_26,ez_3,ez_2,ez_17,ez_1,ez_29,ez_18]
-[abcdef,1482144599927,ez_9,ez_21,ez_8,ez_10,ez_11,ez_22,ez_12,ez_5,ez_13,ez_14,ez_25,ez_15,ez_3,ez_26,ez_1,ez_0,ez_29,ez_18]

@@ -1,4 +1,0 @@
-[abcdef,1482144360568,hk_0,hk_14,hk_13,hk_26,hk_7,hk_15,hk_19]
-[abcdef,1482144383091,hk_2,hk_3,hk_4,hk_29,hk_17,hk_16,hk_8,hk_19,hk_21,hk_20,hk_13,hk_23,hk_11]
-[abcdef,1482144403731,hk_21,hk_25,hk_13,hk_12,hk_11,hk_5,hk_26,hk_8]
-[abcdef,1482144428405,hk_21,hk_10,hk_25,hk_24,hk_28,hk_7,hk_26,hk_8]

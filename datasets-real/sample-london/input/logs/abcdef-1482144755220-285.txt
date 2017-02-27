@@ -1,3 +1,0 @@
-[abcdef,1482144755220,borough_9,borough_8,borough_5,borough_14,borough_26,borough_23,borough_12,borough_13,borough_24,borough_22,borough_20,borough_1,borough_18,borough_27]
-[abcdef,1482144782835,borough_9,borough_7,borough_8,borough_6,borough_4,borough_14,borough_25,borough_26,borough_13,borough_21,borough_10,borough_20,borough_1,borough_27,borough_16]
-[abcdef,1482144801642,borough_9,borough_7,borough_10,borough_18,borough_19]

@@ -1,2 +1,0 @@
-[abcdef,1482144755636,bowroad_27,bowroad_2,bowroad_0,bowroad_18]
-[abcdef,1482144785310,bowroad_3,bowroad_11]

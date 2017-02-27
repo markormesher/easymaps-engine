@@ -1,4 +1,0 @@
-[abcdef,1482144755593,coventgarden_0,coventgarden_21,coventgarden_7]
-[abcdef,1482144783647,coventgarden_18,coventgarden_14,coventgarden_2,coventgarden_7]
-[abcdef,1482144805651,coventgarden_9,coventgarden_29,coventgarden_19,coventgarden_20,coventgarden_2,coventgarden_14,coventgarden_15,coventgarden_26,coventgarden_4,coventgarden_17,coventgarden_21,coventgarden_6,coventgarden_23,coventgarden_13]
-[abcdef,1482144823895,coventgarden_20,coventgarden_3,coventgarden_17,coventgarden_10,coventgarden_8]

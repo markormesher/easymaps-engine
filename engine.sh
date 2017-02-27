@@ -10,6 +10,8 @@ fi
 option=""
 if [ -f "datasets/$1/options.txt" ]; then
 	option="datasets/$1/options.txt"
+elif [ -f "datasets-real/$1/options.txt" ]; then
+	option="datasets-real/$1/options.txt"
 fi
 
 # go!

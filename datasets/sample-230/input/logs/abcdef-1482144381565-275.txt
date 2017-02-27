@@ -1,4 +1,0 @@
-[abcdef,1482144381565,hz_27,hz_28,hz_17,hz_14,hz_26,hz_20,hz_5,hz_8,hz_23,hz_9,hz_24,hz_21,hz_11]
-[abcdef,1482144401473,hz_27,hz_17,hz_28,hz_25,hz_18,hz_0,hz_1,hz_4,hz_5,hz_13,hz_21,hz_10,hz_22,hz_11]
-[abcdef,1482144420549,hz_16,hz_14,hz_2,hz_29,hz_4,hz_19,hz_20,hz_8,hz_7,hz_23,hz_9,hz_22]
-[abcdef,1482144435755,hz_16,hz_28,hz_14,hz_25,hz_26,hz_29,hz_0,hz_4,hz_6,hz_20,hz_5,hz_7,hz_12,hz_23,hz_9,hz_10,hz_11]

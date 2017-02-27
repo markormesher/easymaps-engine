@@ -1,6 +1,0 @@
-[abcdef,1482144266126,au_12,au_23,au_26,au_4,au_20,au_3,au_11,au_6,au_10,au_0,au_17,au_19,au_18,au_29]
-[abcdef,1482144285527,au_8,au_15,au_26,au_9,au_14,au_0,au_2]
-[abcdef,1482144312002,au_23,au_15,au_14,au_9,au_22,au_10,au_2,au_1,au_17]
-[abcdef,1482144328086,au_13,au_23,au_15,au_11,au_22,au_6]
-[abcdef,1482144344673,au_7,au_15,au_26,au_9,au_19]
-[abcdef,1482144363886,au_24,au_8,au_7,au_23,au_15,au_4,au_2,au_17,au_27,au_19]

@@ -1,2 +1,0 @@
-[abcdef,1482144245321,am_8,am_7,am_3,am_6,am_5,am_0,am_28,am_17,am_27,am_18,am_20,am_11,am_10,am_24,am_26,am_15,am_25]
-[abcdef,1482144260882,am_8,am_7,am_9,am_4,am_3,am_17,am_16,am_2,am_19,am_18,am_29,am_24,am_23,am_26]

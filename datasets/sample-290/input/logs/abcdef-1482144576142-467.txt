@@ -1,5 +1,0 @@
-[abcdef,1482144576142,bz_29,bz_12,bz_2,bz_15,bz_20,bz_7,bz_8]
-[abcdef,1482144604107,bz_27,bz_13,bz_20,bz_9,bz_7]
-[abcdef,1482144626632,bz_4,bz_1,bz_2]
-[abcdef,1482144652265,bz_20,bz_10]
-[abcdef,1482144676124,bz_5,bz_6,bz_3,bz_18,bz_29,bz_26,bz_11,bz_7,bz_8]

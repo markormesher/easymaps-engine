@@ -1,3 +1,0 @@
-[abcdef,1482144279815,cf_28,cf_17,cf_27,cf_19,cf_21]
-[abcdef,1482144301668,cf_28,cf_16,cf_27,cf_19,cf_6,cf_5,cf_20,cf_10,cf_21,cf_0,cf_1,cf_13,cf_14,cf_11,cf_22,cf_23]
-[abcdef,1482144318152,cf_28,cf_18,cf_26,cf_9,cf_4,cf_2,cf_10,cf_21,cf_0,cf_23,cf_12]

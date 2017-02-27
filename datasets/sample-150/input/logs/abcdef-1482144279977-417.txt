@@ -1,4 +1,0 @@
-[abcdef,1482144279977,ft_13,ft_1,ft_2,ft_12,ft_3,ft_21,ft_5,ft_16,ft_6,ft_29,ft_20,ft_0]
-[abcdef,1482144299805,ft_12,ft_16]
-[abcdef,1482144322108,ft_4,ft_17,ft_28,ft_26,ft_15,ft_14,ft_9,ft_18,ft_29,ft_20]
-[abcdef,1482144346486,ft_3,ft_28,ft_19]

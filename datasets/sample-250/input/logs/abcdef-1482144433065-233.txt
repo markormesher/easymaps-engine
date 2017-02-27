@@ -1,3 +1,0 @@
-[abcdef,1482144433065,fr_21,fr_22,fr_20,fr_25,fr_14,fr_13,fr_29,fr_19,fr_27,fr_28,fr_0,fr_1,fr_4,fr_5,fr_6,fr_9]
-[abcdef,1482144457687,fr_10,fr_14,fr_15,fr_12,fr_13,fr_18]
-[abcdef,1482144478323,fr_21,fr_22,fr_23,fr_29]

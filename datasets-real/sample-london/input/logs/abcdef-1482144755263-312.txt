@@ -1,7 +1,0 @@
-[abcdef,1482144755263,holborn_17,holborn_26,holborn_12,holborn_20,holborn_6,holborn_5,holborn_8,holborn_1,holborn_4]
-[abcdef,1482144779274,holborn_15,holborn_11,holborn_22,holborn_1,holborn_4]
-[abcdef,1482144807001,holborn_0,holborn_28,holborn_27,holborn_16,holborn_26,holborn_14,holborn_22,holborn_11,holborn_6,holborn_5,holborn_7,holborn_2,holborn_1,holborn_4,holborn_29,holborn_3]
-[abcdef,1482144827267,holborn_17,holborn_16,holborn_3,holborn_29]
-[abcdef,1482144848588,holborn_0,holborn_28,holborn_17,holborn_27,holborn_16,holborn_26,holborn_25,holborn_24,holborn_9,holborn_23,holborn_22,holborn_21,holborn_6,holborn_2,holborn_4,holborn_19,holborn_3]
-[abcdef,1482144863628,holborn_28,holborn_17,holborn_16,holborn_15,holborn_25,holborn_14,holborn_24,holborn_13,holborn_12,holborn_11,holborn_21,holborn_6,holborn_8,holborn_1,holborn_19,holborn_4,holborn_29]
-[abcdef,1482144889219,holborn_27,holborn_16,holborn_26,holborn_0,holborn_25,holborn_24,holborn_12,holborn_9,holborn_10,holborn_5,holborn_7,holborn_3]

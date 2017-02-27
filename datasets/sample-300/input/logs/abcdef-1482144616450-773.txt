@@ -1,3 +1,0 @@
-[abcdef,1482144616450,cm_12,cm_13,cm_2,cm_8,cm_6]
-[abcdef,1482144641125,cm_1,cm_29,cm_17,cm_14]
-[abcdef,1482144667502,cm_9,cm_7,cm_23,cm_3,cm_13,cm_24,cm_10,cm_22,cm_11,cm_0,cm_29,cm_19,cm_16,cm_17,cm_14]

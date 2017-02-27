@@ -1,2 +1,0 @@
-[abcdef,1482144381712,au_7,au_23,au_26,au_6,au_11,au_10,au_1,au_28,au_16]
-[abcdef,1482144408077,au_23,au_15,au_25,au_3,au_6,au_22,au_11,au_0,au_1,au_28,au_17,au_18]

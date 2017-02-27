@@ -1,4 +1,0 @@
-[abcdef,1482144458902,ip_25,ip_24,ip_12,ip_22,ip_29,ip_17,ip_27,ip_26,ip_0,ip_10,ip_5,ip_7,ip_6,ip_9,ip_8]
-[abcdef,1482144480577,ip_23,ip_17,ip_27,ip_26,ip_15,ip_19,ip_6]
-[abcdef,1482144504305,ip_9,ip_24,ip_8,ip_12,ip_23,ip_11,ip_22,ip_29,ip_1,ip_2,ip_7,ip_6]
-[abcdef,1482144519943,ip_25,ip_24,ip_12,ip_11,ip_29,ip_17,ip_0,ip_19,ip_21,ip_20,ip_6]

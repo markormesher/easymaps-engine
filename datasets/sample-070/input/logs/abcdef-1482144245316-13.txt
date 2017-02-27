@@ -1,3 +1,0 @@
-[abcdef,1482144245316,cl_6,cl_21,cl_10,cl_20,cl_5,cl_23,cl_3,cl_0,cl_1,cl_28,cl_17,cl_19,cl_13,cl_24,cl_27,cl_16,cl_26]
-[abcdef,1482144270849,cl_9,cl_6,cl_4,cl_21,cl_5,cl_12,cl_11,cl_0,cl_28,cl_19,cl_13,cl_24,cl_27,cl_15]
-[abcdef,1482144295367,cl_10,cl_4,cl_5,cl_23,cl_22,cl_18,cl_19,cl_14,cl_16,cl_27,cl_7]

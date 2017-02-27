@@ -1,3 +1,0 @@
-[abcdef,1482144360419,ar_20,ar_10,ar_21,ar_11,ar_12,ar_7,ar_6,ar_9,ar_5,ar_17,ar_28,ar_29,ar_24,ar_13,ar_14,ar_15,ar_16]
-[abcdef,1482144383133,ar_6,ar_9,ar_17,ar_18,ar_19,ar_4]
-[abcdef,1482144400467,ar_21,ar_11,ar_23,ar_7,ar_3,ar_4,ar_28,ar_17,ar_29,ar_19,ar_13,ar_24,ar_26,ar_16]

@@ -1,2 +1,0 @@
-[abcdef,1482144500406,ju_1,ju_0,ju_5,ju_19,ju_4,ju_9,ju_27,ju_8,ju_17,ju_28,ju_18,ju_12,ju_23,ju_13,ju_25,ju_14,ju_20,ju_21]
-[abcdef,1482144529667,ju_19,ju_4,ju_15,ju_9,ju_16,ju_27,ju_8,ju_13,ju_24,ju_0,ju_20]

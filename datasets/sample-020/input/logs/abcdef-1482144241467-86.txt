@@ -1,4 +1,0 @@
-[abcdef,1482144241467,aj_7,aj_8,aj_13,aj_25,aj_14,aj_26,aj_15,aj_5,aj_4,aj_29,aj_0,aj_20,aj_10,aj_22,aj_11,aj_12]
-[abcdef,1482144262555,aj_2,aj_5,aj_1,aj_0,aj_7,aj_6,aj_22,aj_12]
-[abcdef,1482144279456,aj_6,aj_3,aj_24,aj_25,aj_2,aj_5,aj_15,aj_26,aj_27,aj_4,aj_28,aj_29,aj_18,aj_23,aj_12]
-[abcdef,1482144300157,aj_7,aj_3,aj_13,aj_24,aj_25,aj_14,aj_2,aj_26,aj_16,aj_27,aj_17,aj_28,aj_18,aj_1,aj_0,aj_22,aj_11,aj_12]

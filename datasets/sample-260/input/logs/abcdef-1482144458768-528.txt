@@ -1,2 +1,0 @@
-[abcdef,1482144458768,jz_21,jz_22,jz_5,jz_6,jz_3,jz_4,jz_29,jz_16,jz_8,jz_17,jz_14,jz_25,jz_15,jz_26,jz_12,jz_23]
-[abcdef,1482144484723,jz_5,jz_16,jz_27,jz_17,jz_14,jz_26]

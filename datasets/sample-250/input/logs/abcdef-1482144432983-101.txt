@@ -1,5 +1,0 @@
-[abcdef,1482144432983,ar_10,ar_22,ar_11,ar_23,ar_17,ar_29,ar_14,ar_1,ar_15,ar_16]
-[abcdef,1482144450159,ar_23,ar_3,ar_14,ar_25,ar_15,ar_26]
-[abcdef,1482144477436,ar_21,ar_8,ar_4,ar_13,ar_0]
-[abcdef,1482144500131,ar_20,ar_22,ar_6,ar_17,ar_3,ar_24,ar_15,ar_1,ar_0]
-[abcdef,1482144516976,ar_24,ar_1]

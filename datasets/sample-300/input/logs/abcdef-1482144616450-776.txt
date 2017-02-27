@@ -1,4 +1,0 @@
-[abcdef,1482144616450,dy_9,dy_21,dy_6,dy_24,dy_3,dy_26,dy_0]
-[abcdef,1482144634287,dy_9,dy_8,dy_6,dy_29,dy_18,dy_17,dy_0,dy_19,dy_21,dy_10,dy_23,dy_12,dy_22,dy_25,dy_14,dy_24,dy_16,dy_15]
-[abcdef,1482144651467,dy_9,dy_8,dy_18,dy_1,dy_17,dy_10,dy_23,dy_11,dy_25,dy_24,dy_13,dy_27,dy_16]
-[abcdef,1482144668228,dy_7,dy_5,dy_4,dy_2,dy_29,dy_1,dy_19,dy_21,dy_23,dy_11,dy_25,dy_16,dy_27,dy_26,dy_15]

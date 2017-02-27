@@ -1,3 +1,0 @@
-[abcdef,1482144260758,co_6,co_3,co_25,co_26,co_2,co_23,co_12,co_0,co_13,co_21,co_11,co_20,co_18,co_19,co_27,co_28,co_17]
-[abcdef,1482144286450,co_5,co_14,co_25,co_26,co_2,co_24,co_13,co_0,co_21,co_20,co_18,co_29,co_19,co_16,co_27]
-[abcdef,1482144307838,co_0,co_21,co_11,co_22,co_20,co_19]

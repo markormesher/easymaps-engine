@@ -1,2 +1,0 @@
-[abcdef,1482144244291,aq_8,aq_21,aq_20,aq_4,aq_3,aq_6,aq_2,aq_15,aq_14,aq_24,aq_23,aq_12,aq_29,aq_17]
-[abcdef,1482144272543,aq_7,aq_4,aq_3,aq_28,aq_2,aq_17]

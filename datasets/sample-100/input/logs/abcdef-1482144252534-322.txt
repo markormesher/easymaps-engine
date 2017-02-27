@@ -1,6 +1,0 @@
-[abcdef,1482144252534,cm_9,cm_5,cm_3,cm_23,cm_24,cm_13,cm_10,cm_11,cm_22,cm_2,cm_18,cm_29,cm_16,cm_27,cm_14,cm_25,cm_26]
-[abcdef,1482144277551,cm_4,cm_13,cm_1,cm_10,cm_11,cm_17,cm_25,cm_26]
-[abcdef,1482144303615,cm_3,cm_23,cm_13,cm_24,cm_2,cm_18,cm_25,cm_15]
-[abcdef,1482144327982,cm_10,cm_2,cm_20,cm_18,cm_26]
-[abcdef,1482144350131,cm_23,cm_2,cm_9,cm_17]
-[abcdef,1482144373244,cm_7,cm_8,cm_5,cm_6,cm_23,cm_3,cm_4,cm_21,cm_10,cm_2,cm_22,cm_0,cm_18,cm_19,cm_27,cm_16,cm_17,cm_14,cm_26]

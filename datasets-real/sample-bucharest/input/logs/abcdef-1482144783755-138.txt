@@ -1,3 +1,0 @@
-[abcdef,1482144783755,lujerului_29,lujerului_5,lujerului_0,lujerului_24,lujerului_15,lujerului_20,lujerului_10,lujerului_23,lujerului_12]
-[abcdef,1482144803606,lujerului_29,lujerului_19,lujerului_3,lujerului_13,lujerului_24,lujerului_14,lujerului_26,lujerului_10,lujerului_22,lujerului_23]
-[abcdef,1482144832729,lujerului_17,lujerului_18,lujerului_29,lujerului_19,lujerului_2,lujerului_24,lujerului_13,lujerului_25,lujerului_27,lujerului_16,lujerului_20,lujerului_10,lujerului_21,lujerului_23,lujerului_12,lujerului_8,lujerului_9]

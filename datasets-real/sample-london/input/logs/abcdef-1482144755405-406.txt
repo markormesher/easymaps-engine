@@ -1,5 +1,0 @@
-[abcdef,1482144755405,northharrow_18,northharrow_19,northharrow_1,northharrow_5,northharrow_7,northharrow_21,northharrow_10,northharrow_11,northharrow_13,northharrow_14,northharrow_27]
-[abcdef,1482144785093,northharrow_1,northharrow_4,northharrow_3,northharrow_5,northharrow_8,northharrow_21,northharrow_22,northharrow_11,northharrow_27,northharrow_28,northharrow_29,northharrow_19,northharrow_9]
-[abcdef,1482144800920,northharrow_29,northharrow_7,northharrow_22,northharrow_9,northharrow_12,northharrow_15,northharrow_17]
-[abcdef,1482144820795,northharrow_5,northharrow_14]
-[abcdef,1482144847741,northharrow_4,northharrow_9,northharrow_23]

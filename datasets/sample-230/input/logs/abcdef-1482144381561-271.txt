@@ -1,2 +1,0 @@
-[abcdef,1482144381561,iq_27,iq_17,iq_29,iq_12,iq_23,iq_24,iq_15,iq_26,iq_0,iq_10,iq_1,iq_3,iq_6,iq_8,iq_7]
-[abcdef,1482144402134,iq_16,iq_17,iq_18,iq_19,iq_12,iq_0,iq_4,iq_3]

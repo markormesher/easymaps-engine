@@ -1,5 +1,0 @@
-[abcdef,1482144615924,gr_0,gr_2,gr_3,gr_10,gr_8,gr_9,gr_24,gr_15,gr_27,gr_16,gr_28,gr_17,gr_29]
-[abcdef,1482144645201,gr_7,gr_24,gr_16,gr_3]
-[abcdef,1482144669734,gr_5,gr_7,gr_9,gr_26,gr_16]
-[abcdef,1482144693616,gr_11,gr_23,gr_28,gr_29,gr_3]
-[abcdef,1482144723602,gr_0,gr_2,gr_4,gr_6,gr_20,gr_7,gr_21,gr_8,gr_23,gr_9,gr_13,gr_16,gr_29,gr_19]

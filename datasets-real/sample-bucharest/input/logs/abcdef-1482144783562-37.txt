@@ -1,8 +1,0 @@
-[abcdef,1482144783562,pacii_1,pacii_20,pacii_10,pacii_21,pacii_24,pacii_13,pacii_9,pacii_25,pacii_28]
-[abcdef,1482144801357,pacii_2,pacii_14,pacii_26,pacii_16,pacii_18]
-[abcdef,1482144818135,pacii_1,pacii_2,pacii_20,pacii_4,pacii_10,pacii_11,pacii_22,pacii_23,pacii_24,pacii_13,pacii_8,pacii_25,pacii_26]
-[abcdef,1482144845799,pacii_1,pacii_2,pacii_20,pacii_21,pacii_11,pacii_24,pacii_6,pacii_14,pacii_25,pacii_26,pacii_27,pacii_16,pacii_17,pacii_28,pacii_29]
-[abcdef,1482144870092,pacii_3,pacii_10,pacii_21,pacii_11,pacii_24,pacii_5,pacii_14,pacii_25,pacii_15,pacii_26,pacii_27,pacii_17,pacii_29]
-[abcdef,1482144887778,pacii_3,pacii_4,pacii_15,pacii_16,pacii_27,pacii_17,pacii_29,pacii_5,pacii_19,pacii_8]
-[abcdef,1482144909420,pacii_1,pacii_3,pacii_4,pacii_22,pacii_11,pacii_23,pacii_12,pacii_24,pacii_15,pacii_16,pacii_27,pacii_17]
-[abcdef,1482144936132,pacii_2,pacii_3,pacii_10,pacii_11,pacii_13,pacii_24,pacii_0,pacii_15,pacii_26,pacii_27,pacii_17,pacii_18,pacii_29]

@@ -1,5 +1,0 @@
-[abcdef,1482144458505,iy_12,iy_0,iy_13,iy_1,iy_26,iy_27,iy_8,iy_7]
-[abcdef,1482144486270,iy_14,iy_27,iy_5,iy_21]
-[abcdef,1482144505522,iy_20,iy_10,iy_21,iy_22,iy_11,iy_12,iy_13,iy_24,iy_25,iy_1,iy_4,iy_3,iy_6,iy_29,iy_5,iy_19,iy_7,iy_9]
-[abcdef,1482144524683,iy_0,iy_25,iy_1,iy_27,iy_29,iy_18,iy_5,iy_20,iy_22]
-[abcdef,1482144553942,iy_20,iy_21,iy_11,iy_14,iy_2,iy_25,iy_15,iy_26,iy_3,iy_6,iy_29,iy_7,iy_9]

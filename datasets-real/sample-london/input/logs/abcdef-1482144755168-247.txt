@@ -1,7 +1,0 @@
-[abcdef,1482144755168,gantshill_1,gantshill_11,gantshill_7,gantshill_5,gantshill_6,gantshill_12,gantshill_13]
-[abcdef,1482144781169,gantshill_18,gantshill_1,gantshill_29,gantshill_2,gantshill_27,gantshill_0,gantshill_17,gantshill_8,gantshill_20,gantshill_12,gantshill_3,gantshill_24]
-[abcdef,1482144803704,gantshill_1,gantshill_18,gantshill_16,gantshill_0,gantshill_7,gantshill_8,gantshill_6,gantshill_21,gantshill_10,gantshill_22,gantshill_11,gantshill_20,gantshill_14,gantshill_25,gantshill_15,gantshill_26,gantshill_23]
-[abcdef,1482144824056,gantshill_21,gantshill_22,gantshill_14,gantshill_15,gantshill_6]
-[abcdef,1482144844488,gantshill_16,gantshill_27,gantshill_0,gantshill_8,gantshill_5,gantshill_6,gantshill_10,gantshill_22,gantshill_20,gantshill_12,gantshill_23,gantshill_13,gantshill_24]
-[abcdef,1482144868486,gantshill_18,gantshill_2,gantshill_16,gantshill_17,gantshill_28,gantshill_9,gantshill_8,gantshill_3,gantshill_4,gantshill_21,gantshill_10,gantshill_11,gantshill_23,gantshill_24]
-[abcdef,1482144887621,gantshill_16,gantshill_17,gantshill_0,gantshill_10,gantshill_9,gantshill_11,gantshill_8,gantshill_20,gantshill_26,gantshill_23,gantshill_4]

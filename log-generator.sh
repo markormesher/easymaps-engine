@@ -12,6 +12,8 @@ if [ "$#" == 1 ]; then
 	dataset=$1
 	if [ -f "datasets/$dataset/log-generator-options.txt" ];then
 		option="datasets/$dataset/log-generator-options.txt"
+	elif [ -f "datasets-real/$1/log-generator-options.txt" ]; then
+		option="datasets-real/$1/options.txt"
 	else
 		echo "No log generator option file found at datasets/$dataset/log-generator-options.txt"
 		exit 1

@@ -1,3 +1,0 @@
-[abcdef,1482144298062,dd_12,dd_24,dd_9,dd_18,dd_19,dd_8,dd_6,dd_11]
-[abcdef,1482144322685,dd_20,dd_12,dd_13,dd_24,dd_27,dd_9,dd_16,dd_28,dd_29,dd_18,dd_19,dd_5,dd_6,dd_0]
-[abcdef,1482144351025,dd_24,dd_13,dd_5,dd_20,dd_11,dd_22]

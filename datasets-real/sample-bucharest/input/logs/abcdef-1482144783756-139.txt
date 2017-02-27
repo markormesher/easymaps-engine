@@ -1,3 +1,0 @@
-[abcdef,1482144783756,gorjului_15,gorjului_7,gorjului_21,gorjului_11,gorjului_3,gorjului_13,gorjului_1,gorjului_14]
-[abcdef,1482144802956,gorjului_17,gorjului_21,gorjului_2,gorjului_11,gorjului_12,gorjului_13,gorjului_14]
-[abcdef,1482144832069,gorjului_8,gorjului_10,gorjului_0,gorjului_24]

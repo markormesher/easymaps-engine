@@ -1,4 +1,0 @@
-[abcdef,1482144458657,jp_12,jp_14,jp_3,jp_7]
-[abcdef,1482144474840,jp_12,jp_21,jp_10,jp_27,jp_25,jp_26,jp_19,jp_6,jp_8,jp_7]
-[abcdef,1482144502899,jp_22,jp_11,jp_16,jp_27,jp_28,jp_0,jp_25,jp_1,jp_4,jp_6,jp_20]
-[abcdef,1482144530721,jp_12,jp_9,jp_24,jp_21,jp_17,jp_25,jp_26,jp_6,jp_20,jp_5,jp_8]

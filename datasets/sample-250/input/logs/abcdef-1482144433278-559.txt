@@ -1,3 +1,0 @@
-[abcdef,1482144433278,ew_29,ew_4,ew_13]
-[abcdef,1482144462907,ew_9,ew_7,ew_23,ew_24,ew_3,ew_2,ew_10,ew_11,ew_1,ew_29,ew_19,ew_27,ew_15]
-[abcdef,1482144488687,ew_6,ew_5,ew_4,ew_23,ew_3,ew_13,ew_21,ew_10,ew_1,ew_22,ew_11,ew_0,ew_27,ew_17,ew_28,ew_26]

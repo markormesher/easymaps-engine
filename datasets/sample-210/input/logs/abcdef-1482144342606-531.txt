@@ -1,2 +1,0 @@
-[abcdef,1482144342606,bt_7,bt_23,bt_11,bt_6,bt_17,bt_25,bt_14,bt_29]
-[abcdef,1482144369831,bt_9,bt_7,bt_8,bt_6,bt_17,bt_4,bt_16,bt_27,bt_25,bt_0,bt_19,bt_18,bt_24,bt_13,bt_21]

@@ -1,3 +1,0 @@
-[abcdef,1482144458950,gy_17,gy_27,gy_26,gy_1,gy_4,gy_24,gy_21]
-[abcdef,1482144483637,gy_19,gy_23]
-[abcdef,1482144506515,gy_12,gy_11,gy_21,gy_28,gy_16,gy_15,gy_26,gy_1,gy_19,gy_3,gy_4,gy_18,gy_29,gy_5,gy_6,gy_9]

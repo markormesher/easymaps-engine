@@ -1,4 +1,0 @@
-[abcdef,1482144256321,cd_25,cd_14,cd_24,cd_13,cd_16,cd_15,cd_18,cd_19,cd_8,cd_6,cd_3,cd_10,cd_21,cd_1,cd_20,cd_12,cd_23,cd_22,cd_11]
-[abcdef,1482144272222,cd_26,cd_15,cd_7,cd_5,cd_3]
-[abcdef,1482144295784,cd_15,cd_26,cd_18,cd_6,cd_19,cd_4,cd_3,cd_0,cd_1]
-[abcdef,1482144324397,cd_14,cd_25,cd_13,cd_24,cd_27,cd_15,cd_26,cd_29,cd_17,cd_19,cd_9,cd_5,cd_21,cd_1,cd_23,cd_22,cd_11]

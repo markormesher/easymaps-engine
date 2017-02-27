@@ -1,5 +1,0 @@
-[abcdef,1482144616304,do_11,do_25,do_10,do_21,do_20,do_16,do_7,do_26,do_15,do_6,do_18,do_28,do_17,do_3,do_1,do_0]
-[abcdef,1482144641585,do_12,do_22,do_14,do_21,do_16,do_27]
-[abcdef,1482144661345,do_3,do_1,do_21,do_8,do_7,do_16,do_5]
-[abcdef,1482144690961,do_12,do_1,do_24,do_21,do_10,do_9,do_8,do_27,do_7,do_15,do_29,do_28]
-[abcdef,1482144720001,do_11,do_25,do_0,do_24,do_9,do_6,do_29]

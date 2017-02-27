@@ -1,4 +1,0 @@
-[abcdef,1482144241379,at_9,at_12,at_8,at_11,at_25,at_14,at_21,at_7,at_3,at_2,at_16,at_15,at_26]
-[abcdef,1482144271375,at_14,at_25,at_13,at_1,at_0,at_15,at_17]
-[abcdef,1482144287040,at_8,at_11,at_22,at_25,at_4,at_7,at_10,at_1,at_19,at_2,at_27,at_29]
-[abcdef,1482144313145,at_22,at_7,at_1,at_17]

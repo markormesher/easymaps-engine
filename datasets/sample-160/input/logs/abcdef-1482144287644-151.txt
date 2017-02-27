@@ -1,2 +1,0 @@
-[abcdef,1482144287644,da_1,da_19,da_29,da_18,da_16,da_24,da_13,da_22,da_11,da_23,da_20,da_21,da_10,da_8,da_9,da_6,da_4,da_3]
-[abcdef,1482144307758,da_0,da_18,da_29,da_27,da_13,da_14,da_22,da_23,da_20,da_21,da_9,da_7,da_4,da_5,da_2]

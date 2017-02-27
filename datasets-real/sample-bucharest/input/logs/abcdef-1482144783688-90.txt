@@ -1,3 +1,0 @@
-[abcdef,1482144783688,pantelimon_10,pantelimon_29,pantelimon_17]
-[abcdef,1482144806015,pantelimon_8,pantelimon_23,pantelimon_22,pantelimon_21,pantelimon_24,pantelimon_29]
-[abcdef,1482144828087,pantelimon_16,pantelimon_26,pantelimon_15,pantelimon_25,pantelimon_24,pantelimon_19,pantelimon_29,pantelimon_6,pantelimon_9,pantelimon_23,pantelimon_12,pantelimon_11,pantelimon_10,pantelimon_0,pantelimon_3,pantelimon_2,pantelimon_5]

@@ -1,8 +1,0 @@
-[abcdef,1482144755214,hainault_16,hainault_28,hainault_1,hainault_22]
-[abcdef,1482144771972,hainault_9,hainault_7,hainault_8,hainault_27,hainault_17,hainault_14,hainault_15,hainault_26,hainault_4,hainault_2,hainault_12,hainault_0,hainault_10,hainault_11]
-[abcdef,1482144801890,hainault_7,hainault_6,hainault_16,hainault_28,hainault_17,hainault_15,hainault_26,hainault_18,hainault_12,hainault_23,hainault_13,hainault_0,hainault_11]
-[abcdef,1482144817558,hainault_15,hainault_8,hainault_18,hainault_19,hainault_6,hainault_2]
-[abcdef,1482144843411,hainault_9,hainault_7,hainault_5,hainault_6,hainault_16,hainault_17,hainault_25,hainault_15,hainault_26,hainault_3,hainault_12,hainault_21,hainault_10]
-[abcdef,1482144872958,hainault_6,hainault_16,hainault_27,hainault_17,hainault_14,hainault_29,hainault_19,hainault_20,hainault_4,hainault_12,hainault_23,hainault_24,hainault_13,hainault_22]
-[abcdef,1482144902307,hainault_28,hainault_17,hainault_25,hainault_26,hainault_18,hainault_3,hainault_20,hainault_1,hainault_2,hainault_12,hainault_21,hainault_11]
-[abcdef,1482144930594,hainault_9,hainault_7,hainault_8,hainault_5,hainault_6,hainault_28,hainault_29,hainault_19,hainault_20,hainault_23,hainault_0,hainault_11,hainault_22]

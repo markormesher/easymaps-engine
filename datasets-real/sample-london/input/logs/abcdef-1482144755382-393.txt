@@ -1,8 +1,0 @@
-[abcdef,1482144755382,bermondsey_10,bermondsey_8,bermondsey_9,bermondsey_3,bermondsey_16,bermondsey_19,bermondsey_5,bermondsey_29,bermondsey_6,bermondsey_18,bermondsey_24,bermondsey_23,bermondsey_12,bermondsey_0,bermondsey_1,bermondsey_26,bermondsey_14]
-[abcdef,1482144773453,bermondsey_26,bermondsey_14,bermondsey_2]
-[abcdef,1482144796046,bermondsey_7,bermondsey_9,bermondsey_6,bermondsey_24,bermondsey_13,bermondsey_23]
-[abcdef,1482144825354,bermondsey_20,bermondsey_21,bermondsey_7,bermondsey_8,bermondsey_9,bermondsey_3,bermondsey_28,bermondsey_17,bermondsey_16,bermondsey_6,bermondsey_29,bermondsey_24,bermondsey_12,bermondsey_0,bermondsey_23,bermondsey_26,bermondsey_15,bermondsey_25]
-[abcdef,1482144847512,bermondsey_11,bermondsey_7,bermondsey_9,bermondsey_17,bermondsey_5,bermondsey_24,bermondsey_23,bermondsey_12,bermondsey_0,bermondsey_1,bermondsey_26,bermondsey_15]
-[abcdef,1482144866358,bermondsey_10,bermondsey_8,bermondsey_12,bermondsey_0,bermondsey_1,bermondsey_25,bermondsey_14]
-[abcdef,1482144881460,bermondsey_20,bermondsey_7,bermondsey_8,bermondsey_9,bermondsey_16,bermondsey_27,bermondsey_5,bermondsey_18,bermondsey_12,bermondsey_26,bermondsey_25,bermondsey_14]
-[abcdef,1482144896818,bermondsey_22,bermondsey_7,bermondsey_28,bermondsey_4,bermondsey_27,bermondsey_19,bermondsey_13,bermondsey_0,bermondsey_25,bermondsey_2]

@@ -1,2 +1,0 @@
-[abcdef,1482144405646,du_18,du_29,du_28,du_17,du_27,du_15,du_25,du_14,du_7,du_6,du_4,du_3,du_1,du_0,du_23,du_12,du_11,du_22]
-[abcdef,1482144435620,du_19,du_7,du_24,du_13,du_12,du_11,du_10]

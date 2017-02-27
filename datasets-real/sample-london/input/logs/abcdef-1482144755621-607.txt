@@ -1,3 +1,0 @@
-[abcdef,1482144755621,highbarnet_14,highbarnet_8,highbarnet_7,highbarnet_21,highbarnet_6,highbarnet_11,highbarnet_20,highbarnet_2,highbarnet_18,highbarnet_27,highbarnet_28]
-[abcdef,1482144774455,highbarnet_25,highbarnet_9,highbarnet_26,highbarnet_8,highbarnet_24,highbarnet_10,highbarnet_20,highbarnet_29,highbarnet_27,highbarnet_17]
-[abcdef,1482144793343,highbarnet_14,highbarnet_15,highbarnet_9,highbarnet_23,highbarnet_13,highbarnet_7,highbarnet_6,highbarnet_10,highbarnet_21,highbarnet_11,highbarnet_4,highbarnet_3,highbarnet_18,highbarnet_19,highbarnet_17,highbarnet_2,highbarnet_0]

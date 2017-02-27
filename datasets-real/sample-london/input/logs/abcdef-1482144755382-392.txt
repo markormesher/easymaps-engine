@@ -1,4 +1,0 @@
-[abcdef,1482144755382,westham_27,westham_23,westham_5]
-[abcdef,1482144774075,westham_25,westham_2,westham_10,westham_28]
-[abcdef,1482144794569,westham_2,westham_23,westham_20,westham_5,westham_17]
-[abcdef,1482144820219,westham_16,westham_27,westham_15,westham_14,westham_13,westham_24,westham_23,westham_12,westham_22,westham_11,westham_20,westham_6,westham_8,westham_9,westham_3,westham_0,westham_1,westham_19,westham_29]

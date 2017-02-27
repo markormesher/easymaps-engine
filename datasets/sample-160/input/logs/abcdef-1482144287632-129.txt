@@ -1,2 +1,0 @@
-[abcdef,1482144287632,em_6,em_3,em_22,em_15,em_29,em_9,em_19,em_17]
-[abcdef,1482144314621,em_5,em_4,em_1,em_0,em_20,em_25,em_13,em_29,em_27,em_7,em_17]
