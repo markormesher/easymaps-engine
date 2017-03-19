@@ -1,5 +1,7 @@
 package uk.co.markormesher.easymaps.engine.algorithms
 
+import uk.co.markormesher.easymaps.engine.structures.DenseMatrix
+import uk.co.markormesher.easymaps.engine.structures.Matrix
 import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
@@ -10,7 +12,7 @@ when an impossible assignment is reached, pivoting on nodes in descending degree
 limiting the search space by removing possible assignments in the manner described below.
 */
 
-class Ullmann1976IsomorphismFinder_SparseMatrix(candidate: Network, master: Network): IsomorphismFinder(candidate, master) {
+class Ullmann1976IsomorphismFinder(candidate: Network, master: Network, val mode: Mode): IsomorphismFinder(candidate, master) {
 
 	val candidatePivotOrder by lazy { calcCandidatePivotOrder() }
 
@@ -18,12 +20,23 @@ class Ullmann1976IsomorphismFinder_SparseMatrix(candidate: Network, master: Netw
 		search(HashMap<Int, Int>(candidate.nodeCount), calcInitialPossibleAssignments())
 	}
 
-	// calc the order in which candidate nodes should be selected as pivots (descending degree order)
-	private fun calcCandidatePivotOrder() = Array(candidate.nodeCount, { it }).sortedByDescending { i -> candidate.nodeDegree(i) }
+	// calc the order in which candidate nodes should be selected as pivots (descending degree order for modified search)
+	private fun calcCandidatePivotOrder(): Array<Int> {
+		if (mode == Mode.UNMODIFIED_DENSE || mode == Mode.UNMODIFIED_SPARSE) {
+			return Array(candidate.nodeCount, { i -> i })
+		} else {
+			return Array(candidate.nodeCount, { i -> i }).sortedByDescending({ i -> candidate.nodeDegree(i) }).toTypedArray()
+		}
+	}
 
 	// for all candidate nodes, calc the list of master nodes that are of equal or higher degree
-	private fun calcInitialPossibleAssignments(): SparseMatrix<Boolean> {
-		val m = SparseMatrix(master.nodeCount, candidate.nodeCount, false)
+	private fun calcInitialPossibleAssignments(): Matrix<Boolean> {
+		val m: Matrix<Boolean>
+		if (mode == Mode.UNMODIFIED_DENSE || mode == Mode.MODIFIED_DENSE) {
+			m = DenseMatrix(master.nodeCount, candidate.nodeCount, false, { w, h -> Array(w * h, { false }) })
+		} else {
+			m = SparseMatrix(master.nodeCount, candidate.nodeCount, false)
+		}
 		for (cNode in 0..candidate.nodeCount - 1) {
 			(0..master.nodeCount - 1)
 					.filter { mNode -> candidate.nodeDegree(cNode) <= master.nodeDegree(mNode) }
@@ -32,7 +45,7 @@ class Ullmann1976IsomorphismFinder_SparseMatrix(candidate: Network, master: Netw
 		return m
 	}
 
-	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: SparseMatrix<Boolean>, lastAssigned: Int = -1) {
+	private fun search(assignment: MutableMap<Int, Int>, possibleAssignments: Matrix<Boolean>, lastAssigned: Int = -1) {
 		// if we reached an impossible assignment, backtrack
 		if (!validateAssignment(assignment, lastAssigned)) return
 
@@ -65,7 +78,7 @@ class Ullmann1976IsomorphismFinder_SparseMatrix(candidate: Network, master: Netw
 	// suitable neighbours then cNode cannot be assigned to mNode, so remove mNode from cNode's
 	// possible assignment list. this may cause other assignments to become impossible, so repeat
 	// this process until no more changes are made.
-	private fun prunePossibleAssignments(possibleAssignments: SparseMatrix<Boolean>) {
+	private fun prunePossibleAssignments(possibleAssignments: Matrix<Boolean>) {
 		var changes = true
 		while (changes) {
 			changes = false
@@ -94,6 +107,13 @@ class Ullmann1976IsomorphismFinder_SparseMatrix(candidate: Network, master: Netw
 				})
 			}
 		}
+	}
+
+	enum class Mode {
+		UNMODIFIED_DENSE,
+		UNMODIFIED_SPARSE,
+		MODIFIED_DENSE,
+		MODIFIED_SPARSE
 	}
 
 }

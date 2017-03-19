@@ -1,6 +1,6 @@
 package uk.co.markormesher.easymaps.engine.structures
 
-class SparseMatrix<E>(val width: Int, val height: Int, private val default: E) {
+class SparseMatrix<E>(val width: Int, val height: Int, private val default: E): Matrix<E> {
 
 	init {
 		if (width <= 0) throw IllegalArgumentException("Width must be greater than zero")
@@ -15,13 +15,13 @@ class SparseMatrix<E>(val width: Int, val height: Int, private val default: E) {
 	val density: Double
 		get() = storedValueCount / (width * height).toDouble()
 
-	operator fun set(row: Int, col: Int, value: E) {
+	override operator fun set(row: Int, col: Int, value: E) {
 		validateIndex(row, height, "row")
 		validateIndex(col, width, "col")
 		rows[row][col] = value
 	}
 
-	operator fun get(row: Int, col: Int): E {
+	override operator fun get(row: Int, col: Int): E {
 		validateIndex(row, height, "row")
 		validateIndex(col, width, "col")
 		return rows[row][col]
@@ -32,7 +32,7 @@ class SparseMatrix<E>(val width: Int, val height: Int, private val default: E) {
 		return rows[row].clone()
 	}
 
-	fun forEach(exec: (Int, Int, E) -> Unit) {
+	override fun forEach(exec: (Int, Int, E) -> Unit) {
 		for (row in 0..height - 1) {
 			for (column in 0..width - 1) {
 				exec(row, column, get(row, column))
@@ -46,20 +46,20 @@ class SparseMatrix<E>(val width: Int, val height: Int, private val default: E) {
 		}
 	}
 
-	fun forEachOnRow(row: Int, exec: (Int, E) -> Unit) {
+	override fun forEachOnRow(row: Int, exec: (Int, E) -> Unit) {
 		getRow(row).forEach { pos, value -> exec(pos, value) }
 	}
 
-	fun forEachNonDefaultOnRow(row: Int, exec: (Int, E) -> Unit) {
+	override fun forEachNonDefaultOnRow(row: Int, exec: (Int, E) -> Unit) {
 		getRow(row).forEachNonDefault { pos, value -> exec(pos, value) }
 	}
 
-	fun clearRow(row: Int) {
+	override fun clearRow(row: Int) {
 		validateIndex(row, height, "row")
 		rows[row].clear()
 	}
 
-	fun clone(): SparseMatrix<E> {
+	override fun clone(): SparseMatrix<E> {
 		val output = SparseMatrix(width, height, default)
 		forEachNonDefault { row, column, value -> output[row, column] = value }
 		return output
