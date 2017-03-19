@@ -12,7 +12,7 @@ fun matchNetworks(observedNetwork: Network, knownNetwork: Network): List<Map<Int
 
 	printSubHeader("Matching Networks")
 
-	if (knownNetwork.nodeCount <= 50) {
+	if (knownNetwork.nodeCount <= 30) {
 		timedExecution("Brute-force", 1, 3, {
 			BruteForceIsomorphismFinder(observedNetwork, knownNetwork).findIsomorphisms()
 		})
