@@ -15,6 +15,12 @@ class DenseMatrixTests {
 	}
 
 	@Test
+	fun shouldNotRejectWronglySizedInitialiser() {
+		assertFailsWith(IllegalArgumentException::class, { DenseMatrix(10, 10, 0, { w, h -> Array(10, { 0 }) }) })
+		assertFailsWith(IllegalArgumentException::class, { DenseMatrix(10, 10, 0, { w, h -> Array(1000, { 0 }) }) })
+	}
+
+	@Test
 	fun sizeShouldBeAccurate() {
 		val dbm = DenseMatrix(2, 4, 0, { w, h -> Array(w * h, { 0 }) })
 		assertEquals(2, dbm.width)
