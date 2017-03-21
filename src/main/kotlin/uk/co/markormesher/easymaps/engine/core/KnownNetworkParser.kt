@@ -8,17 +8,38 @@ import java.io.File
 import java.util.*
 import java.util.regex.Pattern
 
-// TODO: break out segments (file reading, etc)
+val validNodeRegex = "[A-Za-z0-9'/.\\(\\)\\- ]"
+val validLineFormat = Pattern.compile("\"($validNodeRegex+)\" (\\-\\-|\\->) \"($validNodeRegex+)\"")!!
+
 // TODO: tests for network parsing
 fun parseKnownNetwork(cfg: SharedConfig): Network {
 
 	printSubHeader("Parsing Known Network")
 
-	val validNodeRegex = "[A-Za-z0-9'/.\\(\\)\\- ]"
-	val validLineFormat = Pattern.compile("\"($validNodeRegex+)\" (\\-\\-|\\->) \"($validNodeRegex+)\"")!!
+	val lines = readLines(cfg)
+	val nodeLabelToIdMap = buildNodeLabelToIdMap(lines)
+	val network = buildNetwork(lines, nodeLabelToIdMap)
 
-	// read file to collect valid lines
+	if (network.nodeCount == 0) {
+		printError("Cannot continue with 0 nodes")
+		throw PrematureFailureException()
+	}
+
+	if (network.edgeCount == 0) {
+		printError("Cannot continue with 0 edges")
+		throw PrematureFailureException()
+	}
+
+	printInfo("Writing known network to file")
+	generateNetworkImage(network, "known-network", cfg)
+
+	return network
+}
+
+private fun readLines(cfg: SharedConfig): ArrayList<String> {
+
 	printInfo("Reading file")
+
 	val lines = ArrayList<String>()
 	val file = File(cfg.knownNetworkFilePath)
 	file.forEachLine { tmpLine ->
@@ -32,9 +53,14 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 			printSubWarning("Line rejected: $line")
 		}
 	}
-	printSubInfo("Read ${lines.size} valid lines")
+	printSubInfo("Read ${lines.size} valid line(s)")
+	return lines
+}
 
-	// read file and count nodes
+private fun buildNodeLabelToIdMap(lines: ArrayList<String>): HashMap<String, Int> {
+
+	printInfo("Parsing nodes")
+
 	val nodeLabelToIdMap = HashMap<String, Int>()
 	lines.forEach { line ->
 		val matcher = validLineFormat.matcher(line)
@@ -45,13 +71,17 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 		nodeLabelToIdMap.putIfAbsent(node1, nodeLabelToIdMap.size)
 		nodeLabelToIdMap.putIfAbsent(node2, nodeLabelToIdMap.size)
 	}
+	printSubInfo("Parsed ${nodeLabelToIdMap.size} node(s)")
+	return nodeLabelToIdMap
+}
 
-	// create network with named nodes
+private fun buildNetwork(lines: ArrayList<String>, nodeLabelToIdMap: HashMap<String, Int>): Network {
+
+	printInfo("Constructing network")
+
 	val network = Network(nodeLabelToIdMap.size)
 	nodeLabelToIdMap.forEach { label, id -> network.setNodeLabel(id, label) }
 
-	// create edges
-	printInfo("Constructing network")
 	lines.forEach {
 		line ->
 		val matcher = validLineFormat.matcher(line)
@@ -70,19 +100,5 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 	}
 	printSubInfo("Known network has ${network.nodeCount} node(s)")
 	printSubInfo("Known network has ${network.edgeCount} edge(s)")
-
-	if (network.nodeCount == 0) {
-		printError("Cannot continue with 0 nodes")
-		throw PrematureFailureException()
-	}
-
-	if (network.edgeCount == 0) {
-		printError("Cannot continue with 0 edges")
-		throw PrematureFailureException()
-	}
-
-	printInfo("Writing known network to file")
-	generateNetworkImage(network, "known-network", cfg)
-
 	return network
 }

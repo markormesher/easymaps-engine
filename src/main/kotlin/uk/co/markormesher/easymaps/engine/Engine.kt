@@ -37,7 +37,6 @@ fun runEngine(args: Array<String>) {
 
 	var timer = -System.currentTimeMillis()
 
-	println()
 	try {
 		val parsedLogFiles = parseAndCleanData(cfg)
 		val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
