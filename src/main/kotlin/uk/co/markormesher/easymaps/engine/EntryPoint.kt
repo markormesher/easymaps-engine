@@ -189,4 +189,4 @@ fun selectYesNo(prompt: String, optionKey: String): Boolean {
 	}
 }
 
-class PrematureFailureException : Exception("Premature failure")
+class PrematureFailureException(message: String = "") : Exception("Premature failure ($message)")

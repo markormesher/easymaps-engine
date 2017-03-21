@@ -75,6 +75,22 @@ class NetworkImagingTests {
 	}
 
 	@Test
+	fun generateNetworkImageShouldSucceedWithMissingExecutableIfGraphsDisabled() {
+		val config = SharedConfig(
+				logFolderPath = "",
+				knownNetworkFilePath = "",
+				outputFolderPath = tempFolder.root.path,
+				graphvizExec = "/tmp/not-real",
+				drawGraphs = false
+		)
+
+		val network = Network(2)
+		network.addEdge(0, 1)
+
+		generateNetworkImage(network, "test-network", config)
+	}
+
+	@Test
 	fun generateNetworkImageShouldFailWithFolderAsExecutable() {
 		val config = SharedConfig(
 				logFolderPath = "",

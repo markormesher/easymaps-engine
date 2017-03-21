@@ -25,14 +25,6 @@ class LogGeneratorTests {
 	val tempFolder = TemporaryFolder()
 
 	@Test
-	fun mockLogGeneratorOptionsShouldHaveEqualMinMax() {
-		val generatorOpts = getMockLogGeneratorConfig().logGeneratorOptionProvider
-		assertTrue(generatorOpts.minTimePerNode == generatorOpts.maxTimePerNode)
-		assertTrue(generatorOpts.minGapBetweenNodes == generatorOpts.maxGapBetweenNodes)
-		assertTrue(generatorOpts.minScanGap == generatorOpts.maxScanGap)
-	}
-
-	@Test
 	fun generateLogsShouldCreateFile() {
 		val paths = ArrayList<List<Int>>()
 		paths.add(arrayListOf(0, 1, 2))
@@ -48,11 +40,11 @@ class LogGeneratorTests {
 				0L, "mark",
 				getMockLogGeneratorConfig()
 		)
-		val pattern = Pattern.compile("mark; \\d+; (0_(\\d+)(, )?)+")
+		val pattern = Pattern.compile("mark,\\d+,(0_(\\d+)(,)?)+")
 		var fileEmpty = true
-		log.split("\n").forEach { line ->
+		log.split("\n").map({ line -> line.trimStart('[').trimEnd(']') }).forEach { line ->
 			if (line.isBlank()) return@forEach
-			assertTrue(pattern.matcher(line).matches())
+			assertTrue(pattern.matcher(line).matches(), "Failed: $line")
 			fileEmpty = false
 		}
 		assertFalse(fileEmpty)
@@ -68,9 +60,9 @@ class LogGeneratorTests {
 				0L, "mark",
 				getMockLogGeneratorConfig()
 		)
-		val pattern = Pattern.compile("mark; \\d+; (three_(\\d+)(, )?)+")
+		val pattern = Pattern.compile("mark,\\d+,(three_(\\d+)(,)?)+")
 		var fileEmpty = true
-		log.split("\n").forEach { line ->
+		log.split("\n").map({ line -> line.trimStart('[').trimEnd(']') }).forEach { line ->
 			if (line.isBlank()) return@forEach
 			assertTrue(pattern.matcher(line).matches())
 			fileEmpty = false
@@ -91,16 +83,17 @@ class LogGeneratorTests {
 		)
 
 		var fileEmpty = true
-		var lastNode = 0
+		var lastNode = -1
 		var lastNodeExitTime = 0L
-		log.split("\n").forEach { line ->
+		log.split("\n").map({ line -> line.trimStart('[').trimEnd(']') }).forEach { line ->
 			if (line.isBlank()) return@forEach
-			val scanTime = line.drop(6).split(';')[0].toLong()
+			val scanTime = line.split(',')[1].toLong()
 			val node = if (line.contains("0_")) 0 else 1
 
-			if (node != lastNode) {
-				val gapBetweenNodes = (scanTime - lastNodeExitTime) - generatorOpts.minScanGap
-				assertEquals(generatorOpts.minGapBetweenNodes, gapBetweenNodes)
+			if (node != lastNode && lastNode >= 0) {
+				val gapBetweenNodes = scanTime - lastNodeExitTime
+				assertTrue(generatorOpts.minGapBetweenNodes - generatorOpts.maxScanGap <= gapBetweenNodes)
+				assertTrue(gapBetweenNodes <= generatorOpts.maxGapBetweenNodes + generatorOpts.maxScanGap)
 			}
 
 			lastNode = node
@@ -115,27 +108,34 @@ class LogGeneratorTests {
 	fun generateSingleLogShouldObeyMinMaxTimePerNode() {
 		val generatorOpts = getMockLogGeneratorConfig().logGeneratorOptionProvider
 
-		var entryScanTime = randomLong(0L, 100000L)
 		val log = generateSingleLog(
 				Network(5),
 				arrayListOf(0, 1, 0, 1, 0, 1, 0, 1, 0),
-				entryScanTime,
+				randomLong(0L, 100000L),
 				"mark",
 				getMockLogGeneratorConfig()
 		)
 
 		var fileEmpty = true
-		var lastNode = 0
-		log.split("\n").forEach { line ->
+		var lastNode = -1
+		var firstScanInNode = 0L
+		var lastScanInNode = 0L
+		log.split("\n").map({ line -> line.trimStart('[').trimEnd(']') }).forEach { line ->
 			if (line.isBlank()) return@forEach
-			val scanTime = line.drop(6).split(';')[0].toLong()
+			val scanTime = line.split(',')[1].toLong()
 			val node = if (line.contains("0_")) 0 else 1
 
-			if (node != lastNode) {
-				val timeInLastNode = (scanTime - entryScanTime) - generatorOpts.minGapBetweenNodes
-				assertEquals(generatorOpts.minTimePerNode, timeInLastNode)
-				entryScanTime = scanTime
+			if (node != lastNode && lastNode >= 0) {
+				val timeInLastNode = lastScanInNode - firstScanInNode
+				assertTrue(generatorOpts.minTimePerNode - generatorOpts.maxGapBetweenNodes <= timeInLastNode)
+				assertTrue(timeInLastNode <= generatorOpts.maxTimePerNode + generatorOpts.maxGapBetweenNodes)
 			}
+
+			if (node != lastNode) {
+				firstScanInNode = scanTime
+			}
+			lastScanInNode = scanTime
+
 			lastNode = node
 
 			fileEmpty = false
@@ -153,9 +153,9 @@ class LogGeneratorTests {
 		)
 		var fileEmpty = true
 		var lastScan = 0L
-		log.split("\n").forEach { line ->
+		log.split("\n").map({ line -> line.trimStart('[').trimEnd(']') }).forEach { line ->
 			if (line.isBlank()) return@forEach
-			val scanTime = line.drop(6).split(';')[0].toLong()
+			val scanTime = line.split(',')[1].toLong()
 			if (lastScan != 0L) {
 				val scanGap = scanTime - lastScan
 				lastScan = scanTime
@@ -176,10 +176,10 @@ class LogGeneratorTests {
 				getMockLogGeneratorConfig()
 		)
 		var fileEmpty = true
-		log.split("\n").forEach { line ->
+		log.split("\n").map({ line -> line.trimStart('[').trimEnd(']') }).forEach { line ->
 			if (line.isBlank()) return@forEach
-			val traits = line.drop(6).split(';')[1].split(',')
-			assertTrue(traits.size >= getMockLogGeneratorConfig().logGeneratorOptionProvider.minTraitsPerScan)
+			val traits = line.split(',').drop(2)
+			assertTrue(getMockLogGeneratorConfig().logGeneratorOptionProvider.minTraitsPerScan <= traits.size)
 			assertTrue(traits.size <= getMockLogGeneratorConfig().logGeneratorOptionProvider.maxTraitsPerScan)
 			fileEmpty = false
 		}

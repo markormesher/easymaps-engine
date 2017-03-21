@@ -12,7 +12,6 @@ import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import java.io.PrintWriter
 import java.util.*
 
-// TODO: tests for data parsing and cleaning
 fun parseAndCleanData(cfg: EngineConfig): List<ParsedLogFile> {
 
 	printSubHeader("Parsing and Cleaning Data")
@@ -24,7 +23,7 @@ fun parseAndCleanData(cfg: EngineConfig): List<ParsedLogFile> {
 	applyObserverCountFilter(cfg)
 	if (cfg.traitTranslator.size == 0) {
 		printError("Cannot continue with 0 traits")
-		throw PrematureFailureException()
+		throw PrematureFailureException("Cannot continue with 0 traits")
 	}
 	printSubInfo("Continuing with ${cfg.traitTranslator.size} trait(s)")
 	return convertLogsIntoParsedLogs(cfg)

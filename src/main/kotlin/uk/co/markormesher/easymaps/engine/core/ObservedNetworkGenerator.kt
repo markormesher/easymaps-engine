@@ -9,7 +9,7 @@ import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
 
-// TODO: tests for all segments of observed network generation
+// TODO: overhaul + tests
 fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): Network {
 
 	printSubHeader("Generating Observed Network")

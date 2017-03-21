@@ -41,8 +41,8 @@ class NetworkGeneratorTests {
 		val networks = generateNetworks(cfg)
 		for (n in networks) {
 			val connectivity = n.edgeCount / n.nodeCount.toDouble()
-			assertTrue(connectivity >= opts.minConnectivity, "Connectivity was $connectivity")
-			assertTrue(connectivity <= opts.maxConnectivity, "Connectivity was $connectivity")
+			assertTrue(opts.minConnectivity <= connectivity, "Failed: ${opts.minConnectivity} <= $connectivity")
+			assertTrue(opts.minConnectivity <= connectivity, "Failed: ${opts.minConnectivity} <= $connectivity")
 		}
 	}
 

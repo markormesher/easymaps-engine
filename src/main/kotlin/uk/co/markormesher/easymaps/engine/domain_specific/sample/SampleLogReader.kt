@@ -12,7 +12,7 @@ class SampleLogReader : LogReader {
 
 	val filePaths = ArrayList<String>()
 	var currentFile = -1
-	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,[a-z]+_[0-9]+)+)\\]")!!
+	val validLinePattern = Pattern.compile("\\[([a-z0-9\\-]+),(\\d+)((,[a-z0-9]+_[0-9]+)+)\\]")!!
 
 	override fun init(location: String) {
 		val folder = File(location)

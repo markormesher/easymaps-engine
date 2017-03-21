@@ -41,7 +41,7 @@ class SampleLogGeneratorOptionProvider: LogGeneratorOptionProvider() {
 	}
 
 	override fun generateTrait(nodeLabel: String): String {
-		val cleanLabel = nodeLabel.toLowerCase().replace(Regex("[^a-z]"), "")
+		val cleanLabel = nodeLabel.toLowerCase().replace(Regex("[^a-z0-9]"), "")
 		val number = randomInt(0, traitsPerNode)
 		return "${cleanLabel}_$number"
 	}

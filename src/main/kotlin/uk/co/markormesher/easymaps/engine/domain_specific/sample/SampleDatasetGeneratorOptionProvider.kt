@@ -2,7 +2,7 @@ package uk.co.markormesher.easymaps.engine.domain_specific.sample
 
 import uk.co.markormesher.easymaps.engine.interfaces.DatasetGeneratorOptionProvider
 
-class SampleDatasetGeneratorOptionProvider: DatasetGeneratorOptionProvider() {
+class SampleDatasetGeneratorOptionProvider(override val sizes: List<Int> = (10..50 step 10).toList()): DatasetGeneratorOptionProvider() {
 
 	val characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray()
 
@@ -11,8 +11,6 @@ class SampleDatasetGeneratorOptionProvider: DatasetGeneratorOptionProvider() {
 	override val optionProviderName = "sample"
 
 	override val logGeneratorOptionProviderName = "sample"
-
-	override val sizes = (10..50 step 10).toList()
 
 	override val minConnectivity = 2.05
 

@@ -11,7 +11,6 @@ import java.util.regex.Pattern
 val validNodeRegex = "[A-Za-z0-9'/.\\(\\)\\- ]"
 val validLineFormat = Pattern.compile("\"($validNodeRegex+)\" (\\-\\-|\\->) \"($validNodeRegex+)\"")!!
 
-// TODO: tests for network parsing
 fun parseKnownNetwork(cfg: SharedConfig): Network {
 
 	printSubHeader("Parsing Known Network")
