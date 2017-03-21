@@ -18,9 +18,9 @@ enum class MockNetwork {
 	DOUBLY_LINKED_RING_4,
 	COMPLETE_4,
 	COMPLETE_5,
-	SINGLY_LINKED_STAR_3,
+	SINGLY_LINKED_STAR_5,
 	SINGLY_LINKED_STAR_4,
-	DOUBLY_LINKED_STAR_3,
+	DOUBLY_LINKED_STAR_5,
 	DOUBLY_LINKED_STAR_4
 }
 
@@ -147,22 +147,17 @@ fun getMockNetwork(network: MockNetwork): Network {
 			addEdge(4, 4)
 			return this
 		}
-		MockNetwork.SINGLY_LINKED_STAR_3 -> with(Network(3)) {
-			addEdge(0, 1)
-			addEdge(0, 2)
-			return this
-		}
 		MockNetwork.SINGLY_LINKED_STAR_4 -> with(Network(4)) {
 			addEdge(0, 1)
 			addEdge(0, 2)
 			addEdge(0, 3)
 			return this
 		}
-		MockNetwork.DOUBLY_LINKED_STAR_3 -> with(Network(3)) {
+		MockNetwork.SINGLY_LINKED_STAR_5 -> with(Network(5)) {
 			addEdge(0, 1)
 			addEdge(0, 2)
-			addEdge(1, 0)
-			addEdge(2, 0)
+			addEdge(0, 3)
+			addEdge(0, 4)
 			return this
 		}
 		MockNetwork.DOUBLY_LINKED_STAR_4 -> with(Network(4)) {
@@ -172,6 +167,17 @@ fun getMockNetwork(network: MockNetwork): Network {
 			addEdge(1, 0)
 			addEdge(2, 0)
 			addEdge(3, 0)
+			return this
+		}
+		MockNetwork.DOUBLY_LINKED_STAR_5 -> with(Network(5)) {
+			addEdge(0, 1)
+			addEdge(0, 2)
+			addEdge(0, 3)
+			addEdge(0, 4)
+			addEdge(1, 0)
+			addEdge(2, 0)
+			addEdge(3, 0)
+			addEdge(4, 0)
 			return this
 		}
 		else -> throw IllegalArgumentException("Unrecognised network: $network")
