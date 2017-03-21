@@ -68,11 +68,11 @@ fun parseKnownNetwork(cfg: SharedConfig): Network {
 			network.addEdge(fromNode, toNode)
 		}
 	}
-	printSubInfo("Network has ${network.nodeCount} node(s)")
-	printSubInfo("Network has ${network.edgeCount} edge(s)")
+	printSubInfo("Known network has ${network.nodeCount} node(s)")
+	printSubInfo("Known network has ${network.edgeCount} edge(s)")
 
-	if (network.nodeCount <= 1) {
-		printError("Cannot continue with <= 1 node")
+	if (network.nodeCount == 0) {
+		printError("Cannot continue with 0 nodes")
 		throw PrematureFailureException()
 	}
 

@@ -10,6 +10,7 @@ fun runEngine(args: Array<String>) {
 	if (args.contains("--graphs")) entryPointOptions.put("drawGraphs", "y")
 	if (args.contains("--no-graphs")) entryPointOptions.put("drawGraphs", "n")
 	if (args.contains("--force")) entryPointOptions.put("force", "y")
+	if (args.contains("--timed-matching")) entryPointOptions.put("timedMatching", "y")
 
 	val cfg = EngineConfig(
 			logReader = selectLogReader(),
@@ -23,7 +24,7 @@ fun runEngine(args: Array<String>) {
 	)
 
 	// just to be sure...
-	if ((entryPointOptions["force"] ?: "n") != "y") {
+	if (entryPointOptions["force"] ?: "n" != "y") {
 		println()
 		printWarning("This will delete everything in '${cfg.outputFolderPath}'!")
 		if (selectYesNo("Are you sure you want to continue?", "")) {
@@ -41,7 +42,8 @@ fun runEngine(args: Array<String>) {
 		val parsedLogFiles = parseAndCleanData(cfg)
 		val observedNetwork = generateObservedNetwork(parsedLogFiles, cfg)
 		val knownNetwork = parseKnownNetwork(cfg)
-		val isomorphisms = matchNetworks(observedNetwork, knownNetwork)
+		val isomorphisms: List<Map<Int, Int>>
+		isomorphisms = matchNetworks(observedNetwork, knownNetwork, entryPointOptions["timedMatching"] ?: "n" == "y")
 		writeOutput(knownNetwork, isomorphisms, cfg)
 		printSubHeader("Done!")
 	} catch (e: PrematureFailureException) {

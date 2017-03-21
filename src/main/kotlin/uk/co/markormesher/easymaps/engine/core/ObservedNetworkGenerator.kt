@@ -18,7 +18,7 @@ fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConf
 	val clusterSets = generateClusterSets(coOccurrenceMatrix, cfg)
 	val adjMatrix = generateClusterAdjacencyMatrix(clusterSets, parsedLogFiles, cfg)
 	populateTraitToClusterMap(clusterSets, cfg)
-	val network = generateNetwork(adjMatrix)
+	val network = generateNetwork(adjMatrix, cfg)
 	printInfo("Writing observed network to file")
 	generateNetworkImage(network, "observed-network", cfg)
 	return network
@@ -134,14 +134,21 @@ private fun populateTraitToClusterMap(clusterSets: DisjointSet, cfg: EngineConfi
 	}
 }
 
-private fun generateNetwork(adjMatrix: SparseMatrix<Int>): Network {
+private fun generateNetwork(adjMatrix: SparseMatrix<Int>, cfg: EngineConfig): Network {
 
 	printInfo("Generating final network")
 
 	val network = Network(adjMatrix.width)
-	adjMatrix.forEachNonDefault { row, col, value -> network.addEdge(row, col) }
-	printSubInfo("Network has ${network.nodeCount} node(s)")
-	printSubInfo("Network has ${network.edgeCount} edge(s)")
+	adjMatrix.forEachNonDefault { row, col, value ->
+		if (value >= cfg.optionProvider.edgeStrengthRequired) {
+			network.addEdge(row, col)
+		}
+	}
+	if (network.edgeCount < adjMatrix.storedValueCount) {
+		printSubInfo("Edge strength threshold filter dropped ${adjMatrix.storedValueCount - network.edgeCount} suggested edge(s)")
+	}
+	printSubInfo("Observed network has ${network.nodeCount} node(s)")
+	printSubInfo("Observed network has ${network.edgeCount} edge(s)")
 
 	if (network.edgeCount == 0) {
 		printError("Cannot continue with 0 edges")

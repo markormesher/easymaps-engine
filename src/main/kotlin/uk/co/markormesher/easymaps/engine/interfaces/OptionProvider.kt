@@ -15,6 +15,12 @@ abstract class OptionProvider {
 	abstract val coOccurrencesRequiredPerTraitLink: Int
 
 	/**
+	 * Minimum number of times an edge must be indicated before it is created in the observed network.
+	 * Useful for preventing one-off edges from being created.
+	 */
+	abstract val edgeStrengthRequired: Int
+
+	/**
 	 * Minimum time gap between clusters (within one trait log) to imply a connection between them.
 	 * Set to -1 for no minimum.
 	 */
