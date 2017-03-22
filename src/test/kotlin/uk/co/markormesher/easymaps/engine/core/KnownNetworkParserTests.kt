@@ -58,8 +58,6 @@ class KnownNetworkParserTests {
 		})
 	}
 
-
-
 	@Test
 	fun shouldRejectInvalidLines() {
 		with(PrintWriter(File(tempInputFolder.root, "known-network.txt"), "UTF-8")) {
