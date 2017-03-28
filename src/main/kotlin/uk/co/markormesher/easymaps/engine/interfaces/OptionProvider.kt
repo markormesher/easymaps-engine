@@ -32,4 +32,9 @@ abstract class OptionProvider {
 	 */
 	abstract val maxTimeGapBetweenClusters: Long
 
+	/**
+	 * Create the line to add to a labelling to represent the link between a trait and a node in the known network.
+	 */
+	abstract fun getLabellingLine(trait: Trait, knownNetworkLabel: String): String
+
 }

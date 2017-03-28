@@ -1,0 +1,6 @@
+logReader = london
+optionProvider = london
+logFolderPath = ./datasets-real/working-london/input/logs
+knownNetworkFilePath = ./datasets-real/working-london/input/known-network.txt
+outputFolderPath = ./datasets-real/working-london/output
+graphvizExec = /usr/bin/neato

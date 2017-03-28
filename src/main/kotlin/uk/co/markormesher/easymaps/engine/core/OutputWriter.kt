@@ -1,9 +1,9 @@
 package uk.co.markormesher.easymaps.engine.core
 
 import uk.co.markormesher.easymaps.engine.EngineConfig
-import uk.co.markormesher.easymaps.engine.structures.Network
 import uk.co.markormesher.easymaps.engine.helpers.printInfo
 import uk.co.markormesher.easymaps.engine.helpers.printSubHeader
+import uk.co.markormesher.easymaps.engine.structures.Network
 import java.io.PrintWriter
 
 fun writeOutput(knownNetwork: Network, isomorphisms: List<Map<Int, Int>>, cfg: EngineConfig) {
@@ -21,11 +21,8 @@ fun writeOutput(knownNetwork: Network, isomorphisms: List<Map<Int, Int>>, cfg: E
 			val traits = cfg.traitTranslator.getTraitsForCluster(observedNodeId)
 			traits.forEach { trait ->
 				with(sb) {
-					append("\"")
-					append(trait)
-					append("\" = \"")
-					append(knownNetwork.nodeLabel(knownNodeId))
-					append("\"\n")
+					append(cfg.optionProvider.getLabellingLine(trait, knownNetwork.nodeLabel(knownNodeId)))
+					append("\n")
 				}
 			}
 		}
