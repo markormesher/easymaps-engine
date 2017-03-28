@@ -8,6 +8,6 @@ class LondonOptionProvider : OptionProvider() {
 	override val coOccurrencesRequiredPerTraitLink = 1
 	override val edgeStrengthRequired = 1
 	override val minTimeGapBetweenClusters = 10000L // 10s
-	override val maxTimeGapBetweenClusters = 125000L // 125s
+	override val maxTimeGapBetweenClusters = 150000L // 150s
 
 }
