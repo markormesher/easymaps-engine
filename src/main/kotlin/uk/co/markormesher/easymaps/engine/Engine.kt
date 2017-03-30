@@ -12,15 +12,28 @@ fun runEngine(args: Array<String>) {
 	if (args.contains("--force")) entryPointOptions.put("force", "y")
 	if (args.contains("--timed-matching")) entryPointOptions.put("timedMatching", "y")
 
+	val logReader = selectLogReader()
+	val optionProvider = selectOptionProvider()
+	val traitTranslator = TraitTranslator()
+	val logFolderPath = enterPath("Enter path to log input folder", "logFolderPath", PATH_TYPE_FOLDER)
+	val knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE)
+	val outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER)
+	val drawGraphs = selectYesNo("Draw graphs with GraphViz?", "drawGraphs")
+	val graphvizExec: String
+	if (drawGraphs) {
+		 graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE)
+	} else {
+		graphvizExec = ""
+	}
 	val cfg = EngineConfig(
-			logReader = selectLogReader(),
-			optionProvider = selectOptionProvider(),
-			traitTranslator = TraitTranslator(),
-			logFolderPath = enterPath("Enter path to log input folder", "logFolderPath", PATH_TYPE_FOLDER),
-			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
-			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
-			graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE),
-			drawGraphs = selectYesNo("Draw graphs?", "drawGraphs")
+			logReader = logReader,
+			optionProvider = optionProvider,
+			traitTranslator = traitTranslator,
+			logFolderPath = logFolderPath,
+			knownNetworkFilePath = knownNetworkFilePath,
+			outputFolderPath = outputFolderPath,
+			graphvizExec = graphvizExec,
+			drawGraphs = drawGraphs
 	)
 
 	// just to be sure...
