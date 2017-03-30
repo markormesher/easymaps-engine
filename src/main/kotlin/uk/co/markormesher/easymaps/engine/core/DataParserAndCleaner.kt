@@ -125,6 +125,7 @@ private fun convertLogsIntoParsedLogs(cfg: EngineConfig): List<ParsedLogFile> {
 
 	val parsedLogFiles = ArrayList<ParsedLogFile>()
 	var parsedEntryCount = 0
+	var totalScanTime = 0L
 
 	cfg.logReader.resetIterator()
 	while (cfg.logReader.hasNextLogFile()) {
@@ -145,12 +146,24 @@ private fun convertLogsIntoParsedLogs(cfg: EngineConfig): List<ParsedLogFile> {
 			}
 		}
 
+		if (entries.size >= 2) {
+			val firstTime = entries.first().timestamp
+			val lastTime = entries.last().timestamp
+			totalScanTime += lastTime - firstTime
+		}
+
 		if (entries.isNotEmpty()) {
 			parsedLogFiles.add(ParsedLogFile(entries))
 		}
 	}
 
 	printSubInfo("Parsed data into ${parsedLogFiles.size} log file(s) with $parsedEntryCount log entry(ies)")
+
+	totalScanTime /= 1000
+	val scanningSeconds = totalScanTime.mod(60)
+	val scanningMinutes = (totalScanTime / 60).mod(60)
+	val scanningHours = totalScanTime / (60 * 60)
+	printSubInfo("${scanningHours}h ${scanningMinutes}m ${scanningSeconds}s of scanning observed")
 
 	return parsedLogFiles
 }
