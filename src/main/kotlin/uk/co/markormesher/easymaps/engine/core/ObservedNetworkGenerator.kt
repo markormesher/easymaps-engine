@@ -9,7 +9,6 @@ import uk.co.markormesher.easymaps.engine.structures.ParsedLogFile
 import uk.co.markormesher.easymaps.engine.structures.SparseMatrix
 import java.util.*
 
-// TODO: overhaul + tests
 fun generateObservedNetwork(parsedLogFiles: List<ParsedLogFile>, cfg: EngineConfig): Network {
 
 	printSubHeader("Generating Observed Network")
@@ -71,7 +70,7 @@ private fun generateClusterAdjacencyMatrix(clusterSets: DisjointSet, parsedLogFi
 		++fileId
 		var lastNode = -1
 		var lastNodeSeenAt = -1L
-		var lastNodeScanGaps = ArrayList<Long>()
+		val lastNodeScanGaps = ArrayList<Long>()
 
 		logFile.logEntries.forEach logEntries@ { logEntry ->
 			val thisNode = logEntry.traits.map({ i -> clusterSets.findRootPosition(i) }).majorityElement(-1)
