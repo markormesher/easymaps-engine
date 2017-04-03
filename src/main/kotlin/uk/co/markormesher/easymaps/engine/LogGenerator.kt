@@ -12,13 +12,24 @@ fun runLogGenerator(args: Array<String>) {
 	if (args.contains("--no-graphs")) entryPointOptions.put("drawGraphs", "n")
 	if (args.contains("--force")) entryPointOptions.put("force", "y")
 
+	val logGeneratorOptionProvider = selectLogGeneratorOptionProvider()
+	val knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE)
+	val logFolderPath = enterPath("Enter path to log folder", "logFolderPath", PATH_TYPE_FOLDER)
+	val outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER)
+	val drawGraphs = selectYesNo("Draw graphs with GraphViz?", "drawGraphs")
+	val graphvizExec: String
+	if (drawGraphs) {
+		graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE)
+	} else {
+		graphvizExec = ""
+	}
 	val cfg = LogGeneratorConfig(
-			logGeneratorOptionProvider = selectLogGeneratorOptionProvider(),
-			knownNetworkFilePath = enterPath("Enter path to known network file", "knownNetworkFilePath", PATH_TYPE_FILE),
-			logFolderPath = enterPath("Enter path to log folder", "logFolderPath", PATH_TYPE_FOLDER),
-			outputFolderPath = enterPath("Enter path to output folder", "outputFolderPath", PATH_TYPE_FOLDER),
-			graphvizExec = enterPath("Enter path to GraphViz drawing executable (probably dot or neato)", "graphvizExec", PATH_TYPE_FILE),
-			drawGraphs = selectYesNo("Draw graphs?", "drawGraphs")
+			logGeneratorOptionProvider = logGeneratorOptionProvider,
+			knownNetworkFilePath = knownNetworkFilePath,
+			logFolderPath = logFolderPath,
+			outputFolderPath = outputFolderPath,
+			graphvizExec = graphvizExec,
+			drawGraphs = drawGraphs
 	)
 
 	// just to be sure...
